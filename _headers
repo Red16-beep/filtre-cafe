@@ -1,0 +1,6 @@
+/admin.html
+  X-Robots-Tag: noindex
+  Cache-Control: no-store
+
+/404.html
+  Cache-Control: no-store

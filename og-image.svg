@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1c1917"/>
+      <stop offset="100%" style="stop-color:#0c0a09"/>
+    </linearGradient>
+    <linearGradient id="line-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#92400e;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#92400e;stop-opacity:0"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="15%" cy="75%" r="55%">
+      <stop offset="0%" style="stop-color:#92400e;stop-opacity:0.12"/>
+      <stop offset="100%" style="stop-color:#1c1917;stop-opacity:0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg-grad)"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+
+  <!-- Amber accent line -->
+  <rect x="80" y="80" width="200" height="1.5" fill="url(#line-grad)"/>
+
+  <!-- Top label -->
+  <text x="80" y="66" font-family="'Helvetica Neue', Arial, sans-serif" font-size="10.5" font-weight="700" letter-spacing="4" fill="#92400e">LE JOURNAL DU CAFÉ DE SPÉCIALITÉ</text>
+
+  <!-- Main logo — filtré -->
+  <text x="76" y="360" font-family="Georgia, 'Times New Roman', serif" font-size="210" font-style="italic" font-weight="400" fill="#fafaf9" letter-spacing="-8" opacity="0.96">filtré</text>
+
+  <!-- Amber dot -->
+  <text x="978" y="360" font-family="Georgia, 'Times New Roman', serif" font-size="210" font-style="italic" font-weight="400" fill="#b45309">.</text>
+
+  <!-- Tagline -->
+  <text x="80" y="430" font-family="'Helvetica Neue', Arial, sans-serif" font-size="20" font-weight="300" letter-spacing="0.5" fill="#78716c">Terroirs · Techniques · Torréfacteurs artisanaux</text>
+
+  <!-- Bottom line -->
+  <rect x="80" y="500" width="1040" height="1" fill="#292524"/>
+
+  <!-- Bottom left -->
+  <text x="80" y="530" font-family="'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="600" letter-spacing="3.5" fill="#44403c">FILTRE.CAFE</text>
+
+  <!-- Bottom right -->
+  <text x="1120" y="530" font-family="'Helvetica Neue', Arial, sans-serif" font-size="12" font-weight="400" letter-spacing="2" fill="#44403c" text-anchor="end">100% INDÉPENDANT</text>
+
+</svg>

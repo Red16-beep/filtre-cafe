@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guides café de spécialité : méthodes & origines | filtré.</title>
+<meta name="description" content="Guides pratiques du café de spécialité : méthodes d'extraction, origines mondiales, traitement des cerises et lexique. Pour choisir et préparer son café.">
+<meta name="author" content="filtré.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://filtre.cafe/guides/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Guides café de spécialité : méthodes & origines | filtré.">
+<meta property="og:description" content="Guides pratiques du café de spécialité : méthodes d'extraction, origines mondiales, traitement des cerises et lexique. Pour choisir et préparer son café.">
+<meta property="og:url" content="https://filtre.cafe/guides/">
+<meta property="og:site_name" content="filtré.">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:image" content="https://filtre.cafe/og-image.svg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Guides café de spécialité : méthodes & origines | filtré.">
+<meta name="twitter:description" content="Guides pratiques du café de spécialité : méthodes d'extraction, origines mondiales, traitement des cerises et lexique. Pour choisir et préparer son café.">
+<meta name="theme-color" content="#1c1917">
+<link rel="stylesheet" href="/tailwind.css">
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap"></noscript><style>
+:root {
+  --stone-50: #fafaf9; --stone-100: #f5f5f4; --stone-200: #e7e5e4;
+  --stone-300: #d6d3d1; --stone-400: #a8a29e; --stone-500: #78716c;
+  --stone-900: #1c1917; --amber-800: #92400e; --amber-700: #b45309;
+}
+body { font-family: 'Inter', sans-serif; background-color: var(--stone-50); color: var(--stone-900); letter-spacing: -0.02em; }
+.serif { font-family: 'Instrument Serif', serif; }
+.noise { position: fixed; top:0; left:0; width:100%; height:100%; background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIj48ZmlsdGVyIGlkPSJuIiB4PSIwIiB5PSIwIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iMC43NSIgbnVtT2N0YXZlcz0iNCIgc3RpdGNoVGlsZXM9InN0aXRjaCIvPjxmZUNvbG9yTWF0cml4IHR5cGU9InNhdHVyYXRlIiB2YWx1ZXM9IjAiLz48L2ZpbHRlcj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsdGVyPSJ1cmwoI24pIiBvcGFjaXR5PSIxIi8+PC9zdmc+'); opacity: 0.03; pointer-events: none; z-index: 999; }
+.glass-nav { background: rgba(250,250,249,0.8); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+#scroll-progress { position:fixed; top:0; left:0; z-index:9998; height:2px; background:#92400e; width:0%; }
+#mobile-menu { display: none; }
+#mobile-menu.open { display: flex; }
+@keyframes menuDown { from{opacity:0;transform:translateY(-8px)} to{opacity:1;transform:translateY(0)} }
+.mobile-menu-panel { animation: menuDown 0.25s cubic-bezier(0.16,1,0.3,1) forwards; }
+.guide-card { transition: box-shadow 0.25s ease, transform 0.25s ease; }
+.guide-card:hover { box-shadow: 0 20px 40px -12px rgba(28,25,23,0.1); transform: translateY(-3px); }
+.tag-methode { background: #fef3c7; color: #92400e; }
+.tag-terroir { background: #f0fdf4; color: #166534; }
+.tag-comprendre { background: #eff6ff; color: #1d4ed8; }
+.tag-lexique { background: #faf5ff; color: #7c3aed; }
+.arrow-link { display:inline-flex; align-items:center; gap:0.375rem; transition: gap 0.2s ease; }
+.arrow-link:hover { gap: 0.625rem; }
+</style>
+</head>
+<body class="antialiased">
+<div class="noise"></div>
+<div id="scroll-progress"></div>
+
+<!-- NAV -->
+<header class="glass-nav sticky top-0 z-50 border-b border-stone-200/60">
+  <nav class="max-w-6xl mx-auto px-6 md:px-10 lg:px-12 h-16 flex items-center justify-between">
+    <a href="../" class="serif text-2xl italic text-stone-900 hover:text-amber-800 transition-colors">filtré.</a>
+    <ul class="hidden md:flex items-center gap-8 text-[11px] font-semibold uppercase tracking-[0.18em]">
+      <li><a href="../#catalogue" class="text-stone-400 hover:text-stone-900 transition-colors">Le Grain</a></li>
+      <li><a href="../journal/" class="text-stone-400 hover:text-stone-900 transition-colors">Le Journal</a></li>
+      <li><a href="./" class="text-stone-900 border-b border-stone-900 pb-0.5">Les Guides</a></li>
+    </ul>
+    <div class="flex items-center gap-4">
+      <a href="../#catalogue" class="hidden md:inline-flex items-center gap-2 bg-stone-900 text-stone-50 text-[10px] font-bold uppercase tracking-[0.2em] px-5 py-2.5 rounded-full hover:bg-amber-800 transition-colors">La sélection →</a>
+      <button id="hamburger" onclick="toggleMobileMenu()" class="md:hidden flex flex-col gap-1.5 p-1" aria-label="Menu">
+        <span class="w-5 h-px bg-stone-900 block" id="ham-1"></span>
+        <span class="w-5 h-px bg-stone-900 block" id="ham-2"></span>
+        <span class="w-5 h-px bg-stone-900 block" id="ham-3"></span>
+      </button>
+    </div>
+  </nav>
+  <div id="mobile-menu" class="md:hidden flex-col border-t border-stone-100">
+    <div class="mobile-menu-panel flex flex-col px-6 py-6 gap-6 bg-stone-50/95 backdrop-blur-md">
+      <a href="../#catalogue" onclick="closeMobileMenu()" class="text-[11px] font-semibold uppercase tracking-[0.18em] text-stone-500 hover:text-stone-900 transition-colors">Le Grain</a>
+      <a href="../journal/" onclick="closeMobileMenu()" class="text-[11px] font-semibold uppercase tracking-[0.18em] text-stone-500 hover:text-stone-900 transition-colors">Le Journal</a>
+      <a href="./" onclick="closeMobileMenu()" class="text-[11px] font-semibold uppercase tracking-[0.18em] text-stone-900">Les Guides</a>
+      <a href="../#catalogue" onclick="closeMobileMenu()" class="mt-2 inline-flex items-center justify-center bg-stone-900 text-stone-50 text-[10px] font-bold uppercase tracking-[0.2em] px-6 py-3 rounded-full hover:bg-amber-800 transition-colors">La sélection →</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="max-w-6xl mx-auto px-6 md:px-10 lg:px-12 pt-20 pb-16 md:pt-28 md:pb-20">
+  <p class="text-[10px] font-bold uppercase tracking-[0.4em] text-amber-800 mb-6">Les Guides — filtré.</p>
+  <h1 class="serif text-6xl md:text-8xl italic text-stone-900 leading-[0.9] mb-6">Les Guides.</h1>
+  <p class="text-stone-400 font-light text-lg md:text-xl max-w-lg leading-relaxed">Tout ce qu'il faut savoir pour comprendre, choisir et préparer son café de spécialité.</p>
+</section>
+
+<div class="max-w-6xl mx-auto px-6 md:px-10 lg:px-12">
+  <div class="h-px bg-stone-200"></div>
+</div>
+
+<!-- GUIDES GRID -->
+<main class="max-w-6xl mx-auto px-6 md:px-10 lg:px-12 py-16 md:py-20">
+
+  <!-- Section : Méthodes -->
+  <div class="mb-14">
+    <p class="text-[10px] font-bold uppercase tracking-[0.4em] text-stone-400 mb-8">Méthodes d'extraction</p>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+
+      <a href="methodes-extraction.html" class="guide-card bg-white border border-stone-100 rounded-3xl p-7 flex flex-col">
+        <div class="flex items-center justify-between mb-5">
+          <span class="tag-methode text-[9px] font-bold uppercase tracking-[0.3em] px-3 py-1.5 rounded-full">Méthode</span>
+          <span class="text-2xl">☕</span>
+        </div>
+        <h2 class="serif text-2xl italic text-stone-900 leading-tight mb-3">Le guide complet des méthodes d'extraction</h2>
+        <p class="text-sm font-light text-stone-500 leading-relaxed flex-1 mb-5">V60, Chemex, French Press, Moka, AeroPress, Espresso — comment chaque méthode transforme le même grain en tasses radicalement différentes.</p>
+        <div class="flex items-center justify-between pt-5 border-t border-stone-100">
+          <span class="text-[10px] font-medium uppercase tracking-[0.2em] text-stone-300">10 min de lecture</span>
+          <span class="arrow-link text-[11px] font-bold uppercase tracking-[0.2em] text-stone-900">Lire →</span>
+        </div>
+      </a>
+
+      <a href="../journal/traitement-torrefaction.html" class="guide-card bg-white border border-stone-100 rounded-3xl p-7 flex flex-col">
+        <div class="flex items-center justify-between mb-5">
+          <span class="tag-comprendre text-[9px] font-bold uppercase tracking-[0.3em] px-3 py-1.5 rounded-full">Comprendre</span>
+          <span class="text-2xl">🍒</span>
+        </div>
+        <h2 class="serif text-2xl italic text-stone-900 leading-tight mb-3">De la cerise au grain torréfié</h2>
+        <p class="text-sm font-light text-stone-500 leading-relaxed flex-1 mb-5">Naturel, lavé, honey — ce que cache le paquet de café. Puis ce que fait la torréfaction ensuite et pourquoi ça change tout dans votre tasse.</p>
+        <div class="flex items-center justify-between pt-5 border-t border-stone-100">
+          <span class="text-[10px] font-medium uppercase tracking-[0.2em] text-stone-300">8 min de lecture</span>
+          <span class="arrow-link text-[11px] font-bold uppercase tracking-[0.2em] text-stone-900">Lire →</span>
+        </div>
+      </a>
+
+      <a href="../journal/altitude-arabica-robusta.html" class="guide-card bg-white border border-stone-100 rounded-3xl p-7 flex flex-col">
+        <div class="flex items-center justify-between mb-5">
+          <span class="tag-terroir text-[9px] font-bold uppercase tracking-[0.3em] px-3 py-1.5 rounded-full">Terroir</span>
+          <span class="text-2xl">⛰️</span>
+        </div>
+        <h2 class="serif text-2xl italic text-stone-900 leading-tight mb-3">Arabica, Robusta : l'altitude change tout</h2>
+        <p class="text-sm font-light text-stone-500 leading-relaxed flex-1 mb-5">Pourquoi les meilleurs cafés poussent là où l'air se raréfie. La différence entre arabica d'altitude et robusta de plaine — rigoureusement expliquée.</p>
+        <div class="flex items-center justify-between pt-5 border-t border-stone-100">
+          <span class="text-[10px] font-medium uppercase tracking-[0.2em] text-stone-300">6 min de lecture</span>
+          <span class="arrow-link text-[11px] font-bold uppercase tracking-[0.2em] text-stone-900">Lire →</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- Section : Origines -->
+  <div class="mb-14">
+    <p class="text-[10px] font-bold uppercase tracking-[0.4em] text-stone-400 mb-8">Origines & Terroirs</p>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+
+      <a href="../journal/cafe-en-coree.html" class="guide-card bg-white border border-stone-100 rounded-3xl p-7 flex flex-col">
+        <div class="flex items-center justify-between mb-5">
+          <span class="tag-terroir text-[9px] font-bold uppercase tracking-[0.3em] px-3 py-1.5 rounded-full">Voyage</span>
+          <span class="text-2xl">🇰🇷</span>
+        </div>
+        <h2 class="serif text-2xl italic text-stone-900 leading-tight mb-3">Le café en Corée du Sud</h2>
+        <p class="text-sm font-light text-stone-500 leading-relaxed flex-1 mb-5">Seoul, 100 000 cafés et la troisième vague la plus sophistiquée d'Asie. Fritz, Onion, Four B — les adresses qui ont tout changé.</p>
+        <div class="flex items-center justify-between pt-5 border-t border-stone-100">
+          <span class="text-[10px] font-medium uppercase tracking-[0.2em] text-stone-300">8 min de lecture</span>
+          <span class="arrow-link text-[11px] font-bold uppercase tracking-[0.2em] text-stone-900">Lire →</span>
+        </div>
+      </a>
+
+      <a href="../journal/cafe-en-thailande.html" class="guide-card bg-white border border-stone-100 rounded-3xl p-7 flex flex-col">
+        <div class="flex items-center justify-between mb-5">
+          <span class="tag-terroir text-[9px] font-bold uppercase tracking-[0.3em] px-3 py-1.5 rounded-full">Voyage</span>
+          <span class="text-2xl">🇹🇭</span>
+        </div>
+        <h2 class="serif text-2xl italic text-stone-900 leading-tight mb-3">Le café en Thaïlande</h2>
+        <p class="text-sm font-light text-stone-500 leading-relaxed flex-1 mb-5">Doi Chang, 1 400 mètres d'altitude, des producteurs Hill Tribe et un arabica qui rivalise avec les meilleures origines africaines.</p>
+        <div class="flex items-center justify-between pt-5 border-t border-stone-100">
+          <span class="text-[10px] font-medium uppercase tracking-[0.2em] text-stone-300">7 min de lecture</span>
+          <span class="arrow-link text-[11px] font-bold uppercase tracking-[0.2em] text-stone-900">Lire →</span>
+        </div>
+      </a>
+
+      <a href="../journal/cafe-au-vietnam.html" class="guide-card bg-white border border-stone-100 rounded-3xl p-7 flex flex-col">
+        <div class="flex items-center justify-between mb-5">
+          <span class="tag-terroir text-[9px] font-bold uppercase tracking-[0.3em] px-3 py-1.5 rounded-full">Voyage</span>
+          <span class="text-2xl">🇻🇳</span>
+        </div>
+        <h2 class="serif text-2xl italic text-stone-900 leading-tight mb-3">Le café au Vietnam</h2>
+        <p class="text-sm font-light text-stone-500 leading-relaxed flex-1 mb-5">2e exportateur mondial, 95 % de robusta. Entre la culture du cà phê sữa đá et une scène specialty émergente à Hanoï et Ho Chi Minh.</p>
+        <div class="flex items-center justify-between pt-5 border-t border-stone-100">
+          <span class="text-[10px] font-medium uppercase tracking-[0.2em] text-stone-300">9 min de lecture</span>
+          <span class="arrow-link text-[11px] font-bold uppercase tracking-[0.2em] text-stone-900">Lire →</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- Section : À venir -->
+  <div>
+    <p class="text-[10px] font-bold uppercase tracking-[0.4em] text-stone-400 mb-8">Bientôt</p>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+
+      <div class="bg-stone-100/60 border border-dashed border-stone-300 rounded-3xl p-7 flex flex-col opacity-60">
+        <div class="flex items-center justify-between mb-5">
+          <span class="tag-lexique text-[9px] font-bold uppercase tracking-[0.3em] px-3 py-1.5 rounded-full">Lexique</span>
+          <span class="text-2xl">📖</span>
+        </div>
+        <h2 class="serif text-2xl italic text-stone-500 leading-tight mb-3">Le lexique du café de spécialité</h2>
+        <p class="text-sm font-light text-stone-400 leading-relaxed flex-1">Single origin, terroir, SCA, first crack, honey process — tous les termes expliqués simplement.</p>
+      </div>
+
+      <div class="bg-stone-100/60 border border-dashed border-stone-300 rounded-3xl p-7 flex flex-col opacity-60">
+        <div class="flex items-center justify-between mb-5">
+          <span class="tag-comprendre text-[9px] font-bold uppercase tracking-[0.3em] px-3 py-1.5 rounded-full">Comprendre</span>
+          <span class="text-2xl">🌍</span>
+        </div>
+        <h2 class="serif text-2xl italic text-stone-500 leading-tight mb-3">Carte des origines café</h2>
+        <p class="text-sm font-light text-stone-400 leading-relaxed flex-1">Éthiopie, Kenya, Colombie, Guatemala, Yémen — ce que chaque grande région productrice apporte à votre tasse.</p>
+      </div>
+
+      <div class="bg-stone-100/60 border border-dashed border-stone-300 rounded-3xl p-7 flex flex-col opacity-60">
+        <div class="flex items-center justify-between mb-5">
+          <span class="tag-methode text-[9px] font-bold uppercase tracking-[0.3em] px-3 py-1.5 rounded-full">Méthode</span>
+          <span class="text-2xl">⚖️</span>
+        </div>
+        <h2 class="serif text-2xl italic text-stone-500 leading-tight mb-3">Comment doser et moudre son café</h2>
+        <p class="text-sm font-light text-stone-400 leading-relaxed flex-1">Ratio eau/café, taille de mouture selon la méthode, et pourquoi un moulin à meules change tout.</p>
+      </div>
+
+    </div>
+  </div>
+
+</main>
+
+<!-- CTA Newsletter -->
+<section class="max-w-6xl mx-auto px-6 md:px-10 lg:px-12 pb-20">
+  <div class="bg-stone-900 rounded-3xl px-8 py-12 md:py-16 text-center">
+    <p class="text-[10px] font-bold uppercase tracking-[0.4em] text-amber-500 mb-4">La newsletter filtré.</p>
+    <h2 class="serif italic text-3xl md:text-4xl text-white mb-4" style="letter-spacing:-0.02em">Un café. Une histoire. Une fois par mois.</h2>
+    <p class="text-stone-400 font-light text-base mb-8 max-w-md mx-auto">Les nouveautés du catalogue, un article de fond et les torréfacteurs à ne pas manquer. Sans spam, sans algorithme.</p>
+    <form class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto" onsubmit="handleNewsletter(event)">
+      <input type="email" placeholder="votre@email.fr" required
+        class="flex-1 px-5 py-3.5 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/40 text-sm outline-none focus:border-amber-500 transition-colors">
+      <button type="submit" class="px-6 py-3.5 bg-amber-500 text-stone-900 font-bold text-sm rounded-xl hover:bg-amber-400 transition-colors whitespace-nowrap">
+        S'inscrire →
+      </button>
+    </form>
+    <p id="nl-confirm" class="text-amber-400 text-sm mt-4 hidden">✓ Inscription confirmée — à très vite !</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="border-t border-stone-200">
+  <div class="max-w-6xl mx-auto px-6 md:px-10 lg:px-12 py-12 flex flex-col md:flex-row items-center justify-between gap-6">
+    <a href="../" class="serif text-2xl italic text-stone-900 hover:text-amber-800 transition-colors">filtré.</a>
+    <p class="text-[11px] text-stone-400 font-light tracking-wide order-last md:order-none">© 2026 filtré. Depuis l'Artois.</p>
+    <nav class="flex items-center gap-6 text-[10px] font-semibold uppercase tracking-[0.2em]">
+      <a href="../#catalogue" class="text-stone-400 hover:text-stone-900 transition-colors">Le Grain</a>
+      <a href="../journal/" class="text-stone-400 hover:text-stone-900 transition-colors">Le Journal</a>
+      <a href="./" class="text-stone-900">Les Guides</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+window.addEventListener('scroll', () => {
+  const total = document.documentElement.scrollHeight - window.innerHeight;
+  document.getElementById('scroll-progress').style.width = (window.scrollY / total * 100) + '%';
+});
+function toggleMobileMenu() {
+  document.getElementById('mobile-menu').classList.toggle('open');
+}
+function closeMobileMenu() {
+  document.getElementById('mobile-menu').classList.remove('open');
+}
+function handleNewsletter(e) {
+  e.preventDefault();
+  document.getElementById('nl-confirm').classList.remove('hidden');
+  e.target.reset();
+}
+</script>
+</body>
+</html>

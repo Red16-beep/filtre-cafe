@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Le Journal café — torréfacteurs & terroirs | filtré.</title>
+<meta name="description" content="Articles sur le café de spécialité : extraction, terroirs et torréfacteurs artisanaux. V60, origines mondiales, traitements, culture du filtre en France.">
+<meta name="author" content="filtré.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://filtre.cafe/journal/">
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Le Journal café — torréfacteurs & terroirs | filtré.">
+<meta property="og:description" content="Articles sur le café de spécialité : techniques d'extraction, terroirs du monde et torréfacteurs artisanaux. Méthode V60, café en Corée, Thaïlande, Vietnam.">
+<meta property="og:url" content="https://filtre.cafe/journal/">
+<meta property="og:site_name" content="filtré.">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:image" content="https://filtre.cafe/og-image.png">
+<meta name="twitter:image" content="https://filtre.cafe/og-image.png">
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Le Journal café — torréfacteurs & terroirs | filtré.">
+<meta name="twitter:description" content="Articles sur le café de spécialité : techniques d'extraction, terroirs du monde et torréfacteurs artisanaux. Méthode V60, café en Corée, Thaïlande, Vietnam.">
+<meta name="theme-color" content="#1c1917">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Le Journal — filtré.",
+  "description": "Articles sur le café de spécialité : techniques d'extraction, terroirs du monde et torréfacteurs artisanaux.",
+  "url": "https://filtre.cafe/journal/",
+  "inLanguage": "fr-FR",
+  "publisher": {
+    "@type": "Organization",
+    "name": "filtré.",
+    "url": "https://filtre.cafe",
+    "logo": { "@type": "ImageObject", "url": "https://filtre.cafe/og-image.svg" }
+  }
+}
+</script>
+<link rel="stylesheet" href="/tailwind.css">
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap"></noscript><style>
+:root {
+  --stone-50: #fafaf9;
+  --stone-100: #f5f5f4;
+  --stone-200: #e7e5e4;
+  --stone-300: #d6d3d1;
+  --stone-400: #a8a29e;
+  --stone-500: #78716c;
+  --stone-900: #1c1917;
+  --amber-800: #92400e;
+  --amber-700: #b45309;
+}
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--stone-50);
+  color: var(--stone-900);
+  letter-spacing: -0.02em;
+}
+.serif { font-family: 'Instrument Serif', serif; }
+.noise {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIj48ZmlsdGVyIGlkPSJuIiB4PSIwIiB5PSIwIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iMC43NSIgbnVtT2N0YXZlcz0iNCIgc3RpdGNoVGlsZXM9InN0aXRjaCIvPjxmZUNvbG9yTWF0cml4IHR5cGU9InNhdHVyYXRlIiB2YWx1ZXM9IjAiLz48L2ZpbHRlcj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsdGVyPSJ1cmwoI24pIiBvcGFjaXR5PSIxIi8+PC9zdmc+');
+  opacity: 0.03;
+  pointer-events: none;
+  z-index: 999;
+}
+.glass-nav {
+  background: rgba(250, 250, 249, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+/* Mobile menu */
+#mobile-menu { display: none; }
+#mobile-menu.open { display: flex; }
+@keyframes menuDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.mobile-menu-panel { animation: menuDown 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+/* Card hover */
+.article-card {
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+.article-card:hover {
+  box-shadow: 0 20px 40px -12px rgba(28, 25, 23, 0.12);
+  transform: translateY(-4px);
+}
+/* Reveal animation */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(32px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.reveal {
+  opacity: 0;
+  animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.reveal-delay-1 { animation-delay: 0.1s; }
+.reveal-delay-2 { animation-delay: 0.2s; }
+.reveal-delay-3 { animation-delay: 0.3s; }
+.reveal-delay-4 { animation-delay: 0.4s; }
+.reveal-delay-5 { animation-delay: 0.5s; }
+/* Tag styles */
+.tag-technique {
+  background: var(--stone-900);
+  color: var(--stone-50);
+}
+.tag-terroir {
+  background: transparent;
+  color: var(--amber-800);
+  border: 1px solid var(--amber-800);
+}
+/* Arrow link */
+.arrow-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  transition: gap 0.2s ease;
+}
+.arrow-link:hover { gap: 0.625rem; }
+</style>
+</head>
+<body class="antialiased">
+<div class="noise"></div>
+
+<!-- ─── SCROLL PROGRESS ─── -->
+<div id="scroll-progress" class="fixed top-0 left-0 z-[9998] h-[2px] bg-amber-800 transition-none" style="width:0%"></div>
+
+<!-- ─── NAV ─── -->
+<header class="glass-nav sticky top-0 z-50 border-b border-stone-200/60">
+  <nav class="max-w-6xl mx-auto px-6 md:px-10 lg:px-12 h-16 flex items-center justify-between">
+    <!-- Logo -->
+    <a href="../" class="serif text-2xl italic text-stone-900 hover:text-amber-800 transition-colors">filtré.</a>
+
+    <!-- Desktop nav -->
+    <ul class="hidden md:flex items-center gap-8 text-[11px] font-semibold uppercase tracking-[0.18em]">
+      <li>
+        <a href="../#catalogue" class="text-stone-400 hover:text-stone-900 transition-colors">Le Grain</a>
+      </li>
+      <li>
+        <a href="./" class="text-stone-900 border-b border-stone-900 pb-0.5">Le Journal</a>
+      </li>
+      <li>
+        <a href="../#dossier" class="text-stone-400 hover:text-stone-900 transition-colors">La Méthode</a>
+      </li>
+    </ul>
+
+    <!-- CTA + hamburger -->
+    <div class="flex items-center gap-4">
+      <a href="../#catalogue" class="hidden md:inline-flex items-center gap-2 bg-stone-900 text-stone-50 text-[10px] font-bold uppercase tracking-[0.2em] px-5 py-2.5 rounded-full hover:bg-amber-800 transition-colors">
+        La sélection →
+      </a>
+      <!-- Hamburger -->
+      <button id="hamburger" onclick="toggleMobileMenu()" class="md:hidden flex flex-col gap-1.5 p-1" aria-label="Menu">
+        <span class="w-5 h-px bg-stone-900 block transition-transform duration-300" id="ham-1"></span>
+        <span class="w-5 h-px bg-stone-900 block transition-opacity duration-300" id="ham-2"></span>
+        <span class="w-5 h-px bg-stone-900 block transition-transform duration-300" id="ham-3"></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="md:hidden flex-col border-t border-stone-100">
+    <div class="mobile-menu-panel flex flex-col px-6 py-6 gap-6 bg-stone-50/95 backdrop-blur-md">
+      <a href="../#catalogue" onclick="closeMobileMenu()" class="text-[11px] font-semibold uppercase tracking-[0.18em] text-stone-500 hover:text-stone-900 transition-colors">Le Grain</a>
+      <a href="./" onclick="closeMobileMenu()" class="text-[11px] font-semibold uppercase tracking-[0.18em] text-stone-900">Le Journal</a>
+      <a href="../#dossier" onclick="closeMobileMenu()" class="text-[11px] font-semibold uppercase tracking-[0.18em] text-stone-500 hover:text-stone-900 transition-colors">La Méthode</a>
+      <a href="../#catalogue" onclick="closeMobileMenu()" class="mt-2 inline-flex items-center justify-center bg-stone-900 text-stone-50 text-[10px] font-bold uppercase tracking-[0.2em] px-6 py-3 rounded-full hover:bg-amber-800 transition-colors">
+        La sélection →
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- ─── HERO HEADER ─── -->
+<section class="max-w-6xl mx-auto px-6 md:px-10 lg:px-12 pt-20 pb-16 md:pt-28 md:pb-20">
+  <div class="reveal">
+    <p class="text-[10px] font-bold uppercase tracking-[0.4em] text-amber-800 mb-6">Le Journal — filtré.</p>
+    <h1 class="serif text-6xl md:text-8xl lg:text-9xl italic text-stone-900 leading-[0.9] mb-6">Le Journal.</h1>
+    <p class="text-stone-400 font-light text-lg md:text-xl max-w-md leading-relaxed">Terroirs, techniques et torréfacteurs.</p>
+  </div>
+</section>
+
+<!-- ─── DIVIDER ─── -->
+<div class="max-w-6xl mx-auto px-6 md:px-10 lg:px-12">
+  <div class="h-px bg-stone-200"></div>
+</div>
+
+<!-- ─── ARTICLE GRID ─── -->
+<main class="max-w-6xl mx-auto px-6 md:px-10 lg:px-12 py-16 md:py-20">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+
+    <!-- Card — Histoire du café (RÉFÉRENCE) -->
+    <article class="article-card reveal reveal-delay-1 bg-stone-900 border border-stone-800 rounded-3xl p-8 md:p-10 flex flex-col md:col-span-2">
+      <div class="flex items-start justify-between mb-6">
+        <span class="text-[9px] font-bold uppercase tracking-[0.3em] px-3 py-1.5 rounded-full text-amber-400 border border-amber-800">Histoire · Référence</span>
+        <span class="text-[11px] text-stone-600 font-light">Mars 2026 · 25 min</span>
+      </div>
+      <h2 class="serif text-3xl md:text-5xl italic text-white leading-tight mb-4">
+        La grande histoire du café.
+      </h2>
+      <p class="text-sm font-light text-stone-400 leading-relaxed mb-8 flex-1 max-w-2xl">
+        Des forêts éthiopiennes de Kaffa au kawa yéménite, de l'Empire Ottoman aux cafés parisiens des Lumières, du Bourbon de La Réunion cultivé par Louis XIV aux compétitions mondiales de baristas — la chronique complète d'une plante qui a changé le monde. L'article de référence.
+      </p>
+      <div class="flex items-center justify-between pt-6 border-t border-stone-800">
+        <span class="text-[10px] font-medium uppercase tracking-[0.2em] text-stone-600">25 min de lecture</span>
+        <a href="histoire-du-cafe.html" class="arrow-link text-[11px] font-bold uppercase tracking-[0.2em] text-amber-400 hover:text-amber-300 transition-colors">
+          Lire <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </article>
+
+    <!-- Card — Lion's Mane / Champignon (COMPRENDRE) -->
+    <article class="article-card reveal reveal-delay-1 bg-white border border-stone-100 rounded-3xl p-8 md:p-10 flex flex-col">
+      <div class="flex items-start justify-between mb-6">
+        <span class="tag-methode text-[9px] font-bold uppercase tracking-[0.3em] px-3 py-1.5 rounded-full">Comprendre</span>
+        <span class="text-[11px] text-stone-300 font-light">Mars 2026</span>
+      </div>
+      <h2 class="serif text-3xl md:text-4xl italic text-stone-900 leading-tight mb-4">
+        Lion's Mane, reishi, chaga : le café n'est pas votre ennemi.
+      </h2>
+      <p class="text-sm font-light text-stone-500 leading-relaxed mb-8 flex-1">
+        Ces boissons aux champignons se vendent en dénigrant le café. Cortisol, adrenal fatigue, acidité — ce que la science dit vraiment, des deux côtés.
+      </p>
+      <div class="flex items-center justify-between pt-6 border-t border-stone-100">
+        <span class="text-[10px] font-medium uppercase tracking-[0.2em] text-stone-300">9 min de lecture</span>
+        <a href="champignon-lion-mane-cafe.html" class="arrow-link text-[11px] font-bold uppercase tracking-[0.2em] text-stone-900 hover:text-amber-800 transition-colors">
+          Lire <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </article>
+
+    <!-- Card 1 — V60 (TECHNIQUE) -->
+    <article class="article-card reveal reveal-delay-1 bg-white border border-stone-100 rounded-3xl p-8 md:p-10 flex flex-col">
+      <div class="flex items-start justify-between mb-6">
+        <span class="tag-technique text-[9px] font-bold uppercase tracking-[0.3em] px-3 py-1.5 rounded-full">Technique</span>
+        <span class="text-[11px] text-stone-300 font-light">Mars 2026</span>
+      </div>
+      <h2 class="serif text-3xl md:text-4xl italic text-stone-900 leading-tight mb-4">
+        Le V60 maîtrisé. Le débit fait tout.
+      </h2>
+      <p class="text-sm font-light text-stone-500 leading-relaxed mb-8 flex-1">
+        Comment maîtriser le V60 de Hario sans amertume ni channeling. Bloom, ratio&nbsp;1:16, température et régularité du geste.
+      </p>
+      <div class="flex items-center justify-between pt-6 border-t border-stone-100">
+        <span class="text-[10px] font-medium uppercase tracking-[0.2em] text-stone-300">6 min de lecture</span>
+        <a href="../#dossier" class="arrow-link text-[11px] font-bold uppercase tracking-[0.2em] text-stone-900 hover:text-amber-800 transition-colors">
+          Lire <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </article>
+
+    <!-- Card — Traitement + Torréfaction (COMPRENDRE) -->
+    <article class="article-card reveal reveal-delay-1 bg-white border border-stone-100 rounded-3xl p-8 md:p-10 flex flex-col">
+      <div class="flex items-start justify-between mb-6">
+        <span class="tag-methode text-[9px] font-bold uppercase tracking-[0.3em] px-3 py-1.5 rounded-full">Comprendre</span>
+        <span class="text-[11px] text-stone-300 font-light">Mars 2026</span>
+      </div>
+      <h2 class="serif text-3xl md:text-4xl italic text-stone-900 leading-tight mb-4">
+        De la cerise au grain torréfié.
+      </h2>
+      <p class="text-sm font-light text-stone-500 leading-relaxed mb-8 flex-1">
+        Naturel, lavé, honey — ce que cache le paquet de café et comment ça change tout dans votre tasse. Puis ce que fait la torréfaction ensuite.
+      </p>
+      <div class="flex items-center justify-between pt-6 border-t border-stone-100">
+        <span class="text-[10px] font-medium uppercase tracking-[0.2em] text-stone-300">11 min de lecture</span>
+        <a href="traitement-torrefaction.html" class="arrow-link text-[11px] font-bold uppercase tracking-[0.2em] text-stone-900 hover:text-amber-800 transition-colors">
+          Lire <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </article>
+
+    <!-- Card 2 — Corée du Sud (TERROIR) -->
+    <article class="article-card reveal reveal-delay-2 bg-white border border-stone-100 rounded-3xl p-8 md:p-10 flex flex-col">
+      <div class="flex items-start justify-between mb-6">
+        <span class="tag-terroir text-[9px] font-bold uppercase tracking-[0.3em] px-3 py-1.5 rounded-full">Terroir</span>
+        <span class="text-[11px] text-stone-300 font-light">Mars 2026</span>
+      </div>
+      <h2 class="serif text-3xl md:text-4xl italic text-stone-900 leading-tight mb-4">
+        Le café en Corée du Sud : Seoul et la troisième vague.
+      </h2>
+      <p class="text-sm font-light text-stone-500 leading-relaxed mb-8 flex-1">
+        Seoul compte plus de 100&nbsp;000 cafés. Derrière la culture de l'americano se cache l'une des scènes specialty les plus sophistiquées d'Asie.
+      </p>
+      <div class="flex items-center justify-between pt-6 border-t border-stone-100">
+        <span class="text-[10px] font-medium uppercase tracking-[0.2em] text-stone-300">8 min de lecture</span>
+        <a href="cafe-en-coree.html" class="arrow-link text-[11px] font-bold uppercase tracking-[0.2em] text-stone-900 hover:text-amber-800 transition-colors">
+          Lire <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </article>
+
+    <!-- Card 3 — Thaïlande (TERROIR) -->
+    <article class="article-card reveal reveal-delay-3 bg-white border border-stone-100 rounded-3xl p-8 md:p-10 flex flex-col">
+      <div class="flex items-start justify-between mb-6">
+        <span class="tag-terroir text-[9px] font-bold uppercase tracking-[0.3em] px-3 py-1.5 rounded-full">Terroir</span>
+        <span class="text-[11px] text-stone-300 font-light">Mars 2026</span>
+      </div>
+      <h2 class="serif text-3xl md:text-4xl italic text-stone-900 leading-tight mb-4">
+        Le café en Thaïlande : Doi Chang et l'arabica des montagnes.
+      </h2>
+      <p class="text-sm font-light text-stone-500 leading-relaxed mb-8 flex-1">
+        À 1&nbsp;400 mètres d'altitude dans les collines de Doi Chang, des producteurs de la communauté Hill Tribe cultivent un arabica de classe mondiale.
+      </p>
+      <div class="flex items-center justify-between pt-6 border-t border-stone-100">
+        <span class="text-[10px] font-medium uppercase tracking-[0.2em] text-stone-300">7 min de lecture</span>
+        <a href="cafe-en-thailande.html" class="arrow-link text-[11px] font-bold uppercase tracking-[0.2em] text-stone-900 hover:text-amber-800 transition-colors">
+          Lire <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </article>
+
+    <!-- Card — Altitude arabica/robusta (ORIGINE) -->
+    <article class="article-card reveal reveal-delay-4 bg-white border border-stone-100 rounded-3xl p-8 md:p-10 flex flex-col">
+      <div class="flex items-start justify-between mb-6">
+        <span class="tag-terroir text-[9px] font-bold uppercase tracking-[0.3em] px-3 py-1.5 rounded-full">Origine</span>
+        <span class="text-[11px] text-stone-300 font-light">Mars 2026</span>
+      </div>
+      <h2 class="serif text-3xl md:text-4xl italic text-stone-900 leading-tight mb-4">
+        Arabica, Robusta : pourquoi l'altitude change tout dans votre tasse.
+      </h2>
+      <p class="text-sm font-light text-stone-500 leading-relaxed mb-8 flex-1">
+        On vous a dit que l'arabica était « meilleur ». C'est plus compliqué — et bien plus fascinant. Tout commence à l'altitude où pousse la cerise.
+      </p>
+      <div class="flex items-center justify-between pt-6 border-t border-stone-100">
+        <span class="text-[10px] font-medium uppercase tracking-[0.2em] text-stone-300">11 min de lecture</span>
+        <a href="altitude-arabica-robusta.html" class="arrow-link text-[11px] font-bold uppercase tracking-[0.2em] text-stone-900 hover:text-amber-800 transition-colors">
+          Lire <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </article>
+
+    <!-- Card — Café aux épices de Fès (CULTURE) -->
+    <article class="article-card reveal reveal-delay-5 bg-amber-50 border border-amber-100 rounded-3xl p-8 md:p-10 flex flex-col">
+      <div class="flex items-start justify-between mb-6">
+        <span class="text-[9px] font-bold uppercase tracking-[0.3em] px-3 py-1.5 rounded-full text-amber-800 border border-amber-300">Culture & Terroir</span>
+        <span class="text-[11px] text-stone-300 font-light">Mars 2026</span>
+      </div>
+      <h2 class="serif text-3xl md:text-4xl italic text-stone-900 leading-tight mb-4">
+        Le café aux épices de Fès : une recette de famille, dix mille façons.
+      </h2>
+      <p class="text-sm font-light text-stone-500 leading-relaxed mb-8 flex-1">
+        Gingembre, cannelle, cardamome. Au Maroc, le café aux épices ne se commande pas — il se reçoit. Une tradition fassi, une alchimie d'épices, et autant de recettes que de familles.
+      </p>
+      <div class="flex items-center justify-between pt-6 border-t border-amber-200">
+        <span class="text-[10px] font-medium uppercase tracking-[0.2em] text-stone-300">10 min de lecture</span>
+        <a href="cafe-aux-epices-fes.html" class="arrow-link text-[11px] font-bold uppercase tracking-[0.2em] text-stone-900 hover:text-amber-800 transition-colors">
+          Lire <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </article>
+
+    <!-- Card — Vietnam (TERROIR) -->
+    <article class="article-card reveal reveal-delay-5 bg-white border border-stone-100 rounded-3xl p-8 md:p-10 flex flex-col">
+      <div class="flex items-start justify-between mb-6">
+        <span class="tag-terroir text-[9px] font-bold uppercase tracking-[0.3em] px-3 py-1.5 rounded-full">Terroir</span>
+        <span class="text-[11px] text-stone-300 font-light">Mars 2026</span>
+      </div>
+      <h2 class="serif text-3xl md:text-4xl italic text-stone-900 leading-tight mb-4">
+        Le café au Vietnam : entre robusta mondial et specialty émergent.
+      </h2>
+      <p class="text-sm font-light text-stone-500 leading-relaxed mb-8 flex-1">
+        Le Vietnam est le 2e producteur mondial de café. Pourtant, 95&nbsp;% de sa production est du robusta. La vague specialty change lentement la donne.
+      </p>
+      <div class="flex items-center justify-between pt-6 border-t border-stone-100">
+        <span class="text-[10px] font-medium uppercase tracking-[0.2em] text-stone-300">9 min de lecture</span>
+        <a href="cafe-au-vietnam.html" class="arrow-link text-[11px] font-bold uppercase tracking-[0.2em] text-stone-900 hover:text-amber-800 transition-colors">
+          Lire <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </article>
+
+    <!-- ── NOUVEAUX ARTICLES SEO — Mars 2026 ── -->
+
+    <!-- Chemex V60 Aeropress -->
+    <article class="article-card reveal reveal-delay-1 bg-white border border-stone-100 rounded-3xl p-8 md:p-10 flex flex-col">
+      <div class="flex items-start justify-between mb-6">
+        <span class="tag-technique text-[9px] font-bold uppercase tracking-[0.3em] px-3 py-1.5 rounded-full">Technique</span>
+        <span class="text-[11px] text-stone-300 font-light">Mars 2026</span>
+      </div>
+      <h2 class="serif text-3xl md:text-4xl italic text-stone-900 leading-tight mb-4">
+        Chemex, V60 ou Aeropress : laquelle choisir ?
+      </h2>
+      <p class="text-sm font-light text-stone-500 leading-relaxed mb-8 flex-1">
+        Trois méthodes de filtration, trois résultats en tasse. Notre verdict tranché — avec une position claire sur laquelle recommander pour débuter.
+      </p>
+      <div class="flex items-center justify-between pt-6 border-t border-stone-100">
+        <span class="text-[10px] font-medium uppercase tracking-[0.2em] text-stone-300">8 min de lecture</span>
+        <a href="chemex-v60-aeropress.html" class="arrow-link text-[11px] font-bold uppercase tracking-[0.2em] text-stone-900 hover:text-amber-800 transition-colors">Lire <span aria-hidden="true">→</span></a>
+      </div>
+    </article>
+
+    <!-- Torréfacteurs français -->
+    <article class="article-card reveal reveal-delay-2 bg-white border border-stone-100 rounded-3xl p-8 md:p-10 flex flex-col">
+      <div class="flex items-start justify-between mb-6">
+        <span class="text-[9px] font-bold uppercase tracking-[0.3em] px-3 py-1.5 rounded-full text-amber-800 border border-amber-300">Sélection</span>
+        <span class="text-[11px] text-stone-300 font-light">Mars 2026</span>
+      </div>
+      <h2 class="serif text-3xl md:text-4xl italic text-stone-900 leading-tight mb-4">
+        Torréfacteurs français de spécialité.
+      </h2>
+      <p class="text-sm font-light text-stone-500 leading-relaxed mb-8 flex-1">
+        Coutume, Belleville, L'Arbre à Café, Lomi, Terres de Café — et quelques noms hors Paris. Une liste courte, opinionée, pas exhaustive.
+      </p>
+      <div class="flex items-center justify-between pt-6 border-t border-stone-100">
+        <span class="text-[10px] font-medium uppercase tracking-[0.2em] text-stone-300">7 min de lecture</span>
+        <a href="torrefacteurs-francais.html" class="arrow-link text-[11px] font-bold uppercase tracking-[0.2em] text-stone-900 hover:text-amber-800 transition-colors">Lire <span aria-hidden="true">→</span></a>
+      </div>
+    </article>
+
+    <!-- Naturel lavé honey -->
+    <article class="article-card reveal reveal-delay-1 bg-white border border-stone-100 rounded-3xl p-8 md:p-10 flex flex-col">
+      <div class="flex items-start justify-between mb-6">
+        <span class="tag-methode text-[9px] font-bold uppercase tracking-[0.3em] px-3 py-1.5 rounded-full">Comprendre</span>
+        <span class="text-[11px] text-stone-300 font-light">Mars 2026</span>
+      </div>
+      <h2 class="serif text-3xl md:text-4xl italic text-stone-900 leading-tight mb-4">
+        Naturel, lavé, honey : ce que ça change vraiment.
+      </h2>
+      <p class="text-sm font-light text-stone-500 leading-relaxed mb-8 flex-1">
+        Pas les définitions — ce que ces traitements produisent en bouche. Un guide de dégustation comparatif pour choisir selon l'humeur et la méthode.
+      </p>
+      <div class="flex items-center justify-between pt-6 border-t border-stone-100">
+        <span class="text-[10px] font-medium uppercase tracking-[0.2em] text-stone-300">9 min de lecture</span>
+        <a href="naturel-lave-honey.html" class="arrow-link text-[11px] font-bold uppercase tracking-[0.2em] text-stone-900 hover:text-amber-800 transition-colors">Lire <span aria-hidden="true">→</span></a>
+      </div>
+    </article>
+
+    <!-- Café supermarché vs spécialité -->
+    <article class="article-card reveal reveal-delay-2 bg-white border border-stone-100 rounded-3xl p-8 md:p-10 flex flex-col">
+      <div class="flex items-start justify-between mb-6">
+        <span class="tag-methode text-[9px] font-bold uppercase tracking-[0.3em] px-3 py-1.5 rounded-full">Comprendre</span>
+        <span class="text-[11px] text-stone-300 font-light">Mars 2026</span>
+      </div>
+      <h2 class="serif text-3xl md:text-4xl italic text-stone-900 leading-tight mb-4">
+        Café de supermarché vs spécialité.
+      </h2>
+      <p class="text-sm font-light text-stone-500 leading-relaxed mb-8 flex-1">
+        Ce qu'on perd réellement, sans le discours élitiste. Robusta, torréfaction foncée, fraîcheur, traçabilité — les vraies différences avec le coût ramené à la tasse.
+      </p>
+      <div class="flex items-center justify-between pt-6 border-t border-stone-100">
+        <span class="text-[10px] font-medium uppercase tracking-[0.2em] text-stone-300">7 min de lecture</span>
+        <a href="cafe-supermarche-vs-specialite.html" class="arrow-link text-[11px] font-bold uppercase tracking-[0.2em] text-stone-900 hover:text-amber-800 transition-colors">Lire <span aria-hidden="true">→</span></a>
+      </div>
+    </article>
+
+    <!-- Café éthiopien -->
+    <article class="article-card reveal reveal-delay-3 bg-white border border-stone-100 rounded-3xl p-8 md:p-10 flex flex-col">
+      <div class="flex items-start justify-between mb-6">
+        <span class="tag-terroir text-[9px] font-bold uppercase tracking-[0.3em] px-3 py-1.5 rounded-full">Terroir</span>
+        <span class="text-[11px] text-stone-300 font-light">Mars 2026</span>
+      </div>
+      <h2 class="serif text-3xl md:text-4xl italic text-stone-900 leading-tight mb-4">
+        Yirgacheffe, Sidama, Guji.
+      </h2>
+      <p class="text-sm font-light text-stone-500 leading-relaxed mb-8 flex-1">
+        Trois régions d'Éthiopie, trois profils très différents en tasse. Floral, caramel, tropical — ce qu'il faut savoir pour choisir et préparer.
+      </p>
+      <div class="flex items-center justify-between pt-6 border-t border-stone-100">
+        <span class="text-[10px] font-medium uppercase tracking-[0.2em] text-stone-300">10 min de lecture</span>
+        <a href="cafe-ethiopien-yirgacheffe-sidama-guji.html" class="arrow-link text-[11px] font-bold uppercase tracking-[0.2em] text-stone-900 hover:text-amber-800 transition-colors">Lire <span aria-hidden="true">→</span></a>
+      </div>
+    </article>
+
+    <!-- Température eau -->
+    <article class="article-card reveal reveal-delay-4 bg-white border border-stone-100 rounded-3xl p-8 md:p-10 flex flex-col">
+      <div class="flex items-start justify-between mb-6">
+        <span class="tag-technique text-[9px] font-bold uppercase tracking-[0.3em] px-3 py-1.5 rounded-full">Technique</span>
+        <span class="text-[11px] text-stone-300 font-light">Mars 2026</span>
+      </div>
+      <h2 class="serif text-3xl md:text-4xl italic text-stone-900 leading-tight mb-4">
+        Température eau café filtre : 96°C c'est rarement juste.
+      </h2>
+      <p class="text-sm font-light text-stone-500 leading-relaxed mb-8 flex-1">
+        La règle des 96°C est une approximation. Ce que la torréfaction, l'âge du grain et la mouture changent à l'équation — avec un tableau de références pratiques.
+      </p>
+      <div class="flex items-center justify-between pt-6 border-t border-stone-100">
+        <span class="text-[10px] font-medium uppercase tracking-[0.2em] text-stone-300">7 min de lecture</span>
+        <a href="temperature-eau-cafe-filtre.html" class="arrow-link text-[11px] font-bold uppercase tracking-[0.2em] text-stone-900 hover:text-amber-800 transition-colors">Lire <span aria-hidden="true">→</span></a>
+      </div>
+    </article>
+
+    <!-- Lire une étiquette -->
+    <article class="article-card reveal reveal-delay-1 bg-white border border-stone-100 rounded-3xl p-8 md:p-10 flex flex-col">
+      <div class="flex items-start justify-between mb-6">
+        <span class="tag-methode text-[9px] font-bold uppercase tracking-[0.3em] px-3 py-1.5 rounded-full">Comprendre</span>
+        <span class="text-[11px] text-stone-300 font-light">Mars 2026</span>
+      </div>
+      <h2 class="serif text-3xl md:text-4xl italic text-stone-900 leading-tight mb-4">
+        Lire une étiquette de café de spécialité.
+      </h2>
+      <p class="text-sm font-light text-stone-500 leading-relaxed mb-8 flex-1">
+        Score SCA, altitude, process, variété, date de torréfaction — ce que chaque information signifie vraiment et ce qu'il faut ignorer.
+      </p>
+      <div class="flex items-center justify-between pt-6 border-t border-stone-100">
+        <span class="text-[10px] font-medium uppercase tracking-[0.2em] text-stone-300">8 min de lecture</span>
+        <a href="lire-etiquette-cafe-specialite.html" class="arrow-link text-[11px] font-bold uppercase tracking-[0.2em] text-stone-900 hover:text-amber-800 transition-colors">Lire <span aria-hidden="true">→</span></a>
+      </div>
+    </article>
+
+    <!-- France 2024 -->
+    <article class="article-card reveal reveal-delay-2 bg-white border border-stone-100 rounded-3xl p-8 md:p-10 flex flex-col">
+      <div class="flex items-start justify-between mb-6">
+        <span class="text-[9px] font-bold uppercase tracking-[0.3em] px-3 py-1.5 rounded-full text-amber-800 border border-amber-300">Tendances</span>
+        <span class="text-[11px] text-stone-300 font-light">Mars 2026</span>
+      </div>
+      <h2 class="serif text-3xl md:text-4xl italic text-stone-900 leading-tight mb-4">
+        Le café de spécialité en France : état des lieux.
+      </h2>
+      <p class="text-sm font-light text-stone-500 leading-relaxed mb-8 flex-1">
+        Paris a pris de l'avance, puis les autres villes ont rattrapé. Lyon, Bordeaux, Strasbourg, Nantes — où en est la scène française et ce qui va changer.
+      </p>
+      <div class="flex items-center justify-between pt-6 border-t border-stone-100">
+        <span class="text-[10px] font-medium uppercase tracking-[0.2em] text-stone-300">9 min de lecture</span>
+        <a href="cafe-specialite-france-2024.html" class="arrow-link text-[11px] font-bold uppercase tracking-[0.2em] text-stone-900 hover:text-amber-800 transition-colors">Lire <span aria-hidden="true">→</span></a>
+      </div>
+    </article>
+
+    <!-- Aeropress guide complet -->
+    <article class="article-card reveal reveal-delay-3 bg-white border border-stone-100 rounded-3xl p-8 md:p-10 flex flex-col">
+      <div class="flex items-start justify-between mb-6">
+        <span class="tag-technique text-[9px] font-bold uppercase tracking-[0.3em] px-3 py-1.5 rounded-full">Technique</span>
+        <span class="text-[11px] text-stone-300 font-light">Mars 2026</span>
+      </div>
+      <h2 class="serif text-3xl md:text-4xl italic text-stone-900 leading-tight mb-4">
+        Aeropress : le guide complet.
+      </h2>
+      <p class="text-sm font-light text-stone-500 leading-relaxed mb-8 flex-1">
+        Méthode standard et inversée, ratios, recettes testées, diagnostic des cafés ratés — tout ce qu'il faut pour ne plus improviser.
+      </p>
+      <div class="flex items-center justify-between pt-6 border-t border-stone-100">
+        <span class="text-[10px] font-medium uppercase tracking-[0.2em] text-stone-300">10 min de lecture</span>
+        <a href="aeropress-guide-complet.html" class="arrow-link text-[11px] font-bold uppercase tracking-[0.2em] text-stone-900 hover:text-amber-800 transition-colors">Lire <span aria-hidden="true">→</span></a>
+      </div>
+    </article>
+
+    <!-- Cold brew maison -->
+    <article class="article-card reveal reveal-delay-4 bg-white border border-stone-100 rounded-3xl p-8 md:p-10 flex flex-col">
+      <div class="flex items-start justify-between mb-6">
+        <span class="tag-technique text-[9px] font-bold uppercase tracking-[0.3em] px-3 py-1.5 rounded-full">Technique</span>
+        <span class="text-[11px] text-stone-300 font-light">Mars 2026</span>
+      </div>
+      <h2 class="serif text-3xl md:text-4xl italic text-stone-900 leading-tight mb-4">
+        Cold brew maison.
+      </h2>
+      <p class="text-sm font-light text-stone-500 leading-relaxed mb-8 flex-1">
+        La méthode est simple. Ce qui la rate l'est tout autant. Ratio 1:10, mouture grossière, 12h au frigo — et pourquoi utiliser un grain médium plutôt que votre meilleur café.
+      </p>
+      <div class="flex items-center justify-between pt-6 border-t border-stone-100">
+        <span class="text-[10px] font-medium uppercase tracking-[0.2em] text-stone-300">6 min de lecture</span>
+        <a href="cold-brew-maison.html" class="arrow-link text-[11px] font-bold uppercase tracking-[0.2em] text-stone-900 hover:text-amber-800 transition-colors">Lire <span aria-hidden="true">→</span></a>
+      </div>
+    </article>
+
+  </div>
+</main>
+
+<!-- ─── FOOTER ─── -->
+<footer class="border-t border-stone-200 mt-8">
+  <div class="max-w-6xl mx-auto px-6 md:px-10 lg:px-12 py-12 flex flex-col md:flex-row items-center justify-between gap-6">
+    <a href="../" class="serif text-2xl italic text-stone-900 hover:text-amber-800 transition-colors">filtré.</a>
+    <p class="text-[11px] text-stone-400 font-light tracking-wide order-last md:order-none">© 2026 filtré. Depuis l'Artois.</p>
+    <nav class="flex items-center gap-6 text-[10px] font-semibold uppercase tracking-[0.2em]">
+      <a href="../#catalogue" class="text-stone-400 hover:text-stone-900 transition-colors">Le Grain</a>
+      <a href="./" class="text-stone-900">Le Journal</a>
+      <a href="../#dossier" class="text-stone-400 hover:text-stone-900 transition-colors">La Méthode</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+// ─── Scroll progress bar ───
+(function () {
+  const bar = document.getElementById('scroll-progress');
+  function updateProgress() {
+    const scrolled = window.scrollY;
+    const total = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = total > 0 ? (scrolled / total) * 100 : 0;
+    bar.style.width = pct + '%';
+  }
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  updateProgress();
+})();
+
+// ─── Mobile menu ───
+function toggleMobileMenu() {
+  const menu = document.getElementById('mobile-menu');
+  const h1 = document.getElementById('ham-1');
+  const h2 = document.getElementById('ham-2');
+  const h3 = document.getElementById('ham-3');
+  const isOpen = menu.classList.contains('open');
+  if (isOpen) {
+    menu.classList.remove('open');
+    h1.style.transform = '';
+    h2.style.opacity = '';
+    h3.style.transform = '';
+  } else {
+    menu.classList.add('open');
+    h1.style.transform = 'translateY(6px) rotate(45deg)';
+    h2.style.opacity = '0';
+    h3.style.transform = 'translateY(-6px) rotate(-45deg)';
+  }
+}
+function closeMobileMenu() {
+  const menu = document.getElementById('mobile-menu');
+  if (menu.classList.contains('open')) toggleMobileMenu();
+}
+</script>
+</body>
+</html>

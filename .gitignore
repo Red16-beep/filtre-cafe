@@ -1,0 +1,24 @@
+# Dépendances
+node_modules/
+
+# Logs
+*.log
+url_check.log
+
+# Système
+.DS_Store
+Thumbs.db
+
+# Fichiers sensibles
+.env
+.env.local
+
+# Tailwind source (le CSS compilé tailwind.css est inclus volontairement)
+tailwind.input.css
+tailwind.config.js
+package.json
+package-lock.json
+
+# Outils locaux
+capture-og.js
+og-image.html
