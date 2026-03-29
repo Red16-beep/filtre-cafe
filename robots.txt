@@ -2,7 +2,5 @@ User-agent: *
 Allow: /
 Disallow: /admin.html
 Disallow: /og-image.html
-Disallow: /newsletter-01.html
-Disallow: /newsletter-02.html
 
 Sitemap: https://filtre.cafe/sitemap.xml
