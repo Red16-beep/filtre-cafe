@@ -263,8 +263,6 @@ body { background:#f8fafc; color:#0f172a; overflow-x:hidden; }
 </footer>
 
 <script>
-const WORKER_URL = 'REMPLACER_PAR_URL_WORKER';
-
 async function subscribe(e, suffix) {
   e.preventDefault();
   const email   = document.getElementById(`nl-email-${suffix}`).value.trim();
@@ -281,19 +279,14 @@ async function subscribe(e, suffix) {
   btn.disabled = true;
 
   try {
-    const workerOk = WORKER_URL && WORKER_URL !== 'REMPLACER_PAR_URL_WORKER';
-    if (workerOk) {
-      const res = await fetch(`${WORKER_URL}/newsletter`, {
-        method:  'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body:    JSON.stringify({ email }),
-      });
-      if (!res.ok) {
-        const data = await res.json().catch(() => ({}));
-        throw new Error(data.error || `Erreur ${res.status}`);
-      }
-    } else {
-      await new Promise(r => setTimeout(r, 700)); // démo sans Worker
+    const res = await fetch('/.netlify/functions/subscribe', {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify({ email }),
+    });
+    if (!res.ok) {
+      const data = await res.json().catch(() => ({}));
+      throw new Error(data.error || `Erreur ${res.status}`);
     }
     document.getElementById(`nl-form-${suffix}`).classList.add('hidden');
     ok.classList.remove('hidden');

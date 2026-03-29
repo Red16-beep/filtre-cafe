@@ -991,14 +991,10 @@ async function subscribeNewsletter(e) {
   error.classList.add('hidden'); error.textContent = '';
   btnText.textContent = ''; spinner.classList.remove('hidden'); btn.disabled = true;
   try {
-    if (WORKER_URL && WORKER_URL !== 'REMPLACER_PAR_URL_WORKER') {
-      const res = await fetch(`${WORKER_URL}/newsletter`, {
-        method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({email})
-      });
-      if (!res.ok) { const d = await res.json().catch(()=>({})); throw new Error(d.error||`Erreur ${res.status}`); }
-    } else {
-      await new Promise(r => setTimeout(r, 700));
-    }
+    const res = await fetch('/.netlify/functions/subscribe', {
+      method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({email})
+    });
+    if (!res.ok) { const d = await res.json().catch(()=>({})); throw new Error(d.error||`Erreur ${res.status}`); }
     document.getElementById('newsletter-form').classList.add('hidden');
     success.classList.remove('hidden');
   } catch(err) {
