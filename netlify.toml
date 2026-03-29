@@ -1,6 +1,5 @@
 [build]
   publish = "."
-  ignore = "echo 'skip build'"
 
 [[headers]]
   for = "/*"
