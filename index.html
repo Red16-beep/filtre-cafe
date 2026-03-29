@@ -997,6 +997,7 @@ async function subscribeNewsletter(e) {
     if (!res.ok) { const d = await res.json().catch(()=>({})); throw new Error(d.error||`Erreur ${res.status}`); }
     document.getElementById('newsletter-form').classList.add('hidden');
     success.classList.remove('hidden');
+    if (typeof equateur === 'function') equateur('track', 'InscriptionNewsletter');
   } catch(err) {
     error.textContent = 'Une erreur est survenue. Réessayez dans un moment.';
     error.classList.remove('hidden'); spinner.classList.add('hidden');
