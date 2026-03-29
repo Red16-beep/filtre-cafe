@@ -21,9 +21,34 @@
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 
 <!-- Analytics -->
-<script src="https://equateur.org/tracker.js"
-        data-equateur-key="aff654dd0df3f7e406ecb0a7e78ced5a"
-        defer></script>
+<!-- Tarteaucitron CMP -->
+<script src="https://cdn.jsdelivr.net/npm/tarteaucitronjs@latest/tarteaucitron.js"></script>
+<script>
+tarteaucitron.init({
+  "privacyUrl": "/politique-confidentialite.html",
+  "orientation": "bottom",
+  "showAlertSmall": false,
+  "cookieslist": true,
+  "DenyAllCta": true,
+  "AcceptAllCta": true,
+  "highPrivacy": true,
+  "removeCredit": false,
+  "showIcon": true,
+  "iconPosition": "BottomRight"
+});
+tarteaucitron.services.equateur = {
+  "key": "equateur", "type": "analytic", "name": "Equateur Analytics",
+  "uri": "https://equateur.org", "needConsent": true, "cookies": [],
+  "js": function() {
+    var s = document.createElement("script");
+    s.src = "https://equateur.org/tracker.js";
+    s.setAttribute("data-equateur-key", "aff654dd0df3f7e406ecb0a7e78ced5a");
+    s.defer = true;
+    document.head.appendChild(s);
+  }
+};
+(tarteaucitron.job = tarteaucitron.job || []).push("equateur");
+</script>
 
 <link rel="stylesheet" href="/tailwind.css">
 <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
