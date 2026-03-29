@@ -22,3 +22,4 @@ package-lock.json
 # Outils locaux
 capture-og.js
 og-image.html
+.claude/

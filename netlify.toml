@@ -32,3 +32,13 @@
   from = "/journal"
   to = "/journal/"
   status = 301
+
+[[redirects]]
+  from = "/newsletter-01.html"
+  to = "/newsletter/01.html"
+  status = 301
+
+[[redirects]]
+  from = "/newsletter-02.html"
+  to = "/newsletter/02.html"
+  status = 301
