@@ -991,7 +991,7 @@ async function subscribeNewsletter(e) {
   error.classList.add('hidden'); error.textContent = '';
   btnText.textContent = ''; spinner.classList.remove('hidden'); btn.disabled = true;
   try {
-    const res = await fetch('/.netlify/functions/subscribe', {
+    const res = await fetch('/api/subscribe', {
       method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({email})
     });
     if (!res.ok) { const d = await res.json().catch(()=>({})); throw new Error(d.error||`Erreur ${res.status}`); }
