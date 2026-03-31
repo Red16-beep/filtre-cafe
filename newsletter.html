@@ -196,7 +196,7 @@ body {
         <input type="email" id="nl-email-hero" placeholder="votre@email.fr" required class="nl-input" style="background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.12);color:#fafaf9;">
         <button type="submit" id="nl-btn-hero" class="nl-btn" style="background:var(--amber-800);">
           <span id="nl-btext-hero">S'inscrire</span>
-          <svg id="nl-spin-hero" class="hidden w-4 h-4 animate-spin inline-block ml-2" fill="none" viewBox="0 0 24 24">
+          <svg id="nl-spin-hero" class="hidden w-4 h-4 animate-spin inline-block ml-2" style="display:none" fill="none" viewBox="0 0 24 24">
             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/>
             <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/>
           </svg>
@@ -292,7 +292,7 @@ body {
         <input type="email" id="nl-email-bottom" placeholder="votre@email.fr" required class="nl-input" style="background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.12);color:#fafaf9;">
         <button type="submit" id="nl-btn-bottom" class="nl-btn" style="background:var(--amber-800);">
           <span id="nl-btext-bottom">S'inscrire</span>
-          <svg id="nl-spin-bottom" class="hidden w-4 h-4 animate-spin inline-block ml-2" fill="none" viewBox="0 0 24 24">
+          <svg id="nl-spin-bottom" class="hidden w-4 h-4 animate-spin inline-block ml-2" style="display:none" fill="none" viewBox="0 0 24 24">
             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/>
             <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/>
           </svg>
@@ -356,7 +356,7 @@ async function subscribe(e, suffix) {
 
   err.classList.add('hidden'); err.textContent = '';
   btnText.textContent = '';
-  spinner.classList.remove('hidden');
+  spinner.style.display = 'inline-block'; spinner.classList.remove('hidden');
   btn.disabled = true;
 
   try {
@@ -374,7 +374,7 @@ async function subscribe(e, suffix) {
   } catch (ex) {
     err.textContent = 'Une erreur est survenue. Réessayez dans un moment.';
     err.classList.remove('hidden');
-    spinner.classList.add('hidden');
+    spinner.style.display = 'none'; spinner.classList.add('hidden');
     btnText.textContent = "S'inscrire";
     btn.disabled = false;
   }
