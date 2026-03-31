@@ -302,7 +302,14 @@
     <priority>0.9</priority>
   </url>
 
-  <!-- Articles — Histoire & Culture -->
+  <url>
+    <loc>https://filtre.cafe/journal/meilleure-cafetiere-filtre-2025</loc>
+    <lastmod>2026-04-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Articles — Histoire   <!-- Articles — Histoire & Culture --> Culture -->
   <url>
     <loc>https://filtre.cafe/journal/histoire-du-cafe</loc>
     <lastmod>2026-03-23</lastmod>
