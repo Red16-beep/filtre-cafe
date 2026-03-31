@@ -309,7 +309,14 @@
     <priority>0.9</priority>
   </url>
 
-  <!-- Articles — Histoire   <!-- Articles — Histoire & Culture --> Culture -->
+  <url>
+    <loc>https://filtre.cafe/journal/mouture-cafe-v60</loc>
+    <lastmod>2026-03-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Articles — Histoire & Culture -->
   <url>
     <loc>https://filtre.cafe/journal/histoire-du-cafe</loc>
     <lastmod>2026-03-23</lastmod>
