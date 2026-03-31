@@ -21,7 +21,7 @@
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 
 <!-- Tarteaucitron CMP -->
-<script src="https://cdn.jsdelivr.net/npm/tarteaucitronjs@latest/tarteaucitron.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tarteaucitronjs@1.31.0/tarteaucitron.js"></script>
 <script>
 tarteaucitron.init({
   "privacyUrl": "/politique-confidentialite.html",
@@ -49,7 +49,7 @@ tarteaucitron.services.equateur = {
 (tarteaucitron.job = tarteaucitron.job || []).push("equateur");
 </script>
 
-<link rel="stylesheet" href="/tailwind.css">
+<link rel="preload" href="/tailwind.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="/tailwind.css"></noscript>
 <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap"></noscript><script>
   tailwind.config = {
