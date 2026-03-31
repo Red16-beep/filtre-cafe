@@ -75,18 +75,7 @@ tarteaucitron.init({
   "iconPosition": "BottomRight",
   "handleBrowserDNTRequest": false
 });
-tarteaucitron.services.equateur = {
-  "key": "equateur", "type": "analytic", "name": "Equateur Analytics",
-  "uri": "https://equateur.org", "needConsent": true, "cookies": [],
-  "js": function() {
-    var s = document.createElement("script");
-    s.src = "https://equateur.org/tracker.js";
-    s.setAttribute("data-equateur-key", "aff654dd0df3f7e406ecb0a7e78ced5a");
-    s.defer = true;
-    document.head.appendChild(s);
-  }
-};
-(tarteaucitron.job = tarteaucitron.job || []).push("equateur");
+// Equateur chargé directement (CNIL-exempt, no cookies)
 <\/script>
   <link rel="preload" href="/tailwind.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="/tailwind.css"></noscript>
   <script>
