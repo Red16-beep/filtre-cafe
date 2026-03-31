@@ -1,25 +1,24 @@
 <!DOCTYPE html>
-<html lang="fr" class="scroll-smooth">
+<html lang="fr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>La Lettre filtré. — Café de spécialité, guides & découvertes</title>
-<meta name="description" content="Abonnez-vous à la lettre filtré. : nouveaux cafés testés, guides techniques d'extraction, origines et terroirs. Une newsletter soignée, sans spam.">
+<title>La Lettre filtré. — Café de spécialité, guides & terroirs</title>
+<meta name="description" content="Une newsletter indépendante sur le café de spécialité. Torréfactions testées, guides d'extraction, origines. Sans spam, sans publicité.">
+<meta name="author" content="filtré.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://filtre.cafe/newsletter.html">
-
 <!-- Open Graph -->
-<meta property="og:type"        content="website">
-<meta property="og:url"         content="https://filtre.cafe/newsletter.html">
-<meta property="og:title"       content="La Lettre filtré. — Café de spécialité, guides & découvertes">
-<meta property="og:description" content="Nouveaux cafés testés, guides techniques, origines et terroirs. Une lettre soignée, quand on a quelque chose à dire.">
-<meta property="og:image"       content="https://filtre.cafe/og-image.svg">
-<meta property="og:locale"      content="fr_FR">
-<meta property="og:site_name"   content="filtré.">
-
-<!-- Favicon -->
-<link rel="icon" type="image/svg+xml" href="/favicon.svg">
-
+<meta property="og:type" content="website">
+<meta property="og:title" content="La Lettre filtré. — Café de spécialité, guides & terroirs">
+<meta property="og:description" content="Une newsletter indépendante sur le café de spécialité. Torréfactions testées, guides d'extraction, origines. Sans spam, sans publicité.">
+<meta property="og:url" content="https://filtre.cafe/newsletter.html">
+<meta property="og:site_name" content="filtré.">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:image" content="https://filtre.cafe/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://filtre.cafe/og-image.png">
+<meta name="theme-color" content="#1c1917">
 <!-- Tarteaucitron CMP -->
 <script src="https://cdn.jsdelivr.net/npm/tarteaucitronjs@1.31.0/tarteaucitron.js"></script>
 <style>
@@ -27,7 +26,7 @@
 #tarteaucitronAlertBig{background:#1c1917!important;border-radius:16px!important;bottom:20px!important;top:auto!important;left:50%!important;transform:translateX(-50%)!important;width:auto!important;max-width:calc(100vw - 32px)!important;padding:12px 18px!important;display:flex!important;align-items:center!important;gap:12px!important;flex-wrap:wrap!important;box-shadow:0 8px 32px rgba(0,0,0,.25)!important;border:none!important;justify-content:center!important}
 #tarteaucitronDisclaimerAlert{color:#a8a29e!important;font-size:12px!important;font-weight:400!important;margin:0!important;line-height:1.4!important}
 .tarteaucitronAlertBigBtn{border-radius:99px!important;font-size:11px!important;font-weight:700!important;padding:6px 16px!important;text-transform:none!important;letter-spacing:0!important;cursor:pointer!important;font-family:'Inter',sans-serif!important;margin:0!important}
-#tarteaucitronPersonalize2{background:#f59e0b!important;color:#1c1917!important;border:none!important}
+#tarteaucitronPersonalize2{background:#92400e!important;color:#fafaf9!important;border:none!important}
 #tarteaucitronAllDenied2{background:transparent!important;color:#78716c!important;border:1px solid #44403c!important}
 #tarteaucitronCloseAlert{color:#57534e!important;font-size:10px!important;text-decoration:underline!important;background:transparent!important;padding:0!important;margin:0 0 0 4px!important;font-weight:400!important}
 #tarteaucitronAlertSmall{background:#1c1917!important;border-radius:12px!important;bottom:16px!important;right:16px!important;padding:8px 12px!important;font-size:10px!important;color:#78716c!important;box-shadow:0 4px 12px rgba(0,0,0,.2)!important;border:none!important}
@@ -35,7 +34,7 @@
 #tarteaucitronBack{background:rgba(28,25,23,.5)!important;backdrop-filter:blur(8px)!important}
 #tarteaucitron{background:#fafaf9!important;border-radius:20px!important;border:1px solid #e7e5e4!important;font-size:13px!important;max-width:540px!important;margin:auto!important}
 #tarteaucitronClosePanel{background:#1c1917!important;border-radius:8px!important;font-size:11px!important}
-#tarteaucitronPoweredByLink,#tarteaucitronAlertBig .tarteaucitronAlertBigPrivacyCookiesNumber{display:none!important}
+#tarteaucitronPoweredByLink,#tarteaucitronAlertBig .tarteaucitronAlertBigPrivaciesNumber{display:none!important}
 </style>
 <script>
 tarteaucitron.init({
@@ -51,223 +50,301 @@ tarteaucitron.init({
   "iconPosition": "BottomRight",
   "handleBrowserDNTRequest": false
 });
-// Equateur chargé directement (CNIL-exempt, no cookies)
 <\/script>
-
 <link rel="preload" href="/tailwind.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="/tailwind.css"></noscript>
 <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap"></noscript><script>
-  tailwind.config = {
-    theme: {
-      extend: {
-        fontFamily: { sans: ['Inter','sans-serif'], serif: ['Instrument Serif','serif'] },
-        colors: {
-          surface: { 50:'#f8fafc',100:'#f1f5f9',200:'#e2e8f0',300:'#cbd5e1',400:'#94a3b8',500:'#64748b',600:'#475569',800:'#1e293b',900:'#0f172a' },
-          amber:   { 50:'#fffbeb',100:'#fef3c7',400:'#fbbf24',500:'#f59e0b',600:'#d97706',900:'#78350f' }
-        }
-      }
-    }
-  }
-</script>
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap"></noscript>
 <style>
-body { background:#f8fafc; color:#0f172a; overflow-x:hidden; }
-.glass-nav { background:rgba(255,255,255,.85); backdrop-filter:blur(12px); border-bottom:1px solid rgba(226,232,240,.8); }
-.nl-feature { background:white; border:1px solid #e2e8f0; border-radius:20px; transition:transform .2s,box-shadow .2s; }
-.nl-feature:hover { transform:translateY(-2px); box-shadow:0 20px 40px -15px rgba(0,0,0,.07); }
+:root {
+  --stone-50: #fafaf9;
+  --stone-100: #f5f5f4;
+  --stone-200: #e7e5e4;
+  --stone-300: #d6d3d1;
+  --stone-400: #a8a29e;
+  --stone-500: #78716c;
+  --stone-900: #1c1917;
+  --amber-800: #92400e;
+  --amber-700: #b45309;
+}
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--stone-50);
+  color: var(--stone-900);
+  letter-spacing: -0.02em;
+}
+.serif { font-family: 'Instrument Serif', serif; }
+.noise {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIj48ZmlsdGVyIGlkPSJuIiB4PSIwIiB5PSIwIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iMC43NSIgbnVtT2N0YXZlcz0iNCIgc3RpdGNoVGlsZXM9InN0aXRjaCIvPjxmZUNvbG9yTWF0cml4IHR5cGU9InNhdHVyYXRlIiB2YWx1ZXM9IjAiLz48L2ZpbHRlcj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsdGVyPSJ1cmwoI24pIiBvcGFjaXR5PSIxIi8+PC9zdmc+');
+  opacity: 0.03;
+  pointer-events: none;
+  z-index: 999;
+}
+.glass-nav {
+  background: rgba(250, 250, 249, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+#mobile-menu { display: none; }
+#mobile-menu.open { display: flex; }
+@keyframes menuDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.mobile-menu-panel { animation: menuDown 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(32px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.reveal {
+  opacity: 0;
+  animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.reveal-delay-1 { animation-delay: 0.1s; }
+.reveal-delay-2 { animation-delay: 0.2s; }
+.reveal-delay-3 { animation-delay: 0.3s; }
+.arrow-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  transition: gap 0.2s ease;
+}
+.arrow-link:hover { gap: 0.625rem; }
+/* Formulaire */
+.nl-input {
+  width: 100%;
+  background: white;
+  border: 1px solid var(--stone-200);
+  border-radius: 9999px;
+  padding: 0.875rem 1.5rem;
+  font-size: 0.875rem;
+  font-family: 'Inter', sans-serif;
+  color: var(--stone-900);
+  outline: none;
+  transition: border-color 0.2s;
+  letter-spacing: -0.02em;
+}
+.nl-input::placeholder { color: var(--stone-400); }
+.nl-input:focus { border-color: var(--stone-400); }
+.nl-btn {
+  background: var(--stone-900);
+  color: var(--stone-50);
+  border: none;
+  border-radius: 9999px;
+  padding: 0.875rem 2rem;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  font-family: 'Inter', sans-serif;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+.nl-btn:hover { background: var(--amber-800); }
+.nl-btn:disabled { opacity: 0.6; cursor: default; }
 </style>
 </head>
 <body class="antialiased">
+<div class="noise"></div>
 
-<!-- Navigation -->
-<nav class="glass-nav fixed top-0 w-full z-50">
-  <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-    <div class="flex items-center gap-10">
-      <a href="/" class="text-2xl font-serif italic tracking-tight text-surface-900 hover:opacity-70 transition-opacity">
-        filtré<span class="text-amber-600">.</span>
+<!-- ─── NAV ─── -->
+<header class="glass-nav sticky top-0 z-50 border-b border-stone-200/60">
+  <nav class="max-w-6xl mx-auto px-6 md:px-10 lg:px-12 h-16 flex items-center justify-between">
+    <a href="/" class="serif text-2xl italic text-stone-900 hover:text-amber-800 transition-colors">filtré.</a>
+    <ul class="hidden md:flex items-center gap-8 text-[11px] font-semibold uppercase tracking-[0.18em]">
+      <li><a href="/#catalogue" class="text-stone-400 hover:text-stone-900 transition-colors">Le Grain</a></li>
+      <li><a href="/journal/" class="text-stone-400 hover:text-stone-900 transition-colors">Le Journal</a></li>
+      <li><a href="/#dossier" class="text-stone-400 hover:text-stone-900 transition-colors">La Méthode</a></li>
+      <li><a href="/newsletter.html" class="text-stone-900 border-b border-stone-900 pb-0.5">La Lettre</a></li>
+    </ul>
+    <div class="flex items-center gap-4">
+      <a href="/#catalogue" class="hidden md:inline-flex items-center gap-2 bg-stone-900 text-stone-50 text-[10px] font-bold uppercase tracking-[0.2em] px-5 py-2.5 rounded-full hover:bg-amber-800 transition-colors">
+        La sélection →
       </a>
-      <div class="hidden md:flex gap-8 text-sm font-medium text-surface-500">
-        <a href="/#catalogue" class="hover:text-surface-900 transition-colors">La Réserve</a>
-        <a href="/journal/"   class="hover:text-surface-900 transition-colors">Le Journal</a>
-        <a href="/guides/"    class="hover:text-surface-900 transition-colors">Les Guides</a>
-        <a href="/newsletter.html" class="text-surface-900 font-semibold">La Lettre</a>
-      </div>
-    </div>
-    <a href="/#catalogue"
-      class="bg-surface-900 text-white px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-surface-800 transition-all hover:shadow-lg hover:shadow-surface-900/20">
-      Explorer les grains →
-    </a>
-  </div>
-</nav>
-
-<!-- Hero -->
-<header class="pt-40 pb-24 px-6 bg-surface-900 text-white text-center">
-  <div class="max-w-3xl mx-auto">
-    <p class="text-[10px] font-bold uppercase tracking-widest text-amber-400 mb-5">La lettre filtré.</p>
-    <h1 class="font-serif text-6xl md:text-7xl leading-tight mb-8">
-      Du grain <em>à la tasse,<br>sans bruit</em>.
-    </h1>
-    <p class="text-white/50 text-lg leading-relaxed max-w-xl mx-auto mb-12">
-      Une newsletter indépendante sur le café de spécialité. Pas d'algorithme, pas de publicité — juste des torréfactions testées, des guides honnêtes et des histoires de terroirs.
-    </p>
-
-    <!-- Formulaire hero -->
-    <form id="nl-form-hero" onsubmit="subscribe(event,'hero')" class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto mb-4">
-      <input type="email" id="nl-email-hero" placeholder="votre@email.fr" required
-        class="flex-1 px-5 py-4 rounded-xl bg-white/10 border border-white/10 text-white placeholder-white/30 focus:outline-none focus:border-amber-400/50 focus:bg-white/15 transition-all text-sm">
-      <button type="submit" id="nl-btn-hero"
-        class="px-7 py-4 bg-amber-500 hover:bg-amber-400 text-surface-900 font-bold text-sm rounded-xl transition-colors whitespace-nowrap flex items-center justify-center gap-2 min-w-[140px]">
-        <span id="nl-btext-hero">S'inscrire gratuitement</span>
-        <svg id="nl-spin-hero" class="hidden w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
-          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/>
-          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/>
-        </svg>
+      <button id="hamburger" onclick="toggleMobileMenu()" class="md:hidden flex flex-col gap-1.5 p-1" aria-label="Menu">
+        <span class="w-5 h-px bg-stone-900 block transition-transform duration-300" id="ham-1"></span>
+        <span class="w-5 h-px bg-stone-900 block transition-opacity duration-300" id="ham-2"></span>
+        <span class="w-5 h-px bg-stone-900 block transition-transform duration-300" id="ham-3"></span>
       </button>
-    </form>
-    <div id="nl-ok-hero" class="hidden mb-4">
-      <div class="inline-flex items-center gap-2 bg-emerald-900/40 text-emerald-400 border border-emerald-500/30 rounded-xl px-5 py-3 text-sm font-medium">
-        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-        Parfait&nbsp;! Bienvenue dans la communauté filtré.
-      </div>
     </div>
-    <div id="nl-err-hero" class="hidden text-sm text-red-400 font-medium mb-4"></div>
-    <p class="text-[11px] text-white/20">Gratuit · Pas de spam · Désabonnement en un clic · RGPD ✓</p>
+  </nav>
+  <div id="mobile-menu" class="md:hidden flex-col border-t border-stone-100">
+    <div class="mobile-menu-panel flex flex-col px-6 py-6 gap-6 bg-stone-50/95 backdrop-blur-md">
+      <a href="/#catalogue" onclick="closeMobileMenu()" class="text-[11px] font-semibold uppercase tracking-[0.18em] text-stone-500 hover:text-stone-900 transition-colors">Le Grain</a>
+      <a href="/journal/" onclick="closeMobileMenu()" class="text-[11px] font-semibold uppercase tracking-[0.18em] text-stone-500 hover:text-stone-900 transition-colors">Le Journal</a>
+      <a href="/#dossier" onclick="closeMobileMenu()" class="text-[11px] font-semibold uppercase tracking-[0.18em] text-stone-500 hover:text-stone-900 transition-colors">La Méthode</a>
+      <a href="/newsletter.html" onclick="closeMobileMenu()" class="text-[11px] font-semibold uppercase tracking-[0.18em] text-stone-900">La Lettre</a>
+      <a href="/#catalogue" onclick="closeMobileMenu()" class="mt-2 inline-flex items-center justify-center bg-stone-900 text-stone-50 text-[10px] font-bold uppercase tracking-[0.2em] px-6 py-3 rounded-full hover:bg-amber-800 transition-colors">La sélection →</a>
+    </div>
   </div>
 </header>
 
-<!-- Ce qu'on reçoit -->
-<section class="py-20 px-6 max-w-screen-xl mx-auto">
-  <div class="text-center mb-14">
-    <p class="text-[10px] font-bold uppercase tracking-widest text-amber-600 mb-4">Au programme</p>
-    <h2 class="font-serif text-4xl md:text-5xl text-surface-900">Ce que vous recevrez</h2>
-  </div>
-
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
-    <div class="nl-feature p-8">
-      <div class="w-12 h-12 bg-amber-50 border border-amber-100 rounded-2xl flex items-center justify-center text-2xl mb-6">☕</div>
-      <h3 class="font-bold text-surface-900 text-lg mb-3">Nouvelles torréfactions</h3>
-      <p class="text-surface-500 text-sm leading-relaxed">Chaque mois, 20 nouveaux cafés sourcés chez les meilleurs torréfacteurs artisanaux français. Notes, arômes, verdict — complet et honnête.</p>
-    </div>
-    <div class="nl-feature p-8">
-      <div class="w-12 h-12 bg-surface-100 border border-surface-200 rounded-2xl flex items-center justify-center text-2xl mb-6">📖</div>
-      <h3 class="font-bold text-surface-900 text-lg mb-3">Guides & techniques</h3>
-      <p class="text-surface-500 text-sm leading-relaxed">V60, Chemex, espresso, traitements… Des guides complets pour tirer le meilleur de vos grains, quelle que soit votre méthode d'extraction.</p>
-    </div>
-    <div class="nl-feature p-8">
-      <div class="w-12 h-12 bg-surface-100 border border-surface-200 rounded-2xl flex items-center justify-center text-2xl mb-6">🌍</div>
-      <h3 class="font-bold text-surface-900 text-lg mb-3">Origines & terroirs</h3>
-      <p class="text-surface-500 text-sm leading-relaxed">Éthiopie, Colombie, Guatemala… Des articles de fond sur les origines, les variétés et les histoires derrière chaque tasse.</p>
-    </div>
-  </div>
-
-  <!-- Stats / preuve sociale -->
-  <div class="grid grid-cols-2 md:grid-cols-4 gap-6 border-t border-surface-200 pt-14">
-    <div class="text-center">
-      <p class="font-serif text-5xl text-surface-900 mb-2">20+</p>
-      <p class="text-sm text-surface-500">cafés au catalogue</p>
-    </div>
-    <div class="text-center">
-      <p class="font-serif text-5xl text-surface-900 mb-2">80+</p>
-      <p class="text-sm text-surface-500">points SCA minimum</p>
-    </div>
-    <div class="text-center">
-      <p class="font-serif text-5xl text-surface-900 mb-2">100%</p>
-      <p class="text-sm text-surface-500">indépendant</p>
-    </div>
-    <div class="text-center">
-      <p class="font-serif text-5xl text-surface-900 mb-2">0</p>
-      <p class="text-sm text-surface-500">spam, zéro publicité</p>
-    </div>
-  </div>
-</section>
-
-<!-- Aperçu d'une lettre -->
-<section class="py-20 px-6 bg-white border-t border-surface-200">
-  <div class="max-w-2xl mx-auto">
-    <div class="text-center mb-12">
-      <p class="text-[10px] font-bold uppercase tracking-widest text-amber-600 mb-4">Aperçu</p>
-      <h2 class="font-serif text-4xl md:text-5xl text-surface-900">À quoi ça ressemble&nbsp;?</h2>
-    </div>
-
-    <!-- Maquette email -->
-    <div class="border border-surface-200 rounded-2xl overflow-hidden shadow-sm">
-      <!-- En-tête email -->
-      <div class="bg-surface-50 border-b border-surface-200 px-6 py-4">
-        <div class="flex items-center gap-2 text-xs text-surface-400 mb-1">
-          <span class="font-semibold text-surface-600">De :</span> La lettre filtré. &lt;lettre@filtre.cafe&gt;
-        </div>
-        <div class="flex items-center gap-2 text-xs text-surface-400">
-          <span class="font-semibold text-surface-600">Objet :</span>
-          <span class="text-surface-700 font-medium">☕ Kenya Karogoto, guide V60 et trois adresses à Paris</span>
-        </div>
-      </div>
-      <!-- Corps email simulé -->
-      <div class="p-8 space-y-6">
-        <div class="font-serif text-3xl text-surface-900 leading-tight">
-          Bonjour,<br>voici ce qu'on a testé ce mois-ci.
-        </div>
-        <p class="text-surface-600 text-sm leading-relaxed">Au programme : un Kenya de compétition qui redefintit l'acidité, un guide V60 actualisé avec les nouvelles températures recommandées par la SCA, et trois adresses parisiennes qu'on a visitées pour vous.</p>
-        <div class="bg-amber-50 border border-amber-100 rounded-xl p-5">
-          <p class="text-xs font-bold uppercase tracking-widest text-amber-600 mb-2">Coup de cœur du mois</p>
-          <p class="font-bold text-surface-900 mb-1">Kenya AA Karogoto — Lomi Roasters</p>
-          <p class="text-surface-500 text-sm italic">"Cassis, fleur d'oranger, acidité cristalline. Le meilleur Kenya qu'on ait eu en main cette année. Note : 10/10."</p>
-        </div>
-        <p class="text-surface-400 text-xs">filtré. · <a href="#" class="underline">Se désabonner</a></p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CTA bas de page -->
-<section class="py-24 px-6 bg-surface-900 text-center">
-  <div class="max-w-xl mx-auto">
-    <p class="text-[10px] font-bold uppercase tracking-widest text-amber-400 mb-5">Rejoindre</p>
-    <h2 class="font-serif text-4xl md:text-5xl text-white leading-tight mb-8">
-      Prêt à découvrir<br><em>le café autrement</em>&nbsp;?
-    </h2>
-
-    <form id="nl-form-bottom" onsubmit="subscribe(event,'bottom')" class="flex flex-col sm:flex-row gap-3 max-w-sm mx-auto mb-4">
-      <input type="email" id="nl-email-bottom" placeholder="votre@email.fr" required
-        class="flex-1 px-5 py-3.5 rounded-xl bg-white/10 border border-white/10 text-white placeholder-white/30 focus:outline-none focus:border-amber-400/50 transition-all text-sm">
-      <button type="submit" id="nl-btn-bottom"
-        class="px-6 py-3.5 bg-amber-500 hover:bg-amber-400 text-surface-900 font-bold text-sm rounded-xl transition-colors whitespace-nowrap flex items-center justify-center gap-2 min-w-[120px]">
-        <span id="nl-btext-bottom">S'inscrire</span>
-        <svg id="nl-spin-bottom" class="hidden w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
-          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/>
-          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/>
-        </svg>
-      </button>
-    </form>
-    <div id="nl-ok-bottom" class="hidden mb-4">
-      <div class="inline-flex items-center gap-2 bg-emerald-900/40 text-emerald-400 border border-emerald-500/30 rounded-xl px-5 py-3 text-sm font-medium">
-        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-        Parfait&nbsp;! On se retrouve dans votre boîte mail.
-      </div>
-    </div>
-    <div id="nl-err-bottom" class="hidden text-sm text-red-400 font-medium mb-4"></div>
-    <p class="text-[11px] text-white/20">Gratuit · Désabonnement en un clic · RGPD ✓</p>
-  </div>
-</section>
-
-<!-- Footer -->
-<footer class="py-12 px-6 border-t border-surface-200 bg-white">
-  <div class="max-w-7xl mx-auto">
-    <div class="flex flex-col md:flex-row justify-between items-center gap-6 mb-8">
-      <a href="/" class="text-3xl font-serif italic text-surface-900">filtré<span class="text-amber-600">.</span></a>
-      <div class="flex gap-8 text-sm font-medium text-surface-400">
-        <a href="/"          class="hover:text-surface-900 transition-colors">Catalogue</a>
-        <a href="/journal/"  class="hover:text-surface-900 transition-colors">Journal</a>
-        <a href="/guides/"   class="hover:text-surface-900 transition-colors">Guides</a>
-      </div>
-    </div>
-    <div class="text-center pt-8 border-t border-surface-100">
-      <p class="text-[10px] text-surface-400 max-w-3xl mx-auto leading-relaxed">
-        Certains liens présents sur ce site sont affiliés. Si vous achetez vos grains via ces liens, je touche une petite commission sans aucun surcoût pour vous. Cela m'aide à faire vivre le projet et à tester de nouvelles torréfactions en toute indépendance.
+<!-- ─── HERO ─── -->
+<section class="bg-stone-900 text-stone-50">
+  <div class="max-w-6xl mx-auto px-6 md:px-10 lg:px-12 pt-20 pb-20 md:pt-28 md:pb-24">
+    <div class="reveal max-w-2xl">
+      <p class="text-[10px] font-bold uppercase tracking-[0.4em] text-amber-700 mb-6">La Lettre — filtré.</p>
+      <h1 class="serif text-6xl md:text-8xl italic leading-[0.9] mb-8">Du grain à la tasse, sans bruit.</h1>
+      <p class="text-stone-400 font-light text-lg leading-relaxed mb-12 max-w-md">
+        Une newsletter indépendante sur le café de spécialité. Torréfactions testées, guides d'extraction, histoires de terroirs — quand on a quelque chose à dire.
       </p>
+
+      <!-- Formulaire hero -->
+      <form id="nl-form-hero" onsubmit="subscribe(event,'hero')" class="flex flex-col sm:flex-row gap-3 max-w-md">
+        <input type="email" id="nl-email-hero" placeholder="votre@email.fr" required class="nl-input" style="background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.12);color:#fafaf9;">
+        <button type="submit" id="nl-btn-hero" class="nl-btn" style="background:var(--amber-800);">
+          <span id="nl-btext-hero">S'inscrire</span>
+          <svg id="nl-spin-hero" class="hidden w-4 h-4 animate-spin inline-block ml-2" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/>
+          </svg>
+        </button>
+      </form>
+      <div id="nl-ok-hero" class="hidden mt-4">
+        <p class="text-[13px] text-stone-400 font-light">Bienvenue dans la communauté filtré. On se retrouve dans votre boîte mail.</p>
+      </div>
+      <div id="nl-err-hero" class="hidden mt-3 text-sm text-red-400"></div>
+      <p class="text-[11px] text-stone-600 mt-4 font-light">Gratuit · Pas de spam · Désabonnement en un clic</p>
     </div>
+  </div>
+</section>
+
+<!-- ─── DIVIDER ─── -->
+<div class="max-w-6xl mx-auto px-6 md:px-10 lg:px-12">
+  <div class="h-px bg-stone-200"></div>
+</div>
+
+<!-- ─── CE QU'ON REÇOIT ─── -->
+<section class="max-w-6xl mx-auto px-6 md:px-10 lg:px-12 py-20 md:py-24">
+  <div class="reveal mb-16">
+    <p class="text-[10px] font-bold uppercase tracking-[0.4em] text-amber-800 mb-4">Au programme</p>
+    <h2 class="serif text-4xl md:text-5xl italic text-stone-900 leading-tight">Ce que vous recevrez.</h2>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6 reveal reveal-delay-1">
+    <div class="bg-white border border-stone-100 rounded-3xl p-8">
+      <p class="text-[9px] font-bold uppercase tracking-[0.3em] text-stone-400 mb-6">Torréfactions</p>
+      <h3 class="serif text-2xl italic text-stone-900 mb-3">Nouveaux cafés testés.</h3>
+      <p class="text-sm font-light text-stone-500 leading-relaxed">Chaque lettre, des torréfactions sourcées chez les meilleurs artisans français. Notes, arômes, verdict — complet et honnête, sans langue de bois.</p>
+    </div>
+    <div class="bg-white border border-stone-100 rounded-3xl p-8">
+      <p class="text-[9px] font-bold uppercase tracking-[0.3em] text-stone-400 mb-6">Technique</p>
+      <h3 class="serif text-2xl italic text-stone-900 mb-3">Guides d'extraction.</h3>
+      <p class="text-sm font-light text-stone-500 leading-relaxed">V60, Chemex, espresso, traitements — des guides pour tirer le meilleur de vos grains, quelle que soit votre méthode.</p>
+    </div>
+    <div class="bg-white border border-stone-100 rounded-3xl p-8">
+      <p class="text-[9px] font-bold uppercase tracking-[0.3em] text-stone-400 mb-6">Origines</p>
+      <h3 class="serif text-2xl italic text-stone-900 mb-3">Histoires de terroirs.</h3>
+      <p class="text-sm font-light text-stone-500 leading-relaxed">Éthiopie, Colombie, Kenya — des articles de fond sur les origines, les variétés et les histoires derrière chaque tasse.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── DIVIDER ─── -->
+<div class="max-w-6xl mx-auto px-6 md:px-10 lg:px-12">
+  <div class="h-px bg-stone-200"></div>
+</div>
+
+<!-- ─── APERÇU D'UNE LETTRE ─── -->
+<section class="max-w-6xl mx-auto px-6 md:px-10 lg:px-12 py-20 md:py-24">
+  <div class="reveal mb-12">
+    <p class="text-[10px] font-bold uppercase tracking-[0.4em] text-amber-800 mb-4">Aperçu</p>
+    <h2 class="serif text-4xl md:text-5xl italic text-stone-900 leading-tight">À quoi ça ressemble.</h2>
+  </div>
+
+  <div class="reveal reveal-delay-1 max-w-2xl border border-stone-200 rounded-3xl overflow-hidden">
+    <!-- En-tête simulé -->
+    <div class="bg-stone-100 border-b border-stone-200 px-8 py-5">
+      <p class="text-[11px] text-stone-400 mb-1"><span class="font-semibold text-stone-600">De :</span> La lettre filtré. &lt;lettre@filtre.cafe&gt;</p>
+      <p class="text-[11px] text-stone-400"><span class="font-semibold text-stone-600">Objet :</span> <span class="text-stone-700 font-medium">Kenya Karogoto, guide V60 actualisé et trois adresses à Paris</span></p>
+    </div>
+    <!-- Corps -->
+    <div class="bg-white p-8 space-y-6">
+      <div class="serif text-3xl italic text-stone-900 leading-tight">
+        Bonjour,<br>voici ce qu'on a testé ce mois-ci.
+      </div>
+      <p class="text-sm font-light text-stone-500 leading-relaxed">Au programme : un Kenya de compétition qui redéfinit l'acidité sur cette origine, un guide V60 actualisé avec les températures par profil de torréfaction, et trois adresses parisiennes qu'on a visitées.</p>
+      <div class="bg-stone-50 border border-stone-100 rounded-2xl p-6">
+        <p class="text-[9px] font-bold uppercase tracking-[0.3em] text-amber-800 mb-3">Coup de cœur du mois</p>
+        <p class="font-semibold text-stone-900 text-sm mb-1">Kenya AA Karogoto — Lomi Roasters</p>
+        <p class="text-stone-500 text-sm font-light leading-relaxed italic">"Cassis, fleur d'oranger, acidité cristalline. Le meilleur Kenya qu'on ait eu en main cette année."</p>
+      </div>
+      <p class="text-[11px] text-stone-300">filtré. · Se désabonner</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── DIVIDER ─── -->
+<div class="max-w-6xl mx-auto px-6 md:px-10 lg:px-12">
+  <div class="h-px bg-stone-200"></div>
+</div>
+
+<!-- ─── CTA BAS DE PAGE ─── -->
+<section class="bg-stone-900 text-stone-50">
+  <div class="max-w-6xl mx-auto px-6 md:px-10 lg:px-12 py-20 md:py-24">
+    <div class="max-w-xl">
+      <p class="text-[10px] font-bold uppercase tracking-[0.4em] text-amber-700 mb-6">Rejoindre</p>
+      <h2 class="serif text-4xl md:text-5xl italic leading-tight mb-10">Prêt à découvrir le café autrement ?</h2>
+
+      <form id="nl-form-bottom" onsubmit="subscribe(event,'bottom')" class="flex flex-col sm:flex-row gap-3 max-w-md">
+        <input type="email" id="nl-email-bottom" placeholder="votre@email.fr" required class="nl-input" style="background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.12);color:#fafaf9;">
+        <button type="submit" id="nl-btn-bottom" class="nl-btn" style="background:var(--amber-800);">
+          <span id="nl-btext-bottom">S'inscrire</span>
+          <svg id="nl-spin-bottom" class="hidden w-4 h-4 animate-spin inline-block ml-2" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/>
+          </svg>
+        </button>
+      </form>
+      <div id="nl-ok-bottom" class="hidden mt-4">
+        <p class="text-[13px] text-stone-400 font-light">On se retrouve dans votre boîte mail.</p>
+      </div>
+      <div id="nl-err-bottom" class="hidden mt-3 text-sm text-red-400"></div>
+      <p class="text-[11px] text-stone-600 mt-4 font-light">Gratuit · Désabonnement en un clic · RGPD</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer class="border-t border-stone-200">
+  <div class="max-w-6xl mx-auto px-6 md:px-10 lg:px-12 py-12 flex flex-col md:flex-row items-center justify-between gap-6">
+    <a href="/" class="serif text-2xl italic text-stone-900 hover:text-amber-800 transition-colors">filtré.</a>
+    <p class="text-[11px] text-stone-400 font-light tracking-wide order-last md:order-none">© 2026 filtré. Depuis l'Artois.</p>
+    <nav class="flex items-center gap-6 text-[10px] font-semibold uppercase tracking-[0.2em]">
+      <a href="/#catalogue" class="text-stone-400 hover:text-stone-900 transition-colors">Le Grain</a>
+      <a href="/journal/" class="text-stone-400 hover:text-stone-900 transition-colors">Le Journal</a>
+      <a href="/newsletter.html" class="text-stone-900">La Lettre</a>
+    </nav>
   </div>
 </footer>
 
+<!-- Equateur Analytics (CNIL-exempt) -->
+<script defer src="https://equateur.org/tracker.js" data-equateur-key="aff654dd0df3f7e406ecb0a7e78ced5a"></script>
+
 <script>
+function toggleMobileMenu() {
+  const menu = document.getElementById('mobile-menu');
+  const h1 = document.getElementById('ham-1');
+  const h2 = document.getElementById('ham-2');
+  const h3 = document.getElementById('ham-3');
+  const isOpen = menu.classList.contains('open');
+  if (isOpen) {
+    menu.classList.remove('open');
+    h1.style.transform = ''; h2.style.opacity = ''; h3.style.transform = '';
+  } else {
+    menu.classList.add('open');
+    h1.style.transform = 'translateY(6px) rotate(45deg)';
+    h2.style.opacity = '0';
+    h3.style.transform = 'translateY(-6px) rotate(-45deg)';
+  }
+}
+function closeMobileMenu() {
+  const menu = document.getElementById('mobile-menu');
+  if (menu.classList.contains('open')) toggleMobileMenu();
+}
+
 async function subscribe(e, suffix) {
   e.preventDefault();
   const email   = document.getElementById(`nl-email-${suffix}`).value.trim();
@@ -277,17 +354,16 @@ async function subscribe(e, suffix) {
   const ok      = document.getElementById(`nl-ok-${suffix}`);
   const err     = document.getElementById(`nl-err-${suffix}`);
 
-  err.classList.add('hidden');
-  err.textContent = '';
+  err.classList.add('hidden'); err.textContent = '';
   btnText.textContent = '';
   spinner.classList.remove('hidden');
   btn.disabled = true;
 
   try {
-    const res = await fetch('/.netlify/functions/subscribe', {
-      method:  'POST',
+    const res = await fetch('/api/subscribe', {
+      method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body:    JSON.stringify({ email }),
+      body: JSON.stringify({ email }),
     });
     if (!res.ok) {
       const data = await res.json().catch(() => ({}));
@@ -299,11 +375,10 @@ async function subscribe(e, suffix) {
     err.textContent = 'Une erreur est survenue. Réessayez dans un moment.';
     err.classList.remove('hidden');
     spinner.classList.add('hidden');
-    btnText.textContent = suffix === 'hero' ? "S'inscrire gratuitement" : "S'inscrire";
+    btnText.textContent = "S'inscrire";
     btn.disabled = false;
   }
 }
 </script>
-
 </body>
 </html>
