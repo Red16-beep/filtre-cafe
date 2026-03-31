@@ -78,8 +78,39 @@
 }
 </script>
 
-<!-- Equateur Analytics (privacy-first, no cookies) -->
-<script defer src="https://equateur.org/tracker.js" data-equateur-key="aff654dd0df3f7e406ecb0a7e78ced5a"></script>
+<!-- Equateur Analytics (chargé après consentement) -->
+<script>
+(function(){
+  var KEY = 'filtre_consent';
+  function loadEquateur() {
+    var s = document.createElement('script');
+    s.src = 'https://equateur.org/tracker.js';
+    s.setAttribute('data-equateur-key', 'aff654dd0df3f7e406ecb0a7e78ced5a');
+    s.defer = true;
+    document.head.appendChild(s);
+  }
+  function hideBanner() {
+    var b = document.getElementById('cookie-banner');
+    if (b) b.style.transform = 'translateY(120%)';
+  }
+  window.acceptCookies = function() {
+    localStorage.setItem(KEY, '1');
+    hideBanner();
+    loadEquateur();
+  };
+  window.refuseCookies = function() {
+    localStorage.setItem(KEY, '0');
+    hideBanner();
+  };
+  if (localStorage.getItem(KEY) === '1') loadEquateur();
+  if (!localStorage.getItem(KEY)) {
+    document.addEventListener('DOMContentLoaded', function() {
+      var b = document.getElementById('cookie-banner');
+      if (b) setTimeout(function(){ b.style.transform = 'translateY(0)'; }, 800);
+    });
+  }
+})();
+</script>
 
 <link rel="preload" href="/tailwind.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="/tailwind.css"></noscript>
 <!-- Fonts : non-blocking load to avoid render-blocking resource -->
@@ -1044,5 +1075,22 @@ function updateFilterBadge() {
 // ─── INIT ─────────────────────────────────────────────────────────────────────
 window.onload = () => initData();
 </script>
+
+<!-- ══ COOKIE BANNER ══════════════════════════════════════════════════════════ -->
+<div id="cookie-banner" style="
+  position:fixed; bottom:20px; left:50%; transform:translate(-50%,120%);
+  transition:transform 0.4s cubic-bezier(0.16,1,0.3,1);
+  background:#1c1917; color:#e7e5e4;
+  padding:14px 20px; border-radius:16px;
+  display:flex; align-items:center; gap:16px; flex-wrap:wrap;
+  font-size:12px; font-family:'Inter',sans-serif; line-height:1.4;
+  box-shadow:0 8px 32px rgba(0,0,0,0.25);
+  z-index:9999; max-width:calc(100vw - 32px); width:max-content;">
+  <span style="color:#a8a29e;">Analyse de visite anonyme. <a href="/politique-confidentialite.html" style="color:#a8a29e;text-decoration:underline;">En savoir plus</a></span>
+  <div style="display:flex;gap:8px;flex-shrink:0;">
+    <button onclick="refuseCookies()" style="background:transparent;border:1px solid #44403c;color:#a8a29e;padding:6px 14px;border-radius:99px;font-size:11px;font-weight:600;cursor:pointer;font-family:inherit;">Refuser</button>
+    <button onclick="acceptCookies()" style="background:#f59e0b;border:none;color:#1c1917;padding:6px 14px;border-radius:99px;font-size:11px;font-weight:700;cursor:pointer;font-family:inherit;">Accepter</button>
+  </div>
+</div>
 </body>
 </html>
