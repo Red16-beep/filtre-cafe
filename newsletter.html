@@ -20,32 +20,50 @@
 <!-- Favicon -->
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 
-<!-- Equateur Analytics (chargé après consentement) -->
+<!-- Tarteaucitron CMP -->
+<script src="https://cdn.jsdelivr.net/npm/tarteaucitronjs@1.31.0/tarteaucitron.js"></script>
+<style>
+#tarteaucitronRoot *{font-family:'Inter',sans-serif!important}
+#tarteaucitronAlertBig{background:#1c1917!important;border-radius:16px!important;bottom:20px!important;top:auto!important;left:50%!important;transform:translateX(-50%)!important;width:auto!important;max-width:calc(100vw - 32px)!important;padding:12px 18px!important;display:flex!important;align-items:center!important;gap:12px!important;flex-wrap:wrap!important;box-shadow:0 8px 32px rgba(0,0,0,.25)!important;border:none!important;justify-content:center!important}
+#tarteaucitronDisclaimerAlert{color:#a8a29e!important;font-size:12px!important;font-weight:400!important;margin:0!important;line-height:1.4!important}
+.tarteaucitronAlertBigBtn{border-radius:99px!important;font-size:11px!important;font-weight:700!important;padding:6px 16px!important;text-transform:none!important;letter-spacing:0!important;cursor:pointer!important;font-family:'Inter',sans-serif!important;margin:0!important}
+#tarteaucitronPersonalize2{background:#f59e0b!important;color:#1c1917!important;border:none!important}
+#tarteaucitronAllDenied2{background:transparent!important;color:#78716c!important;border:1px solid #44403c!important}
+#tarteaucitronCloseAlert{color:#57534e!important;font-size:10px!important;text-decoration:underline!important;background:transparent!important;padding:0!important;margin:0 0 0 4px!important;font-weight:400!important}
+#tarteaucitronAlertSmall{background:#1c1917!important;border-radius:12px!important;bottom:16px!important;right:16px!important;padding:8px 12px!important;font-size:10px!important;color:#78716c!important;box-shadow:0 4px 12px rgba(0,0,0,.2)!important;border:none!important}
+#tarteaucitronAlertSmall:hover{color:#e7e5e4!important}
+#tarteaucitronBack{background:rgba(28,25,23,.5)!important;backdrop-filter:blur(8px)!important}
+#tarteaucitron{background:#fafaf9!important;border-radius:20px!important;border:1px solid #e7e5e4!important;font-size:13px!important;max-width:540px!important;margin:auto!important}
+#tarteaucitronClosePanel{background:#1c1917!important;border-radius:8px!important;font-size:11px!important}
+#tarteaucitronPoweredByLink,#tarteaucitronAlertBig .tarteaucitronAlertBigPrivacyCookiesNumber{display:none!important}
+</style>
 <script>
-(function(){
-  var KEY = 'filtre_consent';
-  function loadEquateur() {
-    var s = document.createElement('script');
-    s.src = 'https://equateur.org/tracker.js';
-    s.setAttribute('data-equateur-key', 'aff654dd0df3f7e406ecb0a7e78ced5a');
+tarteaucitron.init({
+  "privacyUrl": "/politique-confidentialite.html",
+  "orientation": "bottom",
+  "showAlertSmall": true,
+  "cookieslist": false,
+  "DenyAllCta": true,
+  "AcceptAllCta": true,
+  "highPrivacy": false,
+  "removeCredit": false,
+  "showIcon": true,
+  "iconPosition": "BottomRight",
+  "handleBrowserDNTRequest": false
+});
+tarteaucitron.services.equateur = {
+  "key": "equateur", "type": "analytic", "name": "Equateur Analytics",
+  "uri": "https://equateur.org", "needConsent": true, "cookies": [],
+  "js": function() {
+    var s = document.createElement("script");
+    s.src = "https://equateur.org/tracker.js";
+    s.setAttribute("data-equateur-key", "aff654dd0df3f7e406ecb0a7e78ced5a");
     s.defer = true;
     document.head.appendChild(s);
   }
-  function hideBanner() {
-    var b = document.getElementById('cookie-banner');
-    if (b) b.style.transform = 'translateY(120%)';
-  }
-  window.acceptCookies = function() { localStorage.setItem(KEY, '1'); hideBanner(); loadEquateur(); };
-  window.refuseCookies = function() { localStorage.setItem(KEY, '0'); hideBanner(); };
-  if (localStorage.getItem(KEY) === '1') loadEquateur();
-  if (!localStorage.getItem(KEY)) {
-    document.addEventListener('DOMContentLoaded', function() {
-      var b = document.getElementById('cookie-banner');
-      if (b) setTimeout(function(){ b.style.transform = 'translateY(0)'; }, 800);
-    });
-  }
-})();
-</script>
+};
+(tarteaucitron.job = tarteaucitron.job || []).push("equateur");
+<\/script>
 
 <link rel="preload" href="/tailwind.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="/tailwind.css"></noscript>
 <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -298,13 +316,5 @@ async function subscribe(e, suffix) {
 }
 </script>
 
-<!-- ══ COOKIE BANNER ════════════════════════════════════════════════════════ -->
-<div id="cookie-banner" style="position:fixed;bottom:20px;left:50%;transform:translate(-50%,120%);transition:transform 0.4s cubic-bezier(0.16,1,0.3,1);background:#1c1917;color:#e7e5e4;padding:14px 20px;border-radius:16px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;font-size:12px;font-family:'Inter',sans-serif;line-height:1.4;box-shadow:0 8px 32px rgba(0,0,0,0.25);z-index:9999;max-width:calc(100vw - 32px);width:max-content;">
-  <span style="color:#a8a29e;">Analyse de visite anonyme. <a href="/politique-confidentialite.html" style="color:#a8a29e;text-decoration:underline;">En savoir plus</a></span>
-  <div style="display:flex;gap:8px;flex-shrink:0;">
-    <button onclick="refuseCookies()" style="background:transparent;border:1px solid #44403c;color:#a8a29e;padding:6px 14px;border-radius:99px;font-size:11px;font-weight:600;cursor:pointer;font-family:inherit;">Refuser</button>
-    <button onclick="acceptCookies()" style="background:#f59e0b;border:none;color:#1c1917;padding:6px 14px;border-radius:99px;font-size:11px;font-weight:700;cursor:pointer;font-family:inherit;">Accepter</button>
-  </div>
-</div>
 </body>
 </html>
