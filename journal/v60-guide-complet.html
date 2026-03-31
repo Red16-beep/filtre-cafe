@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>V60 : guide complet pour maîtriser le pour-over | filtré.</title>
+<meta name="description" content="Matériel, recette de base, protocole pas à pas, variables et erreurs classiques — tout ce qu'il faut savoir pour maîtriser le V60 et tirer le meilleur du pour-over.">
+<meta name="author" content="filtré.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://filtre.cafe/journal/v60-guide-complet.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="V60 : le guide complet pour maîtriser le pour-over">
+<meta property="og:description" content="Matériel, recette de base, protocole pas à pas, variables et erreurs classiques — tout pour maîtriser le V60.">
+<meta property="og:url" content="https://filtre.cafe/journal/v60-guide-complet.html">
+<meta property="og:site_name" content="filtré.">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:image" content="https://filtre.cafe/og-image.png">
+<meta name="twitter:image" content="https://filtre.cafe/og-image.png">
+<meta property="article:published_time" content="2026-03-31">
+<meta property="article:author" content="filtré.">
+<meta property="article:section" content="Technique">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="V60 : le guide complet pour maîtriser le pour-over">
+<meta name="twitter:description" content="Matériel, recette, protocole, variables — tout pour maîtriser le V60 Hario.">
+<meta name="theme-color" content="#1c1917">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "V60 : le guide complet pour maîtriser le pour-over",
+      "description": "Matériel, recette de base, protocole pas à pas, variables et erreurs classiques — tout ce qu'il faut savoir pour maîtriser le V60 Hario.",
+      "url": "https://filtre.cafe/journal/v60-guide-complet.html",
+      "datePublished": "2026-03-31",
+      "dateModified": "2026-03-31",
+      "author": { "@type": "Person", "name": "Red", "url": "https://filtre.cafe/a-propos.html" },
+      "publisher": { "@type": "Organization", "name": "filtré.", "url": "https://filtre.cafe" },
+      "inLanguage": "fr-FR",
+      "articleSection": "Technique"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "filtré.", "item": "https://filtre.cafe/" },
+        { "@type": "ListItem", "position": 2, "name": "Le Journal", "item": "https://filtre.cafe/journal/" },
+        { "@type": "ListItem", "position": 3, "name": "V60 guide complet", "item": "https://filtre.cafe/journal/v60-guide-complet.html" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Quelle mouture pour le V60 ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Une mouture médium-fine : plus fine que pour la cafetière à piston, plus grossière que pour l'espresso. En visuel, pensez sucre semoule fin. Sur un moulin avec échelle numérique, visez 6 à 7 sur 10. Si le débit est trop lent et le café amer, desserrez. S'il coule trop vite et goûte aqueux, serrez."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Quelle température d'eau pour le V60 ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "93°C est le point de départ recommandé pour la majorité des cafés. Pour les torréfactions claires et les cafés très délicats (floraux, thé), montez à 95–96°C. Pour les torréfactions plus foncées, 90–92°C suffisent. Avec de l'eau non thermométrée : attendez 30 secondes après ébullition."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Quel ratio café/eau pour le V60 ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "1:15 est le ratio de référence — 15g d'eau pour 1g de café. Pour 250 ml dans la tasse, utilisez environ 16–17g de café et 250g d'eau. Vous pouvez ajuster : 1:14 pour un café plus dense, 1:16 pour quelque chose de plus léger et délicat. La balance est indispensable — mesurer à vue ne fonctionne pas."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Pourquoi mon café V60 est amer ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Trois causes principales : mouture trop fine (le lit de café retient l'eau trop longtemps, sur-extraction), eau trop chaude (favorise l'extraction des composés amers), ou versement trop lent (temps d'infusion total trop long). Commencez par desserrer légèrement la mouture. Si le problème persiste, vérifiez la température et accélérez vos versements."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+<link rel="preload" href="/tailwind.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="/tailwind.css"></noscript>
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap"></noscript>
+<style>
+:root {
+  --stone-50: #fafaf9; --stone-100: #f5f5f4; --stone-200: #e7e5e4;
+  --stone-300: #d6d3d1; --stone-400: #a8a29e; --stone-500: #78716c;
+  --stone-900: #1c1917; --amber-800: #92400e; --amber-700: #b45309;
+}
+body { font-family: 'Inter', sans-serif; background-color: var(--stone-50); color: var(--stone-900); letter-spacing: -0.02em; }
+.serif { font-family: 'Instrument Serif', serif; }
+.noise { position: fixed; top:0; left:0; width:100%; height:100%; background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIj48ZmlsdGVyIGlkPSJuIiB4PSIwIiB5PSIwIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iMC43NSIgbnVtT2N0YXZlcz0iNCIgc3RpdGNoVGlsZXM9InN0aXRjaCIvPjxmZUNvbG9yTWF0cml4IHR5cGU9InNhdHVyYXRlIiB2YWx1ZXM9IjAiLz48L2ZpbHRlcj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsdGVyPSJ1cmwoI24pIiBvcGFjaXR5PSIxIi8+PC9zdmc+'); opacity: 0.03; pointer-events: none; z-index: 999; }
+.glass-nav { background: rgba(250,250,249,0.8); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+#scroll-progress { position:fixed; top:0; left:0; z-index:9998; height:2px; background:#92400e; width:0%; }
+#mobile-menu { display: none; }
+#mobile-menu.open { display: flex; }
+@keyframes menuDown { from{opacity:0;transform:translateY(-8px)} to{opacity:1;transform:translateY(0)} }
+.mobile-menu-panel { animation: menuDown 0.25s cubic-bezier(0.16,1,0.3,1) forwards; }
+.drop-cap::first-letter {
+  font-family: 'Instrument Serif', serif; font-size: 4.5rem; line-height: 0.75;
+  float: left; margin-right: 0.12em; margin-top: 0.08em; color: var(--stone-900);
+}
+.prose-article { font-size: 1.0625rem; line-height: 1.8; color: #292524; font-weight: 300; }
+.prose-article p { margin-bottom: 1.75rem; }
+.prose-article h2 {
+  font-family: 'Instrument Serif', serif; font-style: italic;
+  font-size: 2rem; line-height: 1.2; color: var(--stone-900);
+  margin-top: 3rem; margin-bottom: 1.25rem; letter-spacing: -0.03em;
+}
+.prose-article h3 {
+  font-family: 'Inter', sans-serif; font-weight: 600;
+  font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.14em;
+  color: var(--amber-800); margin-top: 2.25rem; margin-bottom: 0.875rem;
+}
+.prose-article strong { font-weight: 600; color: var(--stone-900); }
+.pull-quote {
+  border-left: 2px solid var(--amber-800); padding-left: 1.5rem;
+  margin: 2.5rem 0; font-family: 'Instrument Serif', serif; font-style: italic;
+  font-size: 1.35rem; line-height: 1.5; color: var(--stone-900); letter-spacing: -0.02em;
+}
+.info-box {
+  background: white; border: 1px solid var(--stone-200);
+  border-radius: 1.25rem; padding: 1.5rem 1.75rem; margin: 2rem 0;
+}
+.info-box .box-label {
+  font-size: 0.75rem; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.18em; color: var(--amber-800); margin-bottom: 0.75rem;
+}
+.recipe-step {
+  display: flex; gap: 1rem; margin-bottom: 1rem; align-items: flex-start;
+}
+.recipe-step .step-num {
+  flex-shrink: 0; width: 1.75rem; height: 1.75rem; background: var(--stone-900);
+  color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-size: 0.75rem; font-weight: 600; margin-top: 0.1rem;
+}
+</style>
+</head>
+<body class="antialiased">
+<div class="noise"></div>
+<div id="scroll-progress"></div>
+
+<nav class="glass-nav fixed top-0 left-0 right-0 z-50 border-b border-stone-200/60">
+  <div class="max-w-5xl mx-auto px-5 h-14 flex items-center justify-between">
+    <a href="/" class="serif italic text-xl tracking-tight text-stone-900">filtré.</a>
+    <div class="hidden md:flex items-center gap-8 text-sm font-medium text-stone-500">
+      <a href="/#catalogue" class="hover:text-stone-900 transition-colors">Catalogue</a>
+      <a href="/journal/" class="text-stone-900">Le Journal</a>
+      <a href="/guides/" class="hover:text-stone-900 transition-colors">Les Guides</a>
+    </div>
+    <button onclick="document.getElementById('mobile-menu').classList.toggle('open')" class="md:hidden p-2 text-stone-500">
+      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </div>
+  <div id="mobile-menu" class="flex-col md:hidden border-t border-stone-200/60">
+    <div class="mobile-menu-panel bg-stone-50/95 backdrop-blur-xl px-5 py-4 flex flex-col gap-4 text-sm font-medium text-stone-600">
+      <a href="/#catalogue" class="hover:text-stone-900 transition-colors">Catalogue</a>
+      <a href="/journal/" class="hover:text-stone-900 transition-colors">Le Journal</a>
+      <a href="/guides/" class="hover:text-stone-900 transition-colors">Les Guides</a>
+      <a href="/newsletter.html" class="hover:text-stone-900 transition-colors">La Lettre</a>
+    </div>
+  </div>
+</nav>
+
+<header class="pt-32 pb-12 px-5 max-w-3xl mx-auto">
+  <div class="flex items-center gap-3 mb-6">
+    <span class="text-xs font-semibold uppercase tracking-widest text-amber-700">Technique</span>
+    <span class="text-stone-300">·</span>
+    <time class="text-xs text-stone-400 font-medium">31 mars 2026</time>
+    <span class="text-stone-300">·</span>
+    <span class="text-xs text-stone-400 font-medium">11 min de lecture</span>
+  </div>
+  <h1 class="serif italic text-4xl md:text-5xl leading-tight text-stone-900 mb-6" style="letter-spacing:-0.03em">
+    V60 : le guide complet
+  </h1>
+  <p class="text-lg text-stone-500 font-light leading-relaxed" style="letter-spacing:-0.01em">
+    Matériel, recette, protocole pas à pas, variables à comprendre. Pour maîtriser le pour-over et arrêter de subir son café filtre.
+  </p>
+</header>
+
+<div class="max-w-4xl mx-auto px-5 mb-10">
+  <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1200&q=80"
+       alt="V60 Hario posé sur un verre, versement en filet d'eau chaude sur le café"
+       class="w-full h-64 md:h-96 object-cover rounded-3xl"
+       loading="lazy"
+       width="1200" height="630">
+</div>
+
+<main class="max-w-3xl mx-auto px-5 pb-24">
+  <article class="prose-article">
+
+    <p class="drop-cap">Le V60 de Hario est sorti en 2004. Vingt ans plus tard, il reste la référence absolue du pour-over — l'outil qu'on retrouve dans pratiquement tous les cafés de spécialité du monde, sur les plans de travail des baristas compétitifs, et dans les tutoriels des plus grands torréfacteurs. Ce n'est pas du snobisme. C'est parce que le V60 est un instrument honnête : il ne cache rien, n'excuse rien, et révèle le café tel qu'il est. Ce que vous mettez dedans, vous le retrouvez dans la tasse — en bien comme en mal. C'est précisément ce qui en fait la méthode de référence pour comprendre et progresser en café filtre.</p>
+
+    <h2>Pourquoi le V60 est la méthode filtre de référence</h2>
+
+    <p>La plupart des méthodes filtre sont conçues pour être indulgentes. La cafetière à piston mélange en vrac, la Chemex filtre épais, l'AeroPress compresse. Le V60, lui, expose chaque variable. Le filtre en papier est fin, le débit est libre, et la géométrie conique concentre toute l'extraction au centre. Résultat : <strong>chaque erreur de mouture, de température ou de versement se lit directement dans la tasse</strong>.</p>
+
+    <p>C'est déconcertant au début. Et puis ça devient une force. Quand vous comprenez ce que fait le V60, vous comprenez le café filtre dans son ensemble. Les principes d'extraction que vous apprenez ici — ratio, température, débit, turbulence — s'appliquent à toutes les autres méthodes. Le V60 est l'école.</p>
+
+    <div class="pull-quote">
+      Le V60 ne pardonne pas. C'est exactement pour ça qu'il est irremplaçable.
+    </div>
+
+    <h2>Le matériel nécessaire</h2>
+
+    <h3>Le V60 Hario</h3>
+    <p>Il existe en plastique (02 blanc ou rouge), en céramique, en verre et en métal. Pour débuter : <strong>le modèle plastique 02</strong> (taille pour 1 à 2 tasses). Il retient mieux la chaleur que le verre et coûte moins de 15€. La céramique est belle et fonctionne bien, mais elle absorbe la chaleur des premières secondes d'extraction si vous ne la préchauffez pas. Le métal est pour les voyages.</p>
+
+    <h3>Les filtres</h3>
+    <p>Utilisez les <strong>filtres Hario VCF-02 (naturels ou blancs)</strong>. Les filtres naturels (marron) donnent parfois un léger goût de papier — rincez-les systématiquement avec de l'eau chaude avant usage pour éliminer ce résidu. Les filtres blancs sont blanchis sans chlore et donnent un café légèrement plus propre au goût. Les deux fonctionnent. Ce qui ne fonctionne pas : utiliser des filtres d'une autre marque avec une géométrie différente.</p>
+
+    <h3>La balance</h3>
+    <p>Indispensable. Pas négociable. Mesurer le café à la cuillère et l'eau au verre gradué, c'est travailler à l'aveugle. Une balance de cuisine à 15€ suffit pour commencer. L'idéal est une balance avec minuterie intégrée (Hario V60 Drip Scale, Acaia Pearl) — elle vous évite de jongler entre deux outils pendant l'extraction.</p>
+
+    <h3>La bouilloire à col de cygne</h3>
+    <p>Le col de cygne (gooseneck) n'est pas un gadget. Il permet de <strong>contrôler précisément le débit et la direction du versement</strong> — deux variables critiques en V60. Avec une bouilloire ordinaire, le flux est incontrôlable et les versements en spirale sont impossibles à réaliser proprement. Modèles recommandés : Hario Buono, Comandante, Fellow Stagg EKG (avec contrôle de température). Budget minimum viable : 30–40€ pour une version sans thermostat.</p>
+
+    <h2>La recette de base</h2>
+
+    <div class="info-box">
+      <div class="box-label">Recette V60 — point de départ</div>
+      <div style="font-size:0.875rem;font-weight:300;color:#44403c;display:flex;flex-direction:column;gap:0.5rem;">
+        <div>— <strong>Café :</strong> 15 g</div>
+        <div>— <strong>Eau :</strong> 250 g (ratio 1:15 — <a href="/journal/ratio-cafe-eau-extraction.html" style="color:var(--amber-800);text-decoration:underline;text-underline-offset:3px">lire l'article sur le ratio</a>)</div>
+        <div>— <strong>Température :</strong> 93°C (<a href="/journal/temperature-eau-cafe-filtre.html" style="color:var(--amber-800);text-decoration:underline;text-underline-offset:3px">lire l'article sur la température</a>)</div>
+        <div>— <strong>Mouture :</strong> médium-fine (sucre semoule fin)</div>
+        <div>— <strong>Temps total :</strong> 2 min 30 à 3 min 30</div>
+      </div>
+    </div>
+
+    <p>Ce ratio 1:15 est le point de départ standard — pas un dogme. Vous pouvez ajuster selon vos préférences : <strong>1:14</strong> pour un café plus dense et intense, <strong>1:16</strong> pour quelque chose de plus léger et délicat. Ce qui ne doit pas varier au début : pesez toujours, et gardez les paramètres constants le temps d'identifier ce qui vous convient.</p>
+
+    <h2>Le protocole pas à pas</h2>
+
+    <div class="info-box">
+      <div class="box-label">Protocole d'extraction V60</div>
+      <div style="font-size:0.875rem;font-weight:300;color:#44403c">
+        <div class="recipe-step">
+          <div class="step-num">1</div>
+          <div><strong>Préchauffer.</strong> Posez le filtre dans le V60, rincez avec 100 g d'eau chaude. Jetez l'eau de rinçage. Cette étape élimine le goût de papier et préchauffe le V60 et le récipient dessous.</div>
+        </div>
+        <div class="recipe-step">
+          <div class="step-num">2</div>
+          <div><strong>Moudre et mettre en place.</strong> Moudre 15 g de café en médium-fine. Verser dans le filtre, tapoter légèrement pour aplanir le lit. Poser sur la balance, tarer à zéro.</div>
+        </div>
+        <div class="recipe-step">
+          <div class="step-num">3</div>
+          <div><strong>Le bloom (0:00 – 0:30).</strong> Verser <strong>30 g d'eau</strong> (2× le poids du café) en mouvements circulaires, en couvrant uniformément tout le lit de café. Démarrer le minuteur. Attendre 30 secondes. Le café va gonfler et dégazer — c'est le CO2 piégé qui s'échappe. Un bloom vigoureux indique un café frais.</div>
+        </div>
+        <div class="recipe-step">
+          <div class="step-num">4</div>
+          <div><strong>Premier versement (0:30 – 1:00).</strong> Verser jusqu'à 150 g en spirale lente du centre vers l'extérieur, puis de l'extérieur vers le centre. Gardez le flux régulier et moyen — ni trop fin (trop lent), ni trop fort (trop de turbulence).</div>
+        </div>
+        <div class="recipe-step">
+          <div class="step-num">5</div>
+          <div><strong>Deuxième versement (1:00 – 1:30).</strong> Verser de 150 g à 200 g, toujours en spirale. Attendre que le niveau baisse légèrement avant de continuer.</div>
+        </div>
+        <div class="recipe-step">
+          <div class="step-num">6</div>
+          <div><strong>Versement final (1:30 – 2:00).</strong> Verser de 200 g à 250 g. Terminer par un versement central doux pour lisser le lit. Le débit s'arrête vers <strong>2:30 – 3:30</strong>. Si c'est nettement plus long, desserrez la mouture. Si c'est plus court, serrez.</div>
+        </div>
+        <div style="margin-top:0.75rem;font-style:italic;color:#78716c">Temps de référence : le lit de café doit être à sec entre 2 min 30 et 3 min 30. C'est votre indicateur principal.</div>
+      </div>
+    </div>
+
+    <h2>Comprendre les variables</h2>
+
+    <h3>La vitesse de versement</h3>
+    <p>Un versement lent crée un lit de café plus saturé, ralentit le débit et augmente le temps de contact — ce qui favorise l'extraction. Un versement rapide dilue le café autour du lit, accélère le débit et réduit l'extraction. En pratique : <strong>versez régulièrement</strong>, en évitant les interruptions longues qui font chuter le niveau. L'idéal est un flux continu et modéré sur toute la durée du versement.</p>
+
+    <h3>La turbulence</h3>
+    <p>Le mouvement en spirale sert à <strong>agiter le lit de café uniformément</strong>. Sans turbulence, certaines zones extraient plus que d'autres — c'est ce qu'on appelle la channeling (canalisation). Le café extrait de façon inégale donne un goût déséquilibré : trop amer par endroits, trop aqueux par d'autres. Versez en spirale, couvrez tout le lit, évitez de verser directement sur les bords du filtre.</p>
+
+    <h3>La taille de mouture</h3>
+    <p>C'est la variable avec le plus d'impact. Une mouture plus fine augmente la surface de contact et ralentit le débit — extraction plus poussée, café plus intense mais risque d'amertume. Une mouture plus grossière accélère le débit — extraction plus légère, café plus délicat mais risque de sous-extraction (café plat, acide, aqueux).</p>
+
+    <p>Règle de base : <strong>ajustez la mouture pour atteindre le temps cible (2:30–3:30)</strong>. Si vous êtes dans la fenêtre et que le café est bon, ne changez rien. Si le café est amer et le débit lent : desserrez. Si le café est plat et le débit rapide : serrez.</p>
+
+    <p>Pour choisir et calibrer votre moulin, consultez notre <a href="/journal/comment-choisir-son-moulin-cafe.html" style="color:var(--amber-800);text-decoration:underline;text-underline-offset:3px">guide complet sur le moulin à café</a>.</p>
+
+    <div class="pull-quote">
+      Le temps de débit est votre baromètre. Il vous dit tout ce que vous avez besoin de savoir sur votre extraction.
+    </div>
+
+    <h2>Les erreurs classiques</h2>
+
+    <div class="info-box">
+      <div class="box-label">Ce qu'il ne faut pas faire</div>
+      <div style="font-size:0.875rem;font-weight:300;color:#44403c;display:flex;flex-direction:column;gap:0.75rem;">
+        <div><strong style="color:#92400e">Sauter le rinçage du filtre</strong> — le papier transmet un goût indésirable. Rincez systématiquement, même si vous êtes pressé.</div>
+        <div><strong style="color:#92400e">Ne pas faire de bloom</strong> — sans dégazage, le CO2 forme une barrière qui empêche l'eau de pénétrer uniformément le café. L'extraction devient inégale dès le départ.</div>
+        <div><strong style="color:#92400e">Verser sur les bords du filtre</strong> — l'eau passe directement sans traverser le café. Elle court-circuite l'extraction et dilue la tasse.</div>
+        <div><strong style="color:#92400e">Mouture trop grossière</strong> — erreur fréquente chez ceux qui viennent du filtre automatique. En V60, une mouture trop ouverte donne un café sous-extrait : acide, plat, aqueux. Serrez davantage.</div>
+        <div><strong style="color:#92400e">Ignorer le temps de débit</strong> — brasser sans regarder le minuteur, c'est naviguer sans boussole. Notez vos temps à chaque extraction. C'est la seule façon de progresser de manière systématique.</div>
+        <div><strong style="color:#92400e">Café pas assez frais</strong> — un café torréfié il y a plus de 3 semaines dégazera peu (bloom plat) et donnera un résultat terne. Le V60 révèle la fraîcheur du café autant que ses défauts.</div>
+      </div>
+    </div>
+
+    <h2>Quel café pour le V60</h2>
+
+    <p>Le V60, avec son filtre papier fin, produit une tasse très propre — peu de corps, beaucoup de clarté aromatique. Il est particulièrement adapté aux <strong>cafés d'origine et aux torréfactions claires à médium</strong>, où les notes florales, fruitées ou thé s'expriment avec une précision rare.</p>
+
+    <p>Les origines éthiopiennes (lavées ou naturelles), les cafés kenyans ou les Colombies de qualité s'y épanouissent pleinement. À l'inverse, les torréfactions très foncées — conçues pour l'espresso — donnent souvent quelque chose de plat et amer en V60 : le filtre ne peut pas corriger ce qui a été perdu à la torréfaction.</p>
+
+    <p>Une règle simple : si la fiche de torréfaction mentionne des notes florales, des agrumes, du thé ou des fruits rouges, le V60 en tirera le meilleur. Si elle mentionne du chocolat amer, de la réglisse ou du tabac, passez à la moka ou au French press.</p>
+
+    <section class="mt-16 rounded-2xl border border-stone-100 overflow-hidden">
+      <div class="px-6 pt-6 pb-4 border-b border-stone-100">
+        <p class="text-[10px] font-bold uppercase tracking-[0.3em] text-stone-400 mb-0">Questions fréquentes</p>
+      </div>
+      <div class="divide-y divide-stone-100">
+        <details class="group">
+          <summary class="flex items-center justify-between px-6 py-4 cursor-pointer font-semibold text-stone-900 text-sm leading-snug list-none">
+            Quelle mouture pour le V60 ?
+            <svg class="w-4 h-4 text-amber-600 flex-shrink-0 ml-4 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <div class="px-6 pb-5 text-stone-600 text-sm leading-relaxed border-t border-stone-100 pt-4">
+            Une mouture médium-fine : plus fine que pour la cafetière à piston, plus grossière que pour l'espresso. En visuel, pensez sucre semoule fin. Sur un moulin avec échelle numérique, visez 6 à 7 sur 10. Si le débit est trop lent et le café amer, desserrez. S'il coule trop vite et goûte aqueux, serrez.
+          </div>
+        </details>
+        <details class="group">
+          <summary class="flex items-center justify-between px-6 py-4 cursor-pointer font-semibold text-stone-900 text-sm leading-snug list-none">
+            Quelle température d'eau pour le V60 ?
+            <svg class="w-4 h-4 text-amber-600 flex-shrink-0 ml-4 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <div class="px-6 pb-5 text-stone-600 text-sm leading-relaxed border-t border-stone-100 pt-4">
+            93°C est le point de départ pour la majorité des cafés. Pour les torréfactions très claires, montez à 95–96°C. Pour les torréfactions plus foncées, 90–92°C suffisent. Sans thermomètre : attendez 30 secondes après ébullition.
+          </div>
+        </details>
+        <details class="group">
+          <summary class="flex items-center justify-between px-6 py-4 cursor-pointer font-semibold text-stone-900 text-sm leading-snug list-none">
+            Quel ratio café/eau pour le V60 ?
+            <svg class="w-4 h-4 text-amber-600 flex-shrink-0 ml-4 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <div class="px-6 pb-5 text-stone-600 text-sm leading-relaxed border-t border-stone-100 pt-4">
+            1:15 est le ratio de référence — 15 g de café pour 250 g d'eau. Ajustez selon vos préférences : 1:14 pour un café plus dense, 1:16 pour quelque chose de plus léger. La balance est indispensable — mesurer à vue ne fonctionne pas.
+          </div>
+        </details>
+        <details class="group">
+          <summary class="flex items-center justify-between px-6 py-4 cursor-pointer font-semibold text-stone-900 text-sm leading-snug list-none">
+            Pourquoi mon café V60 est amer ?
+            <svg class="w-4 h-4 text-amber-600 flex-shrink-0 ml-4 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <div class="px-6 pb-5 text-stone-600 text-sm leading-relaxed border-t border-stone-100 pt-4">
+            Trois causes principales : mouture trop fine (temps de débit trop long, sur-extraction), eau trop chaude, ou versements trop lents. Commencez par desserrer légèrement la mouture. Si le problème persiste, vérifiez la température et accélérez vos versements.
+          </div>
+        </details>
+      </div>
+    </section>
+
+  </article>
+
+<!-- À lire aussi -->
+<section class="max-w-2xl mx-auto px-6 py-16 border-t border-stone-100">
+  <p class="text-[10px] font-bold uppercase tracking-[0.3em] text-stone-400 mb-8">À lire aussi</p>
+  <div class="grid gap-4">
+    <a href="/journal/ratio-cafe-eau-extraction.html" class="group flex items-center justify-between p-5 rounded-2xl border border-stone-100 hover:border-stone-200 hover:bg-stone-50 transition-all">
+      <span class="text-sm font-medium text-stone-700 group-hover:text-stone-900">Ratio café/eau : comprendre l'extraction</span>
+      <svg class="w-4 h-4 text-stone-300 group-hover:text-stone-500 flex-shrink-0 ml-4 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+    </a>
+    <a href="/journal/temperature-eau-cafe-filtre.html" class="group flex items-center justify-between p-5 rounded-2xl border border-stone-100 hover:border-stone-200 hover:bg-stone-50 transition-all">
+      <span class="text-sm font-medium text-stone-700 group-hover:text-stone-900">La température de l'eau : variable oubliée du café filtre</span>
+      <svg class="w-4 h-4 text-stone-300 group-hover:text-stone-500 flex-shrink-0 ml-4 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+    </a>
+    <a href="/journal/comment-choisir-son-moulin-cafe.html" class="group flex items-center justify-between p-5 rounded-2xl border border-stone-100 hover:border-stone-200 hover:bg-stone-50 transition-all">
+      <span class="text-sm font-medium text-stone-700 group-hover:text-stone-900">Comment choisir son moulin à café</span>
+      <svg class="w-4 h-4 text-stone-300 group-hover:text-stone-500 flex-shrink-0 ml-4 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+</section>
+
+    <div class="mt-4 rounded-3xl bg-stone-900 px-8 py-10 text-center">
+  <p class="text-[10px] font-bold uppercase tracking-[0.4em] text-amber-400 mb-3">La lettre filtré.</p>
+  <h3 class="font-serif text-3xl text-white italic mb-3">Du grain à la tasse, sans bruit.</h3>
+  <p class="text-stone-400 text-sm mb-7 max-w-md mx-auto">Nouveaux cafés testés, guides techniques et histoires de terroirs — une lettre soignée, quand on a quelque chose à dire.</p>
+  <a href="/newsletter.html" class="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-400 text-stone-900 font-bold text-sm px-7 py-3.5 rounded-xl transition-colors">Rejoindre la lettre →</a>
+</div>
+</main>
+
+<footer class="border-t border-stone-200 py-10 px-5">
+  <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+    <span class="serif italic text-lg text-stone-900">filtré.</span>
+    <p class="text-xs text-stone-400 font-medium">© 2026 filtré. · Guide indépendant du café de spécialité</p>
+  </div>
+</footer>
+
+<script>
+window.addEventListener('scroll', () => {
+  const el = document.getElementById('scroll-progress');
+  const h = document.documentElement.scrollHeight - window.innerHeight;
+  el.style.width = (window.scrollY / h * 100) + '%';
+});
+</script>
+</body>
+</html>
