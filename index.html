@@ -891,15 +891,45 @@ const QUIZ_PROFILES = {
   puissance: { name:"L'Audacieux",           desc:"Vous voulez être réveillé·e. Vraiment. Corps massif, intensité déclarée, café qui ne vous laisse pas indifférent·e. Pas de nuance, de la présence." },
 };
 
+// ─── FOCUS TRAP ───────────────────────────────────────────────────────────────
+const FOCUSABLE = 'button:not([disabled]), [href], input:not([disabled]), select, textarea, [tabindex]:not([tabindex="-1"])';
+let _trapEl = null, _prevFocus = null, _trapHandler = null;
+
+function trapFocus(el) {
+  _prevFocus = document.activeElement;
+  _trapEl = el;
+  const nodes = () => Array.from(_trapEl.querySelectorAll(FOCUSABLE)).filter(n => n.offsetParent !== null);
+  _trapHandler = e => {
+    if (e.key !== 'Tab') return;
+    const focusable = nodes();
+    if (!focusable.length) return e.preventDefault();
+    const first = focusable[0], last = focusable[focusable.length - 1];
+    if (e.shiftKey) { if (document.activeElement === first) { e.preventDefault(); last.focus(); } }
+    else            { if (document.activeElement === last)  { e.preventDefault(); first.focus(); } }
+  };
+  el.addEventListener('keydown', _trapHandler);
+  const firstFocusable = nodes()[0];
+  if (firstFocusable) firstFocusable.focus();
+}
+
+function releaseFocus() {
+  if (_trapEl && _trapHandler) _trapEl.removeEventListener('keydown', _trapHandler);
+  _trapEl = null; _trapHandler = null;
+  if (_prevFocus) _prevFocus.focus();
+}
+
 function openQuiz() {
   QUIZ_STATE.step = 0; QUIZ_STATE.answers = {};
   renderQuizStep();
-  document.getElementById('quiz-overlay').classList.add('active');
+  const overlay = document.getElementById('quiz-overlay');
+  overlay.classList.add('active');
   document.body.style.overflow = 'hidden';
+  requestAnimationFrame(() => trapFocus(overlay));
 }
 function closeQuiz() {
   document.getElementById('quiz-overlay').classList.remove('active');
   document.body.style.overflow = 'auto';
+  releaseFocus();
 }
 function selectQuizOption(qId, oId) {
   QUIZ_STATE.answers[qId] = oId;
