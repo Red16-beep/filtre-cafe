@@ -9,7 +9,7 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://filtre.cafe/newsletter.html</loc>
+    <loc>https://filtre.cafe/newsletter</loc>
     <lastmod>2026-03-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -27,19 +27,19 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://filtre.cafe/a-propos.html</loc>
+    <loc>https://filtre.cafe/a-propos</loc>
     <lastmod>2026-03-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://filtre.cafe/mentions-legales.html</loc>
+    <loc>https://filtre.cafe/mentions-legales</loc>
     <lastmod>2026-03-24</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.2</priority>
   </url>
   <url>
-    <loc>https://filtre.cafe/politique-confidentialite.html</loc>
+    <loc>https://filtre.cafe/politique-confidentialite</loc>
     <lastmod>2026-03-24</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.2</priority>
@@ -47,7 +47,7 @@
 
   <!-- Guide -->
   <url>
-    <loc>https://filtre.cafe/guides/methodes-extraction.html</loc>
+    <loc>https://filtre.cafe/guides/methodes-extraction</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -55,61 +55,61 @@
 
   <!-- Articles — Technique & Extraction -->
   <url>
-    <loc>https://filtre.cafe/journal/moka-pot-guide-complet.html</loc>
+    <loc>https://filtre.cafe/journal/moka-pot-guide-complet</loc>
     <lastmod>2026-03-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://filtre.cafe/journal/french-press-guide.html</loc>
+    <loc>https://filtre.cafe/journal/french-press-guide</loc>
     <lastmod>2026-03-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://filtre.cafe/journal/aeropress-guide-complet.html</loc>
+    <loc>https://filtre.cafe/journal/aeropress-guide-complet</loc>
     <lastmod>2026-03-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://filtre.cafe/journal/chemex-v60-aeropress.html</loc>
-    <lastmod>2026-03-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://filtre.cafe/journal/ratio-cafe-eau-extraction.html</loc>
-    <lastmod>2026-03-30</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://filtre.cafe/journal/espresso-maison-sans-machine.html</loc>
-    <lastmod>2026-03-30</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://filtre.cafe/journal/comment-choisir-son-moulin-cafe.html</loc>
-    <lastmod>2026-03-30</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://filtre.cafe/journal/temperature-eau-cafe-filtre.html</loc>
+    <loc>https://filtre.cafe/journal/chemex-v60-aeropress</loc>
     <lastmod>2026-03-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://filtre.cafe/journal/cold-brew-maison.html</loc>
+    <loc>https://filtre.cafe/journal/ratio-cafe-eau-extraction</loc>
+    <lastmod>2026-03-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://filtre.cafe/journal/espresso-maison-sans-machine</loc>
+    <lastmod>2026-03-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://filtre.cafe/journal/comment-choisir-son-moulin-cafe</loc>
+    <lastmod>2026-03-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://filtre.cafe/journal/temperature-eau-cafe-filtre</loc>
     <lastmod>2026-03-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://filtre.cafe/journal/comment-conserver-cafe.html</loc>
+    <loc>https://filtre.cafe/journal/cold-brew-maison</loc>
+    <lastmod>2026-03-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://filtre.cafe/journal/comment-conserver-cafe</loc>
     <lastmod>2026-03-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
@@ -117,37 +117,37 @@
 
   <!-- Articles — Sélection & Achat -->
   <url>
-    <loc>https://filtre.cafe/journal/meilleur-cafe-specialite-2025.html</loc>
+    <loc>https://filtre.cafe/journal/meilleur-cafe-specialite-2025</loc>
     <lastmod>2026-03-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://filtre.cafe/journal/ou-acheter-cafe-specialite-en-ligne.html</loc>
+    <loc>https://filtre.cafe/journal/ou-acheter-cafe-specialite-en-ligne</loc>
     <lastmod>2026-03-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://filtre.cafe/journal/cafe-bio-specialite-france.html</loc>
+    <loc>https://filtre.cafe/journal/cafe-bio-specialite-france</loc>
     <lastmod>2026-03-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://filtre.cafe/journal/cafe-capsules-specialite.html</loc>
+    <loc>https://filtre.cafe/journal/cafe-capsules-specialite</loc>
     <lastmod>2026-03-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://filtre.cafe/journal/torrefacteurs-francais.html</loc>
+    <loc>https://filtre.cafe/journal/torrefacteurs-francais</loc>
     <lastmod>2026-03-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://filtre.cafe/journal/cafe-specialite-france-2024.html</loc>
+    <loc>https://filtre.cafe/journal/cafe-specialite-france-2024</loc>
     <lastmod>2026-03-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -155,7 +155,7 @@
 
   <!-- Articles — Adresses -->
   <url>
-    <loc>https://filtre.cafe/journal/meilleurs-cafes-paris.html</loc>
+    <loc>https://filtre.cafe/journal/meilleurs-cafes-paris</loc>
     <lastmod>2026-03-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
@@ -163,49 +163,49 @@
 
   <!-- Articles — Comprendre -->
   <url>
-    <loc>https://filtre.cafe/journal/arabica-vs-robusta.html</loc>
+    <loc>https://filtre.cafe/journal/arabica-vs-robusta</loc>
     <lastmod>2026-03-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://filtre.cafe/journal/cafeine-effets-sante.html</loc>
+    <loc>https://filtre.cafe/journal/cafeine-effets-sante</loc>
     <lastmod>2026-03-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://filtre.cafe/journal/lire-etiquette-cafe-specialite.html</loc>
+    <loc>https://filtre.cafe/journal/lire-etiquette-cafe-specialite</loc>
     <lastmod>2026-03-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://filtre.cafe/journal/cafe-supermarche-vs-specialite.html</loc>
+    <loc>https://filtre.cafe/journal/cafe-supermarche-vs-specialite</loc>
     <lastmod>2026-03-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://filtre.cafe/journal/naturel-lave-honey.html</loc>
+    <loc>https://filtre.cafe/journal/naturel-lave-honey</loc>
     <lastmod>2026-03-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://filtre.cafe/journal/traitement-torrefaction.html</loc>
+    <loc>https://filtre.cafe/journal/traitement-torrefaction</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://filtre.cafe/journal/altitude-arabica-robusta.html</loc>
+    <loc>https://filtre.cafe/journal/altitude-arabica-robusta</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://filtre.cafe/journal/champignon-lion-mane-cafe.html</loc>
+    <loc>https://filtre.cafe/journal/champignon-lion-mane-cafe</loc>
     <lastmod>2026-03-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -213,25 +213,25 @@
 
   <!-- Articles — Origines -->
   <url>
-    <loc>https://filtre.cafe/journal/cafe-ethiopien-yirgacheffe-sidama-guji.html</loc>
+    <loc>https://filtre.cafe/journal/cafe-ethiopien-yirgacheffe-sidama-guji</loc>
     <lastmod>2026-03-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://filtre.cafe/journal/cafe-colombie-specialite.html</loc>
+    <loc>https://filtre.cafe/journal/cafe-colombie-specialite</loc>
     <lastmod>2026-03-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://filtre.cafe/journal/cafe-kenya-guide.html</loc>
+    <loc>https://filtre.cafe/journal/cafe-kenya-guide</loc>
     <lastmod>2026-03-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://filtre.cafe/journal/cafe-bresil-specialite.html</loc>
+    <loc>https://filtre.cafe/journal/cafe-bresil-specialite</loc>
     <lastmod>2026-03-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -239,31 +239,31 @@
 
   <!-- Articles — Voyages -->
   <url>
-    <loc>https://filtre.cafe/journal/cafe-au-japon.html</loc>
+    <loc>https://filtre.cafe/journal/cafe-au-japon</loc>
     <lastmod>2026-03-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://filtre.cafe/journal/cafe-en-coree.html</loc>
+    <loc>https://filtre.cafe/journal/cafe-en-coree</loc>
     <lastmod>2026-03-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://filtre.cafe/journal/cafe-en-thailande.html</loc>
+    <loc>https://filtre.cafe/journal/cafe-en-thailande</loc>
     <lastmod>2026-03-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://filtre.cafe/journal/cafe-au-vietnam.html</loc>
+    <loc>https://filtre.cafe/journal/cafe-au-vietnam</loc>
     <lastmod>2026-03-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://filtre.cafe/journal/cafe-aux-epices-fes.html</loc>
+    <loc>https://filtre.cafe/journal/cafe-aux-epices-fes</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -271,32 +271,32 @@
 
   <!-- Articles — Technique & Extraction (suite) -->
   <url>
-    <loc>https://filtre.cafe/journal/v60-guide-complet.html</loc>
+    <loc>https://filtre.cafe/journal/v60-guide-complet</loc>
     <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://filtre.cafe/journal/comment-faire-un-bon-cafe.html</loc>
+    <loc>https://filtre.cafe/journal/comment-faire-un-bon-cafe</loc>
     <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://filtre.cafe/journal/cafe-en-grains-ou-moulu.html</loc>
+    <loc>https://filtre.cafe/journal/cafe-en-grains-ou-moulu</loc>
     <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://filtre.cafe/journal/cafe-decafeine-specialite.html</loc>
+    <loc>https://filtre.cafe/journal/cafe-decafeine-specialite</loc>
     <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
-    <loc>https://filtre.cafe/journal/meilleur-moulin-cafe-electrique.html</loc>
+    <loc>https://filtre.cafe/journal/meilleur-moulin-cafe-electrique</loc>
     <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
@@ -304,7 +304,7 @@
 
   <!-- Articles — Histoire & Culture -->
   <url>
-    <loc>https://filtre.cafe/journal/histoire-du-cafe.html</loc>
+    <loc>https://filtre.cafe/journal/histoire-du-cafe</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>

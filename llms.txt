@@ -1,0 +1,66 @@
+# filtré.
+
+> Guide indépendant du café de spécialité en France. Torréfactions testées, méthodes d'extraction, origines et adresses.
+
+## Site
+
+- [Accueil](https://filtre.cafe/)
+- [Le Journal](https://filtre.cafe/journal/)
+- [La Lettre](https://filtre.cafe/newsletter)
+- [À propos](https://filtre.cafe/a-propos)
+- [Mentions légales](https://filtre.cafe/mentions-legales)
+
+## Articles — Technique & Extraction
+
+- [V60 : guide complet](https://filtre.cafe/journal/v60-guide-complet)
+- [AeroPress : guide complet](https://filtre.cafe/journal/aeropress-guide-complet)
+- [Moka pot : guide complet](https://filtre.cafe/journal/moka-pot-guide-complet)
+- [French press : guide complet](https://filtre.cafe/journal/french-press-guide)
+- [Espresso maison sans machine](https://filtre.cafe/journal/espresso-maison-sans-machine)
+- [Cold brew maison](https://filtre.cafe/journal/cold-brew-maison)
+- [Ratio café/eau par méthode](https://filtre.cafe/journal/ratio-cafe-eau-extraction)
+- [Température eau café filtre](https://filtre.cafe/journal/temperature-eau-cafe-filtre)
+- [Comment choisir son moulin](https://filtre.cafe/journal/comment-choisir-son-moulin-cafe)
+- [Meilleur moulin électrique 2025](https://filtre.cafe/journal/meilleur-moulin-cafe-electrique)
+- [Comment conserver son café](https://filtre.cafe/journal/comment-conserver-cafe)
+- [Comment faire un bon café](https://filtre.cafe/journal/comment-faire-un-bon-cafe)
+- [Café en grains ou moulu](https://filtre.cafe/journal/cafe-en-grains-ou-moulu)
+- [Chemex, V60, AeroPress : comparatif](https://filtre.cafe/journal/chemex-v60-aeropress)
+
+## Articles — Comprendre
+
+- [Arabica vs robusta](https://filtre.cafe/journal/arabica-vs-robusta)
+- [Naturel, lavé, honey : les traitements](https://filtre.cafe/journal/naturel-lave-honey)
+- [Traitement et torréfaction](https://filtre.cafe/journal/traitement-torrefaction)
+- [Altitude, arabica, robusta](https://filtre.cafe/journal/altitude-arabica-robusta)
+- [Lire une étiquette café de spécialité](https://filtre.cafe/journal/lire-etiquette-cafe-specialite)
+- [Caféine et santé](https://filtre.cafe/journal/cafeine-effets-sante)
+- [Café décaféiné de spécialité](https://filtre.cafe/journal/cafe-decafeine-specialite)
+- [Histoire du café](https://filtre.cafe/journal/histoire-du-cafe)
+- [Café supermarché vs spécialité](https://filtre.cafe/journal/cafe-supermarche-vs-specialite)
+- [Lion's Mane et café](https://filtre.cafe/journal/champignon-lion-mane-cafe)
+
+## Articles — Sélection & Achat
+
+- [Meilleur café de spécialité 2025](https://filtre.cafe/journal/meilleur-cafe-specialite-2025)
+- [Où acheter du café de spécialité en ligne](https://filtre.cafe/journal/ou-acheter-cafe-specialite-en-ligne)
+- [Café bio et spécialité](https://filtre.cafe/journal/cafe-bio-specialite-france)
+- [Capsules café spécialité Nespresso](https://filtre.cafe/journal/cafe-capsules-specialite)
+- [Torréfacteurs français](https://filtre.cafe/journal/torrefacteurs-francais)
+- [Café de spécialité en France 2024](https://filtre.cafe/journal/cafe-specialite-france-2024)
+
+## Articles — Origines
+
+- [Café éthiopien : Yirgacheffe, Sidama, Guji](https://filtre.cafe/journal/cafe-ethiopien-yirgacheffe-sidama-guji)
+- [Café de Colombie](https://filtre.cafe/journal/cafe-colombie-specialite)
+- [Café du Kenya](https://filtre.cafe/journal/cafe-kenya-guide)
+- [Café du Brésil](https://filtre.cafe/journal/cafe-bresil-specialite)
+
+## Articles — Adresses & Voyages
+
+- [Meilleurs cafés de spécialité à Paris](https://filtre.cafe/journal/meilleurs-cafes-paris)
+- [Café au Japon](https://filtre.cafe/journal/cafe-au-japon)
+- [Café en Corée du Sud](https://filtre.cafe/journal/cafe-en-coree)
+- [Café en Thaïlande](https://filtre.cafe/journal/cafe-en-thailande)
+- [Café au Vietnam](https://filtre.cafe/journal/cafe-au-vietnam)
+- [Café aux épices à Fès](https://filtre.cafe/journal/cafe-aux-epices-fes)
