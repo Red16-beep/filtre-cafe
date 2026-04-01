@@ -384,7 +384,11 @@ body { font-family: 'Inter', sans-serif; background-color: var(--stone-50); colo
   <p class="text-[10px] font-bold uppercase tracking-[0.4em] text-amber-400 mb-3">La lettre filtré.</p>
   <h3 class="font-serif text-3xl text-white italic mb-3">Du grain à la tasse, sans bruit.</h3>
   <p class="text-stone-400 text-sm mb-7 max-w-md mx-auto">Nouveaux cafés testés, guides techniques et histoires de terroirs — une lettre soignée, quand on a quelque chose à dire.</p>
-  <a href="/newsletter.html" class="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-400 text-stone-900 font-bold text-sm px-7 py-3.5 rounded-xl transition-colors">Rejoindre la lettre →</a>
+  <form onsubmit="nlSubscribe(event)" class="flex flex-col sm:flex-row gap-3 max-w-sm mx-auto mt-1">
+        <input type="email" placeholder="votre@email.fr" required class="flex-1 px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-stone-50 placeholder-stone-500 text-sm focus:outline-none focus:border-amber-500">
+        <button type="submit" class="inline-flex items-center justify-center gap-2 bg-amber-500 hover:bg-amber-400 text-stone-900 font-bold text-sm px-6 py-3 rounded-xl transition-colors whitespace-nowrap">S'abonner →</button>
+      </form>
+      <p class="text-[11px] text-stone-600 mt-3">Gratuit · Pas de spam · <a href="/newsletter.html" class="underline underline-offset-2 hover:text-stone-400">Lire les archives</a></p>
 </div>
 </main>
 
@@ -402,5 +406,6 @@ window.addEventListener('scroll', () => {
   el.style.width = (window.scrollY / h * 100) + '%';
 });
 </script>
+<script src="/nl-subscribe.js"></script>
 </body>
 </html>
