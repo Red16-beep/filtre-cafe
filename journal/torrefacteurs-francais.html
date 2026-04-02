@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Torréfacteurs français de spécialité : une sélection exigeante | filtré.</title>
+    <title>Torréfacteurs français de spécialité : sélection et analyse | filtré.</title>
     <meta name="description" content="Analyse approfondie des torréfacteurs de spécialité en France. Profils de cuisson, sourcing et matériel : une plongée dans l'excellence artisanale.">
     <meta name="author" content="Reda - filtré.">
     <meta name="robots" content="index, follow">
@@ -17,6 +17,7 @@
     <meta property="og:site_name" content="filtré.">
     <meta property="og:image" content="https://filtre.cafe/og-image.png">
 
+    <!-- Schéma JSON-LD -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -65,11 +66,6 @@
             font-family: 'Instrument Serif', serif; font-style: italic;
             font-size: 2rem; line-height: 1.2; color: var(--stone-900);
             margin-top: 3rem; margin-bottom: 1.25rem; letter-spacing: -0.03em;
-        }
-        .prose-article h3 {
-            font-family: 'Inter', sans-serif; font-weight: 600;
-            font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.14em;
-            color: var(--amber-800); margin-top: 2.25rem; margin-bottom: 0.875rem;
         }
         .prose-article strong { font-weight: 600; color: var(--stone-900); }
         .pull-quote {
@@ -129,7 +125,7 @@
     <div class="max-w-4xl mx-auto px-5 mb-10">
         <img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=1200&q=80"
              alt="Détail d'un tambour de torréfaction artisanale en rotation"
-             class="w-full h-64 md:h-96 object-cover rounded-3xl"
+             class="w-full h-64 md:h-96 object-cover rounded-3xl shadow-sm"
              loading="lazy">
     </div>
 
@@ -139,7 +135,7 @@
 
             <h2>Coutume Café — La rigueur scientifique</h2>
             <p>Coutume a provoqué l'électrochoc nécessaire à Paris en 2011. Antoine Net et Tom Clark n'ont pas seulement ouvert un coffee shop, ils ont introduit une culture quasi-laborantine : analyse des TDS (solides dissous), chimie de l'eau et profils de torréfaction millimétrés sur Giesen.</p>
-            <p>Leur style privilégie la clarté aromatique plutôt que la puissance brute. Ils ne cherchent pas l'acidité pour l'acidité, mais l'équilibre des sucres. Leur Ethiopia Yirgacheffe lavé reste une référence absolue pour découvrir les notes de jasmin et d'agrumes propres à ce terroir. La précision du rendu en tasse justifie leur place chez les plus grands chefs.</p>
+            <p>Leur style privilégie la clarté aromatique plutôt que la puissance brute. Ils ne cherchent pas l'acidité pour l'acidité, mais l'équilibre des sucres. Leur Ethiopia Yirgacheffe lavé reste la référence pour découvrir les notes de jasmin et d'agrumes propres à ce terroir. La précision du rendu en tasse justifie leur place chez les plus grands chefs.</p>
 
             <h2>Belleville Brûlerie — L'école scandinave</h2>
             <p>Chez Belleville, on assume une torréfaction claire, parfois qualifiée de Nordic Roast. Sous l'impulsion de Thomas Lehoux et David Flynn, la maison a popularisé l'idée d'arrêter la cuisson juste avant que les arômes de torréfaction ne prennent le pas sur les arômes du fruit.</p>
@@ -164,7 +160,7 @@
             <h2>Strasbourg, Lyon et Bayonne : Les alternatives régionales</h2>
             <p>La province n'a plus rien à envier à la capitale. À Strasbourg, Omnino fait un travail remarquable de pédagogie à travers son atelier et ses lieux comme l'Omnibus. Ils torréfient avec une précision chirurgicale, respectant la délicatesse des terroirs africains.</p>
             
-            <p>À Lyon, Hayuco s'affirme avec un style radical, axé sur les acidités vives et les process expérimentaux. À Bayonne, Ximun Harispuru prouve qu'on peut allier identité basque et sourcing de classe mondiale avec une maîtrise parfaite de son torréfacteur Loring.</p>
+            <p>À Lyon, Hayuco s'affirme avec un style radical, axé sur les acidités vives et les process expérimentaux. C'est net et moderne. À Bayonne, Ximun Harispuru prouve qu'on peut allier identité basque et sourcing de classe mondiale avec une maîtrise de son torréfacteur Loring.</p>
 
             <h2>La Brûlerie du Cantin — Lens</h2>
             <p>Dans le Nord, à Lens — ma ville natale, ce qui explique que je m'y attarde forcément un peu plus — <strong>La Brûlerie du Cantin</strong> est probablement la maison la plus sous-estimée de France. La brûlerie existe depuis <strong>1959</strong>. <strong>Laurent Baysse</strong> y torréfie depuis 1999 — plus de vingt-cinq ans devant le tambour. En 2021, il est sacré <strong>Champion de France de torréfaction</strong> au Paris Coffee Show. En 2022, il termine <strong>5ème au World of Coffee</strong>, l'équivalent mondial du secteur. En 2023, il obtient le titre de <strong>Meilleur Ouvrier de France</strong> lors de la 27ème édition du concours — la distinction la plus haute de l'artisanat français, celle qui se mérite en candidatant des années et en passant devant un jury qui ne fait pas de cadeaux.</p>
@@ -190,6 +186,32 @@
                 Retour au Journal
             </a>
         </div>
+
+        <!-- ── NEWSLETTER CTA ──────────────────────────────────────────────────── -->
+        <div class="mt-16 rounded-3xl bg-stone-900 px-8 py-10 text-center">
+            <p class="text-[10px] font-bold uppercase tracking-[0.4em] text-amber-400 mb-3">La lettre filtré.</p>
+            <h3 class="font-serif text-3xl text-white italic mb-3">Du grain à la tasse, sans bruit.</h3>
+            <p class="text-stone-400 text-sm mb-7 max-w-md mx-auto">Nouveaux cafés testés et guides techniques — une lettre soignée, quand on a quelque chose à dire.</p>
+            <form onsubmit="return false;" class="flex flex-col sm:flex-row gap-3 max-w-sm mx-auto mt-1">
+                <input type="email" placeholder="votre@email.fr" required class="flex-1 px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-stone-50 placeholder-stone-500 text-sm focus:outline-none focus:border-amber-500">
+                <button type="submit" class="inline-flex items-center justify-center gap-2 bg-amber-500 hover:bg-amber-400 text-stone-900 font-bold text-sm px-6 py-3 rounded-xl transition-colors whitespace-nowrap">S'abonner →</button>
+            </form>
+        </div>
+
+        <!-- À lire aussi -->
+        <section class="mt-16 border-t border-stone-100 pt-16">
+            <p class="text-[10px] font-bold uppercase tracking-[0.3em] text-stone-400 mb-8">À lire aussi</p>
+            <div class="grid gap-4">
+                <a href="/journal/meilleur-cafe-specialite-2025" class="group flex items-center justify-between p-5 rounded-2xl border border-stone-100 hover:border-stone-200 hover:bg-stone-50 transition-all">
+                    <span class="text-sm font-medium text-stone-700 group-hover:text-stone-900">Meilleur café de spécialité 2025 : sélection et guide d'achat</span>
+                    <svg class="w-4 h-4 text-stone-300 group-hover:text-stone-500 flex-shrink-0 ml-4 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                </a>
+                <a href="/journal/ou-acheter-cafe-specialite-en-ligne" class="group flex items-center justify-between p-5 rounded-2xl border border-stone-100 hover:border-stone-200 hover:bg-stone-50 transition-all">
+                    <span class="text-sm font-medium text-stone-700 group-hover:text-stone-900">Où acheter du café de spécialité en ligne en France</span>
+                    <svg class="w-4 h-4 text-stone-300 group-hover:text-stone-500 flex-shrink-0 ml-4 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                </a>
+            </div>
+        </section>
     </main>
 
     <footer class="border-t border-stone-200 py-10 px-5">
