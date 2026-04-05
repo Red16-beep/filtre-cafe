@@ -352,4 +352,66 @@
     <priority>0.8</priority>
   </url>
 
+  <!-- Articles — Recettes & Boissons -->
+  <url>
+    <loc>https://filtre.cafe/journal/cafe-noisette-recette-guide</loc>
+    <lastmod>2026-04-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://filtre.cafe/journal/cappuccino-recette-maison-guide</loc>
+    <lastmod>2026-04-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://filtre.cafe/journal/flat-white-recette-guide</loc>
+    <lastmod>2026-04-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://filtre.cafe/journal/cafe-cortado-recette-guide</loc>
+    <lastmod>2026-04-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://filtre.cafe/journal/cafe-turc-recette-guide</loc>
+    <lastmod>2026-04-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://filtre.cafe/journal/ristretto-espresso-lungo-differences</loc>
+    <lastmod>2026-04-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://filtre.cafe/journal/cafe-vietnamien-recette-ca-phe-sua-da</loc>
+    <lastmod>2026-04-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://filtre.cafe/journal/cold-brew-vs-cafe-glace-differences</loc>
+    <lastmod>2026-04-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://filtre.cafe/journal/cafe-geisha-gesha-guide</loc>
+    <lastmod>2026-04-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://filtre.cafe/journal/meilleure-machine-cafe-grain-automatique</loc>
+    <lastmod>2026-04-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
 </urlset>

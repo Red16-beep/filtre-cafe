@@ -26,6 +26,9 @@
 - [Comment faire un bon café](https://filtre.cafe/journal/comment-faire-un-bon-cafe)
 - [Café en grains ou moulu](https://filtre.cafe/journal/cafe-en-grains-ou-moulu)
 - [Chemex, V60, AeroPress : comparatif](https://filtre.cafe/journal/chemex-v60-aeropress)
+- [Ristretto, espresso, lungo : les trois extractions](https://filtre.cafe/journal/ristretto-espresso-lungo-differences)
+- [Cold brew vs café glacé : les différences](https://filtre.cafe/journal/cold-brew-vs-cafe-glace-differences)
+- [Meilleure machine à café à grain automatique](https://filtre.cafe/journal/meilleure-machine-cafe-grain-automatique)
 
 ## Articles — Comprendre
 
@@ -49,12 +52,22 @@
 - [Torréfacteurs français](https://filtre.cafe/journal/torrefacteurs-francais)
 - [Café de spécialité en France 2024](https://filtre.cafe/journal/cafe-specialite-france-2024)
 
+## Articles — Recettes & Boissons
+
+- [Café noisette : recette et guide](https://filtre.cafe/journal/cafe-noisette-recette-guide)
+- [Cappuccino maison : la vraie recette](https://filtre.cafe/journal/cappuccino-recette-maison-guide)
+- [Flat white, latte, cappuccino : les différences](https://filtre.cafe/journal/flat-white-recette-guide)
+- [Le cortado : recette et guide](https://filtre.cafe/journal/cafe-cortado-recette-guide)
+- [Café turc : recette au cezve](https://filtre.cafe/journal/cafe-turc-recette-guide)
+- [Cà phê sữa đá : café vietnamien glacé](https://filtre.cafe/journal/cafe-vietnamien-recette-ca-phe-sua-da)
+
 ## Articles — Origines
 
 - [Café éthiopien : Yirgacheffe, Sidama, Guji](https://filtre.cafe/journal/cafe-ethiopien-yirgacheffe-sidama-guji)
 - [Café de Colombie](https://filtre.cafe/journal/cafe-colombie-specialite)
 - [Café du Kenya](https://filtre.cafe/journal/cafe-kenya-guide)
 - [Café du Brésil](https://filtre.cafe/journal/cafe-bresil-specialite)
+- [Café geisha (gesha) : le plus prisé au monde](https://filtre.cafe/journal/cafe-geisha-gesha-guide)
 
 ## Articles — Adresses & Voyages
 
