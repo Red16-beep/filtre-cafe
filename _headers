@@ -5,7 +5,7 @@
   Permissions-Policy: camera=(), microphone=(), geolocation=()
   X-XSS-Protection: 1; mode=block
   Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' equateur.org; style-src 'self' 'unsafe-inline' fonts.googleapis.com; font-src 'self' fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.brevo.com https://equateur.org; frame-ancestors 'none'; base-uri 'self'; form-action 'self';
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' equateur.org; style-src 'self' 'unsafe-inline' fonts.googleapis.com; font-src 'self' fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.brevo.com https://equateur.org https://filtre-cafe-worker.rhassani.workers.dev; frame-ancestors 'none'; base-uri 'self'; form-action 'self';
 
 /*.html
   Cache-Control: public, max-age=3600
