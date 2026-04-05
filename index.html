@@ -579,7 +579,7 @@ async function initData() {
       const res = await fetch(WORKER_URL);
       if (!res.ok) throw new Error(`API ${res.status}`);
       const data = await res.json();
-      COFFEES = (data.records || []).map(fromAirtable);
+      COFFEES = (data.records || []).slice(0, 6).map(fromAirtable);
       if (!COFFEES.length) throw new Error('Aucun café actif');
     } else {
       throw new Error('Worker non configuré');
