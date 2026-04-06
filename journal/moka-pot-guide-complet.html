@@ -272,6 +272,26 @@ body { font-family: 'Inter', sans-serif; background-color: var(--stone-50); colo
     </div>
 
     <h2>Les variables qui comptent</h2>
+<!-- Newsletter inline -->
+<div style="background:#1c1917;border-radius:1.25rem;padding:1.75rem 2rem;margin:3rem 0;">
+  <p style="font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.3em;color:#f59e0b;margin-bottom:0.75rem;">La lettre filtré.</p>
+  <p style="font-family:'Instrument Serif',serif;font-style:italic;font-size:1.1rem;color:#fafaf9;margin-bottom:1.25rem;line-height:1.4;">Torréfactions testées, guides d'extraction, histoires de terroirs — dans votre boîte mail.</p>
+  <form onsubmit="subscribeInline(event)" style="display:flex;flex-direction:column;gap:0.75rem;">
+    <div style="display:flex;gap:0.75rem;flex-wrap:wrap;">
+      <input type="email" placeholder="votre@email.fr" required style="flex:1;min-width:180px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);color:#fafaf9;border-radius:0.75rem;padding:0.625rem 1rem;font-size:0.875rem;font-family:'Inter',sans-serif;outline:none;">
+      <button type="submit" style="background:#92400e;color:white;border:none;border-radius:0.75rem;padding:0.625rem 1.25rem;font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;cursor:pointer;white-space:nowrap;">S'inscrire</button>
+    </div>
+    <label style="display:flex;align-items:flex-start;gap:0.5rem;cursor:pointer;">
+      <input type="checkbox" required style="margin-top:0.2rem;accent-color:#f59e0b;flex-shrink:0;">
+      <span style="font-size:0.7rem;color:#a8a29e;line-height:1.5;">J'accepte de recevoir la newsletter filtré. Désabonnement en un clic. <a href="/politique-confidentialite.html" style="color:#a8a29e;text-decoration:underline;">Politique de confidentialité</a>.</span>
+    </label>
+  </form>
+  <div class="nl-inline-ok" style="display:none;margin-top:0.75rem;">
+    <p style="font-size:0.875rem;color:#a8a29e;margin:0;">Bienvenue. On se retrouve dans votre boîte mail.</p>
+  </div>
+  <div class="nl-inline-err" style="display:none;margin-top:0.5rem;font-size:0.8rem;color:#f87171;"></div>
+</div>
+
 
     <h3>La mouture</h3>
     <p>C'est la variable la plus importante. Une <a href="/journal/comment-choisir-son-moulin-cafe" class="text-amber-700 font-medium hover:underline underline-offset-2">mouture</a> <strong>médium-fine</strong> : plus fine que pour le filtre, moins fine que pour l'espresso. Sur un moulin avec échelle numérique, visez entre 3 et 4 sur 10. En visuel, ça ressemble à du sable fin — pas de la farine, pas du sel gros.</p>
@@ -440,5 +460,6 @@ window.addEventListener('scroll', () => {
 </script>
 <script src="/nl-subscribe.js"></script>
 <script defer src="https://equateur.org/tracker.js" data-equateur-key="aff654dd0df3f7e406ecb0a7e78ced5a"></script>
+<script defer src="/js/newsletter-inline.js"></script>
 </body>
 </html>

@@ -274,6 +274,26 @@ body { font-family: 'Inter', sans-serif; background-color: var(--stone-50); colo
     <p>En 2013, l'UNESCO inscrit la tradition du café turc au patrimoine culturel immatériel de l'humanité. La décision ne porte pas seulement sur la recette — elle porte sur tout ce que la boisson emporte avec elle : le rituel du service, la lecture du marc dans la tasse (tasseomancte ou <em>tassé fali</em>), la signification sociale de l'offre de café pour l'hospitalité. Pour comprendre plus largement comment cette boisson a façonné les cultures du monde entier, notre article sur <a href="/journal/histoire-du-cafe" class="text-amber-700 font-medium hover:underline underline-offset-2">l'histoire du café</a> retrace ce voyage du grain à la civilisation.</p>
 
     <h2>La recette au cezve, étape par étape</h2>
+<!-- Newsletter inline -->
+<div style="background:#1c1917;border-radius:1.25rem;padding:1.75rem 2rem;margin:3rem 0;">
+  <p style="font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.3em;color:#f59e0b;margin-bottom:0.75rem;">La lettre filtré.</p>
+  <p style="font-family:'Instrument Serif',serif;font-style:italic;font-size:1.1rem;color:#fafaf9;margin-bottom:1.25rem;line-height:1.4;">Torréfactions testées, guides d'extraction, histoires de terroirs — dans votre boîte mail.</p>
+  <form onsubmit="subscribeInline(event)" style="display:flex;flex-direction:column;gap:0.75rem;">
+    <div style="display:flex;gap:0.75rem;flex-wrap:wrap;">
+      <input type="email" placeholder="votre@email.fr" required style="flex:1;min-width:180px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);color:#fafaf9;border-radius:0.75rem;padding:0.625rem 1rem;font-size:0.875rem;font-family:'Inter',sans-serif;outline:none;">
+      <button type="submit" style="background:#92400e;color:white;border:none;border-radius:0.75rem;padding:0.625rem 1.25rem;font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;cursor:pointer;white-space:nowrap;">S'inscrire</button>
+    </div>
+    <label style="display:flex;align-items:flex-start;gap:0.5rem;cursor:pointer;">
+      <input type="checkbox" required style="margin-top:0.2rem;accent-color:#f59e0b;flex-shrink:0;">
+      <span style="font-size:0.7rem;color:#a8a29e;line-height:1.5;">J'accepte de recevoir la newsletter filtré. Désabonnement en un clic. <a href="/politique-confidentialite.html" style="color:#a8a29e;text-decoration:underline;">Politique de confidentialité</a>.</span>
+    </label>
+  </form>
+  <div class="nl-inline-ok" style="display:none;margin-top:0.75rem;">
+    <p style="font-size:0.875rem;color:#a8a29e;margin:0;">Bienvenue. On se retrouve dans votre boîte mail.</p>
+  </div>
+  <div class="nl-inline-err" style="display:none;margin-top:0.5rem;font-size:0.8rem;color:#f87171;"></div>
+</div>
+
 
     <p>La recette du café turc est simple dans ses ingrédients et exigeante dans son exécution. Deux variables font toute la différence : la finesse de la mouture et la maîtrise du feu. Sans ces deux éléments correctement maîtrisés, le résultat peut être acceptable mais ne sera pas juste.</p>
 
@@ -468,5 +488,6 @@ window.addEventListener('scroll', () => {
 <script src="/nl-subscribe.js"></script>
 <script defer src="https://equateur.org/tracker.js" data-equateur-key="aff654dd0df3f7e406ecb0a7e78ced5a"></script>
 <script defer src="/js/track.js"></script>
+<script defer src="/js/newsletter-inline.js"></script>
 </body>
 </html>

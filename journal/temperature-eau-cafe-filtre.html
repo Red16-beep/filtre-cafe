@@ -212,6 +212,26 @@ body { font-family: 'Inter', sans-serif; background-color: var(--stone-50); colo
     <p>C'est pour ça que la règle des 96°C est calibrée pour les <strong>torréfactions légères</strong> : structure cellulaire dense, peu de composés amers, arômes préservés mais difficiles à dissoudre rapidement. Une eau à 88°C sur une torréfaction légère en V60 donnerait un café sous-extrait — acide, vert en bouche, peu de corps.</p>
 
     <h2>Quand baisser la température</h2>
+<!-- Newsletter inline -->
+<div style="background:#1c1917;border-radius:1.25rem;padding:1.75rem 2rem;margin:3rem 0;">
+  <p style="font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.3em;color:#f59e0b;margin-bottom:0.75rem;">La lettre filtré.</p>
+  <p style="font-family:'Instrument Serif',serif;font-style:italic;font-size:1.1rem;color:#fafaf9;margin-bottom:1.25rem;line-height:1.4;">Torréfactions testées, guides d'extraction, histoires de terroirs — dans votre boîte mail.</p>
+  <form onsubmit="subscribeInline(event)" style="display:flex;flex-direction:column;gap:0.75rem;">
+    <div style="display:flex;gap:0.75rem;flex-wrap:wrap;">
+      <input type="email" placeholder="votre@email.fr" required style="flex:1;min-width:180px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);color:#fafaf9;border-radius:0.75rem;padding:0.625rem 1rem;font-size:0.875rem;font-family:'Inter',sans-serif;outline:none;">
+      <button type="submit" style="background:#92400e;color:white;border:none;border-radius:0.75rem;padding:0.625rem 1.25rem;font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;cursor:pointer;white-space:nowrap;">S'inscrire</button>
+    </div>
+    <label style="display:flex;align-items:flex-start;gap:0.5rem;cursor:pointer;">
+      <input type="checkbox" required style="margin-top:0.2rem;accent-color:#f59e0b;flex-shrink:0;">
+      <span style="font-size:0.7rem;color:#a8a29e;line-height:1.5;">J'accepte de recevoir la newsletter filtré. Désabonnement en un clic. <a href="/politique-confidentialite.html" style="color:#a8a29e;text-decoration:underline;">Politique de confidentialité</a>.</span>
+    </label>
+  </form>
+  <div class="nl-inline-ok" style="display:none;margin-top:0.75rem;">
+    <p style="font-size:0.875rem;color:#a8a29e;margin:0;">Bienvenue. On se retrouve dans votre boîte mail.</p>
+  </div>
+  <div class="nl-inline-err" style="display:none;margin-top:0.5rem;font-size:0.8rem;color:#f87171;"></div>
+</div>
+
 
     <p>Une <strong>torréfaction médium</strong> a davantage de composés caramel et mélanoïdines. Les parois cellulaires sont plus poreuses, la solubilité plus élevée. À 96°C, ces composés se dissolvent très vite — parfois trop. Je trouve qu'une baisse à <strong>91–93°C</strong> ralentit l'extraction des amers et laisse les sucres et les acides dominer. Le résultat est plus équilibré, moins agressif.</p>
 
@@ -367,5 +387,6 @@ window.addEventListener('scroll', () => {
 </script>
 <script src="/nl-subscribe.js"></script>
 <script defer src="https://equateur.org/tracker.js" data-equateur-key="aff654dd0df3f7e406ecb0a7e78ced5a"></script>
+<script defer src="/js/newsletter-inline.js"></script>
 </body>
 </html>
