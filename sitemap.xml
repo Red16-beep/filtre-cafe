@@ -415,6 +415,13 @@
   </url>
 
   <url>
+    <loc>https://filtre.cafe/journal/pourquoi-cafe-amer</loc>
+    <lastmod>2026-04-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
     <loc>https://filtre.cafe/journal/machine-espresso-manuelle-vs-automatique</loc>
     <lastmod>2026-04-07</lastmod>
     <changefreq>monthly</changefreq>
