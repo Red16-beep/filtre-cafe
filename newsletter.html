@@ -379,6 +379,7 @@ async function subscribe(e, suffix) {
     }
     document.getElementById(`nl-form-${suffix}`).classList.add('hidden');
     ok.classList.remove('hidden');
+    if (typeof equateur === 'function') equateur('track', 'NewsletterSignup', { source: 'newsletter-page', form: suffix });
   } catch (ex) {
     err.textContent = 'Une erreur est survenue. Réessayez dans un moment.';
     err.classList.remove('hidden');

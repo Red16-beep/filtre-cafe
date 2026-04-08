@@ -756,6 +756,7 @@ function render() {
             ${Array(5).fill(0).map((_,j) => `<div class="w-2.5 h-2.5 rounded-full ${j < c.intensity ? 'bg-amber-500 shadow-sm shadow-amber-500/40' : 'bg-surface-100'}"></div>`).join('')}
           </div>
           <a href="${c.url}" target="_blank" rel="noopener noreferrer"
+            data-coffee-name="${c.name}"
             onclick="event.stopPropagation()"
             class="ml-3 flex items-center gap-1.5 ${isPourVous ? 'bg-emerald-600 hover:bg-emerald-500' : 'bg-surface-900 hover:bg-amber-600'} text-white px-4 py-2.5 rounded-2xl text-[10px] font-bold uppercase tracking-widest transition-all shrink-0">
             Commander
@@ -836,6 +837,7 @@ function openModal(id) {
       </div>
 
       <a href="${c.url}" target="_blank" rel="noopener noreferrer"
+        data-coffee-name="${c.name}"
         class="flex items-center justify-center gap-2 w-full bg-surface-900 text-white text-center py-4 rounded-2xl font-bold text-sm hover:bg-amber-600 transition-colors">
         Acheter chez le torréfacteur
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
