@@ -415,6 +415,13 @@
   </url>
 
   <url>
+    <loc>https://filtre.cafe/journal/nespresso-vers-specialite</loc>
+    <lastmod>2026-04-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
     <loc>https://filtre.cafe/journal/cafe-soluble-vs-grain</loc>
     <lastmod>2026-04-09</lastmod>
     <changefreq>monthly</changefreq>
