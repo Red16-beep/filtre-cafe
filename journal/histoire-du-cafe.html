@@ -183,7 +183,18 @@ body { font-family:'Inter',sans-serif; background:var(--stone-50); color:var(--s
 </nav>
 
 <!-- Hero -->
-<header class="max-w-3xl mx-auto px-5 pt-16 pb-10">
+<!-- Fil d'Ariane -->
+<nav aria-label="Fil d'Ariane" class="max-w-3xl mx-auto px-5 pt-24 pb-2">
+  <ol class="flex items-center gap-2 text-xs text-stone-400 font-medium flex-wrap">
+    <li><a href="/" class="hover:text-stone-900 transition-colors">filtré.</a></li>
+    <li class="text-stone-300" aria-hidden="true">›</li>
+    <li><a href="/journal/" class="hover:text-stone-900 transition-colors">Le Journal</a></li>
+    <li class="text-stone-300" aria-hidden="true">›</li>
+    <li class="text-stone-700" aria-current="page">Histoire du café</li>
+  </ol>
+</nav>
+
+<header class="max-w-3xl mx-auto px-5 pt-6 pb-10">
   <div class="flex items-center gap-3 mb-6">
     <span class="text-xs font-semibold uppercase tracking-widest text-amber-700 bg-amber-50 border border-amber-200 px-3 py-1 rounded-full">Histoire · Référence</span>
     <span class="text-xs text-stone-400 font-medium">23 mars 2026 · 25 min de lecture</span>
