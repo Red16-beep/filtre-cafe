@@ -1,5 +1,57 @@
+# filtré. — guides de café de spécialité
+# Crawlers bienvenus, la connaissance se partage.
+
+# Tous les crawlers : accès libre au site
 User-agent: *
+Allow: /
 Disallow: /admin.html
 Disallow: /og-image.html
+
+# Crawlers IA explicitement autorisés (citation, grounding, AI search)
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: meta-externalagent
+Allow: /
+
+User-agent: FacebookBot
+Allow: /
+
+# Crawlers refusés (scraping abusif, peu d'intérêt en retour)
+User-agent: Bytespider
+Disallow: /
+
+User-agent: Amazonbot
+Disallow: /
 
 Sitemap: https://filtre.cafe/sitemap.xml
