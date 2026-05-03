@@ -150,6 +150,15 @@ body { font-family: 'Inter', sans-serif; background-color: var(--stone-50); colo
   color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center;
   font-size: 0.75rem; font-weight: 600; margin-top: 0.1rem;
 }
+.product-card { background: white; border: 1px solid var(--stone-200); border-radius: 1.5rem; padding: 1.5rem 1.75rem; margin: 1.5rem 0; }
+.product-card .product-badge { display: inline-block; font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; color: var(--amber-800); border: 1px solid #fcd34d; background: #fffbeb; border-radius: 999px; padding: 0.2rem 0.75rem; margin-bottom: 0.75rem; }
+.product-card h3 { font-size: 1rem; font-weight: 700; color: var(--stone-900); margin: 0 0 0.375rem; letter-spacing: -0.01em; }
+.product-card .product-sub { font-size: 0.8rem; font-weight: 600; color: var(--stone-500); margin-bottom: 0.75rem; }
+.product-card .budget-meta { font-size: 0.8rem; font-weight: 300; color: #78716c; line-height: 1.7; }
+.product-card .budget-meta strong { font-weight: 600; color: var(--stone-900); }
+.verdict-chip { display: inline-flex; align-items: center; gap: 0.375rem; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; padding: 0.25rem 0.75rem; border-radius: 999px; margin-top: 0.875rem; }
+.verdict-yes { background: #f0fdf4; color: #166534; border: 1px solid #bbf7d0; }
+.verdict-maybe { background: #fffbeb; color: #92400e; border: 1px solid #fde68a; }
 </style>
 </head>
 <body class="antialiased">
@@ -321,13 +330,49 @@ body { font-family: 'Inter', sans-serif; background-color: var(--stone-50); colo
 
     <h2>Les 4 machines qu'on recommande vraiment</h2>
 
-    <p><strong><a href="https://www.amazon.fr/s?k=delonghi+magnifica+start&tag=redahassani-21" class="text-amber-700 font-medium hover:underline underline-offset-2" target="_blank" rel="noopener sponsored">De'Longhi Magnifica Start</a> (environ 250€).</strong> Entrée de gamme honnête. Broyeur conique 13 niveaux, interface minimaliste, entretien simple. Ne cherchez pas à la pousser dans ses retranchements — utilisez-la avec un grain de qualité correcte et elle produit un espresso tout à fait buvable. Idéale pour un premier achat ou un second appareil de bureau.</p>
+    <div class="product-card">
+      <div class="product-badge">ENTRÉE DE GAMME</div>
+      <h3><a href="https://www.amazon.fr/s?k=delonghi+magnifica+start&tag=redahassani-21" class="text-amber-700 font-medium hover:underline underline-offset-2" target="_blank" rel="noopener sponsored">De'Longhi Magnifica Start</a></h3>
+      <div class="product-sub">~250€ · Broyeur conique 13 niveaux · Interface minimaliste</div>
+      <div class="budget-meta">
+        <strong>Pour qui :</strong> Premier achat de machine à grain, usage bureau, foyer qui veut un espresso correct sans réglages. Idéal si vous utilisez toujours le même café et ne voulez pas vous poser de questions.<br><br>
+        <strong>Limites honnêtes :</strong> Les 13 niveaux de mouture sont là sur le papier, mais la plage utile est étroite — difficile de compenser un grain très léger ou très foncé. La machine produit un seul profil de café, pas vraiment adaptable. Au-delà de 2 ans d'usage intensif, la durabilité est variable selon les lots.
+      </div>
+      <div class="verdict-chip verdict-yes">BON POINT D'ENTRÉE</div>
+    </div>
 
-    <p><strong><a href="https://www.amazon.fr/s?k=philips+3200+series+cafe&tag=redahassani-21" class="text-amber-700 font-medium hover:underline underline-offset-2" target="_blank" rel="noopener sponsored">Philips 3200 Series</a> (environ 380€).</strong> L'une des meilleures interfaces du marché à ce prix. L'AquaClean intégré simplifie l'entretien, le système lait LatteGo est efficace et facile à rincer. Le broyeur conique céramique est silencieux et durable. Elle ne fait pas tout, mais ce qu'elle fait, elle le fait bien.</p>
+    <div class="product-card">
+      <div class="product-badge">MILIEU DE GAMME</div>
+      <h3><a href="https://www.amazon.fr/s?k=philips+3200+series+cafe&tag=redahassani-21" class="text-amber-700 font-medium hover:underline underline-offset-2" target="_blank" rel="noopener sponsored">Philips 3200 Series</a></h3>
+      <div class="product-sub">~380€ · Broyeur céramique silencieux · AquaClean · LatteGo</div>
+      <div class="budget-meta">
+        <strong>Pour qui :</strong> Foyers qui veulent des boissons lactées simples (cappuccino, latte) sans coût d'entretien élevé. L'AquaClean repousse le détartrage jusqu'à 5000 tasses — c'est concret pour qui déteste cette tâche. Le LatteGo se rince sous le robinet en 15 secondes.<br><br>
+        <strong>Limites honnêtes :</strong> La personnalisation reste superficielle — intensité et volume, c'est tout. Pas de réglage température, pas de profil d'extraction. Si vous voulez travailler vos cafés de spécialité avec précision, cette machine vous bloquera vite.
+      </div>
+      <div class="verdict-chip verdict-yes">SOLIDE POUR LE QUOTIDIEN</div>
+    </div>
 
-    <p><strong><a href="https://www.amazon.fr/s?k=delonghi+dinamica+plus&tag=redahassani-21" class="text-amber-700 font-medium hover:underline underline-offset-2" target="_blank" rel="noopener sponsored">De'Longhi Dinamica Plus</a> (environ 550€).</strong> La machine pour ceux qui veulent vraiment jouer avec les variables. Application MyDeLonghi pour affiner les profils, réglage précis de la température d'eau, 13 niveaux de mouture ajustables depuis l'interface. Système lait avec mousse chaude ou froide selon les envies. Un des meilleurs rapports performance/prix de la gamme.</p>
+    <div class="product-card">
+      <div class="product-badge">GAMME SUPÉRIEURE</div>
+      <h3><a href="https://www.amazon.fr/s?k=delonghi+dinamica+plus&tag=redahassani-21" class="text-amber-700 font-medium hover:underline underline-offset-2" target="_blank" rel="noopener sponsored">De'Longhi Dinamica Plus</a></h3>
+      <div class="product-sub">~550€ · App MyDeLonghi · 13 niveaux mouture · Système lait chaud/froid</div>
+      <div class="budget-meta">
+        <strong>Pour qui :</strong> Utilisateurs qui changent souvent de grain et veulent adapter les paramètres. L'app permet de sauvegarder des profils par café — utile si vous alternez entre un espresso naturel fruité et un blend corsé. Le système lait couvre cappuccino, latte et mousse froide pour les boissons d'été.<br><br>
+        <strong>Limites honnêtes :</strong> L'app MyDeLonghi est fonctionnelle mais pas indispensable — les réglages accessibles depuis la machine couvrent l'essentiel. À 550€, la différence avec la Dinamica standard (100€ de moins) est surtout dans le système lait étendu, pas dans la qualité d'extraction elle-même.
+      </div>
+      <div class="verdict-chip verdict-yes">MEILLEUR RAPPORT PERFORMANCE/PRIX</div>
+    </div>
 
-    <p><strong><a href="https://www.amazon.fr/s?k=jura+e8&tag=redahassani-21" class="text-amber-700 font-medium hover:underline underline-offset-2" target="_blank" rel="noopener sponsored">Jura E8</a> (environ 850€).</strong> Le saut qualitatif est réel. Le système d'extraction P.E.P. (Pulse Extraction Process) joue sur la pression d'infusion pour mieux extraire les arômes — c'est l'une des rares machines grand public à faire quelque chose d'intelligent sur l'extraction, pas seulement sur l'interface. Pour <a href="/journal/comment-faire-un-bon-cafe" class="text-amber-700 font-medium hover:underline underline-offset-2">faire un bon espresso maison</a> avec un minimum d'effort et un maximum de répétabilité, c'est la référence.</p>
+    <div class="product-card">
+      <div class="product-badge">HAUT DE GAMME</div>
+      <h3><a href="https://www.amazon.fr/s?k=jura+e8&tag=redahassani-21" class="text-amber-700 font-medium hover:underline underline-offset-2" target="_blank" rel="noopener sponsored">Jura E8</a></h3>
+      <div class="product-sub">~850€ · P.E.P. (Pulse Extraction Process) · Broyeur Aroma G3</div>
+      <div class="budget-meta">
+        <strong>Pour qui :</strong> Quelqu'un qui fait 2 à 4 espressos par jour, change régulièrement de grain de spécialité, et veut le même résultat à chaque fois sans intervenir. Le P.E.P. n'est pas du marketing — il joue réellement sur la pression d'infusion pour adapter l'extraction à la dose. C'est perceptible dans la tasse sur les cafés délicats.<br><br>
+        <strong>Limites honnêtes :</strong> 850€ pour une machine entièrement automatique, c'est difficile à justifier face à un setup moulin + machine semi-automatique à prix équivalent, qui battra la Jura en qualité maximale. La Jura gagne sur la répétabilité sans effort et la finition — pas sur le plafond qualitatif absolu.
+      </div>
+      <div class="verdict-chip verdict-yes">LA RÉFÉRENCE SI LE BUDGET LE PERMET</div>
+    </div>
 
     <h2>Ce qu'on ne recommande pas (et pourquoi)</h2>
 
