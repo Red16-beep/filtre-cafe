@@ -55,12 +55,12 @@ body { font-family: 'Inter', sans-serif; background-color: var(--stone-50); colo
   <nav class="max-w-6xl mx-auto px-6 md:px-10 lg:px-12 h-16 flex items-center justify-between">
     <a href="../" class="serif text-2xl italic text-stone-900 hover:text-amber-800 transition-colors">filtré.</a>
     <ul class="hidden md:flex items-center gap-8 text-[11px] font-semibold uppercase tracking-[0.18em]">
-      <li><a href="../#catalogue" class="text-stone-400 hover:text-stone-900 transition-colors">Le Grain</a></li>
       <li><a href="../journal/" class="text-stone-400 hover:text-stone-900 transition-colors">Le Journal</a></li>
       <li><a href="./" class="text-stone-900 border-b border-stone-900 pb-0.5">Les Guides</a></li>
+      <li><a href="../newsletter" class="text-stone-400 hover:text-stone-900 transition-colors">La Lettre</a></li>
+      <li><a href="../a-propos.html" class="text-stone-400 hover:text-stone-900 transition-colors">À propos</a></li>
     </ul>
     <div class="flex items-center gap-4">
-      <a href="../#catalogue" class="hidden md:inline-flex items-center gap-2 bg-stone-900 text-stone-50 text-[10px] font-bold uppercase tracking-[0.2em] px-5 py-2.5 rounded-full hover:bg-amber-800 transition-colors">La sélection →</a>
       <button id="hamburger" onclick="toggleMobileMenu()" class="md:hidden flex flex-col gap-1.5 p-1" aria-label="Menu">
         <span class="w-5 h-px bg-stone-900 block" id="ham-1"></span>
         <span class="w-5 h-px bg-stone-900 block" id="ham-2"></span>
@@ -70,10 +70,10 @@ body { font-family: 'Inter', sans-serif; background-color: var(--stone-50); colo
   </nav>
   <div id="mobile-menu" class="md:hidden flex-col border-t border-stone-100">
     <div class="mobile-menu-panel flex flex-col px-6 py-6 gap-6 bg-stone-50/95 backdrop-blur-md">
-      <a href="../#catalogue" onclick="closeMobileMenu()" class="text-[11px] font-semibold uppercase tracking-[0.18em] text-stone-500 hover:text-stone-900 transition-colors">Le Grain</a>
       <a href="../journal/" onclick="closeMobileMenu()" class="text-[11px] font-semibold uppercase tracking-[0.18em] text-stone-500 hover:text-stone-900 transition-colors">Le Journal</a>
       <a href="./" onclick="closeMobileMenu()" class="text-[11px] font-semibold uppercase tracking-[0.18em] text-stone-900">Les Guides</a>
-      <a href="../#catalogue" onclick="closeMobileMenu()" class="mt-2 inline-flex items-center justify-center bg-stone-900 text-stone-50 text-[10px] font-bold uppercase tracking-[0.2em] px-6 py-3 rounded-full hover:bg-amber-800 transition-colors">La sélection →</a>
+      <a href="../newsletter" onclick="closeMobileMenu()" class="text-[11px] font-semibold uppercase tracking-[0.18em] text-stone-500 hover:text-stone-900 transition-colors">La Lettre</a>
+      <a href="../a-propos.html" onclick="closeMobileMenu()" class="text-[11px] font-semibold uppercase tracking-[0.18em] text-stone-500 hover:text-stone-900 transition-colors">À propos</a>
     </div>
   </div>
 </header>
@@ -228,7 +228,7 @@ body { font-family: 'Inter', sans-serif; background-color: var(--stone-50); colo
   <div class="bg-stone-900 rounded-3xl px-8 py-12 md:py-16 text-center">
     <p class="text-[10px] font-bold uppercase tracking-[0.4em] text-amber-500 mb-4">La newsletter filtré.</p>
     <h2 class="serif italic text-3xl md:text-4xl text-white mb-4" style="letter-spacing:-0.02em">Un café. Une histoire. Une fois par mois.</h2>
-    <p class="text-stone-400 font-light text-base mb-8 max-w-md mx-auto">Les nouveautés du catalogue, un article de fond et les torréfacteurs à ne pas manquer. Sans spam, sans algorithme.</p>
+    <p class="text-stone-400 font-light text-base mb-8 max-w-md mx-auto">Des cafés testés, un article de fond, les torréfacteurs à ne pas manquer. Sans spam, sans algorithme.</p>
     <form class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto" onsubmit="handleNewsletter(event)">
       <input type="email" placeholder="votre@email.fr" required
         class="flex-1 px-5 py-3.5 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/40 text-sm outline-none focus:border-amber-500 transition-colors">
@@ -246,9 +246,9 @@ body { font-family: 'Inter', sans-serif; background-color: var(--stone-50); colo
     <a href="../" class="serif text-2xl italic text-stone-900 hover:text-amber-800 transition-colors">filtré.</a>
     <p class="text-[11px] text-stone-400 font-light tracking-wide order-last md:order-none">© 2026 filtré. Depuis l'Artois.</p>
     <nav class="flex items-center gap-6 text-[10px] font-semibold uppercase tracking-[0.2em]">
-      <a href="../#catalogue" class="text-stone-400 hover:text-stone-900 transition-colors">Le Grain</a>
       <a href="../journal/" class="text-stone-400 hover:text-stone-900 transition-colors">Le Journal</a>
       <a href="./" class="text-stone-900">Les Guides</a>
+      <a href="../newsletter" class="text-stone-400 hover:text-stone-900 transition-colors">La Lettre</a>
     </nav>
   </div>
 </footer>

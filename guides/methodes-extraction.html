@@ -92,12 +92,12 @@ body { font-family:'Inter',sans-serif; background-color:var(--stone-50); color:v
   <nav class="max-w-6xl mx-auto px-6 md:px-10 lg:px-12 h-16 flex items-center justify-between">
     <a href="../" class="serif text-2xl italic text-stone-900 hover:text-amber-800 transition-colors">filtré.</a>
     <ul class="hidden md:flex items-center gap-8 text-[11px] font-semibold uppercase tracking-[0.18em]">
-      <li><a href="../#catalogue" class="text-stone-400 hover:text-stone-900 transition-colors">Le Grain</a></li>
       <li><a href="../journal/" class="text-stone-400 hover:text-stone-900 transition-colors">Le Journal</a></li>
       <li><a href="./" class="text-stone-900 border-b border-stone-900 pb-0.5">Les Guides</a></li>
+      <li><a href="../newsletter" class="text-stone-400 hover:text-stone-900 transition-colors">La Lettre</a></li>
+      <li><a href="../a-propos.html" class="text-stone-400 hover:text-stone-900 transition-colors">À propos</a></li>
     </ul>
     <div class="flex items-center gap-4">
-      <a href="../#catalogue" class="hidden md:inline-flex items-center gap-2 bg-stone-900 text-stone-50 text-[10px] font-bold uppercase tracking-[0.2em] px-5 py-2.5 rounded-full hover:bg-amber-800 transition-colors">La sélection →</a>
       <button id="hamburger" onclick="toggleMobileMenu()" class="md:hidden flex flex-col gap-1.5 p-1" aria-label="Menu">
         <span class="w-5 h-px bg-stone-900 block" id="ham-1"></span>
         <span class="w-5 h-px bg-stone-900 block" id="ham-2"></span>
@@ -107,10 +107,10 @@ body { font-family:'Inter',sans-serif; background-color:var(--stone-50); color:v
   </nav>
   <div id="mobile-menu" class="md:hidden flex-col border-t border-stone-100">
     <div class="mobile-menu-panel flex flex-col px-6 py-6 gap-6 bg-stone-50/95 backdrop-blur-md">
-      <a href="../#catalogue" onclick="closeMobileMenu()" class="text-[11px] font-semibold uppercase tracking-[0.18em] text-stone-500">Le Grain</a>
       <a href="../journal/" onclick="closeMobileMenu()" class="text-[11px] font-semibold uppercase tracking-[0.18em] text-stone-500">Le Journal</a>
       <a href="./" onclick="closeMobileMenu()" class="text-[11px] font-semibold uppercase tracking-[0.18em] text-stone-900">Les Guides</a>
-      <a href="../#catalogue" onclick="closeMobileMenu()" class="mt-2 inline-flex items-center justify-center bg-stone-900 text-stone-50 text-[10px] font-bold uppercase tracking-[0.2em] px-6 py-3 rounded-full">La sélection →</a>
+      <a href="../newsletter" onclick="closeMobileMenu()" class="text-[11px] font-semibold uppercase tracking-[0.18em] text-stone-500">La Lettre</a>
+      <a href="../a-propos.html" onclick="closeMobileMenu()" class="text-[11px] font-semibold uppercase tracking-[0.18em] text-stone-500">À propos</a>
     </div>
   </div>
 </header>
@@ -330,11 +330,11 @@ body { font-family:'Inter',sans-serif; background-color:var(--stone-50); color:v
 
   <!-- CTA -->
   <div class="mt-16 bg-stone-900 rounded-2xl px-8 py-10 text-center">
-    <p class="text-[10px] font-bold uppercase tracking-[0.3em] text-amber-500 mb-3">La sélection filtré.</p>
-    <p class="serif italic text-2xl md:text-3xl text-white mb-3" style="letter-spacing:-0.02em">Trouvez votre café selon votre méthode</p>
-    <p class="text-stone-400 text-sm font-light mb-7 max-w-md mx-auto">Chaque café de la sélection indique les méthodes recommandées. V60, espresso, piston — filtré par ce qui compte.</p>
-    <a href="../#catalogue" class="inline-flex items-center gap-2 bg-amber-500 text-stone-900 text-[11px] font-bold uppercase tracking-[0.2em] px-7 py-3.5 rounded-full hover:bg-amber-400 transition-colors">
-      Voir la sélection
+    <p class="text-[10px] font-bold uppercase tracking-[0.3em] text-amber-500 mb-3">La newsletter filtré.</p>
+    <p class="serif italic text-2xl md:text-3xl text-white mb-3" style="letter-spacing:-0.02em">Des cafés testés, des terroirs, un guide par mois</p>
+    <p class="text-stone-400 text-sm font-light mb-7 max-w-md mx-auto">Torréfactions du moment, origines, conseils d'extraction — quand on a quelque chose à dire. Pas de calendrier forcé.</p>
+    <a href="../newsletter" class="inline-flex items-center gap-2 bg-amber-500 text-stone-900 text-[11px] font-bold uppercase tracking-[0.2em] px-7 py-3.5 rounded-full hover:bg-amber-400 transition-colors">
+      S'abonner à La Lettre
       <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
     </a>
   </div>
@@ -348,9 +348,9 @@ body { font-family:'Inter',sans-serif; background-color:var(--stone-50); color:v
     <a href="../" class="serif text-2xl italic text-stone-900 hover:text-amber-800 transition-colors">filtré.</a>
     <p class="text-[11px] text-stone-400 font-light">© 2026 filtré. Depuis l'Artois.</p>
     <nav class="flex items-center gap-6 text-[10px] font-semibold uppercase tracking-[0.2em]">
-      <a href="../#catalogue" class="text-stone-400 hover:text-stone-900 transition-colors">Le Grain</a>
       <a href="../journal/" class="text-stone-400 hover:text-stone-900 transition-colors">Le Journal</a>
       <a href="./" class="text-stone-900">Les Guides</a>
+      <a href="../newsletter" class="text-stone-400 hover:text-stone-900 transition-colors">La Lettre</a>
     </nav>
   </div>
 </footer>
