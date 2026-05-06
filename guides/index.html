@@ -227,16 +227,11 @@ body { font-family: 'Inter', sans-serif; background-color: var(--stone-50); colo
 <section class="max-w-6xl mx-auto px-6 md:px-10 lg:px-12 pb-20">
   <div class="bg-stone-900 rounded-3xl px-8 py-12 md:py-16 text-center">
     <p class="text-[10px] font-bold uppercase tracking-[0.4em] text-amber-500 mb-4">La newsletter filtré.</p>
-    <h2 class="serif italic text-3xl md:text-4xl text-white mb-4" style="letter-spacing:-0.02em">Un café. Une histoire. Une fois par mois.</h2>
-    <p class="text-stone-400 font-light text-base mb-8 max-w-md mx-auto">Des cafés testés, un article de fond, les torréfacteurs à ne pas manquer. Sans spam, sans algorithme.</p>
-    <form class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto" onsubmit="handleNewsletter(event)">
-      <input type="email" placeholder="votre@email.fr" required
-        class="flex-1 px-5 py-3.5 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/40 text-sm outline-none focus:border-amber-500 transition-colors">
-      <button type="submit" class="px-6 py-3.5 bg-amber-500 text-stone-900 font-bold text-sm rounded-xl hover:bg-amber-400 transition-colors whitespace-nowrap">
-        S'inscrire →
-      </button>
-    </form>
-    <p id="nl-confirm" class="text-amber-400 text-sm mt-4 hidden">✓ Inscription confirmée — à très vite !</p>
+    <h2 class="serif italic text-3xl md:text-4xl text-white mb-4" style="letter-spacing:-0.02em">Cafés testés, terroirs, guides — toutes les deux semaines.</h2>
+    <p class="text-stone-400 font-light text-base mb-8 max-w-md mx-auto">Sans spam. Désabonnement en un clic.</p>
+    <a href="../newsletter" class="inline-flex items-center gap-2 bg-amber-500 text-stone-900 font-bold text-sm px-8 py-4 rounded-full hover:bg-amber-400 transition-colors">
+      S'abonner à La Lettre →
+    </a>
   </div>
 </section>
 
@@ -263,11 +258,6 @@ function toggleMobileMenu() {
 }
 function closeMobileMenu() {
   document.getElementById('mobile-menu').classList.remove('open');
-}
-function handleNewsletter(e) {
-  e.preventDefault();
-  document.getElementById('nl-confirm').classList.remove('hidden');
-  e.target.reset();
 }
 </script>
 </body>
