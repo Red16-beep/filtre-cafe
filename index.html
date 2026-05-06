@@ -6,7 +6,7 @@
 <title>Cafés de spécialité : sélection & guides | filtré.</title>
 
 <!-- SEO -->
-<meta name="description" content="Guide indépendant du café de spécialité. Sélection des meilleurs torréfacteurs artisanaux, avis détaillés sur les grains 80+ SCA et guides d'extraction.">
+<meta name="description" content="Guide indépendant du café de spécialité. Comparatifs matériel, guides d'extraction et sélection de cafés — V60, moulin, machine expresso.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://filtre.cafe/">
 
@@ -47,23 +47,6 @@
     "target": { "@type": "EntryPoint", "urlTemplate": "https://filtre.cafe/?q={search_term_string}" },
     "query-input": "required name=search_term_string"
   }
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "ItemList",
-  "name": "Sélection café de spécialité filtré.",
-  "url": "https://filtre.cafe/",
-  "description": "Catalogue des meilleures torréfactions artisanales notées 80+ SCA.",
-  "numberOfItems": 20,
-  "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Éthiopie Bombe", "url": "https://www.brulerieducantin.com/product-page/%C3%A9thiopie-sidama-bombe" },
-    { "@type": "ListItem", "position": 2, "name": "Colombie Choco", "url": "https://www.brulerieducantin.com/product-page/colombie-choco" },
-    { "@type": "ListItem", "position": 3, "name": "Ouganda Zombo", "url": "https://www.terroircafe.fr/grands-crus/580-cafe-d-ouganda-zombo.html" },
-    { "@type": "ListItem", "position": 4, "name": "Jimma Gomma", "url": "https://lomi.cafe/products/jimma-gomma" },
-    { "@type": "ListItem", "position": 5, "name": "Le Robuste", "url": "https://www.cafenibi.com/e-boutique/p/le-robuste" }
-  ]
 }
 </script>
 <script type="application/ld+json">
@@ -136,47 +119,6 @@ body { background-color: #f8fafc; color: #0f172a; overflow-x: hidden; -webkit-fo
   border-color: #cbd5e1;
 }
 
-/* ── SENSORY BARS ──────────────────────────────────────────────────────── */
-.sensory-bar  { height: 3px; background: #e2e8f0; border-radius: 2px; overflow: hidden; }
-.sensory-fill { height: 100%; background: #0f172a; transition: width 0.5s ease; }
-
-/* ── FILTER CHIPS ──────────────────────────────────────────────────────── */
-.filter-chip { transition: all 0.2s ease; border: 1px solid #e2e8f0; cursor: pointer; }
-.filter-chip.active { background: #0f172a; color: white; border-color: #0f172a; }
-
-/* ── TYPE BADGES ───────────────────────────────────────────────────────── */
-.type-arabica { background: #ecfdf5; color: #059669; }
-.type-robusta { background: #fffbeb; color: #d97706; }
-.type-blend   { background: #eff6ff; color: #3b82f6; }
-
-/* ── BADGES POUR VOUS ──────────────────────────────────────────────────── */
-.badge-pourvous { background:#ecfdf5; color:#059669; border:1px solid #bbf7d0; font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; padding:2px 7px; border-radius:99px; }
-.badge-coeur    { background:#fffbeb; color:#d97706; border:1px solid #fde68a; font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; padding:2px 7px; border-radius:99px; }
-
-/* ── SKELETON ──────────────────────────────────────────────────────────── */
-.skeleton {
-  background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%);
-  background-size: 200% 100%;
-  animation: loading 1.5s infinite;
-}
-@keyframes loading { from { background-position: 200% 0; } to { background-position: -200% 0; } }
-
-/* ── MODAL ─────────────────────────────────────────────────────────────── */
-.modal-overlay {
-  display: none; position: fixed; inset: 0;
-  background: rgba(15,23,42,0.25); backdrop-filter: blur(24px);
-  z-index: 100; align-items: center; justify-content: center; padding: 24px;
-}
-.modal-overlay.active { display: flex; animation: fadeIn 0.3s ease-out; }
-
-/* ── GRAIN INTENSITY PICKER ────────────────────────────────────────────── */
-.grain-icon { transition: transform 0.2s cubic-bezier(0.17, 0.67, 0.83, 0.67); }
-.grain-btn:active .grain-icon { transform: scale(0.8); }
-
-/* ── LOADER ────────────────────────────────────────────────────────────── */
-.loader { width:16px; height:16px; border:2px solid #e2e8f0; border-top-color:#0f172a; border-radius:50%; animation:spin .8s linear infinite; }
-@keyframes spin { to { transform:rotate(360deg); } }
-
 /* ── MOBILE DRAWER ─────────────────────────────────────────────────────── */
 .mobile-drawer {
   position: fixed; inset: 0; z-index: 150;
@@ -187,45 +129,9 @@ body { background-color: #f8fafc; color: #0f172a; overflow-x: hidden; -webkit-fo
 }
 .mobile-drawer.open { transform: translateX(0); }
 
-/* ── MOBILE FILTER ACCORDION ───────────────────────────────────────────── */
-@media (max-width: 767px) {
-  .filter-body.collapsed { display: none; }
-}
-
-/* ── QUIZ ──────────────────────────────────────────────────────────────── */
-.quiz-overlay { display:none; position:fixed; inset:0; background:#0f172a; z-index:200; align-items:center; justify-content:center; padding:24px; overflow-y:auto; }
-.quiz-overlay.active { display:flex; animation: fadeIn .35s ease-out; }
-.quiz-inner { width:100%; max-width:580px; margin:auto; }
-.quiz-step-slide { animation: reveal .3s ease-out; }
-.quiz-dot { width:6px; height:6px; border-radius:50%; background:rgba(255,255,255,.2); display:inline-block; margin-right:6px; transition:background .3s,width .3s; }
-.quiz-dot.active { background:#f59e0b; width:20px; border-radius:3px; }
-.quiz-opt { background:rgba(255,255,255,.04); }
-.quiz-opt:hover { background:rgba(255,255,255,.07); }
-.quiz-opt-selected { background:rgba(245,158,11,.1) !important; border-color:rgba(245,158,11,.5) !important; }
-.quiz-opt-selected .quiz-opt-label { color:#fbbf24; }
 </style>
 </head>
 <body class="antialiased selection:bg-surface-900 selection:text-white">
-
-<!-- ══ QUIZ OVERLAY ══════════════════════════════════════════════════════════ -->
-<div id="quiz-overlay" class="quiz-overlay" role="dialog" aria-modal="true">
-  <button onclick="closeQuiz()" class="absolute top-6 right-6 text-white/40 hover:text-white transition-colors p-2 rounded-full hover:bg-white/10 z-10" aria-label="Fermer">
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
-  </button>
-  <div class="quiz-inner relative">
-    <div id="quiz-content" class="quiz-step-slide"></div>
-  </div>
-</div>
-
-<!-- ══ MODAL DÉTAILS ══════════════════════════════════════════════════════════ -->
-<div id="coffee-modal" class="modal-overlay" onclick="closeModal()" aria-modal="true" role="dialog">
-  <div class="bg-white w-full max-w-2xl rounded-[48px] p-10 lg:p-14 relative shadow-2xl overflow-hidden max-h-[90vh] overflow-y-auto" onclick="event.stopPropagation()">
-    <button onclick="closeModal()" aria-label="Fermer" class="absolute top-8 right-8 p-3 bg-surface-50 rounded-full hover:bg-surface-100 transition-colors group z-10">
-      <svg class="group-hover:rotate-90 transition-transform duration-300" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
-    </button>
-    <div id="modal-body"></div>
-  </div>
-</div>
 
 <!-- ══ MOBILE DRAWER ══════════════════════════════════════════════════════════ -->
 <div id="mobile-drawer" class="mobile-drawer" role="dialog" aria-modal="true" aria-label="Menu">
@@ -238,10 +144,7 @@ body { background-color: #f8fafc; color: #0f172a; overflow-x: hidden; -webkit-fo
     </button>
   </div>
   <nav class="flex flex-col gap-1 px-6 py-8 flex-1">
-    <a href="/#catalogue" onclick="closeMobileMenu()" class="flex items-center gap-4 px-4 py-4 rounded-2xl text-white/70 hover:text-white hover:bg-white/5 transition-all text-base font-semibold">
-      <span class="text-lg">☕</span> La Réserve
-    </a>
-    <a href="/journal/" class="flex items-center gap-4 px-4 py-4 rounded-2xl text-white/70 hover:text-white hover:bg-white/5 transition-all text-base font-semibold">
+    <a href="/journal/" onclick="closeMobileMenu()" class="flex items-center gap-4 px-4 py-4 rounded-2xl text-white/70 hover:text-white hover:bg-white/5 transition-all text-base font-semibold">
       <span class="text-lg">📖</span> Le Journal
     </a>
     <a href="/guides/" class="flex items-center gap-4 px-4 py-4 rounded-2xl text-white/70 hover:text-white hover:bg-white/5 transition-all text-base font-semibold">
@@ -255,9 +158,9 @@ body { background-color: #f8fafc; color: #0f172a; overflow-x: hidden; -webkit-fo
     </a>
   </nav>
   <div class="px-6 pb-10 shrink-0">
-    <a href="/#catalogue" onclick="closeMobileMenu()"
+    <a href="/journal/" onclick="closeMobileMenu()"
       class="flex items-center justify-center gap-2 w-full bg-amber-500 text-surface-900 py-4 rounded-2xl font-bold text-sm uppercase tracking-widest hover:bg-amber-400 transition-colors">
-      Explorer les grains →
+      Lire le journal →
     </a>
   </div>
 </div>
@@ -270,7 +173,6 @@ body { background-color: #f8fafc; color: #0f172a; overflow-x: hidden; -webkit-fo
         filtré<span class="text-amber-600">.</span>
       </a>
       <div class="hidden md:flex gap-10 text-[10px] font-bold uppercase tracking-[0.3em] text-surface-400">
-        <a href="/#catalogue"      class="hover:text-surface-900 transition-colors">La Réserve</a>
         <a href="/journal/"        class="hover:text-surface-900 transition-colors">Le Journal</a>
         <a href="/guides/"         class="hover:text-surface-900 transition-colors">Les Guides</a>
         <a href="/newsletter" class="hover:text-surface-900 transition-colors">La Lettre</a>
@@ -278,11 +180,6 @@ body { background-color: #f8fafc; color: #0f172a; overflow-x: hidden; -webkit-fo
       </div>
     </div>
     <div class="flex items-center gap-3">
-      <!-- CTA desktop -->
-      <a href="#catalogue" onclick="scrollToId('catalogue'); return false;"
-        class="hidden md:flex bg-surface-900 text-white px-7 py-3 rounded-full text-[10px] font-bold uppercase tracking-[0.2em] hover:scale-105 active:scale-95 transition-all shadow-xl shadow-surface-900/10">
-        Explorer
-      </a>
       <!-- Hamburger mobile -->
       <button onclick="openMobileMenu()" aria-label="Ouvrir le menu"
         class="md:hidden flex flex-col gap-1.5 p-2 group">
@@ -307,26 +204,10 @@ body { background-color: #f8fafc; color: #0f172a; overflow-x: hidden; -webkit-fo
       L'art du café de spécialité,<br><span class="text-surface-300 italic">sans superflu.</span>
     </h1>
     <p class="text-xl lg:text-2xl text-surface-400 max-w-2xl mx-auto leading-relaxed font-light mb-10">
-      Un carnet de bord indépendant dédié aux torréfactions artisanales. Filtrez, comparez, trouvez le grain parfait.
+      Un carnet de bord indépendant dédié aux torréfactions artisanales.
     </p>
-    <p class="text-sm text-surface-400 font-medium" id="hero-count"></p>
   </section>
 
-  <!-- BANNIÈRE LE TROUVEUR -->
-  <section class="px-8 max-w-7xl mx-auto mb-16">
-    <div class="bg-surface-900 rounded-[32px] p-8 md:p-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 relative overflow-hidden">
-      <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(245,158,11,0.12)_0%,transparent_65%)] pointer-events-none"></div>
-      <div class="relative z-10">
-        <p class="text-[9px] font-bold uppercase tracking-[0.4em] text-amber-400 mb-2">Le Trouveur · Nouveau</p>
-        <h3 class="text-xl md:text-2xl font-bold text-white mb-2 leading-snug">Quel café est fait pour vous ?</h3>
-        <p class="text-surface-400 text-sm leading-relaxed max-w-md">3 questions pour cerner votre palais — on vous propose les deux grains les plus proches de vous en 60 secondes.</p>
-      </div>
-      <button onclick="openQuiz()" class="relative z-10 shrink-0 bg-amber-500 text-surface-900 px-7 py-3.5 rounded-2xl font-bold text-sm hover:bg-amber-400 active:scale-95 transition-all flex items-center gap-2 whitespace-nowrap shadow-lg shadow-amber-500/20">
-        Trouver mon café
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-      </button>
-    </div>
-  </section>
 
   <!-- GUIDES ESSENTIELS -->
   <section class="px-8 max-w-7xl mx-auto mb-16">
@@ -359,84 +240,90 @@ body { background-color: #f8fafc; color: #0f172a; overflow-x: hidden; -webkit-fo
     </div>
   </section>
 
-  <!-- CATALOGUE -->
-  <section id="catalogue" class="px-8 pb-40 max-w-7xl mx-auto">
+  <!-- SÉLECTION ARTICLES -->
+  <section class="px-8 pb-24 max-w-7xl mx-auto">
 
-    <!-- FILTRE CONTAINER -->
-    <div class="bg-white rounded-[48px] border border-surface-100 shadow-sm mb-12 overflow-hidden">
-
-      <!-- Toggle mobile -->
-      <button onclick="toggleFilter()" id="filter-toggle"
-        class="md:hidden w-full flex items-center justify-between px-8 py-5 text-left">
-        <span class="text-sm font-bold text-surface-900">Filtrer & trier</span>
-        <div class="flex items-center gap-3">
-          <span id="filter-active-count" class="hidden text-[10px] font-bold bg-amber-500 text-white px-2 py-0.5 rounded-full"></span>
-          <svg id="filter-chevron" class="w-5 h-5 text-surface-400 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
-        </div>
-      </button>
-
-      <div id="filter-body" class="filter-body collapsed md:!max-h-none md:!opacity-100 p-10 pt-0 md:pt-10">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
-
-        <!-- Recherche -->
-        <div class="lg:col-span-4">
-          <label class="text-[9px] font-bold uppercase tracking-[0.3em] text-surface-300 mb-5 block">Recherche</label>
-          <div class="relative">
-            <svg class="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-surface-300 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-            <input type="text" id="fsearch" placeholder="Pays, torréfacteur, arôme…" oninput="render()"
-              class="w-full pl-11 pr-5 py-4 bg-surface-50 border border-transparent rounded-2xl text-sm outline-none transition-all focus:bg-white focus:ring-4 focus:ring-amber-500/5 focus:border-amber-500/20">
-          </div>
-        </div>
-
-        <!-- Intensité picker -->
-        <div class="lg:col-span-3">
-          <label class="text-[9px] font-bold uppercase tracking-[0.3em] text-surface-300 mb-5 block">
-            Corps · <span id="fi-val" class="text-amber-600 normal-case tracking-normal">Tous niveaux</span>
-          </label>
-          <div id="intensity-picker" class="flex gap-3"></div>
-        </div>
-
-        <!-- Méthode + Profil + Variété -->
-        <div class="lg:col-span-5">
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
-            <div>
-              <label class="text-[9px] font-bold uppercase tracking-[0.3em] text-surface-300 mb-5 block">Méthode</label>
-              <div id="fpreps" class="flex flex-wrap gap-2"></div>
-            </div>
-            <div>
-              <label class="text-[9px] font-bold uppercase tracking-[0.3em] text-surface-300 mb-5 block">Profil</label>
-              <div id="faromas" class="flex flex-wrap gap-2"></div>
-            </div>
-            <div>
-              <label class="text-[9px] font-bold uppercase tracking-[0.3em] text-surface-300 mb-5 block">Variété</label>
-              <div id="ftypes" class="flex flex-wrap gap-2"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Barre inférieure -->
-      <div class="mt-10 pt-8 border-t border-surface-50 flex flex-wrap items-center justify-between gap-6">
-        <div class="flex items-center gap-3">
-          <div class="w-2 h-2 rounded-full bg-emerald-500"></div>
-          <span id="comp-total" class="text-[10px] font-bold uppercase tracking-[0.4em] text-surface-400">Chargement...</span>
-          <div id="api-loader" class="loader hidden"></div>
-        </div>
-        <div class="flex items-center gap-8">
-          <select id="fsort" onchange="render()" class="bg-transparent text-[10px] font-bold uppercase tracking-[0.3em] text-surface-900 outline-none cursor-pointer hover:text-amber-600 transition-colors">
-            <option value="rating_desc">Coups de cœur</option>
-            <option value="sca_desc">Score SCA</option>
-            <option value="price_asc">Prix croissant</option>
-            <option value="price_desc">Prix décroissant</option>
-          </select>
-          <button onclick="resetFilters()" class="text-[10px] font-bold uppercase tracking-[0.3em] text-amber-600 hover:text-amber-700 transition-colors">Réinitialiser</button>
-        </div>
+    <!-- Matériel -->
+    <div class="mb-16">
+      <p class="text-[9px] font-bold uppercase tracking-[0.4em] text-surface-400 mb-8">Matériel & Comparatifs</p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <a href="/journal/meilleure-machine-espresso-manuelle-2026" class="group flex flex-col gap-3 p-6 rounded-3xl bg-white border border-surface-100 hover:border-amber-200 hover:shadow-lg hover:shadow-amber-500/5 transition-all">
+          <span class="text-[9px] font-bold uppercase tracking-[0.3em] text-amber-600">Machine espresso</span>
+          <span class="text-base font-semibold text-surface-900 leading-snug group-hover:text-amber-800">Gaggia, Flair, Lelit Victoria — le comparatif honnête</span>
+          <span class="text-xs text-surface-400 font-medium mt-auto">De 150€ à 900€</span>
+        </a>
+        <a href="/journal/meilleur-moulin-cafe-electrique" class="group flex flex-col gap-3 p-6 rounded-3xl bg-white border border-surface-100 hover:border-amber-200 hover:shadow-lg hover:shadow-amber-500/5 transition-all">
+          <span class="text-[9px] font-bold uppercase tracking-[0.3em] text-amber-600">Moulin électrique</span>
+          <span class="text-base font-semibold text-surface-900 leading-snug group-hover:text-amber-800">Baratza, Fellow Ode, Timemore — meules plates ou coniques</span>
+          <span class="text-xs text-surface-400 font-medium mt-auto">Guide 2026</span>
+        </a>
+        <a href="/journal/meilleur-moulin-cafe-manuel" class="group flex flex-col gap-3 p-6 rounded-3xl bg-white border border-surface-100 hover:border-amber-200 hover:shadow-lg hover:shadow-amber-500/5 transition-all">
+          <span class="text-[9px] font-bold uppercase tracking-[0.3em] text-amber-600">Moulin manuel</span>
+          <span class="text-base font-semibold text-surface-900 leading-snug group-hover:text-amber-800">Timemore, Comandante, 1Zpresso — comparatif par budget</span>
+          <span class="text-xs text-surface-400 font-medium mt-auto">Guide 2026</span>
+        </a>
+        <a href="/journal/meilleure-balance-cafe" class="group flex flex-col gap-3 p-6 rounded-3xl bg-white border border-surface-100 hover:border-amber-200 hover:shadow-lg hover:shadow-amber-500/5 transition-all">
+          <span class="text-[9px] font-bold uppercase tracking-[0.3em] text-amber-600">Balance café</span>
+          <span class="text-base font-semibold text-surface-900 leading-snug group-hover:text-amber-800">Acaia Pearl, Timemore Black Mirror ou Hario</span>
+          <span class="text-xs text-surface-400 font-medium mt-auto">35€ à 200€</span>
+        </a>
+        <a href="/journal/meilleure-bouilloire-cafe-filtre" class="group flex flex-col gap-3 p-6 rounded-3xl bg-white border border-surface-100 hover:border-amber-200 hover:shadow-lg hover:shadow-amber-500/5 transition-all">
+          <span class="text-[9px] font-bold uppercase tracking-[0.3em] text-amber-600">Bouilloire col de cygne</span>
+          <span class="text-base font-semibold text-surface-900 leading-snug group-hover:text-amber-800">Fellow Stagg EKG, Hario Buono, Timemore Fish</span>
+          <span class="text-xs text-surface-400 font-medium mt-auto">Guide 2026</span>
+        </a>
+        <a href="/journal/meilleure-cafetiere-filtre-2025" class="group flex flex-col gap-3 p-6 rounded-3xl bg-white border border-surface-100 hover:border-amber-200 hover:shadow-lg hover:shadow-amber-500/5 transition-all">
+          <span class="text-[9px] font-bold uppercase tracking-[0.3em] text-amber-600">Cafetière filtre</span>
+          <span class="text-base font-semibold text-surface-900 leading-snug group-hover:text-amber-800">Moccamaster, Technivorm, Wilfa — automatiques de qualité</span>
+          <span class="text-xs text-surface-400 font-medium mt-auto">Guide 2026</span>
+        </a>
       </div>
     </div>
+
+    <!-- Café & Origines -->
+    <div class="mb-16">
+      <p class="text-[9px] font-bold uppercase tracking-[0.4em] text-surface-400 mb-8">Café & Origines</p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <a href="/journal/meilleur-cafe-en-grain-2025" class="group flex flex-col gap-3 p-6 rounded-3xl bg-white border border-surface-100 hover:border-amber-200 hover:shadow-lg hover:shadow-amber-500/5 transition-all">
+          <span class="text-[9px] font-bold uppercase tracking-[0.3em] text-amber-600">Sélection café</span>
+          <span class="text-base font-semibold text-surface-900 leading-snug group-hover:text-amber-800">Meilleur café en grain 2026 — sélection par profil</span>
+          <span class="text-xs text-surface-400 font-medium mt-auto">Hayb, Lomi, Terres de Café...</span>
+        </a>
+        <a href="/journal/quel-cafe-pour-v60" class="group flex flex-col gap-3 p-6 rounded-3xl bg-white border border-surface-100 hover:border-amber-200 hover:shadow-lg hover:shadow-amber-500/5 transition-all">
+          <span class="text-[9px] font-bold uppercase tracking-[0.3em] text-amber-600">Café pour le V60</span>
+          <span class="text-base font-semibold text-surface-900 leading-snug group-hover:text-amber-800">Ce que la méthode révèle vraiment dans le grain</span>
+          <span class="text-xs text-surface-400 font-medium mt-auto">Origines & torréfactions</span>
+        </a>
+        <a href="/journal/eau-cafe-filtre-tds-mineraux" class="group flex flex-col gap-3 p-6 rounded-3xl bg-white border border-surface-100 hover:border-amber-200 hover:shadow-lg hover:shadow-amber-500/5 transition-all">
+          <span class="text-[9px] font-bold uppercase tracking-[0.3em] text-amber-600">Eau & minéraux</span>
+          <span class="text-base font-semibold text-surface-900 leading-snug group-hover:text-amber-800">TDS, calcaire, Volvic ou filtrée — ce que ça change</span>
+          <span class="text-xs text-surface-400 font-medium mt-auto">Guide technique</span>
+        </a>
+      </div>
     </div>
 
-    <!-- GRILLE -->
-    <div id="cgrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+    <!-- Méthodes -->
+    <div>
+      <p class="text-[9px] font-bold uppercase tracking-[0.4em] text-surface-400 mb-8">Méthodes d'extraction</p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <a href="/journal/debuter-cafe-filtre-guide" class="group flex flex-col gap-3 p-6 rounded-3xl bg-surface-900 border border-surface-900 hover:bg-surface-800 transition-all">
+          <span class="text-[9px] font-bold uppercase tracking-[0.3em] text-amber-400">Par ici pour commencer</span>
+          <span class="text-base font-semibold text-white leading-snug">Débuter le café filtre — le guide sans jargon</span>
+          <span class="text-xs text-surface-400 font-medium mt-auto">Ratio, mouture, eau, matériel</span>
+        </a>
+        <a href="/journal/v60-guide-complet" class="group flex flex-col gap-3 p-6 rounded-3xl bg-white border border-surface-100 hover:border-amber-200 hover:shadow-lg hover:shadow-amber-500/5 transition-all">
+          <span class="text-[9px] font-bold uppercase tracking-[0.3em] text-amber-600">V60</span>
+          <span class="text-base font-semibold text-surface-900 leading-snug group-hover:text-amber-800">Guide complet, recette et réglages pas à pas</span>
+          <span class="text-xs text-surface-400 font-medium mt-auto">Hario V60</span>
+        </a>
+        <a href="/journal/chemex-v60-aeropress" class="group flex flex-col gap-3 p-6 rounded-3xl bg-white border border-surface-100 hover:border-amber-200 hover:shadow-lg hover:shadow-amber-500/5 transition-all">
+          <span class="text-[9px] font-bold uppercase tracking-[0.3em] text-amber-600">Comparatif méthodes</span>
+          <span class="text-base font-semibold text-surface-900 leading-snug group-hover:text-amber-800">Chemex, V60, AeroPress — laquelle vous correspond</span>
+          <span class="text-xs text-surface-400 font-medium mt-auto">Guide comparatif</span>
+        </a>
+      </div>
+    </div>
+
   </section>
 
 </main>
@@ -492,7 +379,6 @@ body { background-color: #f8fafc; color: #0f172a; overflow-x: hidden; -webkit-fo
         <div>
           <p class="font-semibold text-surface-900 mb-3 text-xs uppercase tracking-widest">Explorer</p>
           <div class="flex flex-col gap-2 text-surface-500">
-            <a href="/#catalogue" class="hover:text-surface-900 transition-colors">Le catalogue</a>
             <a href="/journal/"   class="hover:text-surface-900 transition-colors">Le journal</a>
             <a href="/guides/"    class="hover:text-surface-900 transition-colors">Les guides</a>
           </div>
@@ -521,533 +407,10 @@ body { background-color: #f8fafc; color: #0f172a; overflow-x: hidden; -webkit-fo
 </footer>
 
 <script>
-// ─── ICÔNES ─────────────────────────────────────────────────────────────────
-const ICONS = {
-  sparkle: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.5 7.5L22 12l-7.5 2.5L12 22l-2.5-7.5L2 12l7.5-2.5z"/></svg>`,
-  bean:    `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"><path d="M7 20c-3.333-3.333-3.333-8.667 0-12s8.667-3.333 12 0-3.333 8.667-12 12z"/><path d="M7 8c2 2 2 6 0 8"/></svg>`,
-  flower:  `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"><circle cx="12" cy="12" r="2.5"/><ellipse cx="12" cy="5.5" rx="2" ry="3"/><ellipse cx="12" cy="18.5" rx="2" ry="3"/><ellipse cx="5.5" cy="12" rx="3" ry="2"/><ellipse cx="18.5" cy="12" rx="3" ry="2"/></svg>`,
-  leaf:    `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.5 21 2c-2.5 4-3 5.5-4.1 11.2A7 7 0 0 1 11 20z"/><path d="M11 20c0-5 4-9 9-9"/></svg>`,
-  berry:   `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"><circle cx="8" cy="14" r="3"/><circle cx="16" cy="14" r="3"/><circle cx="12" cy="8" r="3"/><path d="M12 5V3"/></svg>`
-};
-
-// ─── DONNÉES ─────────────────────────────────────────────────────────────────
-const FALLBACK_COFFEES = [
-  { id:'bc1', name:'Éthiopie Bombe',        brand:'Brûlerie du Cantin',    type:'arabica', intensity:1, acidity:88, body:30, sweet:82, aromas:['floral'],    preps:['v60','chemex'],             weight:250, price:15.95, url:'https://www.brulerieducantin.com/product-page/%C3%A9thiopie-sidama-bombe',           icon:'flower',  rating:9,   sca:87, verdict:"Village de Bombe, dans le Sidama éthiopien. Jasmin net, bergamote sèche, thé blanc — rien qui traîne après la gorgée. Corps léger, acidité franche. En V60, c'est une des meilleures tasses qu'on puisse faire chez soi." },
-  { id:'bc2', name:'Colombie Choco',        brand:'Brûlerie du Cantin',    type:'arabica', intensity:2, acidity:58, body:68, sweet:82, aromas:['chocolat'],  preps:['expresso','v60'],           weight:250, price:9.50,  url:'https://www.brulerieducantin.com/product-page/colombie-choco',                    icon:'bean',    rating:8.5, sca:85, verdict:"Colombie, région Huila. Du chocolat noir à la première gorgée, puis une douceur caramel qui s'installe et reste. Pas d'aigreur, profil généreux. Le café qu'on sort pour convaincre les sceptiques du spécialité." },
-  { id:'bc3', name:'Jungle Myanmar',        brand:'Brûlerie du Cantin',    type:'arabica', intensity:3, acidity:40, body:75, sweet:60, aromas:['terreux'],   preps:['piston','moka','expresso'], weight:250, price:11.50, url:'https://www.brulerieducantin.com/product-page/myanmar-manussiha',                                       icon:'leaf',    rating:8.5, sca:84, verdict:"Shan State, à 1 400 mètres d'altitude. Des caféiers cultivés en sous-bois, non irrigués, récoltés à la main par des villages isolés. Profil terreux et dense — cacao amer, tabac blond, légère note boisée. Un café de caractère, sans concession." },
-  { id:'nb1', name:'Le Robuste',            brand:'Café Nibi',             type:'robusta', intensity:4, acidity:10, body:92, sweet:35, aromas:['épicé'],     preps:['expresso','piston','moka'], weight:200, price:7.90,  url:'https://www.cafenibi.com/e-boutique/p/le-robuste',                                icon:'leaf',    rating:7,   sca:82, verdict:"Un robusta d'Inde de qualité — pas celui des capsules premier prix. Corps massif, notes épicées, caféine élevée. Moins de délicatesse que les arabicas de la sélection, mais une puissance franche et une persistance en bouche que peu d'entre eux égalent." },
-  { id:'t3',  name:'Yeti Village Bio',      brand:'Terres de Café',        type:'arabica', intensity:2, acidity:80, body:35, sweet:85, aromas:['floral'],    preps:['v60'],                      weight:1000, price:59.90, url:'https://www.terresdecafe.com/fr/cafes-en-grains-ou-moulus/1134-20348-cafe-yeti-bio-kg-3700926140114.html', icon:'flower',  rating:9,   sca:87, verdict:"Des caféiers sauvages de forêt en Éthiopie — ça s'entend dans la tasse : bergamote sèche, fleur blanche, léger tabac blond. Corps très léger, presque transparent. Rien d'autre comme ça dans ma sélection." },
-  { id:'tz1', name:'Ouganda Zombo',         brand:'Terroir Café',          type:'arabica', intensity:1, acidity:75, body:45, sweet:78, aromas:['fruité'],    preps:['v60','chemex'],             weight:250, price:11.50, url:'https://www.terroircafe.fr/grands-crus/580-cafe-d-ouganda-zombo.html',             icon:'sparkle', rating:8.5, sca:86, verdict:"Un café ougandais traité en naturel, séché en altitude sur des lits surélevés. Des notes de pomme mûre et de raisin blanc — le genre de profil fruité qu'on associe plutôt à l'Éthiopie. L'Ouganda reste peu connu en spécialité : c'est exactement pour ça qu'il vaut le détour." },
-  { id:'lm2', name:'Jimma Gomma',           brand:'Torréfaction Lomi',     type:'arabica', intensity:2, acidity:55, body:60, sweet:75, aromas:['fruité'],    preps:['expresso'],                 weight:250, price:13.17, url:'https://lomi.cafe/products/jimma-gomma',                                          icon:'sparkle', rating:8.5, sca:87, verdict:"Confiture de fraises concentrée, cacao amer qui tient sous pression. Ce naturel éthiopien s'exprime mieux en espresso qu'en filtre. Le grain qu'on sort pour convaincre les sceptiques." },
-];
-
-// ─── CONFIG ──────────────────────────────────────────────────────────────────
-// ⬇ Remplacer par l'URL de ton Worker après déploiement sur dash.cloudflare.com
-const WORKER_URL = ''; // Catalogue curé — désactivé
-
-const PREPS    = ['expresso','v60','piston','chemex','moka','aeropress'];
-const AROMAS   = ['fruité','chocolat','floral','épicé','terreux','caramel'];
-const TYPES    = ['arabica','robusta','blend'];
-const I_LABELS = ['Tous niveaux','Douce','Équilibrée','Corsée','Puissante'];
-const TYPE_COLORS = { arabica:'type-arabica', robusta:'type-robusta', blend:'type-blend' };
-
-let COFFEES = [];
-let selPreps = new Set(), selAromas = new Set(), selTypes = new Set();
-let currentIntensity = 0;
 
 // ─── UTILS ───────────────────────────────────────────────────────────────────
 const scrollToId = id => document.getElementById(id)?.scrollIntoView({ behavior:'smooth' });
 
-function fromAirtable(rec) {
-  const f = rec.fields;
-  return {
-    id: rec.id, name: f.Nom || '', brand: f.Marque || '',
-    type: (f.Type || 'arabica').toLowerCase(),
-    intensity: f.Intensite || 3,
-    acidity: (f.Acidite || 3) * 20, body: (f.Corps || 3) * 20, sweet: (f.Sucre || 3) * 20,
-    aromas: f.Aromes || [], preps: f.Methodes || [],
-    weight: f.Poids || 250, price: f.Prix || 0, url: f.URL || '#',
-    icon: f.Icone || 'bean', rating: f.Note || 0, sca: f.SCA || 0, verdict: f.Verdict || ''
-  };
-}
-
-// ─── CHARGEMENT ──────────────────────────────────────────────────────────────
-async function initData() {
-  const loader = document.getElementById('api-loader');
-  if (loader) loader.classList.remove('hidden');
-  try {
-    if (WORKER_URL && WORKER_URL !== 'REMPLACER_PAR_URL_WORKER') {
-      const res = await fetch(WORKER_URL);
-      if (!res.ok) throw new Error(`API ${res.status}`);
-      const data = await res.json();
-      COFFEES = (data.records || []).slice(0, 10).map(fromAirtable);
-      if (!COFFEES.length) throw new Error('Aucun café actif');
-    } else {
-      throw new Error('Worker non configuré');
-    }
-  } catch(e) {
-    console.warn('Fallback local.', e);
-    COFFEES = FALLBACK_COFFEES;
-  } finally {
-    if (loader) loader.classList.add('hidden');
-    const el = document.getElementById('hero-count');
-    if (el) el.textContent = `${COFFEES.length} torréfacteur${COFFEES.length > 1 ? 's' : ''} testés · Mise à jour mensuelle`;
-    renderIntensityPicker();
-    mkTags('fpreps', PREPS, selPreps);
-    mkTags('faromas', AROMAS, selAromas);
-    mkTags('ftypes', TYPES, selTypes);
-    render();
-  }
-}
-
-// ─── INTENSITY PICKER ────────────────────────────────────────────────────────
-function renderIntensityPicker() {
-  const container = document.getElementById('intensity-picker');
-  document.getElementById('fi-val').textContent = I_LABELS[currentIntensity];
-  container.innerHTML = [1,2,3,4,5].map(i => `
-    <button onclick="setIntensity(${i})" aria-label="Intensité ${i}"
-      class="grain-btn w-12 h-12 rounded-2xl flex items-center justify-center border transition-all
-        ${currentIntensity >= i
-          ? 'bg-amber-50 border-amber-200 text-amber-600 shadow-sm'
-          : 'bg-surface-50 border-surface-200 text-surface-400 hover:border-surface-300 hover:text-surface-600'}">
-      <span class="grain-icon">
-        <svg width="22" height="22" viewBox="0 0 24 24"
-          fill="${currentIntensity >= i ? 'currentColor' : 'none'}"
-          stroke="currentColor" stroke-width="1.3">
-          <path d="M7 20c-3.333-3.333-3.333-8.667 0-12s8.667-3.333 12 0-3.333 8.667-12 12z"/>
-        </svg>
-      </span>
-    </button>
-  `).join('');
-}
-
-function setIntensity(val) {
-  currentIntensity = currentIntensity === val ? 0 : val;
-  renderIntensityPicker();
-  updateFilterBadge();
-  render();
-}
-
-// ─── FILTER CHIPS ─────────────────────────────────────────────────────────────
-function mkTags(id, opts, sel) {
-  const el = document.getElementById(id);
-  if (!el) return;
-  el.innerHTML = '';
-  opts.forEach(o => {
-    const b = document.createElement('button');
-    b.className = `filter-chip px-3 py-1.5 rounded-xl text-[10px] font-bold uppercase tracking-wider capitalize ${sel.has(o) ? 'active' : 'bg-white text-surface-500 hover:bg-surface-50'}`;
-    b.textContent = o;
-    b.onclick = () => { sel.has(o) ? sel.delete(o) : sel.add(o); mkTags(id, opts, sel); updateFilterBadge(); render(); };
-    el.appendChild(b);
-  });
-}
-
-// ─── BARRES SENSORIELLES ─────────────────────────────────────────────────────
-const bar = (label, value) => `
-  <div>
-    <div class="flex justify-between text-[10px] font-semibold text-surface-400 mb-1">
-      <span>${label}</span><span>${value}%</span>
-    </div>
-    <div class="sensory-bar"><div class="sensory-fill" style="width:${value}%"></div></div>
-  </div>`;
-
-// ─── DOTS DE NOTATION ─────────────────────────────────────────────────────────
-function ratingDots(r) {
-  const full = Math.floor(r), half = r % 1 >= 0.5;
-  return Array.from({length:10}, (_,i) =>
-    `<span class="w-1.5 h-1.5 rounded-full inline-block ${
-      i < full ? 'bg-surface-900' : (i === full && half ? 'bg-surface-300' : 'bg-surface-100')
-    }"></span>`
-  ).join('');
-}
-
-// ─── RENDU CATALOGUE ─────────────────────────────────────────────────────────
-function render() {
-  const sort  = document.getElementById('fsort').value;
-  const query = (document.getElementById('fsearch')?.value || '').toLowerCase().trim();
-
-  let list = COFFEES.filter(c => {
-    const matchSearch = !query ||
-      c.name.toLowerCase().includes(query) ||
-      c.brand.toLowerCase().includes(query) ||
-      c.aromas.some(a => a.toLowerCase().includes(query)) ||
-      (c.verdict || '').toLowerCase().includes(query);
-    return matchSearch &&
-      (selPreps.size  ? c.preps.some(p  => selPreps.has(p))  : true) &&
-      (selAromas.size ? c.aromas.some(a => selAromas.has(a)) : true) &&
-      (selTypes.size  ? selTypes.has(c.type)                 : true) &&
-      (currentIntensity === 0 ? true : c.intensity === currentIntensity);
-  });
-
-  if      (sort === 'price_asc')  list.sort((a,b) => a.price - b.price);
-  else if (sort === 'price_desc') list.sort((a,b) => b.price - a.price);
-  else if (sort === 'sca_desc')   list.sort((a,b) => b.sca   - a.sca);
-  else                            list.sort((a,b) => b.rating - a.rating);
-
-  document.getElementById('comp-total').textContent = `${list.length} RÉSERVE${list.length !== 1 ? 'S' : ''} DISPONIBLE${list.length !== 1 ? 'S' : ''}`;
-
-  const grid = document.getElementById('cgrid');
-
-  if (list.length === 0) {
-    grid.innerHTML = `
-      <div class="col-span-full py-32 text-center bento-card">
-        <h3 class="font-serif text-4xl text-surface-200 italic mb-6">Aucun grain ne correspond</h3>
-        <button onclick="resetFilters()" class="text-[11px] font-bold uppercase tracking-widest text-amber-600 border-b border-amber-600 pb-0.5">Effacer les filtres</button>
-      </div>`;
-    return;
-  }
-
-  grid.innerHTML = list.map((c, i) => {
-    const isPourVous = QUIZ_MATCH_IDS.has(c.id);
-    const isCoeur    = c.rating >= 9;
-    return `
-    <div class="bento-card flex flex-col group cursor-pointer${isPourVous ? ' ring-2 ring-emerald-400/40' : ''}"
-      style="animation-delay:${i * 0.04}s" onclick="openModal('${c.id}')">
-
-      <!-- En-tête -->
-      <div class="p-8 pb-0">
-        <div class="flex justify-between items-start mb-8">
-          <div class="w-14 h-14 rounded-[20px] bg-surface-50 flex items-center justify-center text-surface-400 border border-surface-100
-            group-hover:border-amber-200 group-hover:bg-amber-50 group-hover:text-amber-600 transition-all duration-500">
-            ${ICONS[c.icon] || ICONS.bean}
-          </div>
-          <div class="text-right">
-            ${isPourVous ? `<span class="badge-pourvous block mb-1">Pour vous</span>` : ''}
-            ${isCoeur && !isPourVous ? `<span class="badge-coeur block mb-1">Coup de cœur</span>` : ''}
-            <div class="text-base font-bold text-surface-900">${c.rating}/10</div>
-            <div class="flex gap-[2px] justify-end mt-1">${ratingDots(c.rating)}</div>
-          </div>
-        </div>
-
-        <!-- Identité -->
-        <div class="mb-5">
-          <span class="text-[10px] font-bold uppercase tracking-[0.4em] text-amber-600 block mb-2">${c.brand}</span>
-          <h3 class="text-3xl font-serif italic text-surface-900 leading-tight mb-3">${c.name}</h3>
-          <div class="flex items-center gap-2">
-            <span class="text-[9px] font-bold uppercase px-2 py-0.5 rounded-md ${TYPE_COLORS[c.type] || 'bg-surface-100 text-surface-500'}">${c.type}</span>
-            <span class="text-[9px] font-semibold text-surface-400 uppercase">SCA ${c.sca}</span>
-          </div>
-        </div>
-
-        <!-- Verdict -->
-        <p class="text-sm text-surface-400 leading-relaxed italic mb-6 line-clamp-2">"${c.verdict}"</p>
-
-        <!-- Barres sensorielles -->
-        <div class="space-y-2 mb-5">
-          ${bar('Acidité', c.acidity)}
-          ${bar('Corps',   c.body)}
-          ${bar('Sucré',   c.sweet)}
-        </div>
-
-        <!-- Méthodes -->
-        <div class="flex flex-wrap gap-1.5 pb-6">
-          ${c.preps.map(p => `<span class="text-[9px] font-bold uppercase tracking-wider bg-surface-50 border border-surface-100 text-surface-400 px-2 py-1 rounded-lg">${p}</span>`).join('')}
-        </div>
-      </div>
-
-      <!-- Pied de carte -->
-      <div class="mt-auto px-8 pb-8 pt-5 border-t border-surface-50 flex items-center justify-between gap-4">
-        <div>
-          <div class="text-2xl font-bold text-surface-900 tracking-tight">${c.price.toFixed(2).replace('.', ',')}€</div>
-          <div class="text-[10px] text-surface-400 font-medium">/ ${c.weight || 250}g</div>
-        </div>
-        <div class="flex items-center gap-2">
-          <div class="flex gap-1.5">
-            ${Array(5).fill(0).map((_,j) => `<div class="w-2.5 h-2.5 rounded-full ${j < c.intensity ? 'bg-amber-500 shadow-sm shadow-amber-500/40' : 'bg-surface-100'}"></div>`).join('')}
-          </div>
-          <a href="${c.url}" target="_blank" rel="noopener noreferrer"
-            data-coffee-name="${c.name}"
-            onclick="event.stopPropagation()"
-            class="ml-3 flex items-center gap-1.5 ${isPourVous ? 'bg-emerald-600 hover:bg-emerald-500' : 'bg-surface-900 hover:bg-amber-600'} text-white px-4 py-2.5 rounded-2xl text-[10px] font-bold uppercase tracking-widest transition-all shrink-0">
-            Commander
-            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-          </a>
-        </div>
-      </div>
-    </div>`;
-  }).join('');
-}
-
-// ─── RESET ────────────────────────────────────────────────────────────────────
-function resetFilters() {
-  selPreps.clear(); selAromas.clear(); selTypes.clear();
-  currentIntensity = 0;
-  document.getElementById('fsort').value = 'rating_desc';
-  const fs = document.getElementById('fsearch'); if (fs) fs.value = '';
-  renderIntensityPicker();
-  mkTags('fpreps', PREPS, selPreps);
-  mkTags('faromas', AROMAS, selAromas);
-  mkTags('ftypes', TYPES, selTypes);
-  updateFilterBadge();
-  render();
-}
-
-// ─── MODAL ────────────────────────────────────────────────────────────────────
-function openModal(id) {
-  const c = COFFEES.find(x => x.id === id);
-  if (!c) return;
-
-  document.getElementById('modal-body').innerHTML = `
-    <div class="animate-reveal">
-      <div class="flex items-start gap-5 mb-8">
-        <div class="w-14 h-14 rounded-2xl bg-surface-100 flex items-center justify-center text-surface-600 shrink-0">
-          ${ICONS[c.icon] || ICONS.bean}
-        </div>
-        <div class="flex-1 min-w-0">
-          <span class="text-[10px] font-bold uppercase tracking-[0.4em] text-amber-600 block mb-1">${c.brand}</span>
-          <h2 class="font-serif text-4xl text-surface-900 leading-tight">${c.name}</h2>
-          <div class="flex items-center gap-2 mt-2">
-            <span class="text-[9px] font-bold uppercase px-2 py-0.5 rounded-md ${TYPE_COLORS[c.type] || 'bg-surface-100 text-surface-500'}">${c.type}</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="grid grid-cols-4 gap-3 mb-7">
-        ${[
-          { label:'Note Atelier', value:`${c.rating}/10`, sub:'subjectif' },
-          { label:'Score SCA',    value:c.sca,            sub:'objectif'  },
-          { label:'Corps',        value:I_LABELS[c.intensity] || '—', sub:'intensité' },
-          { label:`${c.weight||250}g`, value:`${c.price.toFixed(2).replace('.', ',')}€`, sub:'boutique' }
-        ].map(s => `
-          <div class="bg-surface-50 rounded-2xl p-4 border border-surface-100 text-center">
-            <div class="text-[9px] font-bold uppercase tracking-wider text-surface-400 mb-1">${s.label}</div>
-            <div class="text-lg font-bold text-surface-900 leading-none">${s.value}</div>
-            <div class="text-[9px] text-surface-400 mt-1">${s.sub}</div>
-          </div>`).join('')}
-      </div>
-
-      <div class="space-y-3 mb-7 p-5 bg-surface-50 rounded-2xl border border-surface-100">
-        <div class="text-[9px] font-bold uppercase tracking-wider text-surface-400 mb-3">Profil sensoriel</div>
-        ${bar('Acidité', c.acidity)}
-        ${bar('Corps',   c.body)}
-        ${bar('Sucré',   c.sweet)}
-      </div>
-
-      <div class="mb-7">
-        <div class="text-[9px] font-bold uppercase tracking-wider text-surface-400 mb-3">Notes aromatiques</div>
-        <div class="flex flex-wrap gap-2">
-          ${c.aromas.map(a => `<span class="text-xs font-semibold px-3 py-1.5 bg-amber-50 text-amber-700 border border-amber-100 rounded-full">${a}</span>`).join('')}
-          ${c.preps.map(p  => `<span class="text-xs font-semibold px-3 py-1.5 bg-surface-100 text-surface-600 rounded-full">${p}</span>`).join('')}
-        </div>
-      </div>
-
-      <div class="mb-7 p-5 bg-surface-900 rounded-2xl">
-        <div class="text-[9px] font-bold uppercase tracking-wider text-amber-500 mb-3">Le Verdict de l'Atelier</div>
-        <p class="text-sm text-surface-200 leading-relaxed italic">"${c.verdict}"</p>
-      </div>
-
-      <a href="${c.url}" target="_blank" rel="noopener noreferrer"
-        data-coffee-name="${c.name}"
-        class="flex items-center justify-center gap-2 w-full bg-surface-900 text-white text-center py-4 rounded-2xl font-bold text-sm hover:bg-amber-600 transition-colors">
-        Acheter chez le torréfacteur
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-      </a>
-    </div>`;
-
-  document.getElementById('coffee-modal').classList.add('active');
-  document.body.style.overflow = 'hidden';
-}
-
-function closeModal() {
-  document.getElementById('coffee-modal').classList.remove('active');
-  document.body.style.overflow = 'auto';
-}
-
-// ══════════════════════════════════════════════════════════════════════════════
-//  LE TROUVEUR · Quiz aromatique
-// ══════════════════════════════════════════════════════════════════════════════
-const QUIZ_STATE = { step: 0, answers: {} };
-const QUIZ_MATCH_IDS = new Set();
-
-const QUIZ_QUESTIONS = [
-  {
-    id: 'moment',
-    question: 'Quel est votre rituel ?',
-    hint: 'Chaque moment façonne une tasse différente.',
-    options: [
-      { id:'reveil',      label:'Le réveil',        desc:'Premier café de la journée, il me faut du corps.' },
-      { id:'pause',       label:'La pause',          desc:'Un moment de plaisir, je veux savourer.' },
-      { id:'degustation', label:'La dégustation',    desc:'Un acte conscient, je cherche la complexité.' },
-    ]
-  },
-  {
-    id: 'sensation',
-    question: 'Quelle sensation cherchez-vous ?',
-    hint: "Fermez les yeux. Qu'est-ce qui vous attire ?",
-    options: [
-      { id:'fraicheur', label:'Fraîcheur & vivacité',   desc:'Fruits rouges, acidité lumineuse, finale vive.' },
-      { id:'douceur',   label:'Douceur & réconfort',    desc:'Chocolat, caramel, une rondeur rassurante.' },
-      { id:'legerete',  label:'Légèreté & délicatesse', desc:"Fleurs blanches, thé, une tasse que l'on habite." },
-      { id:'puissance', label:'Puissance & caractère',  desc:'Corps massif, intensité déclarée, présence brute.' },
-    ]
-  },
-  {
-    id: 'methode',
-    question: 'Comment préparez-vous votre café ?',
-    hint: 'La méthode façonne la tasse autant que le grain.',
-    options: [
-      { id:'filtre',     label:'Filtre',             desc:'V60, Chemex, Kalita Wave…' },
-      { id:'espresso',   label:'Espresso / Moka',    desc:'Machine à levier, cafetière italienne.' },
-      { id:'immersion',  label:'Piston / Aeropress', desc:'French press, cafetière à piston.' },
-      { id:'decouverte', label:'Je commence',         desc:'Pas encore de méthode fixe, je découvre.' },
-    ]
-  }
-];
-
-const QUIZ_SCORES = {
-  // ── Klover ──────────────────────────────────────────────────────────────────
-  'l2':   { reveil:1, pause:3, degustation:3, fraicheur:3, douceur:0, legerete:1, puissance:0, filtre:3, espresso:0, immersion:1, decouverte:1 }, // Kenya Karogoto — fruité intense, filtre
-  'kl2':  { reveil:0, pause:2, degustation:3, fraicheur:3, douceur:1, legerete:1, puissance:0, filtre:3, espresso:0, immersion:1, decouverte:1 }, // Ethiopia Burtukaana — natural fruité, filtre
-  // ── Brûlerie du Cantin ──────────────────────────────────────────────────────
-  'q1':   { reveil:3, pause:2, degustation:0, fraicheur:0, douceur:3, legerete:0, puissance:2, filtre:0, espresso:3, immersion:1, decouverte:1 }, // Mélange Prestige — blend espresso, réveil
-  'q2':   { reveil:0, pause:2, degustation:3, fraicheur:2, douceur:1, legerete:3, puissance:0, filtre:3, espresso:0, immersion:1, decouverte:1 }, // Éthiopie Guji — floral léger, dégustation
-  'bc2':  { reveil:0, pause:2, degustation:3, fraicheur:2, douceur:2, legerete:2, puissance:0, filtre:3, espresso:0, immersion:1, decouverte:1 }, // Burundi Kayanza — fruité doux, filtre
-  // ── Torréfaction Lomi ───────────────────────────────────────────────────────
-  'l1':   { reveil:1, pause:3, degustation:2, fraicheur:2, douceur:2, legerete:1, puissance:0, filtre:3, espresso:0, immersion:1, decouverte:2 }, // Gera Forest Honey — doux fruité, filtre
-  'lm2':  { reveil:0, pause:2, degustation:3, fraicheur:2, douceur:2, legerete:0, puissance:1, filtre:0, espresso:3, immersion:1, decouverte:1 }, // Jimma Gomma — natural espresso, connaisseur
-  'lm3':  { reveil:2, pause:3, degustation:1, fraicheur:1, douceur:3, legerete:0, puissance:1, filtre:0, espresso:3, immersion:1, decouverte:2 }, // Choco — chocolat surprise, espresso
-  // ── Terres de Café ──────────────────────────────────────────────────────────
-  't3':   { reveil:0, pause:2, degustation:3, fraicheur:1, douceur:1, legerete:3, puissance:0, filtre:3, espresso:0, immersion:1, decouverte:1 }, // Yeti Village Bio — floral sauvage, dégustation
-  'tc2':  { reveil:0, pause:2, degustation:3, fraicheur:2, douceur:1, legerete:3, puissance:0, filtre:3, espresso:0, immersion:1, decouverte:1 }, // Colombia El Paraíso — floral complexe, filtre
-  'tc3':  { reveil:0, pause:2, degustation:3, fraicheur:3, douceur:1, legerete:1, puissance:0, filtre:3, espresso:0, immersion:1, decouverte:1 }, // Rwanda Huye Mountain — fruité vif, filtre
-  't1':   { reveil:3, pause:2, degustation:1, fraicheur:0, douceur:3, legerete:0, puissance:0, filtre:0, espresso:2, immersion:2, decouverte:3 }, // Brésil Fazendas — doux accessible, réveil
-  'tc4':  { reveil:1, pause:3, degustation:2, fraicheur:2, douceur:2, legerete:1, puissance:0, filtre:3, espresso:0, immersion:1, decouverte:2 }, // Costa Rica Tarrazu — honey sucré fruité, filtre
-  'tc5':  { reveil:2, pause:1, degustation:2, fraicheur:0, douceur:1, legerete:0, puissance:3, filtre:0, espresso:2, immersion:3, decouverte:1 }, // Sumatra Mandheling — terreux puissant, piston
-  'tz1':  { reveil:1, pause:3, degustation:2, fraicheur:2, douceur:2, legerete:2, puissance:0, filtre:3, espresso:0, immersion:1, decouverte:2 }, // Ouganda Zombo — fruité naturel, filtre
-  'nb1':  { reveil:3, pause:1, degustation:0, fraicheur:0, douceur:0, legerete:0, puissance:3, filtre:0, espresso:3, immersion:2, decouverte:0 }, // Le Robuste Nibi — puissance brute, espresso
-  // ── Coutume ─────────────────────────────────────────────────────────────────
-  'cu3':  { reveil:0, pause:2, degustation:3, fraicheur:2, douceur:1, legerete:3, puissance:0, filtre:3, espresso:0, immersion:1, decouverte:1 }, // Éthiopie Chelchele — floral élégant, filtre
-  'c1':   { reveil:2, pause:2, degustation:1, fraicheur:0, douceur:3, legerete:0, puissance:1, filtre:0, espresso:3, immersion:2, decouverte:2 }, // The Blend — blend rassurant, espresso
-  'cu2':  { reveil:2, pause:3, degustation:1, fraicheur:0, douceur:3, legerete:0, puissance:1, filtre:2, espresso:2, immersion:1, decouverte:3 }, // Guatemala Patzibir — chocolat polyvalent
-  // ── L'Arbre à Café ──────────────────────────────────────────────────────────
-  'ac1':  { reveil:1, pause:2, degustation:3, fraicheur:0, douceur:2, legerete:0, puissance:2, filtre:2, espresso:0, immersion:3, decouverte:0 }, // Yemen Haraaz — épicé historique, piston
-  'ac2':  { reveil:2, pause:2, degustation:1, fraicheur:0, douceur:2, legerete:0, puissance:1, filtre:2, espresso:2, immersion:2, decouverte:3 }, // Honduras Marcala — polyvalent accessible
-};
-
-const QUIZ_PROFILES = {
-  fraicheur: { name:"L'Explorateur Fruité",  desc:"Vous cherchez à être surpris·e. Votre tasse est une aventure aromatique — acidité lumineuse, fruits rouges, finale longue. Vous n'avez pas besoin de sucre pour trouver la douceur." },
-  legerete:  { name:'Le Contemplatif',       desc:"Votre café est une pratique. Vous ne le buvez pas — vous l'habitez. Fleurs blanches, thé, légèreté soyeuse. Le genre de tasse qu'on garde longtemps dans les mains." },
-  douceur:   { name:'Le Réconforté',         desc:"Vous venez chercher au fond de la tasse quelque chose de rassurant. Chocolat, corps rond, amertume douce. Un rituel, pas une expérience." },
-  puissance: { name:"L'Audacieux",           desc:"Vous voulez être réveillé·e. Vraiment. Corps massif, intensité déclarée, café qui ne vous laisse pas indifférent·e. Pas de nuance, de la présence." },
-};
-
-// ─── FOCUS TRAP ───────────────────────────────────────────────────────────────
-const FOCUSABLE = 'button:not([disabled]), [href], input:not([disabled]), select, textarea, [tabindex]:not([tabindex="-1"])';
-let _trapEl = null, _prevFocus = null, _trapHandler = null;
-
-function trapFocus(el) {
-  _prevFocus = document.activeElement;
-  _trapEl = el;
-  const nodes = () => Array.from(_trapEl.querySelectorAll(FOCUSABLE)).filter(n => n.offsetParent !== null);
-  _trapHandler = e => {
-    if (e.key !== 'Tab') return;
-    const focusable = nodes();
-    if (!focusable.length) return e.preventDefault();
-    const first = focusable[0], last = focusable[focusable.length - 1];
-    if (e.shiftKey) { if (document.activeElement === first) { e.preventDefault(); last.focus(); } }
-    else            { if (document.activeElement === last)  { e.preventDefault(); first.focus(); } }
-  };
-  el.addEventListener('keydown', _trapHandler);
-  const firstFocusable = nodes()[0];
-  if (firstFocusable) firstFocusable.focus();
-}
-
-function releaseFocus() {
-  if (_trapEl && _trapHandler) _trapEl.removeEventListener('keydown', _trapHandler);
-  _trapEl = null; _trapHandler = null;
-  if (_prevFocus) _prevFocus.focus();
-}
-
-function openQuiz() {
-  QUIZ_STATE.step = 0; QUIZ_STATE.answers = {};
-  renderQuizStep();
-  const overlay = document.getElementById('quiz-overlay');
-  overlay.classList.add('active');
-  document.body.style.overflow = 'hidden';
-  requestAnimationFrame(() => trapFocus(overlay));
-}
-function closeQuiz() {
-  document.getElementById('quiz-overlay').classList.remove('active');
-  document.body.style.overflow = 'auto';
-  releaseFocus();
-}
-function selectQuizOption(qId, oId) {
-  QUIZ_STATE.answers[qId] = oId;
-  document.querySelectorAll(`[data-q="${qId}"]`).forEach(el => {
-    el.classList.toggle('quiz-opt-selected', el.dataset.o === oId);
-    el.querySelector('.quiz-opt-label')?.classList.toggle('text-amber-300', el.dataset.o === oId);
-  });
-  const btn = document.getElementById('quiz-continue');
-  if (btn) { btn.disabled = false; btn.classList.remove('opacity-40','cursor-not-allowed'); }
-}
-function quizNext() {
-  if (QUIZ_STATE.step < QUIZ_QUESTIONS.length - 1) { QUIZ_STATE.step++; renderQuizStep(); }
-  else showQuizResult();
-}
-function renderQuizStep() {
-  const q = QUIZ_QUESTIONS[QUIZ_STATE.step], total = QUIZ_QUESTIONS.length;
-  const dots = Array.from({length:total}, (_,i) => `<span class="quiz-dot${i <= QUIZ_STATE.step ? ' active' : ''}"></span>`).join('');
-  document.getElementById('quiz-content').innerHTML = `
-    <div class="quiz-step-slide">
-      <div class="flex items-center gap-1 mb-12">${dots}</div>
-      <p class="text-[9px] font-bold uppercase tracking-[0.4em] text-amber-400 mb-3">${q.hint}</p>
-      <h2 class="font-serif text-4xl md:text-5xl text-white mb-10 leading-tight">${q.question}</h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-10">
-        ${q.options.map(o => `
-          <button class="quiz-opt text-left p-5 rounded-2xl border border-white/10 transition-all"
-            data-q="${q.id}" data-o="${o.id}" onclick="selectQuizOption('${q.id}','${o.id}')">
-            <div class="quiz-opt-label font-bold text-white text-sm mb-1">${o.label}</div>
-            <div class="text-xs text-white/40 leading-relaxed">${o.desc}</div>
-          </button>`).join('')}
-      </div>
-      <button id="quiz-continue" onclick="quizNext()" disabled
-        class="opacity-40 cursor-not-allowed w-full sm:w-auto bg-amber-500 text-surface-900 px-8 py-4 rounded-2xl font-bold text-sm transition-colors flex items-center justify-center gap-2">
-        ${QUIZ_STATE.step < total - 1 ? 'Continuer' : 'Voir mon profil'}
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-      </button>
-    </div>`;
-  if (QUIZ_STATE.answers[q.id]) selectQuizOption(q.id, QUIZ_STATE.answers[q.id]);
-}
-function showQuizResult() {
-  const scores = {};
-  COFFEES.forEach(c => { scores[c.id] = Object.values(QUIZ_STATE.answers).reduce((sum,ans) => sum + (QUIZ_SCORES[c.id]?.[ans] || 0), 0); });
-  const ranked = COFFEES.slice().sort((a,b) => scores[b.id] - scores[a.id]);
-  const top2 = ranked.slice(0,2);
-  QUIZ_MATCH_IDS.clear(); top2.forEach(c => QUIZ_MATCH_IDS.add(c.id));
-  const profile = QUIZ_PROFILES[QUIZ_STATE.answers['sensation']] || QUIZ_PROFILES['douceur'];
-  document.getElementById('quiz-content').innerHTML = `
-    <div class="quiz-step-slide">
-      <p class="text-[9px] font-bold uppercase tracking-[0.4em] text-amber-400 mb-4">Votre profil aromatique</p>
-      <h2 class="font-serif text-5xl md:text-6xl text-white mb-6 leading-tight">${profile.name}</h2>
-      <p class="text-white/50 text-base leading-relaxed mb-12 max-w-lg">${profile.desc}</p>
-      <p class="text-[9px] font-bold uppercase tracking-[0.4em] text-white/30 mb-5">Vos recommandations</p>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10">
-        ${top2.map(c => `
-          <div class="quiz-opt p-5 rounded-2xl border border-white/10 cursor-pointer hover:border-amber-400/40 transition-all"
-            onclick="closeQuiz(); setTimeout(()=>openModal('${c.id}'),200)">
-            <div class="flex items-center gap-3 mb-3">
-              <div class="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center text-white/50 shrink-0">${ICONS[c.icon]||ICONS.bean}</div>
-              <div>
-                <div class="text-[9px] font-bold uppercase tracking-wider text-amber-400">${c.brand}</div>
-                <div class="font-bold text-white text-sm leading-snug">${c.name}</div>
-              </div>
-            </div>
-            <p class="text-[11px] text-white/30 italic leading-relaxed line-clamp-2">"${c.verdict}"</p>
-          </div>`).join('')}
-      </div>
-      <div class="flex flex-col sm:flex-row gap-3">
-        <button onclick="closeQuiz(); setTimeout(()=>{ scrollToId('catalogue'); render(); }, 200)"
-          class="flex-1 bg-amber-500 text-surface-900 px-6 py-3.5 rounded-2xl font-bold text-sm hover:bg-amber-400 transition-colors">
-          Voir dans le catalogue →
-        </button>
-        <button onclick="openQuiz()"
-          class="flex-1 text-center text-white/40 hover:text-white px-6 py-3.5 rounded-2xl font-medium text-sm border border-white/10 hover:border-white/30 transition-all">
-          Refaire le test
-        </button>
-      </div>
-    </div>`;
-  render();
-}
 
 // ─── NEWSLETTER ───────────────────────────────────────────────────────────────
 function scrollToNewsletter() {
@@ -1078,7 +441,7 @@ async function subscribeNewsletter(e) {
   }
 }
 
-document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeModal(); closeQuiz(); closeMobileMenu(); } });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeMobileMenu(); } });
 
 // ─── MOBILE MENU ──────────────────────────────────────────────────────────────
 function openMobileMenu() {
@@ -1089,26 +452,6 @@ function closeMobileMenu() {
   document.getElementById('mobile-drawer').classList.remove('open');
   document.body.style.overflow = 'auto';
 }
-
-// ─── FILTER ACCORDION (mobile) ────────────────────────────────────────────────
-function toggleFilter() {
-  const body    = document.getElementById('filter-body');
-  const chevron = document.getElementById('filter-chevron');
-  const isOpen  = !body.classList.contains('collapsed');
-  body.classList.toggle('collapsed', isOpen);
-  chevron.style.transform = isOpen ? '' : 'rotate(180deg)';
-}
-
-function updateFilterBadge() {
-  const total = selPreps.size + selAromas.size + selTypes.size + (currentIntensity > 0 ? 1 : 0);
-  const badge = document.getElementById('filter-active-count');
-  if (!badge) return;
-  if (total > 0) { badge.textContent = total; badge.classList.remove('hidden'); }
-  else { badge.classList.add('hidden'); }
-}
-
-// ─── INIT ─────────────────────────────────────────────────────────────────────
-window.onload = () => initData();
 </script>
 <script defer src="/js/track.js"></script>
 <script defer src="/js/exit-intent.js"></script>
