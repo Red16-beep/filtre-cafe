@@ -134,6 +134,15 @@ body {
   background: var(--stone-200);
   color: var(--stone-900);
 }
+.tag-transition {
+  background: transparent;
+  color: var(--amber-800);
+  border: 1px solid var(--amber-800);
+}
+.tag-entretien {
+  background: var(--stone-100);
+  color: var(--stone-500);
+}
 /* Arrow link */
 .arrow-link {
   display: inline-flex;
@@ -1089,89 +1098,103 @@ body {
       </div>
     </article>
 
-    <a href="/journal/nespresso-vers-specialite" class="group block">
-  <div class="bg-white border border-stone-100 rounded-3xl p-7 hover:border-stone-200 hover:shadow-lg transition-all duration-300 h-full">
-    <div class="flex items-center gap-2 mb-4">
-      <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-amber-700">Transition</span>
-      <span class="text-stone-200">·</span>
-      <span class="text-[10px] text-stone-400 font-medium">12 avril 2026</span>
-    </div>
-    <h2 class="serif italic text-xl text-stone-900 leading-snug mb-3 group-hover:text-amber-900 transition-colors" style="letter-spacing:-0.02em">Quitter Nespresso pour le café de spécialité : par où commencer</h2>
-    <p class="text-sm text-stone-500 font-light leading-relaxed">Ce que Nespresso fait bien, ce que vous ratez, et trois étapes concrètes pour franchir le cap sans se perdre.</p>
-  </div>
-</a>
+    <!-- Quitter Nespresso -->
+    <article class="article-card reveal reveal-delay-1 bg-white border border-stone-100 rounded-3xl p-8 md:p-10 flex flex-col">
+      <div class="flex items-center justify-between mb-6">
+        <span class="tag-transition text-[9px] font-bold uppercase tracking-[0.3em] px-3 py-1.5 rounded-full">Transition</span>
+        <span class="text-[11px] text-stone-300 font-light">Avril 2026</span>
+      </div>
+      <h2 class="serif text-3xl md:text-4xl italic text-stone-900 leading-tight mb-4">Quitter Nespresso pour le café de spécialité : par où commencer.</h2>
+      <p class="text-sm font-light text-stone-500 leading-relaxed mb-8 flex-1">Ce que Nespresso fait bien, ce que vous ratez, et trois étapes concrètes pour franchir le cap sans se perdre.</p>
+      <div class="flex items-center justify-between pt-6 border-t border-stone-100">
+        <span class="text-[10px] font-medium uppercase tracking-[0.2em] text-stone-300">7 min de lecture</span>
+        <a href="/journal/nespresso-vers-specialite" class="arrow-link text-[11px] font-bold uppercase tracking-[0.2em] text-stone-900 hover:text-amber-800 transition-colors">Lire <span aria-hidden="true">→</span></a>
+      </div>
+    </article>
 
-    <a href="/journal/cafe-soluble-vs-grain" class="group block">
-  <div class="bg-white border border-stone-100 rounded-3xl p-7 hover:border-stone-200 hover:shadow-lg transition-all duration-300 h-full">
-    <div class="flex items-center gap-2 mb-4">
-      <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-amber-700">Comprendre</span>
-      <span class="text-stone-200">·</span>
-      <span class="text-[10px] text-stone-400 font-medium">9 avril 2026</span>
-    </div>
-    <h2 class="serif italic text-xl text-stone-900 leading-snug mb-3 group-hover:text-amber-900 transition-colors" style="letter-spacing:-0.02em">Café soluble vs café en grain : ce que vous perdez (et ce que vous gardez)</h2>
-    <p class="text-sm text-stone-500 font-light leading-relaxed">Spray-dry, freeze-dry, lipides, arômes volatils — pourquoi le grain s'impose, et quand le soluble reste pertinent.</p>
-  </div>
-</a>
+    <!-- Café soluble vs grain -->
+    <article class="article-card reveal reveal-delay-2 bg-white border border-stone-100 rounded-3xl p-8 md:p-10 flex flex-col">
+      <div class="flex items-center justify-between mb-6">
+        <span class="tag-comprendre text-[9px] font-bold uppercase tracking-[0.3em] px-3 py-1.5 rounded-full">Comprendre</span>
+        <span class="text-[11px] text-stone-300 font-light">Avril 2026</span>
+      </div>
+      <h2 class="serif text-3xl md:text-4xl italic text-stone-900 leading-tight mb-4">Café soluble vs café en grain : ce que vous perdez (et ce que vous gardez).</h2>
+      <p class="text-sm font-light text-stone-500 leading-relaxed mb-8 flex-1">Spray-dry, freeze-dry, lipides, arômes volatils — pourquoi le grain s'impose, et quand le soluble reste pertinent.</p>
+      <div class="flex items-center justify-between pt-6 border-t border-stone-100">
+        <span class="text-[10px] font-medium uppercase tracking-[0.2em] text-stone-300">6 min de lecture</span>
+        <a href="/journal/cafe-soluble-vs-grain" class="arrow-link text-[11px] font-bold uppercase tracking-[0.2em] text-stone-900 hover:text-amber-800 transition-colors">Lire <span aria-hidden="true">→</span></a>
+      </div>
+    </article>
 
-    <a href="/journal/nettoyer-machine-cafe" class="group block">
-  <div class="bg-white border border-stone-100 rounded-3xl p-7 hover:border-stone-200 hover:shadow-lg transition-all duration-300 h-full">
-    <div class="flex items-center gap-2 mb-4">
-      <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-amber-700">Entretien</span>
-      <span class="text-stone-200">·</span>
-      <span class="text-[10px] text-stone-400 font-medium">8 avril 2026</span>
-    </div>
-    <h2 class="serif italic text-xl text-stone-900 leading-snug mb-3 group-hover:text-amber-900 transition-colors" style="letter-spacing:-0.02em">Comment nettoyer sa machine à café — guide complet</h2>
-    <p class="text-sm text-stone-500 font-light leading-relaxed">Espresso, filtre, piston, moka — fréquence, produits, gestes. Tout ce qui dégrade silencieusement votre tasse.</p>
-  </div>
-</a>
+    <!-- Nettoyer machine -->
+    <article class="article-card reveal reveal-delay-1 bg-white border border-stone-100 rounded-3xl p-8 md:p-10 flex flex-col">
+      <div class="flex items-center justify-between mb-6">
+        <span class="tag-entretien text-[9px] font-bold uppercase tracking-[0.3em] px-3 py-1.5 rounded-full">Entretien</span>
+        <span class="text-[11px] text-stone-300 font-light">Avril 2026</span>
+      </div>
+      <h2 class="serif text-3xl md:text-4xl italic text-stone-900 leading-tight mb-4">Comment nettoyer sa machine à café — guide complet.</h2>
+      <p class="text-sm font-light text-stone-500 leading-relaxed mb-8 flex-1">Espresso, filtre, piston, moka — fréquence, produits, gestes. Tout ce qui dégrade silencieusement votre tasse.</p>
+      <div class="flex items-center justify-between pt-6 border-t border-stone-100">
+        <span class="text-[10px] font-medium uppercase tracking-[0.2em] text-stone-300">8 min de lecture</span>
+        <a href="/journal/nettoyer-machine-cafe" class="arrow-link text-[11px] font-bold uppercase tracking-[0.2em] text-stone-900 hover:text-amber-800 transition-colors">Lire <span aria-hidden="true">→</span></a>
+      </div>
+    </article>
 
-    <a href="/journal/grammage-cafe" class="group block">
-  <div class="bg-white border border-stone-100 rounded-3xl p-7 hover:border-stone-200 hover:shadow-lg transition-all duration-300 h-full">
-    <div class="flex items-center gap-2 mb-4">
-      <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-amber-700">Technique</span>
-      <span class="text-stone-200">·</span>
-      <span class="text-[10px] text-stone-400 font-medium">8 avril 2026</span>
-    </div>
-    <h2 class="serif italic text-xl text-stone-900 leading-snug mb-3 group-hover:text-amber-900 transition-colors" style="letter-spacing:-0.02em">Grammage café : combien de grammes par tasse selon la méthode</h2>
-    <p class="text-sm text-stone-500 font-light leading-relaxed">Espresso, V60, piston, AeroPress, moka — les ratios exacts et comment ajuster selon le goût.</p>
-  </div>
-</a>
+    <!-- Grammage café -->
+    <article class="article-card reveal reveal-delay-2 bg-white border border-stone-100 rounded-3xl p-8 md:p-10 flex flex-col">
+      <div class="flex items-center justify-between mb-6">
+        <span class="tag-technique text-[9px] font-bold uppercase tracking-[0.3em] px-3 py-1.5 rounded-full">Technique</span>
+        <span class="text-[11px] text-stone-300 font-light">Avril 2026</span>
+      </div>
+      <h2 class="serif text-3xl md:text-4xl italic text-stone-900 leading-tight mb-4">Grammage café : combien de grammes par tasse selon la méthode.</h2>
+      <p class="text-sm font-light text-stone-500 leading-relaxed mb-8 flex-1">Espresso, V60, piston, AeroPress, moka — les ratios exacts et comment ajuster selon le goût.</p>
+      <div class="flex items-center justify-between pt-6 border-t border-stone-100">
+        <span class="text-[10px] font-medium uppercase tracking-[0.2em] text-stone-300">5 min de lecture</span>
+        <a href="/journal/grammage-cafe" class="arrow-link text-[11px] font-bold uppercase tracking-[0.2em] text-stone-900 hover:text-amber-800 transition-colors">Lire <span aria-hidden="true">→</span></a>
+      </div>
+    </article>
 
-    <a href="/journal/pourquoi-cafe-acide" class="group block">
-  <div class="bg-white border border-stone-100 rounded-3xl p-7 hover:border-stone-200 hover:shadow-lg transition-all duration-300 h-full">
-    <div class="flex items-center gap-2 mb-4">
-      <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-amber-700">Technique</span>
-      <span class="text-stone-200">·</span>
-      <span class="text-[10px] text-stone-400 font-medium">8 avril 2026</span>
-    </div>
-    <h2 class="serif italic text-xl text-stone-900 leading-snug mb-3 group-hover:text-amber-900 transition-colors" style="letter-spacing:-0.02em">Pourquoi mon café est acide — et comment corriger</h2>
-    <p class="text-sm text-stone-500 font-light leading-relaxed">Mouture, température, temps d'infusion, qualité de l'eau. Les 5 causes et les corrections précises.</p>
-  </div>
-</a>
+    <!-- Café acide -->
+    <article class="article-card reveal reveal-delay-1 bg-white border border-stone-100 rounded-3xl p-8 md:p-10 flex flex-col">
+      <div class="flex items-center justify-between mb-6">
+        <span class="tag-technique text-[9px] font-bold uppercase tracking-[0.3em] px-3 py-1.5 rounded-full">Technique</span>
+        <span class="text-[11px] text-stone-300 font-light">Avril 2026</span>
+      </div>
+      <h2 class="serif text-3xl md:text-4xl italic text-stone-900 leading-tight mb-4">Pourquoi mon café est acide — et comment corriger.</h2>
+      <p class="text-sm font-light text-stone-500 leading-relaxed mb-8 flex-1">Mouture, température, temps d'infusion, qualité de l'eau. Les 5 causes et les corrections précises.</p>
+      <div class="flex items-center justify-between pt-6 border-t border-stone-100">
+        <span class="text-[10px] font-medium uppercase tracking-[0.2em] text-stone-300">6 min de lecture</span>
+        <a href="/journal/pourquoi-cafe-acide" class="arrow-link text-[11px] font-bold uppercase tracking-[0.2em] text-stone-900 hover:text-amber-800 transition-colors">Lire <span aria-hidden="true">→</span></a>
+      </div>
+    </article>
 
-    <a href="/journal/pourquoi-cafe-amer" class="group block">
-  <div class="bg-white border border-stone-100 rounded-3xl p-7 hover:border-stone-200 hover:shadow-lg transition-all duration-300 h-full">
-    <div class="flex items-center gap-2 mb-4">
-      <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-amber-700">Technique</span>
-      <span class="text-stone-200">·</span>
-      <span class="text-[10px] text-stone-400 font-medium">8 avril 2026</span>
-    </div>
-    <h2 class="serif italic text-xl text-stone-900 leading-snug mb-3 group-hover:text-amber-900 transition-colors" style="letter-spacing:-0.02em">Pourquoi mon café est amer — et comment y remédier</h2>
-    <p class="text-sm text-stone-500 font-light leading-relaxed">Mouture, température, temps d'infusion, qualité du grain. Les 5 vraies causes et les corrections précises.</p>
-  </div>
-</a>
+    <!-- Café amer -->
+    <article class="article-card reveal reveal-delay-2 bg-white border border-stone-100 rounded-3xl p-8 md:p-10 flex flex-col">
+      <div class="flex items-center justify-between mb-6">
+        <span class="tag-technique text-[9px] font-bold uppercase tracking-[0.3em] px-3 py-1.5 rounded-full">Technique</span>
+        <span class="text-[11px] text-stone-300 font-light">Avril 2026</span>
+      </div>
+      <h2 class="serif text-3xl md:text-4xl italic text-stone-900 leading-tight mb-4">Pourquoi mon café est amer — et comment y remédier.</h2>
+      <p class="text-sm font-light text-stone-500 leading-relaxed mb-8 flex-1">Mouture, température, temps d'infusion, qualité du grain. Les 5 vraies causes et les corrections précises.</p>
+      <div class="flex items-center justify-between pt-6 border-t border-stone-100">
+        <span class="text-[10px] font-medium uppercase tracking-[0.2em] text-stone-300">6 min de lecture</span>
+        <a href="/journal/pourquoi-cafe-amer" class="arrow-link text-[11px] font-bold uppercase tracking-[0.2em] text-stone-900 hover:text-amber-800 transition-colors">Lire <span aria-hidden="true">→</span></a>
+      </div>
+    </article>
 
-    <a href="/journal/machine-espresso-manuelle-vs-automatique" class="group block">
-  <div class="bg-white border border-stone-100 rounded-3xl p-7 hover:border-stone-200 hover:shadow-lg transition-all duration-300 h-full">
-    <div class="flex items-center gap-2 mb-4">
-      <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-amber-700">Technique</span>
-      <span class="text-stone-200">·</span>
-      <span class="text-[10px] text-stone-400 font-medium">7 avril 2026</span>
-    </div>
-    <h2 class="serif italic text-xl text-stone-900 leading-snug mb-3 group-hover:text-amber-900 transition-colors" style="letter-spacing:-0.02em">Machine espresso manuelle vs automatique : laquelle choisir vraiment ?</h2>
-    <p class="text-sm text-stone-500 font-light leading-relaxed">Budget, contrôle, qualité d'extraction — le comparatif honnête pour ne pas se tromper.</p>
-  </div>
-</a>
+    <!-- Machine espresso manuelle vs automatique -->
+    <article class="article-card reveal reveal-delay-1 bg-white border border-stone-100 rounded-3xl p-8 md:p-10 flex flex-col">
+      <div class="flex items-center justify-between mb-6">
+        <span class="tag-technique text-[9px] font-bold uppercase tracking-[0.3em] px-3 py-1.5 rounded-full">Technique</span>
+        <span class="text-[11px] text-stone-300 font-light">Avril 2026</span>
+      </div>
+      <h2 class="serif text-3xl md:text-4xl italic text-stone-900 leading-tight mb-4">Machine espresso manuelle vs automatique : laquelle choisir vraiment ?</h2>
+      <p class="text-sm font-light text-stone-500 leading-relaxed mb-8 flex-1">Budget, contrôle, qualité d'extraction — le comparatif honnête pour ne pas se tromper.</p>
+      <div class="flex items-center justify-between pt-6 border-t border-stone-100">
+        <span class="text-[10px] font-medium uppercase tracking-[0.2em] text-stone-300">7 min de lecture</span>
+        <a href="/journal/machine-espresso-manuelle-vs-automatique" class="arrow-link text-[11px] font-bold uppercase tracking-[0.2em] text-stone-900 hover:text-amber-800 transition-colors">Lire <span aria-hidden="true">→</span></a>
+      </div>
+    </article>
 
   </div>
 </main>
