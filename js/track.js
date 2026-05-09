@@ -15,6 +15,19 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
+  // ── Liens internes de funnel (journal → pages money) ─────────────────────
+  document.querySelectorAll('a[data-funnel-link]').forEach(function (link) {
+    link.addEventListener('click', function () {
+      if (typeof equateur !== 'function') return;
+      equateur('track', 'FunnelClick', {
+        slot: this.dataset.funnelLink || 'unknown',
+        label: (this.textContent || '').trim().substring(0, 80),
+        page: window.location.pathname,
+        destination: (this.href || '').substring(0, 120)
+      });
+    });
+  });
+
 });
 
 // ── Liens catalogue torréfacteurs (event delegation) ──────────────────────

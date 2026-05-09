@@ -259,7 +259,39 @@ body {
     </div>
   </section>
 
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+  <section class="mb-12 md:mb-16 rounded-3xl border border-stone-200 bg-white p-6 md:p-8" aria-label="Guides d'achat rapides">
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-6">
+      <div>
+        <p class="text-[10px] font-bold uppercase tracking-[0.3em] text-amber-800 mb-3">Vous voulez acheter quelque chose ?</p>
+        <h2 class="serif italic text-3xl md:text-4xl text-stone-900 leading-tight">Les raccourcis utiles.</h2>
+      </div>
+      <p class="text-sm font-light text-stone-500 leading-relaxed max-w-md">Le Journal est grand. Ces cinq portes d'entrée évitent de fouiller quand l'objectif est concret : choisir du matériel, du café ou un abonnement.</p>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
+      <a href="/journal/meilleure-machine-espresso-debutant" data-funnel-link="journal-quick-machine" class="group rounded-2xl border border-stone-200 p-4 hover:border-stone-300 hover:shadow-sm transition-all">
+        <span class="block text-[10px] font-bold uppercase tracking-[0.18em] text-amber-700 mb-2">Machine</span>
+        <span class="block text-sm font-semibold text-stone-900 leading-snug">Première machine espresso</span>
+      </a>
+      <a href="/journal/meilleur-moulin-cafe-electrique" data-funnel-link="journal-quick-grinder" class="group rounded-2xl border border-stone-200 p-4 hover:border-stone-300 hover:shadow-sm transition-all">
+        <span class="block text-[10px] font-bold uppercase tracking-[0.18em] text-amber-700 mb-2">Moulin</span>
+        <span class="block text-sm font-semibold text-stone-900 leading-snug">Le vrai premier achat</span>
+      </a>
+      <a href="/journal/meilleure-balance-cafe" data-funnel-link="journal-quick-scale" class="group rounded-2xl border border-stone-200 p-4 hover:border-stone-300 hover:shadow-sm transition-all">
+        <span class="block text-[10px] font-bold uppercase tracking-[0.18em] text-amber-700 mb-2">Balance</span>
+        <span class="block text-sm font-semibold text-stone-900 leading-snug">Peser sans se prendre la tête</span>
+      </a>
+      <a href="/journal/anom-cafe-club-test-abonnement-machine" data-funnel-link="journal-quick-anom" class="group rounded-2xl border border-stone-200 p-4 hover:border-stone-300 hover:shadow-sm transition-all">
+        <span class="block text-[10px] font-bold uppercase tracking-[0.18em] text-amber-700 mb-2">Abonnement</span>
+        <span class="block text-sm font-semibold text-stone-900 leading-snug">Café + machine incluse</span>
+      </a>
+      <a href="/journal/ou-acheter-cafe-specialite-en-ligne" data-funnel-link="journal-quick-buy-coffee" class="group rounded-2xl border border-stone-200 p-4 hover:border-stone-300 hover:shadow-sm transition-all">
+        <span class="block text-[10px] font-bold uppercase tracking-[0.18em] text-amber-700 mb-2">Café</span>
+        <span class="block text-sm font-semibold text-stone-900 leading-snug">Où commander du bon grain</span>
+      </a>
+    </div>
+  </section>
+
+  <div id="journal-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
 
     <!-- ══ RÉFÉRENCE ══ -->
 
@@ -1327,7 +1359,7 @@ function closeMobileMenu() {
 
 // ─── Journal filters ───
 (function () {
-  const grid = document.querySelector('main .grid');
+  const grid = document.getElementById('journal-grid');
   const searchInput = document.getElementById('journal-search');
   const filterButtons = Array.from(document.querySelectorAll('.journal-filter'));
   const count = document.getElementById('journal-count');
@@ -1422,5 +1454,6 @@ function closeMobileMenu() {
 })();
 </script>
 <script defer src="https://equateur.org/tracker.js" data-equateur-key="aff654dd0df3f7e406ecb0a7e78ced5a"></script>
+<script defer src="/js/track.js"></script>
 </body>
 </html>
