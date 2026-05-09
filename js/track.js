@@ -1,11 +1,13 @@
-// filtre. — funnel and outbound tracking via Equateur
+// filtre. — useful click tracking via Equateur
 
 (function () {
-  var scrollMarks = [25, 50, 75, 90];
-  var sentScrollMarks = {};
-
   function cleanText(value, limit) {
     return (value || '').replace(/\s+/g, ' ').trim().substring(0, limit || 100);
+  }
+
+  function isLocalEnvironment() {
+    var host = window.location.hostname;
+    return host === 'localhost' || host === '127.0.0.1' || host === '::1' || host === '';
   }
 
   function getDestinationType(url) {
@@ -24,6 +26,8 @@
   }
 
   function track(eventName, props) {
+    if (isLocalEnvironment()) return;
+
     var payload = props || {};
     payload.page = window.location.pathname;
     payload.page_title = document.title;
@@ -46,8 +50,11 @@
   }
 
   function trackOutboundClick(link) {
+    if (link.dataset.funnelLink) return;
+
     var destinationType = getDestinationType(link.href);
     if (destinationType === 'internal' || destinationType === 'unknown') return;
+    if (destinationType !== 'amazon' && (link.getAttribute('rel') || '').indexOf('sponsored') === -1) return;
 
     var eventName = destinationType === 'amazon' ? 'AffiliateClick' : 'OutboundClick';
     track(eventName, {
@@ -73,18 +80,4 @@
       });
     }
   });
-
-  window.addEventListener('scroll', function () {
-    var doc = document.documentElement;
-    var total = doc.scrollHeight - window.innerHeight;
-    if (total <= 0) return;
-
-    var current = Math.round((window.scrollY / total) * 100);
-    scrollMarks.forEach(function (mark) {
-      if (current >= mark && !sentScrollMarks[mark]) {
-        sentScrollMarks[mark] = true;
-        track('ArticleScrollDepth', { percent: mark });
-      }
-    });
-  }, { passive: true });
 })();
