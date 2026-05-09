@@ -153,6 +153,18 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://filtre.cafe/journal/anom-cafe-club-test-abonnement-machine</loc>
+    <lastmod>2026-05-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://filtre.cafe/journal/abonnement-cafe-machine-incluse-comparatif</loc>
+    <lastmod>2026-05-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://filtre.cafe/journal/torrefacteurs-francais</loc>
     <lastmod>2026-04-02</lastmod>
     <changefreq>monthly</changefreq>
@@ -488,6 +500,20 @@
     <lastmod>2026-04-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://filtre.cafe/journal/meilleure-machine-espresso-manuelle-2026</loc>
+    <lastmod>2026-05-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://filtre.cafe/journal/delonghi-specialista-arte-test-avis</loc>
+    <lastmod>2026-05-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
 
   <url>
