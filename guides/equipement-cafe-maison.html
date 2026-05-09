@@ -98,6 +98,17 @@ body { font-family:'Inter',sans-serif; background:var(--stone-50); color:var(--s
 .path-card { background:white; border:1px solid var(--stone-200); border-radius:1.25rem; padding:1.25rem; }
 .path-card h3 { font-size:.82rem; font-weight:800; text-transform:uppercase; letter-spacing:.14em; color:var(--stone-900); margin-bottom:.65rem; }
 .path-card p { font-size:.9rem; line-height:1.7; color:#57534e; margin:0 0 1rem; font-weight:300; }
+.decision-table { width:100%; border-collapse:collapse; font-size:.86rem; }
+.decision-table th { padding:.7rem .85rem; text-align:left; font-size:.68rem; font-weight:800; text-transform:uppercase; letter-spacing:.14em; color:var(--amber-800); background:var(--stone-100); border-bottom:1px solid var(--stone-200); }
+.decision-table td { padding:.85rem; border-bottom:1px solid var(--stone-100); color:#44403c; font-weight:300; vertical-align:top; line-height:1.55; }
+.decision-table tr:last-child td { border-bottom:none; }
+.decision-table td:first-child { color:var(--stone-900); font-weight:700; }
+.decision-table a { color:var(--amber-800); font-weight:700; text-decoration:none; }
+.trust-row { display:grid; grid-template-columns:1fr; gap:.75rem; }
+@media (min-width:768px) { .trust-row { grid-template-columns:repeat(3,1fr); } }
+.trust-pill { border:1px solid var(--stone-200); border-radius:1rem; padding:1rem; background:#fff; }
+.trust-pill strong { display:block; font-size:.75rem; text-transform:uppercase; letter-spacing:.14em; color:var(--stone-900); margin-bottom:.45rem; }
+.trust-pill span { display:block; font-size:.82rem; color:#57534e; line-height:1.6; font-weight:300; }
 </style>
 <script defer src="https://equateur.org/assets/js/cmp.js" data-site="aff654dd0df3f7e406ecb0a7e78ced5a"></script>
 </head>
@@ -162,6 +173,43 @@ body { font-family:'Inter',sans-serif; background:var(--stone-50); color:var(--s
 
   <article class="max-w-3xl mx-auto px-5 pb-16 prose">
     <div class="box">
+      <p class="box-label">Quelle route choisir ?</p>
+      <div style="overflow-x:auto;border:1px solid var(--stone-200);border-radius:1rem;">
+        <table class="decision-table">
+          <thead>
+            <tr>
+              <th>Situation</th>
+              <th>Priorité</th>
+              <th>Prochaine page</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Je pars de zéro</td>
+              <td>Moulin manuel, V60, balance. Le plus gros gain pour le moins d'argent.</td>
+              <td><a href="/journal/debuter-cafe-filtre-guide" data-funnel-link="hub-table-zero">Débuter café filtre</a></td>
+            </tr>
+            <tr>
+              <td>Je veux de l'espresso</td>
+              <td>Machine + moulin adapté espresso. Ne mettez pas tout le budget dans la machine.</td>
+              <td><a href="/journal/meilleure-machine-espresso-debutant" data-funnel-link="hub-table-espresso">Machine débutant</a></td>
+            </tr>
+            <tr>
+              <td>Je veux éviter l'achat machine</td>
+              <td>Comparer le coût global d'un abonnement avec machine incluse.</td>
+              <td><a href="/journal/anom-cafe-club-test-abonnement-machine" data-funnel-link="hub-table-anom">Test Anom</a></td>
+            </tr>
+            <tr>
+              <td>Mon café est irrégulier</td>
+              <td>Balance + moulin. C'est presque toujours là que le problème commence.</td>
+              <td><a href="/journal/meilleur-moulin-cafe-electrique" data-funnel-link="hub-table-grinder">Choisir un moulin</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="box">
       <p class="box-label">Mes choix rapides</p>
       <p>Si vous voulez acheter maintenant sans lire tout le guide, ces choix couvrent les besoins les plus fréquents. Liens Amazon affiliés, sans surcoût pour vous.</p>
       <div style="display:grid;grid-template-columns:1fr;gap:.75rem;">
@@ -169,6 +217,24 @@ body { font-family:'Inter',sans-serif; background:var(--stone-50); color:var(--s
         <a class="pick" href="https://www.amazon.fr/s?k=timemore+black+mirror+basic&tag=redahassani-21" target="_blank" rel="noopener sponsored"><strong>Balance à prendre sans hésiter · Timemore Black Mirror</strong><span>Amazon</span></a>
         <a class="pick" href="https://www.amazon.fr/s?k=hario+v60+02&tag=redahassani-21" target="_blank" rel="noopener sponsored"><strong>Méthode filtre simple · Hario V60 02</strong><span>Amazon</span></a>
         <a class="pick" href="https://www.amazon.fr/s?k=delonghi+dedica+ec685&tag=redahassani-21" target="_blank" rel="noopener sponsored"><strong>Espresso budget · De'Longhi Dedica EC685</strong><span>Amazon</span></a>
+      </div>
+    </div>
+
+    <div class="box">
+      <p class="box-label">Transparence</p>
+      <div class="trust-row">
+        <div class="trust-pill">
+          <strong>Affiliation</strong>
+          <span>Les liens Amazon peuvent générer une commission. Le prix ne change pas pour vous.</span>
+        </div>
+        <div class="trust-pill">
+          <strong>Priorité</strong>
+          <span>Je privilégie les achats qui améliorent vraiment la tasse : moulin, balance, eau, méthode.</span>
+        </div>
+        <div class="trust-pill">
+          <strong>Anom</strong>
+          <span>L'article Anom est éditorial pour l'instant : les liens ne sont pas marqués sponsorisés.</span>
+        </div>
       </div>
     </div>
 
