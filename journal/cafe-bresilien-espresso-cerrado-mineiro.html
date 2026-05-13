@@ -143,10 +143,10 @@
   <nav class="glass-nav fixed top-0 left-0 right-0 z-50 border-b border-stone-200/60">
     <div class="max-w-3xl mx-auto px-5 h-14 flex items-center justify-between">
       <a href="/" class="serif italic text-xl text-stone-900 tracking-tight">filtré.</a>
-      <div class="hidden md:flex items-center gap-7">
-        <a href="/journal/" class="text-sm font-medium text-stone-700 hover:text-stone-900 transition-colors">Le Journal</a>
-        <a href="/lettre/" class="text-sm font-medium text-stone-700 hover:text-stone-900 transition-colors">La Lettre</a>
-        <a href="/a-propos" class="text-sm font-medium text-stone-700 hover:text-stone-900 transition-colors">À propos</a>
+      <div class="hidden md:flex items-center gap-8 text-[11px] font-semibold uppercase tracking-[0.18em] text-stone-400">
+        <a href="/journal/" class="hover:text-stone-900 transition-colors">Le Journal</a>
+        <a href="/newsletter" class="hover:text-stone-900 transition-colors">La Lettre</a>
+        <a href="/a-propos.html" class="hover:text-stone-900 transition-colors">À propos</a>
       </div>
       <button class="md:hidden p-2 text-stone-600 hover:text-stone-900 transition-colors" onclick="toggleMobileMenu()" aria-label="Menu">
         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -158,10 +158,10 @@
 
   <!-- Mobile menu -->
   <div id="mobile-menu" class="fixed inset-0 z-40 bg-stone-50 flex-col pt-14">
-    <div class="flex flex-col px-5 py-6 gap-1">
-      <a href="/journal/" class="text-base font-medium text-stone-800 py-3 border-b border-stone-100 hover:text-stone-900 transition-colors">Le Journal</a>
-      <a href="/lettre/" class="text-base font-medium text-stone-800 py-3 border-b border-stone-100 hover:text-stone-900 transition-colors">La Lettre</a>
-      <a href="/a-propos" class="text-base font-medium text-stone-800 py-3 hover:text-stone-900 transition-colors">À propos</a>
+    <div class="mobile-menu-panel bg-stone-50/95 backdrop-blur-xl px-5 py-4 flex flex-col gap-6 text-[11px] font-semibold uppercase tracking-[0.18em] text-stone-500">
+      <a href="/journal/" class="hover:text-stone-900 transition-colors">Le Journal</a>
+      <a href="/newsletter" class="hover:text-stone-900 transition-colors">La Lettre</a>
+      <a href="/a-propos.html" class="hover:text-stone-900 transition-colors">À propos</a>
     </div>
   </div>
 
@@ -375,7 +375,7 @@
       <p class="text-sm text-stone-400 font-light">© 2026 filtré. Depuis l'Artois.</p>
       <nav class="flex items-center gap-6">
         <a href="/journal/" class="text-sm text-stone-500 hover:text-stone-800 transition-colors">Le Journal</a>
-        <a href="/lettre/" class="text-sm text-stone-500 hover:text-stone-800 transition-colors">La Lettre</a>
+        <a href="/newsletter" class="text-sm text-stone-500 hover:text-stone-800 transition-colors">La Lettre</a>
       </nav>
     </div>
   </footer>

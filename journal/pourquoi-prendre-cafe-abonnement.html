@@ -139,6 +139,7 @@ body { font-family: 'Inter', sans-serif; background-color: var(--stone-50); colo
   <script>
   !function(e,t,n,s,u,a){e.twq||(s=e.twq=function(){s.exe?s.exe.apply(s,arguments):s.queue.push(arguments);},s.version='1.1',s.queue=[],u=t.createElement(n),u.async=!0,u.src='https://static.equateur.org/uwt.js',a=t.getElementsByTagName(n)[0],a.parentNode.insertBefore(u,a))}(window,document,'script');
   </script>
+  <script defer src="https://equateur.org/assets/js/cmp.js" data-site="aff654dd0df3f7e406ecb0a7e78ced5a"></script>
 </head>
 <body class="antialiased">
 
@@ -149,10 +150,10 @@ body { font-family: 'Inter', sans-serif; background-color: var(--stone-50); colo
   <nav class="glass-nav fixed top-0 left-0 right-0 z-50 border-b border-stone-200/60">
     <div class="max-w-3xl mx-auto px-5 py-4 flex items-center justify-between">
       <a href="/" class="serif italic text-xl text-stone-900 tracking-tight">filtré.</a>
-      <div class="hidden md:flex items-center gap-8">
-        <a href="/journal/" class="text-sm font-medium text-stone-700 hover:text-stone-900 transition-colors">Le Journal</a>
-        <a href="/la-lettre/" class="text-sm font-medium text-stone-500 hover:text-stone-900 transition-colors">La Lettre</a>
-        <a href="/a-propos/" class="text-sm font-medium text-stone-500 hover:text-stone-900 transition-colors">À propos</a>
+      <div class="hidden md:flex items-center gap-8 text-[11px] font-semibold uppercase tracking-[0.18em] text-stone-400">
+        <a href="/journal/" class="hover:text-stone-900 transition-colors">Le Journal</a>
+        <a href="/newsletter" class="hover:text-stone-900 transition-colors">La Lettre</a>
+        <a href="/a-propos.html" class="hover:text-stone-900 transition-colors">À propos</a>
       </div>
       <button id="mobile-menu-btn" class="md:hidden p-2 text-stone-500 hover:text-stone-900 transition-colors" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu">
         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -160,10 +161,12 @@ body { font-family: 'Inter', sans-serif; background-color: var(--stone-50); colo
         </svg>
       </button>
     </div>
-    <div id="mobile-menu" class="md:hidden flex-col border-t border-stone-200/60 bg-stone-50/95 px-5 py-4 gap-4">
-      <a href="/journal/" class="text-sm font-medium text-stone-700 hover:text-stone-900 transition-colors">Le Journal</a>
-      <a href="/la-lettre/" class="text-sm font-medium text-stone-500 hover:text-stone-900 transition-colors">La Lettre</a>
-      <a href="/a-propos/" class="text-sm font-medium text-stone-500 hover:text-stone-900 transition-colors">À propos</a>
+    <div id="mobile-menu" class="md:hidden flex-col border-t border-stone-200/60">
+      <div class="mobile-menu-panel bg-stone-50/95 backdrop-blur-xl px-5 py-4 flex flex-col gap-6 text-[11px] font-semibold uppercase tracking-[0.18em] text-stone-500">
+        <a href="/journal/" class="hover:text-stone-900 transition-colors">Le Journal</a>
+        <a href="/newsletter" class="hover:text-stone-900 transition-colors">La Lettre</a>
+        <a href="/a-propos.html" class="hover:text-stone-900 transition-colors">À propos</a>
+      </div>
     </div>
   </nav>
 
@@ -389,8 +392,8 @@ body { font-family: 'Inter', sans-serif; background-color: var(--stone-50); colo
       <p class="text-xs text-stone-400">© 2026 filtré. Depuis l'Artois.</p>
       <nav class="flex items-center gap-6" aria-label="Navigation pied de page">
         <a href="/journal/" class="text-xs text-stone-400 hover:text-stone-700 transition-colors">Le Journal</a>
-        <a href="/la-lettre/" class="text-xs text-stone-400 hover:text-stone-700 transition-colors">La Lettre</a>
-        <a href="/a-propos/" class="text-xs text-stone-400 hover:text-stone-700 transition-colors">À propos</a>
+        <a href="/newsletter" class="text-xs text-stone-400 hover:text-stone-700 transition-colors">La Lettre</a>
+        <a href="/a-propos.html" class="text-xs text-stone-400 hover:text-stone-700 transition-colors">À propos</a>
       </nav>
     </div>
   </footer>
