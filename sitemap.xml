@@ -535,4 +535,46 @@
     <priority>0.8</priority>
   </url>
 
+  <url>
+    <loc>https://filtre.cafe/journal/cafe-bresilien-espresso-cerrado-mineiro</loc>
+    <lastmod>2026-05-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://filtre.cafe/journal/debuter-cafe-filtre-guide</loc>
+    <lastmod>2026-05-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://filtre.cafe/journal/eau-cafe-filtre-tds-mineraux</loc>
+    <lastmod>2026-05-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://filtre.cafe/journal/quel-cafe-pour-v60</loc>
+    <lastmod>2026-05-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://filtre.cafe/journal/cafe-guatemala-specialite</loc>
+    <lastmod>2026-04-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://filtre.cafe/journal/cafe-indonesie-specialite</loc>
+    <lastmod>2026-04-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
 </urlset>
