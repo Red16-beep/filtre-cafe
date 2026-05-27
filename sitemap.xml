@@ -183,8 +183,8 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://filtre.cafe/journal/cafe-specialite-france-2024</loc>
-    <lastmod>2026-04-02</lastmod>
+    <loc>https://filtre.cafe/journal/cafe-specialite-france</loc>
+    <lastmod>2026-05-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -240,12 +240,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  <url>
-    <loc>https://filtre.cafe/journal/champignon-lion-mane-cafe</loc>
-    <lastmod>2026-04-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
 
   <!-- Articles — Origines -->
   <url>
@@ -281,25 +275,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://filtre.cafe/journal/cafe-en-coree</loc>
-    <lastmod>2026-04-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://filtre.cafe/journal/cafe-en-thailande</loc>
-    <lastmod>2026-04-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://filtre.cafe/journal/cafe-au-vietnam</loc>
-    <lastmod>2026-04-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://filtre.cafe/journal/cafe-aux-epices-fes</loc>
     <lastmod>2026-04-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
