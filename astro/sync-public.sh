@@ -7,18 +7,20 @@ cd "$(dirname "$0")/.."          # repo root
 PUB="astro/public"
 mkdir -p "$PUB/journal" "$PUB/guides"
 
+copy() { [ -e "$1" ] && cp -pR "$1" "$2" || echo "  (skip missing: $1)"; }
+
 for a in tailwind.css favicon.svg og-image.png og-image.svg nl-subscribe.js \
          robots.txt sitemap.xml llms.txt BingSiteAuth.xml \
-         google9cf118a7aef4e71c.html _headers _redirects; do
-  [ -e "$a" ] && cp -p "$a" "$PUB/"
+         google9cf118a7aef4e71c.html _headers _redirects js images.filtre; do
+  copy "$a" "$PUB/"
 done
-cp -pR js "$PUB/"
-[ -d images.filtre ] && cp -pR images.filtre "$PUB/"
 
 for p in index.html a-propos.html commencer-ici.html mentions-legales.html \
          politique-confidentialite.html newsletter.html 404.html og-image.html; do
-  [ -e "$p" ] && cp -p "$p" "$PUB/"
+  copy "$p" "$PUB/"
 done
-cp -p journal/index.html "$PUB/journal/"
-cp -p guides/index.html  "$PUB/guides/"
+copy journal/index.html "$PUB/journal/"
+copy guides/index.html  "$PUB/guides/"
+# newsletter archive issues linked from newsletter.html (01.html, 02.html, ...)
+copy newsletter "$PUB/"
 echo "public/ synced."
