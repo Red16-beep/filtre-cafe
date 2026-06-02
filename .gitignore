@@ -33,3 +33,6 @@ n8n-workflow-checker.json
 check_urls.py
 inject-tarteaucitron.py
 AUDIT-2026-06.md
+
+# Outil admin local — ne pas déployer (audit 2026-06)
+admin.html
