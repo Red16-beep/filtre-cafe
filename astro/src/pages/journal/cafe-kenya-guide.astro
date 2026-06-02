@@ -1,0 +1,11 @@
+---
+import Base from '../../layouts/Base.astro';
+import head from '../../fragments/journal/cafe-kenya-guide.head.html?raw';
+import style from '../../fragments/journal/cafe-kenya-guide.style.html?raw';
+import body from '../../fragments/journal/cafe-kenya-guide.body.html?raw';
+---
+<Base>
+  <Fragment slot="head" set:html={head} />
+  <Fragment slot="style" set:html={style} />
+  <Fragment set:html={body} />
+</Base>

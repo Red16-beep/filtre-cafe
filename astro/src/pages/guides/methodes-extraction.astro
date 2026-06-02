@@ -1,0 +1,11 @@
+---
+import Base from '../../layouts/Base.astro';
+import head from '../../fragments/guides/methodes-extraction.head.html?raw';
+import style from '../../fragments/guides/methodes-extraction.style.html?raw';
+import body from '../../fragments/guides/methodes-extraction.body.html?raw';
+---
+<Base>
+  <Fragment slot="head" set:html={head} />
+  <Fragment slot="style" set:html={style} />
+  <Fragment set:html={body} />
+</Base>

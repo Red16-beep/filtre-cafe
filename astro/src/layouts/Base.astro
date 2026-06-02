@@ -1,0 +1,66 @@
+---
+// Shared chrome for every page. Edit nav / footer / fonts / tracking ONCE here
+// instead of in 80 files. Per-page <head> meta + JSON-LD + <style> arrive through
+// the named "head" slot; the page body arrives through the default slot. Both are
+// injected verbatim via <Fragment set:html> so nothing is re-escaped.
+---
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<slot name="head" />
+<link rel="preload" href="/tailwind.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="/tailwind.css"></noscript>
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap"></noscript>
+<slot name="style" />
+<script is:inline defer src="https://equateur.org/assets/js/cmp.js" data-site="aff654dd0df3f7e406ecb0a7e78ced5a"></script>
+</head>
+<body class="antialiased">
+<div class="noise"></div>
+<div id="scroll-progress"></div>
+
+<nav class="glass-nav fixed top-0 left-0 right-0 z-50 border-b border-stone-200/60">
+  <div class="max-w-5xl mx-auto px-5 h-14 flex items-center justify-between">
+    <a href="/" class="serif italic text-xl tracking-tight text-stone-900">filtré.</a>
+    <div class="hidden md:flex items-center gap-8 text-[11px] font-semibold uppercase tracking-[0.18em] text-stone-400">
+      <a href="/journal/" class="hover:text-stone-900 transition-colors">Le Journal</a>
+      <a href="/newsletter" class="hover:text-stone-900 transition-colors">La Lettre</a>
+      <a href="/a-propos.html" class="hover:text-stone-900 transition-colors">À propos</a>
+    </div>
+    <button onclick="document.getElementById('mobile-menu').classList.toggle('open')" class="md:hidden p-2 text-stone-500">
+      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </div>
+  <div id="mobile-menu" class="flex-col md:hidden border-t border-stone-200/60">
+    <div class="mobile-menu-panel bg-stone-50/95 backdrop-blur-xl px-5 py-4 flex flex-col gap-6 text-[11px] font-semibold uppercase tracking-[0.18em] text-stone-500">
+      <a href="/journal/" class="hover:text-stone-900 transition-colors">Le Journal</a>
+      <a href="/newsletter" class="hover:text-stone-900 transition-colors">La Lettre</a>
+      <a href="/a-propos.html" class="hover:text-stone-900 transition-colors">À propos</a>
+    </div>
+  </div>
+</nav>
+
+<slot />
+
+<footer class="border-t border-stone-200 py-10 px-5">
+  <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+    <span class="serif italic text-lg text-stone-900">filtré.</span>
+    <p class="text-xs text-stone-400 font-medium">© 2026 filtré. · Guide indépendant du café de spécialité</p>
+  </div>
+</footer>
+
+<script is:inline>
+window.addEventListener('scroll', () => {
+  const el = document.getElementById('scroll-progress');
+  const h = document.documentElement.scrollHeight - window.innerHeight;
+  el.style.width = (window.scrollY / h * 100) + '%';
+});
+</script>
+<script is:inline src="/nl-subscribe.js"></script>
+<script is:inline defer src="https://equateur.org/tracker.js" data-equateur-key="aff654dd0df3f7e406ecb0a7e78ced5a"></script>
+<script is:inline defer src="/js/track.js"></script>
+<script is:inline defer src="/js/newsletter-inline.js"></script>
+<script is:inline defer src="/js/exit-intent.js"></script>
+</body>
+</html>

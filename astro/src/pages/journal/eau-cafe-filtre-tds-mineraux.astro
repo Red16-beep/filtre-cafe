@@ -1,0 +1,11 @@
+---
+import Base from '../../layouts/Base.astro';
+import head from '../../fragments/journal/eau-cafe-filtre-tds-mineraux.head.html?raw';
+import style from '../../fragments/journal/eau-cafe-filtre-tds-mineraux.style.html?raw';
+import body from '../../fragments/journal/eau-cafe-filtre-tds-mineraux.body.html?raw';
+---
+<Base>
+  <Fragment slot="head" set:html={head} />
+  <Fragment slot="style" set:html={style} />
+  <Fragment set:html={body} />
+</Base>

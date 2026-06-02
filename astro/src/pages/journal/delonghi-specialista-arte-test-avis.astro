@@ -1,0 +1,11 @@
+---
+import Base from '../../layouts/Base.astro';
+import head from '../../fragments/journal/delonghi-specialista-arte-test-avis.head.html?raw';
+import style from '../../fragments/journal/delonghi-specialista-arte-test-avis.style.html?raw';
+import body from '../../fragments/journal/delonghi-specialista-arte-test-avis.body.html?raw';
+---
+<Base>
+  <Fragment slot="head" set:html={head} />
+  <Fragment slot="style" set:html={style} />
+  <Fragment set:html={body} />
+</Base>

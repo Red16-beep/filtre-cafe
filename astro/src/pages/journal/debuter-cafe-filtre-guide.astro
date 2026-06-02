@@ -1,0 +1,11 @@
+---
+import Base from '../../layouts/Base.astro';
+import head from '../../fragments/journal/debuter-cafe-filtre-guide.head.html?raw';
+import style from '../../fragments/journal/debuter-cafe-filtre-guide.style.html?raw';
+import body from '../../fragments/journal/debuter-cafe-filtre-guide.body.html?raw';
+---
+<Base>
+  <Fragment slot="head" set:html={head} />
+  <Fragment slot="style" set:html={style} />
+  <Fragment set:html={body} />
+</Base>

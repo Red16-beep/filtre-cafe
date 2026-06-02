@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.astro/
+# public/ is mirrored from the legacy site by sync-public.sh (derived, not source)
+public/
+# the root .gitignore blanket-ignores these; Astro needs its own committed
+!package.json
+!package-lock.json

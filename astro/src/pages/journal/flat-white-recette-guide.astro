@@ -1,0 +1,11 @@
+---
+import Base from '../../layouts/Base.astro';
+import head from '../../fragments/journal/flat-white-recette-guide.head.html?raw';
+import style from '../../fragments/journal/flat-white-recette-guide.style.html?raw';
+import body from '../../fragments/journal/flat-white-recette-guide.body.html?raw';
+---
+<Base>
+  <Fragment slot="head" set:html={head} />
+  <Fragment slot="style" set:html={style} />
+  <Fragment set:html={body} />
+</Base>
