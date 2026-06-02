@@ -24,3 +24,12 @@ capture-og.js
 og-image.html
 .claude/
 .codex/
+
+# Fichiers de dev / automation — ne pas déployer publiquement (audit 2026-06)
+DEPLOIEMENT.md
+airtable-schema.md
+n8n-workflow-api.json
+n8n-workflow-checker.json
+check_urls.py
+inject-tarteaucitron.py
+AUDIT-2026-06.md
