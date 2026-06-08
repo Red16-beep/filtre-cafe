@@ -1,4 +1,4 @@
-// filtre. — useful click tracking via Equateur
+// filtre. useful click tracking via Equateur
 
 (function () {
   function cleanText(value, limit) {

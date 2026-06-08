@@ -1,4 +1,4 @@
-// filtré. — Exit-intent popup
+// filtré. Exit-intent popup
 // Déclenché quand la souris quitte la fenêtre par le haut
 // Une seule fois par session, jamais si déjà abonné
 
@@ -43,7 +43,7 @@
         <p style="font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.3em;color:#b45309;margin-bottom:1rem;">La lettre filtré.</p>
 
         <p style="font-family:'Instrument Serif',serif;font-style:italic;font-size:1.6rem;line-height:1.25;color:#1c1917;margin-bottom:0.75rem;letter-spacing:-0.02em;">
-          Avant de partir —
+          Avant de partir
         </p>
         <p style="font-size:0.9375rem;color:#78716c;font-weight:300;line-height:1.7;margin-bottom:1.75rem;">
           Torréfactions testées, guides d'extraction, origines rares. Une lettre par mois, sans remplissage.

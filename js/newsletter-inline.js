@@ -1,4 +1,4 @@
-// filtré. — Inline newsletter subscription
+// filtré. Inline newsletter subscription
 async function subscribeInline(e) {
   e.preventDefault();
   const form = e.target;
