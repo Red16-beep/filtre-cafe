@@ -11,7 +11,7 @@ copy() { [ -e "$1" ] && cp -pR "$1" "$2" || echo "  (skip missing: $1)"; }
 
 for a in tailwind.css favicon.svg og-image.png og-image.svg nl-subscribe.js \
          robots.txt sitemap.xml llms.txt BingSiteAuth.xml \
-         google9cf118a7aef4e71c.html _headers _redirects js images.filtre; do
+         google9cf118a7aef4e71c.html _headers _redirects js images.filtre fonts; do
   copy "$a" "$PUB/"
 done
 
