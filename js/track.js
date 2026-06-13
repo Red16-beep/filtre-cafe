@@ -17,6 +17,7 @@
 
       if (host === window.location.hostname.replace(/^www\./, '')) return 'internal';
       if (host.indexOf('amazon.') !== -1) return 'amazon';
+      if (host === 'amzlink.to' || host.indexOf('posttap') !== -1) return 'amazon';
       if (host === 'anomcafeclub.com') return 'anom';
       if (host === 'tanat.coffee') return 'tanat';
       return 'external';
