@@ -10,10 +10,9 @@
     return host === 'localhost' || host === '127.0.0.1' || host === '::1' || host === '';
   }
 
-  // Domaines de shortlinks PostTap. A confirmer avec le vrai domaine genere
-  // par PostTap avant de poser le moindre lien (sinon les clics PostTap
-  // seraient classes 'external' au lieu de 'amazon' et le pilote serait fausse).
-  var POSTTAP_HOSTS = ['posttap.com'];
+  // Domaines des shortlinks PostTap (amzlink.to). Un clic sur ces liens
+  // reste categorise 'amazon' avec program='posttap' pour le pilote Equateur.
+  var POSTTAP_HOSTS = ['amzlink.to'];
 
   function isPostTapHost(host) {
     for (var i = 0; i < POSTTAP_HOSTS.length; i++) {
