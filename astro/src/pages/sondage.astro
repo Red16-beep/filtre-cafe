@@ -1,0 +1,165 @@
+---
+import Base from '../layouts/Base.astro';
+
+const questions = [
+  { name: 'methode', type: 'radio', required: true, label: "Ta méthode d'extraction principale à la maison ?",
+    opts: ['Machine espresso', 'Filtre (V60, Chemex, dripper)', 'Piston (French press)', 'Moka (cafetière italienne)', 'AeroPress', 'Capsules', 'Cafetière auto à filtre', 'Je ne fais pas de café maison'] },
+  { name: 'budget', type: 'radio', label: 'Ton budget café par mois ?',
+    opts: ['Moins de 20 €', '20 à 40 €', '40 à 60 €', '60 à 100 €', 'Plus de 100 €'] },
+  { name: 'prix_max', type: 'radio', label: 'Prix maximum pour un paquet de 250 g de spécialité ?',
+    opts: ['Moins de 8 €', '8 à 12 €', '12 à 16 €', '16 à 22 €', 'Plus de 22 €'] },
+  { name: 'mouture', type: 'radio', label: 'Tu mouds ton café…',
+    opts: ['Avec un moulin manuel', 'Avec un moulin électrique', "J'achète pré-moulu", 'Capsules / dosettes'] },
+  { name: 'materiel', type: 'checkbox', label: 'Quel matériel possèdes-tu ? (plusieurs réponses possibles)',
+    opts: ['Moulin manuel', 'Moulin électrique', 'Balance de précision', 'Bouilloire col de cygne', 'Machine espresso', 'V60 / Chemex / dripper', 'AeroPress', 'Aucun de ces'] },
+  { name: 'canaux', type: 'checkbox', label: 'Où achètes-tu ton café ? (plusieurs réponses possibles)',
+    opts: ['Torréfacteur (boutique)', 'Torréfacteur (en ligne)', 'Abonnement', 'Coffee shop', 'Épicerie fine', 'Supermarché', 'Amazon / marketplace'] },
+  { name: 'abonnement', type: 'radio', label: 'Es-tu abonné à un café de spécialité ?',
+    opts: ['Oui', "Non, mais ça m'intéresse", "Non, et ça ne m'intéresse pas", "J'ai déjà été abonné, puis arrêté"] },
+  { name: 'frein', type: 'radio', label: 'Ton principal frein pour en boire plus à la maison ?',
+    opts: ['Le prix', 'Le matériel à acheter', "C'est trop technique", 'Le temps', 'Aucun, je suis équipé'] },
+  { name: 'declencheur', type: 'radio', label: "Qu'est-ce qui t'a fait basculer vers le spécialité ?",
+    opts: ['Un café bu en coffee shop', 'Un proche', 'Une vidéo ou un contenu en ligne', 'Un voyage', 'Un cadeau (machine, abonnement)', "Je n'y suis pas encore vraiment"] },
+  { name: 'anciennete', type: 'radio', label: 'Depuis combien de temps bois-tu du café de spécialité ?',
+    opts: ["Moins d'un an", '1 à 3 ans', '3 à 5 ans', 'Plus de 5 ans'] },
+  { name: 'age', type: 'radio', label: 'Ta tranche d’âge ?',
+    opts: ['18-24', '25-34', '35-44', '45-54', '55 et +'] },
+  { name: 'region', type: 'text', label: 'Ton département ou ta ville ? (facultatif)', placeholder: 'ex. Lyon, 69' },
+];
+---
+<Base>
+  <Fragment slot="head">
+    <title>Sondage du café de spécialité en France 2026 | filtré.</title>
+    <meta name="description" content="Réponds au Baromètre filtré. 2026 : 2 minutes, anonyme. On mesure ce que les amateurs de café de spécialité boivent vraiment chez eux." />
+    <meta name="robots" content="noindex, follow" />
+    <link rel="canonical" href="https://filtre.cafe/sondage" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Sondage du café de spécialité en France 2026" />
+    <meta property="og:description" content="2 minutes, anonyme. Aide-nous à mesurer ce que les amateurs boivent vraiment chez eux. Résultats publiés sur filtré." />
+    <meta property="og:url" content="https://filtre.cafe/sondage" />
+    <meta property="og:image" content="https://filtre.cafe/og-image.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#1c1917" />
+  </Fragment>
+
+  <Fragment slot="style">
+    <style>
+      :root { --stone-50:#fafaf9; --stone-100:#f5f5f4; --stone-200:#e7e5e4; --stone-300:#d6d3d1; --stone-400:#a8a29e; --stone-500:#78716c; --stone-700:#44403c; --stone-900:#1c1917; --amber-700:#b45309; --amber-800:#92400e; }
+      body { font-family:'Inter',sans-serif; background:var(--stone-50); color:var(--stone-900); letter-spacing:-0.02em; }
+      .serif { font-family:'Instrument Serif',serif; }
+      .glass-nav { background:rgba(250,250,249,0.8); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); }
+      .noise { position:fixed; inset:0; pointer-events:none; opacity:0.03; z-index:999; }
+      #scroll-progress { position:fixed; top:0; left:0; z-index:9998; height:2px; background:#92400e; width:0%; }
+      #mobile-menu { display:none; } #mobile-menu.open { display:flex; }
+      .bx-wrap { max-width:42rem; margin:0 auto; padding:6.5rem 1.25rem 5rem; }
+      .bx-tag { font-size:0.65rem; font-weight:700; text-transform:uppercase; letter-spacing:0.3em; color:var(--amber-700); }
+      .bx-h1 { font-family:'Instrument Serif',serif; font-style:italic; font-size:2.5rem; line-height:1.1; letter-spacing:-0.03em; margin:0.75rem 0 1rem; }
+      .bx-lead { color:var(--stone-500); font-weight:300; font-size:1.05rem; line-height:1.6; margin-bottom:0.5rem; }
+      .bx-meta { font-size:0.8rem; color:var(--stone-400); margin-bottom:2.5rem; }
+      .q-card { background:#fff; border:1px solid var(--stone-200); border-radius:1.1rem; padding:1.4rem; margin-bottom:1rem; }
+      .q-label { font-weight:600; font-size:1rem; color:var(--stone-900); display:flex; gap:0.6rem; align-items:baseline; line-height:1.4; float:none; }
+      .q-num { display:inline-flex; align-items:center; justify-content:center; flex-shrink:0; width:1.5rem; height:1.5rem; border-radius:50%; background:var(--stone-900); color:#fff; font-size:0.7rem; font-weight:700; }
+      .opts { display:flex; flex-direction:column; gap:0.5rem; margin-top:1rem; }
+      .opt { display:flex; align-items:center; gap:0.7rem; padding:0.65rem 0.9rem; border:1px solid var(--stone-200); border-radius:0.7rem; cursor:pointer; transition:background 0.15s,border-color 0.15s; font-size:0.95rem; color:var(--stone-700); }
+      .opt:hover { border-color:var(--stone-300); background:var(--stone-50); }
+      .opt input { accent-color:var(--amber-700); width:1.05rem; height:1.05rem; flex-shrink:0; margin:0; }
+      .opt:has(input:checked) { border-color:var(--amber-700); background:#fffbeb; color:var(--stone-900); font-weight:500; }
+      .q-text { width:100%; margin-top:1rem; padding:0.7rem 0.9rem; border:1px solid var(--stone-200); border-radius:0.7rem; font-size:0.95rem; font-family:inherit; box-sizing:border-box; }
+      .q-text:focus { outline:none; border-color:var(--amber-700); }
+      .bx-submit { margin-top:1.5rem; width:100%; background:var(--stone-900); color:#fff; font-weight:700; font-size:0.95rem; padding:1rem; border:none; border-radius:0.8rem; cursor:pointer; transition:background 0.15s; }
+      .bx-submit:hover { background:#000; }
+      .bx-submit:disabled { opacity:0.6; cursor:not-allowed; }
+      .bx-hp { position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; }
+      .bx-err { display:none; margin-top:1rem; color:#b91c1c; font-size:0.9rem; text-align:center; }
+      .bx-thanks { display:none; text-align:center; padding:2rem 0; }
+      .bx-thanks h2 { font-family:'Instrument Serif',serif; font-style:italic; font-size:2.2rem; color:var(--stone-900); margin-bottom:1rem; }
+      .bx-thanks p { color:var(--stone-500); font-weight:300; line-height:1.6; margin-bottom:1.5rem; }
+      .bx-share { display:flex; gap:0.6rem; justify-content:center; flex-wrap:wrap; }
+      .bx-share a { font-size:0.8rem; font-weight:600; text-transform:uppercase; letter-spacing:0.1em; padding:0.6rem 1.1rem; border:1px solid var(--stone-200); border-radius:0.7rem; color:var(--stone-700); text-decoration:none; transition:border-color 0.15s,color 0.15s; }
+      .bx-share a:hover { border-color:var(--amber-700); color:var(--amber-800); }
+    </style>
+  </Fragment>
+
+  <div class="bx-wrap">
+    <div id="bx-form-wrap">
+      <p class="bx-tag">Baromètre filtré. · 2026</p>
+      <h1 class="bx-h1">Le sondage du café de spécialité</h1>
+      <p class="bx-lead">2 minutes, anonyme. On veut comprendre ce que les amateurs boivent vraiment chez eux, pas seulement ce que disent les études de marché.</p>
+      <p class="bx-meta">Tes réponses nourriront le Baromètre 2026, publié sur filtré. et repartagé à la communauté.</p>
+
+      <form id="bx-form" novalidate>
+        <input type="text" name="website" class="bx-hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
+        {questions.map((q, i) => (
+          <fieldset class="q-card">
+            <legend class="q-label"><span class="q-num">{i + 1}</span><span>{q.label}</span></legend>
+            {q.type === 'text' ? (
+              <input type="text" name={q.name} placeholder={q.placeholder} maxlength="80" class="q-text" />
+            ) : (
+              <div class="opts">
+                {q.opts.map((o) => (
+                  <label class="opt">
+                    <input type={q.type} name={q.name} value={o} required={q.required && q.type === 'radio'} />
+                    <span>{o}</span>
+                  </label>
+                ))}
+              </div>
+            )}
+          </fieldset>
+        ))}
+        <button type="submit" class="bx-submit" id="bx-submit">Envoyer mes réponses</button>
+        <p class="bx-err" id="bx-err">Oups, l'envoi a échoué. Réessaie dans un instant.</p>
+      </form>
+    </div>
+
+    <div class="bx-thanks" id="bx-thanks">
+      <h2>Merci pour ta réponse.</h2>
+      <p>C'est enregistré. Les résultats du Baromètre 2026 seront publiés sur filtré. Pour les recevoir en avant-première, abonne-toi à la lettre.</p>
+      <div class="bx-share">
+        <a href="/newsletter">Recevoir les résultats</a>
+        <a href="/journal/barometre-cafe-specialite-france-2026">Lire le baromètre</a>
+      </div>
+    </div>
+  </div>
+
+  <script is:inline>
+    (function () {
+      var form = document.getElementById('bx-form');
+      if (!form) return;
+      form.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        var btn = document.getElementById('bx-submit');
+        var err = document.getElementById('bx-err');
+        err.style.display = 'none';
+        var fd = new FormData(form);
+        if (!fd.get('methode')) {
+          err.textContent = 'Merci de répondre au moins à la première question.';
+          err.style.display = 'block';
+          return;
+        }
+        var getAll = function (n) { return fd.getAll(n).join(', '); };
+        var payload = {
+          methode: fd.get('methode') || '', budget: fd.get('budget') || '', prix_max: fd.get('prix_max') || '',
+          mouture: fd.get('mouture') || '', materiel: getAll('materiel'), canaux: getAll('canaux'),
+          abonnement: fd.get('abonnement') || '', frein: fd.get('frein') || '', declencheur: fd.get('declencheur') || '',
+          anciennete: fd.get('anciennete') || '', age: fd.get('age') || '', region: fd.get('region') || '',
+          website: fd.get('website') || ''
+        };
+        btn.disabled = true; btn.textContent = 'Envoi…';
+        try {
+          var res = await fetch('/api/barometre', {
+            method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload)
+          });
+          if (!res.ok) throw new Error('http');
+          document.getElementById('bx-form-wrap').style.display = 'none';
+          document.getElementById('bx-thanks').style.display = 'block';
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          if (typeof window.equateur === 'function') window.equateur('track', 'BarometreSubmit', { methode: payload.methode });
+        } catch (_) {
+          err.textContent = "Oups, l'envoi a échoué. Réessaie dans un instant.";
+          err.style.display = 'block';
+          btn.disabled = false; btn.textContent = 'Envoyer mes réponses';
+        }
+      });
+    })();
+  </script>
+</Base>
