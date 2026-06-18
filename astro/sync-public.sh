@@ -9,7 +9,7 @@ mkdir -p "$PUB/journal" "$PUB/guides"
 
 copy() { [ -e "$1" ] && cp -pR "$1" "$2" || echo "  (skip missing: $1)"; }
 
-for a in tailwind.css favicon.svg og-image.png og-image.svg nl-subscribe.js \
+for a in tailwind.css favicon.svg favicon.ico apple-touch-icon.png og-image.png og-image.svg nl-subscribe.js \
          robots.txt sitemap.xml llms.txt BingSiteAuth.xml \
          google9cf118a7aef4e71c.html _headers _redirects js images.filtre fonts 952ae93894774a3b947188d5ef63b203.txt; do
   copy "$a" "$PUB/"
