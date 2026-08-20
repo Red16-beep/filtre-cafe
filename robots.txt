@@ -6,6 +6,9 @@ User-agent: *
 Allow: /
 Disallow: /admin.html
 Disallow: /og-image.html
+Disallow: /newsletter/nl-
+Disallow: /newsletter/bienvenue
+Disallow: /newsletter/email-
 
 # Crawlers IA explicitement autorisés (citation, grounding, AI search)
 User-agent: GPTBot
