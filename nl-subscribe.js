@@ -1,3 +1,6 @@
+// horodatage de chargement, sert a rejeter les soumissions instantanees des bots
+const _pageLoadedAt = Date.now();
+
 async function nlSubscribe(e) {
   e.preventDefault();
   const form = e.target;
@@ -12,7 +15,7 @@ async function nlSubscribe(e) {
     const res = await fetch('/api/subscribe', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email })
+      body: JSON.stringify({ email, _ts: Date.now() - _pageLoadedAt })
     });
 
     if (res.ok) {

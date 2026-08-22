@@ -10,13 +10,22 @@ export async function onRequestPost(context) {
     });
   }
 
-  let email;
+  let email, body;
   try {
-    const body = await request.json();
+    body = await request.json();
     email = body.email?.trim().toLowerCase();
   } catch {
     return new Response(JSON.stringify({ error: 'Body invalide' }), {
       status: 400, headers: { 'Content-Type': 'application/json' }
+    });
+  }
+
+  // anti-bot : le formulaire envoie le temps ecoule depuis le chargement.
+  // Une soumission instantanee, ou sans ce jeton, ne vient pas d'un humain.
+  const elapsed = body._ts;
+  if (typeof elapsed !== 'number' || elapsed < 1200) {
+    return new Response(JSON.stringify({ success: true }), {
+      status: 200, headers: { 'Content-Type': 'application/json' }
     });
   }
 
