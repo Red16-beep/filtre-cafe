@@ -298,14 +298,14 @@ def crop_height(path, keep):
     open(path, "wb").write(b"".join(out))
 
 
-def shoot(chrome, html_path, png_path, gap):
-    cmd = [chrome, *CHROME_FLAGS, f"--window-size={WIDTH},{HEIGHT + gap}",
+def shoot(chrome, html_path, png_path, gap, w=WIDTH, h=HEIGHT):
+    cmd = [chrome, *CHROME_FLAGS, f"--window-size={w},{h + gap}",
            "--virtual-time-budget=3000", f"--screenshot={png_path}", f"file://{html_path}"]
     r = subprocess.run(cmd, capture_output=True, text=True)
     if not os.path.exists(png_path):
         raise RuntimeError(f"chrome n'a rien produit pour {png_path}\n{r.stderr[-800:]}")
     if gap:
-        crop_height(png_path, HEIGHT)
+        crop_height(png_path, h)
 
 
 def schedule(n, start, per_day):
@@ -337,21 +337,46 @@ def write_csv(arts, start, per_day):
     return OUT_CSV
 
 
+AVATARS = [("profil-mot.png", "filtré", 250), ("profil-lettre.png", "f", 520)]
+
+
+def make_avatars(chrome, fonts, tmp, gap):
+    """Deux avatars carrés 1000 px, à charger dans le profil Pinterest."""
+    template = open(os.path.join(HERE, "avatar.html"), encoding="utf-8").read()
+    for name, mark, size in AVATARS:
+        page = os.path.join(tmp, name.replace(".png", ".html"))
+        open(page, "w", encoding="utf-8").write(
+            template.replace("{{FONTS}}", fonts).replace("{{SIZE}}", str(size))
+                    .replace("{{MARK}}", mark))
+        out = os.path.join(HERE, name)
+        shoot(chrome, page, out, gap, 1000, 1000)
+        print(f"  {os.path.relpath(out, ROOT)}")
+
+
 def main():
     ap = argparse.ArgumentParser(description="Genere les epingles Pinterest du site.")
     ap.add_argument("cible", nargs="?", help="un slug ou journal/<slug> ; par defaut, tout")
     ap.add_argument("--csv-only", action="store_true", help="ne regenere que le CSV")
+    ap.add_argument("--avatar", action="store_true", help="rend les deux avatars de profil, rien d'autre")
     ap.add_argument("--depuis", metavar="AAAA-MM-JJ", help="programme les epingles a partir de cette date")
     ap.add_argument("--par-jour", type=int, default=2, choices=range(1, len(SLOTS) + 1),
                     metavar="N", help=f"epingles par jour avec --depuis (1-{len(SLOTS)}, defaut 2)")
     args = ap.parse_args()
+
+    chrome = find_chrome()
+
+    if args.avatar:
+        if not chrome:
+            sys.exit("Chrome/Chromium introuvable. Lance avec CHROME=/chemin/vers/chrome")
+        with tempfile.TemporaryDirectory() as tmp:
+            make_avatars(chrome, fonts_css(), tmp, chrome_gap(chrome, tmp))
+        return
 
     arts = collect(args.cible)
     if not arts:
         sys.exit(f"aucun article trouvé pour « {args.cible} »")
 
     if not args.csv_only:
-        chrome = find_chrome()
         if not chrome:
             sys.exit("Chrome/Chromium introuvable. Installe-le, ou lance avec CHROME=/chemin/vers/chrome")
         os.makedirs(OUT_IMG, exist_ok=True)
