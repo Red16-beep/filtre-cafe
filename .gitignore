@@ -40,3 +40,7 @@ admin.html
 # Fichiers de travail personnels, hors projet
 repartition-budget-*.png
 *.code-workspace
+
+# Cache Python des outils
+__pycache__/
+*.pyc
