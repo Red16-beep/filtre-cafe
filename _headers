@@ -13,6 +13,9 @@
 /assets/*
   Cache-Control: public, max-age=31536000, immutable
 
+/pins/*
+  Cache-Control: public, max-age=604800
+
 /admin.html
   X-Robots-Tag: noindex
   Cache-Control: no-store

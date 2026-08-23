@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<style>
+{{FONTS}}
+
+:root {
+  --stone-50:  #fafaf9;
+  --stone-200: #e7e5e4;
+  --stone-400: #a8a29e;
+  --stone-500: #78716c;
+  --stone-700: #44403c;
+  --stone-900: #1c1917;
+  --amber-700: #b45309;
+  --amber-800: #92400e;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body { width: 1000px; height: 1500px; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  letter-spacing: -0.02em;
+  position: relative;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* --- thèmes : reprend la palette du site, en clair et en sombre --- */
+body.clair  { background: var(--stone-50);  --ink: var(--stone-900); --mute: var(--stone-500); --accent: var(--amber-800); --rule: var(--stone-200); }
+body.sombre { background: var(--stone-900); --ink: var(--stone-50);  --mute: var(--stone-400); --accent: var(--amber-700); --rule: var(--stone-700); }
+
+
+.card {
+  position: relative; z-index: 1;
+  height: 1500px;
+  padding: 84px 88px 76px;
+  display: flex; flex-direction: column;
+}
+
+/* --- en-tête --- */
+.wordmark {
+  flex: none;
+  line-height: 1.2;
+  font-family: 'Instrument Serif', serif;
+  font-size: 46px;
+  color: var(--ink);
+  letter-spacing: -0.03em;
+}
+.wordmark span { color: var(--accent); }
+
+/* --- bloc central --- */
+/* legerement au-dessus du centre optique : le regard entre par le haut */
+.middle { flex: 1 1 auto; min-height: 0; padding-bottom: 96px;
+  display: flex; flex-direction: column; justify-content: center; }
+
+.kicker {
+  display: flex; align-items: center; gap: 20px;
+  font-size: 21px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.16em;
+  color: var(--accent);
+  margin-bottom: 44px;
+}
+.kicker::before {
+  content: ''; width: 56px; height: 2px; background: var(--accent); flex: none;
+}
+
+.title {
+  font-family: 'Instrument Serif', serif;
+  font-size: {{TITLE_SIZE}}px;
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+.sub {
+  margin-top: 40px;
+  font-size: 32px; font-weight: 300; line-height: 1.55;
+  letter-spacing: -0.01em;
+  color: var(--mute);
+}
+
+/* --- variante sommaire : les sections de l'article --- */
+.toc { margin-top: 48px; list-style: none; }
+.toc li {
+  display: flex; align-items: baseline; gap: 24px;
+  font-size: 31px; font-weight: 300; line-height: 1.35;
+  color: var(--mute);
+  padding: 22px 0;
+  border-top: 1px solid var(--rule);
+}
+.toc li:last-child { border-bottom: 1px solid var(--rule); }
+.toc .n {
+  font-family: 'Instrument Serif', serif;
+  font-size: 28px; color: var(--accent); flex: none; width: 34px;
+}
+
+/* --- pied --- */
+.foot {
+  flex: none;
+  line-height: 1.4;
+  display: flex; align-items: baseline; justify-content: space-between;
+  padding-top: 32px;
+  border-top: 1px solid var(--rule);
+  font-size: 23px; letter-spacing: -0.01em;
+}
+.foot .url  { color: var(--ink); font-weight: 500; }
+.foot .note { color: var(--mute); font-weight: 300; }
+</style>
+</head>
+<body class="{{THEME}}">
+<div class="card">
+  <div class="wordmark">filtré<span>.</span></div>
+  <div class="middle">
+    <div class="kicker">{{KICKER}}</div>
+    <h1 class="title">{{TITLE}}</h1>
+    {{BODY}}
+  </div>
+  <div class="foot">
+    <span class="url">filtre.cafe</span>
+    <span class="note">{{NOTE}}</span>
+  </div>
+</div>
+</body>
+</html>
