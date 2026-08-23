@@ -63,6 +63,17 @@ Deux mises en page alternent selon le slug, en clair ou en sombre : titre + accr
 ou titre + sommaire de l'article. Le rendu est déterministe, un article donné garde
 toujours la même carte. Pour changer le design, tout est dans `template.html`.
 
+## L'avatar du profil
+
+```bash
+python3 tools/pinterest/pins.py --avatar
+```
+
+Sort deux carrés de 1000 px dans `tools/pinterest/` : `profil-mot.png` avec le
+logotype entier, `profil-lettre.png` avec le `f.` seul. Pinterest recadre en cercle
+et descend jusqu'à 48 px dans le fil, taille à laquelle le logotype entier devient
+illisible — d'où la deuxième version.
+
 Chrome est cherché dans le `PATH` puis aux emplacements habituels sur macOS. Pour
 forcer :
 

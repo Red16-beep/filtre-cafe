@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<style>
+{{FONTS}}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 1000px; height: 1000px; }
+
+body {
+  background: #1c1917;
+  display: flex; align-items: center; justify-content: center;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Pinterest recadre l'avatar en cercle : le signe reste loin des bords. */
+.mark {
+  font-family: 'Instrument Serif', serif;
+  font-size: {{SIZE}}px;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: #fafaf9;
+}
+.mark span { color: #b45309; }
+</style>
+</head>
+<body><div class="mark">{{MARK}}<span>.</span></div></body>
+</html>
