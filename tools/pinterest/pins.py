@@ -132,22 +132,30 @@ def title_size(t):
 
 def collect(only=None):
     """Every article page, with the fields the pin and the CSV need."""
-    files = sorted(glob.glob(os.path.join(ROOT, "journal", "*.html")) +
-                   glob.glob(os.path.join(ROOT, "guides", "*.html")))
+    # Sources reelles : les fragments Astro. Les fichiers journal/ et guides/ a la
+    # racine sont legataires, ils ne sont plus deployes et gardent une ponctuation
+    # obsolete (tirets cadratins) que la charte editoriale proscrit.
+    FRAG = os.path.join(ROOT, "astro", "src", "fragments")
+    files = sorted(glob.glob(os.path.join(FRAG, "journal", "*.head.html")) +
+                   glob.glob(os.path.join(FRAG, "guides", "*.head.html")))
     arts = []
     for path in files:
-        rel = os.path.relpath(path, ROOT)
-        slug = os.path.splitext(os.path.basename(path))[0]
+        slug = os.path.basename(path)[:-len(".head.html")]
+        kind = os.path.basename(os.path.dirname(path))
+        rel = f"{kind}/{slug}"
         if slug == "index":
             continue
-        if only and only not in (slug, rel, os.path.splitext(rel)[0]):
+        if only and only not in (slug, rel, f"{rel}.html"):
             continue
         doc = open(path, encoding="utf-8").read()
+        body = path[:-len(".head.html")] + ".body.html"
+        if os.path.exists(body):
+            doc += open(body, encoding="utf-8").read()
 
         url = meta(doc, "og:url") or ""
         if not url:
             m = re.search(r'<link\s+rel="canonical"\s+href="([^"]*)"', doc, re.I)
-            url = m.group(1) if m else f"{SITE}/{os.path.splitext(rel)[0]}"
+            url = m.group(1) if m else f"{SITE}/{rel}"
 
         title = meta(doc, "og:title")
         if not title:
