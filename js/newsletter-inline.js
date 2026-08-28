@@ -1,5 +1,5 @@
 // horodatage de chargement, sert a rejeter les soumissions instantanees des bots
-const _pageLoadedAt = Date.now();
+window._pageLoadedAt = window._pageLoadedAt || Date.now();  // pose une seule fois, quel que soit l'ordre de chargement des deux scripts
 
 // filtré. Inline newsletter subscription
 async function subscribeInline(e) {
@@ -17,7 +17,7 @@ async function subscribeInline(e) {
     const res = await fetch('/api/subscribe', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, _ts: Date.now() - _pageLoadedAt, source: 'inline-' + window.location.pathname.split('/').pop().replace('.html','') })
+      body: JSON.stringify({ email, _ts: Date.now() - window._pageLoadedAt, source: 'inline-' + window.location.pathname.split('/').pop().replace('.html','') })
     });
     if (!res.ok) throw new Error();
     form.style.display = 'none';
