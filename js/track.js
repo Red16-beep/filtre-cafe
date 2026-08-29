@@ -72,13 +72,5 @@
 
     var outboundLink = e.target.closest('a[href]');
     if (outboundLink) trackOutboundClick(outboundLink);
-
-    var catalogueLink = e.target.closest('a[data-coffee-name]');
-    if (catalogueLink) {
-      track('CatalogueClick', {
-        coffee: catalogueLink.dataset.coffeeName || 'inconnu',
-        destination: (catalogueLink.href || '').substring(0, 160)
-      });
-    }
   });
 })();

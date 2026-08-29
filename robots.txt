@@ -4,7 +4,6 @@
 # Tous les crawlers : accès libre au site
 User-agent: *
 Allow: /
-Disallow: /admin.html
 Disallow: /og-image.html
 Disallow: /newsletter/nl-
 Disallow: /newsletter/bienvenue
