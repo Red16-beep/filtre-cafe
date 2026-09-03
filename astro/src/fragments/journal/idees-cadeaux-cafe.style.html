@@ -77,4 +77,30 @@ body { font-family: 'Inter', sans-serif; background-color: var(--stone-50); colo
   white-space: nowrap; transition: color .2s;
 }
 .gift-card .gift-guide:hover { color: var(--amber-800); }
+
+.packs {
+  background: var(--stone-900, #1c1917); border-radius: 1.5rem;
+  padding: 2rem 1.75rem; margin: 2.5rem 0 3rem;
+}
+.packs-label {
+  font-size: 0.65rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.3em; color: #f59e0b; margin: 0 0 0.85rem;
+}
+.packs-intro {
+  font-family: 'Instrument Serif', serif; font-style: italic;
+  font-size: 1.15rem; line-height: 1.45; color: #fafaf9; margin: 0 0 1.75rem;
+}
+.pack { display: flex; gap: 1.1rem; align-items: flex-start; padding: 1.1rem 0; border-top: 1px solid rgba(255,255,255,0.1); }
+.pack-price {
+  flex-shrink: 0; min-width: 4.6rem; text-align: center; margin-top: 0.15rem;
+  background: #f59e0b; color: #1c1917; border-radius: 0.4rem;
+  padding: 0.25rem 0.5rem; font-size: 0.72rem; font-weight: 700; white-space: nowrap;
+}
+.pack-name { font-size: 0.95rem; font-weight: 600; color: #fafaf9; margin: 0 0 0.3rem; }
+.pack-items { font-size: 0.875rem; color: #fbbf24; margin: 0 0 0.45rem; font-weight: 400; }
+.pack-items a { color: #fbbf24; text-decoration: underline; text-underline-offset: 2px; }
+.pack-why { font-size: 0.875rem; line-height: 1.65; color: #d6d3d1; font-weight: 300; margin: 0; }
+@media (max-width: 480px) {
+  .pack { flex-direction: column; gap: 0.6rem; }
+}
 </style>
