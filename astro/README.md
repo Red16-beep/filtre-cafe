@@ -37,6 +37,43 @@ python3 gen.py                      # toutes les pages
 python3 gen.py journal/mon-slug     # une page
 ```
 
+## Sitemap
+
+`sitemap.xml` vit à la racine et `sync-public.sh` le recopie dans `public/`. Les
+sections thématiques, les `<priority>` et les `<changefreq>` restent posées à la
+main : c'est du jugement éditorial, aucun script n'a à y toucher. Seules les
+dates dérivent, et rien ne les régénérait.
+
+```bash
+python3 tools/sitemap.py            # aligne les lastmod sur les dateModified
+python3 tools/sitemap.py --check    # sort 1 si le fichier est périmé (utilisé en CI)
+python3 tools/sitemap.py --oublis   # pages éditées sans que leur dateModified suive
+python3 tools/sitemap.py --oublis --corriger   # et écrit la date dans les pages
+```
+
+La source est la `dateModified` du JSON-LD de chaque page, jamais la date du
+dernier commit. L'essai avec git avançait 99 lastmod sur 102, parce que
+l'historique est fait de passes sur tout le site : 243 fragments pour la
+migration Astro, 155 pour le retrait des tirets cadratins, 28 pour la mention
+Amazon. Annoncer quatre-vingt-dix-neuf pages modifiées le même jour apprend à
+Google à ignorer nos dates, ce qui coûte plus cher qu'une date en retard.
+
+Une date ne recule jamais : une cinquantaine de pages portent déjà un lastmod
+plus récent que leur schema, hérité de ces passes, et l'information est réelle.
+
+`--oublis` est l'autre bout du problème : il croise l'historique git avec les
+`dateModified` pour lister les pages dont le contenu a bougé sans que la date
+déclarée suive. Ça se corrige dans la page, pas dans le sitemap, d'où
+`--corriger` qui écrit la date dans le JSON-LD (et l'ajoute quand la page n'avait
+qu'une `datePublished` — huit pages sont dans ce cas).
+
+Deux filtres décident de ce qui compte comme une édition. Un commit de plus de
+huit fichiers est une passe sur le site, pas la modification d'une page. Et un
+commit dont le sujet parle de liens affiliés, d'images recompressées, de schema
+ou de meta description touche le corps sans rien changer pour qui lit : la liste
+`NON_EDITORIAL` les écarte. Sans ces deux filtres le rapport sortait 99 pages ;
+avec, il en sort une vingtaine, et elles sont vraies.
+
 ## Vérification de fidélité
 
 `gen.py` + le build ont été validés : sur les 81 pages article/guide, **0 perte**

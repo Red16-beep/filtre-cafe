@@ -31,3 +31,6 @@ jobs:
       - name: Lint built site (links, titles, anti-IA)
         working-directory: astro
         run: python3 lint.py dist
+
+      - name: Sitemap à jour (lastmod alignés sur les dateModified)
+        run: python3 tools/sitemap.py --check
