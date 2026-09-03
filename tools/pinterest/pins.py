@@ -13,7 +13,7 @@ Chrome, and writes the CSV Pinterest's bulk upload expects.
 
 Sortie : pins/<slug>.png (deploye sur filtre.cafe/pins/) + tools/pinterest/pins.csv
 """
-import argparse, base64, csv, datetime, glob, hashlib, html, os, re, shutil
+import argparse, base64, csv, datetime, glob, hashlib, html, json, os, re, shutil
 import struct, subprocess, sys, tempfile, zlib
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -174,7 +174,34 @@ def collect(only=None):
             "board": board, "kicker": KICKERS[board],
             "outline": [curl(h) for h in outline(doc)],
         })
-    return arts
+    return arts + extras(only)
+
+
+def extras(only=None):
+    """Epingles sur-mesure declarees a la main dans extras.json.
+
+    Pinterest etant un moteur de recherche, une meme page merite plusieurs
+    epingles quand elle repond a plusieurs requetes : le hub cadeaux sert aussi
+    bien "idees cadeaux cafe" que "calendrier de l'avent cafe". Ces entrees
+    traversent ensuite la meme chaine que les autres, rendu et CSV compris.
+    """
+    path = os.path.join(HERE, "extras.json")
+    if not os.path.exists(path):
+        return []
+    out = []
+    for e in json.load(open(path, encoding="utf-8")):
+        slug = e["slug"]
+        if only and only not in (slug, f"extras/{slug}"):
+            continue
+        board = e.get("board", DEFAULT_BOARD)
+        out.append({
+            "slug": slug, "url": e["url"], "title": curl(e["title"]),
+            "desc": curl(e.get("desc", "")), "board": board,
+            "kicker": KICKERS[board],
+            "outline": [curl(h) for h in e.get("outline", [])],
+            "theme": e.get("theme"), "layout": e.get("layout"),
+        })
+    return out
 
 
 def fonts_css():
@@ -208,10 +235,14 @@ def clamp(t, limit=170):
 def build_html(art, template, fonts):
     """Deterministic theme + layout, so a given article always renders the same."""
     seed = int(hashlib.sha1(art["slug"].encode()).hexdigest()[:8], 16)
-    theme = "sombre" if seed % 3 == 0 else "clair"
+    # Les epingles sur-mesure peuvent imposer leur rendu : deux epingles vers la
+    # meme page doivent se distinguer dans le fil, et le tirage par slug ne le
+    # garantit pas.
+    theme = art.get("theme") or ("sombre" if seed % 3 == 0 else "clair")
+    veut_toc = art.get("layout") == "sommaire" or (art.get("layout") is None and seed % 3 == 1)
 
     steps = art["outline"][:4]
-    if seed % 3 == 1 and len(steps) >= 3:
+    if veut_toc and len(steps) >= 3:
         items = "".join(f'<li><span class="n">{i:02d}</span>{html.escape(s)}</li>'
                         for i, s in enumerate(steps, 1))
         body = f'<ol class="toc">{items}</ol>'

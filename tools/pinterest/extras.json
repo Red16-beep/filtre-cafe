@@ -1,0 +1,18 @@
+[
+  {
+    "_note": "Épingles sur-mesure : un second visuel sur un angle précis d'une page qui existe déjà. Pinterest est un moteur de recherche, une même URL peut légitimement porter plusieurs épingles si chacune répond à une requête différente. Le slug sert de nom de fichier et fixe le thème du rendu, il ne doit pas exister dans journal/.",
+    "slug": "calendrier-avent-cafe",
+    "url": "https://filtre.cafe/journal/idees-cadeaux-cafe",
+    "title": "Calendrier de l'avent café 2026 : lesquels valent le coup",
+    "desc": "Quatre calendriers de l'avent en café de spécialité passés au crible : grain entier, doses de 30 à 50 g, origines nommées. Les prix 2026 et pourquoi il faut commander dès octobre.",
+    "board": "Matériel & achat",
+    "outline": [
+      "Ce qui fait un bon calendrier",
+      "Drip, le tour de France",
+      "Kaffebox, le plus abouti",
+      "19grams, le plus simple à recevoir"
+    ],
+    "theme": "sombre",
+    "layout": "sommaire"
+  }
+]
