@@ -33,6 +33,29 @@ body.clair  { background: var(--stone-50);  --ink: var(--stone-900); --mute: var
 body.sombre { background: var(--stone-900); --ink: var(--stone-50);  --mute: var(--stone-400); --accent: var(--amber-700); --rule: var(--stone-700); }
 
 
+/* --- gabarit photo : bandeau plein cadre en haut, texte sur fond plein ------ */
+/* Le site est typographique, mais une photo de saison capte l'oeil dans le fil.
+   Le texte ne passe pas dessus : a 236 px de large dans le feed, un titre pose
+   sur une image devient illisible. */
+.shot { position: absolute; top: 0; left: 0; right: 0; height: 880px; overflow: hidden; }
+.shot img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 44%; display: block; }
+.shot::after {
+  content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 180px;
+  background: linear-gradient(to bottom, transparent, rgba(0,0,0,.28));
+}
+
+body.photo .card { padding-top: 940px; }
+body.photo .wordmark {
+  position: absolute; top: 60px; left: 88px; z-index: 2;
+  color: var(--stone-50);
+  text-shadow: 0 2px 18px rgba(0,0,0,.45);
+}
+body.photo .wordmark span { color: var(--amber-700); }
+body.photo .middle { padding-bottom: 0; justify-content: flex-start; }
+body.photo .kicker { margin-bottom: 36px; }
+body.photo .sub { margin-top: 32px; }
+
+
 .card {
   position: relative; z-index: 1;
   height: 1500px;
@@ -111,7 +134,8 @@ body.sombre { background: var(--stone-900); --ink: var(--stone-50);  --mute: var
 .foot .note { color: var(--mute); font-weight: 300; }
 </style>
 </head>
-<body class="{{THEME}}">
+<body class="{{THEME}} {{VARIANTE}}">
+{{PHOTO}}
 <div class="card">
   <div class="wordmark">filtré<span>.</span></div>
   <div class="middle">

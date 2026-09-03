@@ -200,6 +200,10 @@ def extras(only=None):
             "kicker": KICKERS[board],
             "outline": [curl(h) for h in e.get("outline", [])],
             "theme": e.get("theme"), "layout": e.get("layout"),
+            "photo": e.get("photo"),
+            # La carte tient 120 signes, le champ Pinterest en accepte 500 :
+            # au-dela d'une phrase, les deux textes n'ont plus le meme travail.
+            "accroche": curl(e.get("accroche", "")),
         })
     return out
 
@@ -219,6 +223,17 @@ def fonts_css():
         css.append(f"@font-face{{font-family:'{family}';font-style:normal;"
                    f"font-weight:{weight};src:url(data:font/woff2;base64,{b64}) format('woff2');}}")
     return "\n".join(css)
+
+
+def photo_uri(name):
+    """La photo part en base64 dans la page, comme les polices : le rendu ne
+    depend ni du reseau ni du repertoire courant de Chrome."""
+    path = os.path.join(HERE, "photos", name)
+    if not os.path.exists(path):
+        sys.exit(f"photo introuvable : {os.path.relpath(path, ROOT)}")
+    mime = "image/png" if name.lower().endswith(".png") else "image/jpeg"
+    b64 = base64.b64encode(open(path, "rb").read()).decode()
+    return f"data:{mime};base64,{b64}"
 
 
 def clamp(t, limit=170):
@@ -241,17 +256,26 @@ def build_html(art, template, fonts):
     theme = art.get("theme") or ("sombre" if seed % 3 == 0 else "clair")
     veut_toc = art.get("layout") == "sommaire" or (art.get("layout") is None and seed % 3 == 1)
 
+    # Avec une photo, il ne reste que 560 px sous le bandeau : le sommaire n'y
+    # tient pas, l'accroche est raccourcie.
+    photo = art.get("photo")
     steps = art["outline"][:4]
-    if veut_toc and len(steps) >= 3:
+    if veut_toc and not photo and len(steps) >= 3:
         items = "".join(f'<li><span class="n">{i:02d}</span>{html.escape(s)}</li>'
                         for i, s in enumerate(steps, 1))
         body = f'<ol class="toc">{items}</ol>'
     else:
-        body = f'<p class="sub">{html.escape(clamp(art["desc"]))}</p>' if art["desc"] else ""
+        dit = art.get("accroche") or art["desc"]
+        body = (f'<p class="sub">{html.escape(clamp(dit, 130 if photo else 170))}</p>'
+                if dit else "")
+
+    shot = f'<div class="shot"><img src="{photo_uri(photo)}" alt=""></div>' if photo else ""
 
     return (template
             .replace("{{FONTS}}", fonts)
             .replace("{{THEME}}", theme)
+            .replace("{{VARIANTE}}", "photo" if photo else "")
+            .replace("{{PHOTO}}", shot)
             .replace("{{KICKER}}", html.escape(art["kicker"]))
             .replace("{{TITLE_SIZE}}", str(title_size(art["title"])))
             .replace("{{TITLE}}", html.escape(art["title"]))

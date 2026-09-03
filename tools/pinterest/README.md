@@ -63,6 +63,22 @@ Deux mises en page alternent selon le slug, en clair ou en sombre : titre + accr
 ou titre + sommaire de l'article. Le rendu est déterministe, un article donné garde
 toujours la même carte. Pour changer le design, tout est dans `template.html`.
 
+Un troisième gabarit existe pour les épingles à photo : bandeau plein cadre sur les
+880 premiers pixels, texte en dessous sur fond plein. Le texte ne passe jamais sur
+l'image — dans le fil, une épingle fait 236 px de large, un titre posé sur une photo
+n'y survit pas. Il se déclenche depuis `extras.json` avec un champ `photo` qui nomme un
+fichier de `tools/pinterest/photos/` :
+
+```json
+{ "slug": "calendrier-avent-cafe", "photo": "calendrier-avent.jpg", "theme": "sombre" }
+```
+
+La photo est encodée en base64 dans la page rendue, comme les polices, donc `photos/`
+n'a pas besoin d'être déployé — et ne l'est pas, `sync-public.sh` ne copie que `pins/`.
+Prévoir une source en 2:3 ou plus haute, ~1400 px de large suffit ; le cadrage se règle
+avec `object-position` sur `.shot img`. Une épingle à photo ignore le sommaire, il ne
+reste pas la place.
+
 ## L'avatar du profil
 
 ```bash
@@ -135,6 +151,6 @@ situer un compte neuf. Juger au bout de trois semaines, c'est juger du bruit.
 
 - Pas de publication automatique. L'API Pinterest demande une application validée par
   leurs équipes ; le CSV fait le même travail sans cette démarche.
-- Pas de photo. Ce sont des cartes typographiques, ce qui tombe bien vu qu'il y a trois
-  images sur tout le site. Le jour où il y a des photos de matériel, ça vaudra un
-  deuxième gabarit dans `template.html`.
+- Pas de photo automatique. Le site n'en a que trois, il n'y a rien à piocher : les
+  cartes restent typographiques par défaut. Une photo se pose à la main, épingle par
+  épingle, via le champ `photo` d'`extras.json`.
