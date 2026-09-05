@@ -620,6 +620,12 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://filtre.cafe/newsletter/08</loc>
+    <lastmod>2026-09-08</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://filtre.cafe/newsletter/07</loc>
     <lastmod>2026-08-21</lastmod>
     <changefreq>yearly</changefreq>
