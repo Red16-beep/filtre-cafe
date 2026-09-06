@@ -98,6 +98,22 @@ body.sombre { background: var(--stone-900); --ink: var(--stone-50);  --mute: var
   font-size: 28px; color: var(--accent); flex: none; width: 34px;
 }
 
+/* --- variante photo : l'image en pleine largeur, le texte dessous --- */
+/* Les cartes typographiques suffisent tant qu'il n'y a pas de photo. Quand il y
+   en a une, elle porte l'epingle mieux que n'importe quel titre : Pinterest est
+   un fil d'images avant d'etre un moteur de recherche. */
+.hero {
+  flex: none;
+  margin: -84px -88px 60px;
+  height: 780px;
+  overflow: hidden;
+  background: var(--rule);
+}
+.hero img { width: 100%; height: 100%; object-fit: cover; object-position: center 45%; display: block; }
+body.avec-photo .middle { padding-bottom: 40px; justify-content: flex-start; }
+body.avec-photo .title { font-size: 78px; }
+body.avec-photo .sub { margin-top: 32px; font-size: 30px; }
+
 /* --- pied --- */
 .foot {
   flex: none;
@@ -111,8 +127,9 @@ body.sombre { background: var(--stone-900); --ink: var(--stone-50);  --mute: var
 .foot .note { color: var(--mute); font-weight: 300; }
 </style>
 </head>
-<body class="{{THEME}}">
+<body class="{{THEME}}{{HERO_CLASS}}">
 <div class="card">
+  {{HERO}}
   <div class="wordmark">filtré<span>.</span></div>
   <div class="middle">
     <div class="kicker">{{KICKER}}</div>
