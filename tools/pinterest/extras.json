@@ -28,6 +28,8 @@
       "Machine et moulin, le grand jeu"
     ],
     "theme": "clair",
-    "layout": "sommaire"
+    "layout": "photo",
+    "photo": "images.filtre/beaux_paquets_de_cafe_anom_cafe_club.webp",
+    "photo_alt": "Plusieurs paquets de café Anom Café Club tenus à la main"
   }
 ]

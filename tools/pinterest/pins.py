@@ -200,8 +200,27 @@ def extras(only=None):
             "kicker": KICKERS[board],
             "outline": [curl(h) for h in e.get("outline", [])],
             "theme": e.get("theme"), "layout": e.get("layout"),
+            "photo": e.get("photo"),
         })
     return out
+
+
+def hero(art):
+    """La photo, inlinee en data URI : le rendu ne doit dependre d'aucun reseau.
+
+    Une epingle photo ecrase le sommaire : sous l'image il reste la place d'une
+    accroche, pas d'une liste de quatre lignes.
+    """
+    rel = art.get("photo")
+    if not rel:
+        return "", "", None
+    path = os.path.join(ROOT, rel)
+    blob = open(path, "rb").read()
+    mime = "image/webp" if path.endswith(".webp") else "image/jpeg"
+    b64 = base64.b64encode(blob).decode()
+    alt = html.escape(art.get("photo_alt", ""))
+    markup = (f'<div class="hero"><img src="data:{mime};base64,{b64}" alt="{alt}"></div>')
+    return markup, " avec-photo", True
 
 
 def fonts_css():
@@ -241,17 +260,23 @@ def build_html(art, template, fonts):
     theme = art.get("theme") or ("sombre" if seed % 3 == 0 else "clair")
     veut_toc = art.get("layout") == "sommaire" or (art.get("layout") is None and seed % 3 == 1)
 
+    hero_markup, hero_class, avec_photo = hero(art)
+
     steps = art["outline"][:4]
-    if veut_toc and len(steps) >= 3:
+    if veut_toc and len(steps) >= 3 and not avec_photo:
         items = "".join(f'<li><span class="n">{i:02d}</span>{html.escape(s)}</li>'
                         for i, s in enumerate(steps, 1))
         body = f'<ol class="toc">{items}</ol>'
     else:
-        body = f'<p class="sub">{html.escape(clamp(art["desc"]))}</p>' if art["desc"] else ""
+        # Sous une photo, l'accroche porte l'argument : on ne la tronque pas.
+        texte = art["desc"] if avec_photo else clamp(art["desc"])
+        body = f'<p class="sub">{html.escape(texte)}</p>' if art["desc"] else ""
 
     return (template
             .replace("{{FONTS}}", fonts)
             .replace("{{THEME}}", theme)
+            .replace("{{HERO_CLASS}}", hero_class)
+            .replace("{{HERO}}", hero_markup)
             .replace("{{KICKER}}", html.escape(art["kicker"]))
             .replace("{{TITLE_SIZE}}", str(title_size(art["title"])))
             .replace("{{TITLE}}", html.escape(art["title"]))
