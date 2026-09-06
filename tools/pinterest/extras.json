@@ -14,5 +14,20 @@
     ],
     "theme": "sombre",
     "layout": "sommaire"
+  },
+  {
+    "slug": "cadeau-noel-cafe",
+    "url": "https://filtre.cafe/journal/idees-cadeaux-cafe",
+    "title": "Cadeau de Noël café : 4 packs prêts à offrir",
+    "desc": "Quatre packs cadeau pour amateur de café, du minimum utile à la station complète, de 85 à 550 €. Et la règle qui évite le cadeau raté : on offre le moulin, jamais la machine seule.",
+    "board": "Matériel & achat",
+    "outline": [
+      "Il n'a rien : moulin et V60",
+      "Il a le matériel, pas le café",
+      "La station filtre complète",
+      "Machine et moulin, le grand jeu"
+    ],
+    "theme": "clair",
+    "layout": "sommaire"
   }
 ]
