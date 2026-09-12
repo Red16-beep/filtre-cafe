@@ -20,6 +20,7 @@
       if (host === 'amzlink.to' || host.indexOf('posttap') !== -1) return 'amazon';
       if (host === 'anomcafeclub.com') return 'anom';
       if (host === 'tanat.coffee') return 'tanat';
+      if (host === 'nouvojour.fr') return 'nouvojour';
       return 'external';
     } catch (e) {
       return 'unknown';
