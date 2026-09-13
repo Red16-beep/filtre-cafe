@@ -679,4 +679,12 @@
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
+
+  <!-- Ajouts automatiques : a reclasser dans la bonne section -->
+  <url>
+    <loc>https://filtre.cafe/outils/calculateur-v60</loc>
+    <lastmod>2026-09-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>

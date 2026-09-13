@@ -1,0 +1,299 @@
+<nav aria-label="Fil d'Ariane" class="max-w-3xl mx-auto px-5 pt-24 pb-2">
+  <ol class="flex items-center gap-2 text-xs text-stone-400 font-medium flex-wrap">
+    <li><a href="/" class="hover:text-stone-900 transition-colors">filtré.</a></li>
+    <li class="text-stone-300" aria-hidden="true">›</li>
+    <li><a href="/journal/" class="hover:text-stone-900 transition-colors">Le Journal</a></li>
+    <li class="text-stone-300" aria-hidden="true">›</li>
+    <li class="text-stone-700" aria-current="page">Calculateur V60</li>
+  </ol>
+</nav>
+<header class="pt-6 pb-10 px-5 max-w-3xl mx-auto">
+  <div class="flex items-center gap-3 mb-6">
+    <span class="text-xs font-semibold uppercase tracking-widest text-amber-700">Outil</span>
+    <span class="text-stone-300">·</span>
+    <span class="text-xs text-stone-400 font-medium">Gratuit, sans inscription</span>
+  </div>
+  <h1 class="serif italic text-4xl md:text-5xl leading-tight text-stone-900 mb-6" style="letter-spacing:-0.03em">
+    Calculateur de ratio V60
+  </h1>
+  <p class="text-lg text-stone-500 font-light leading-relaxed" style="letter-spacing:-0.01em">
+    Entrez votre dose de café ou votre volume d'eau. Le calculateur sort la recette complète, chaque versement avec son poids cumulé et son horaire. Les proportions sont celles de mon protocole, pas une moyenne trouvée ailleurs.
+  </p>
+</header>
+<main class="max-w-3xl mx-auto px-5 pb-24">
+
+  <section class="calc" aria-labelledby="calc-titre">
+    <h2 id="calc-titre" class="sr-only">Calculateur</h2>
+
+    <div class="calc-onglets" role="tablist" aria-label="Méthode d'extraction">
+      <button type="button" role="tab" id="onglet-standard" aria-selected="true" data-methode="standard">Protocole standard</button>
+      <button type="button" role="tab" id="onglet-kasuya" aria-selected="false" data-methode="kasuya">Méthode 4:6</button>
+    </div>
+
+    <div class="calc-champ">
+      <label for="cafe">Café moulu</label>
+      <div class="calc-saisie">
+        <input type="number" id="cafe" value="15" min="8" max="45" step="0.5" inputmode="decimal">
+        <span class="calc-unite">grammes</span>
+      </div>
+    </div>
+
+    <div class="calc-champ">
+      <label for="eau">Eau</label>
+      <div class="calc-saisie">
+        <input type="number" id="eau" value="225" min="120" max="700" step="5" inputmode="numeric">
+        <span class="calc-unite">grammes</span>
+      </div>
+    </div>
+
+    <div class="calc-champ">
+      <label id="lbl-ratio">Ratio</label>
+      <div class="calc-segments" role="group" aria-labelledby="lbl-ratio" id="grp-ratio">
+        <button type="button" data-ratio="14" aria-pressed="false">1:14<small>dense, intense</small></button>
+        <button type="button" data-ratio="15" aria-pressed="true">1:15<small>le point de départ</small></button>
+        <button type="button" data-ratio="16" aria-pressed="false">1:16<small>léger, délicat</small></button>
+      </div>
+    </div>
+
+    <div class="calc-champ" id="champ-equilibre" hidden>
+      <label id="lbl-equilibre">Les 40 % du début, ce qu'ils décident</label>
+      <div class="calc-segments" role="group" aria-labelledby="lbl-equilibre" id="grp-equilibre">
+        <button type="button" data-equilibre="doux" aria-pressed="false">Plus doux<small>premier versement plus grand</small></button>
+        <button type="button" data-equilibre="standard" aria-pressed="true">Équilibré<small>deux versements égaux</small></button>
+        <button type="button" data-equilibre="acide" aria-pressed="false">Plus acidulé<small>second versement plus grand</small></button>
+      </div>
+    </div>
+
+    <div class="calc-champ" id="champ-corps" hidden>
+      <label id="lbl-corps">Les 60 % de la fin, ce qu'ils décident</label>
+      <div class="calc-segments" role="group" aria-labelledby="lbl-corps" id="grp-corps">
+        <button type="button" data-corps="2" aria-pressed="true">2 versements<small>plus léger</small></button>
+        <button type="button" data-corps="3" aria-pressed="false">3 versements<small>plus dense</small></button>
+      </div>
+    </div>
+
+    <dl class="calc-resume">
+      <div><dt>Mouture</dt><dd id="out-mouture">Médium-fine</dd></div>
+      <div><dt>Température</dt><dd>93 °C</dd></div>
+      <div><dt>Temps total</dt><dd id="out-temps">2:30 – 3:30</dd></div>
+    </dl>
+
+    <ol class="calc-etapes" id="out-etapes"></ol>
+
+    <p class="calc-note" id="out-note"></p>
+  </section>
+
+  <article class="prose-article mt-16">
+    <h2>Comment lire ces chiffres</h2>
+    <p>Les poids affichés sont <strong>cumulés</strong>, pas des quantités à ajouter. Quand la ligne indique 150 g, cela veut dire que votre balance doit afficher 150 g à ce moment-là, pas que vous versez 150 g de plus. C'est la seule façon de ne pas se tromper en cours de route, et c'est ainsi que fonctionnent toutes les recettes de compétition.</p>
+    <p>Le rinçage du filtre ne compte pas dans le total. Vous rincez, vous jetez l'eau, puis vous tarez la balance à zéro avant de commencer. Cette étape enlève le goût de papier et préchauffe le cône, elle n'a rien à voir avec votre ratio.</p>
+    <p>Le bloom est calé sur <strong>deux fois le poids de café</strong>. C'est la règle qui marche le mieux : assez d'eau pour mouiller tout le lit, pas assez pour lancer l'extraction. Si votre café est très frais, il gonflera beaucoup et c'est bon signe.</p>
+
+    <h2>Standard ou 4:6, lequel choisir</h2>
+    <p>Le protocole standard est un enchaînement de trois versements réguliers. C'est prévisible, c'est rapide à apprendre, et c'est ce que je fais tous les matins. Si vous débutez, restez dessus le temps que votre geste se stabilise.</p>
+    <p>La méthode 4:6 de Tetsu Kasuya, avec laquelle il a remporté le World Brewers Cup 2016, sépare l'extraction en deux blocs indépendants. Les 40 % du début décident de l'équilibre entre douceur et acidité, les 60 % de la fin décident du corps. L'intérêt est qu'on ajuste le goût <strong>sans toucher à la mouture</strong>, ce qui est bien plus facile à reproduire. En contrepartie, la mouture doit être plus grossière que sur le protocole standard et l'extraction dure plus longtemps.</p>
+    <p>Le détail des deux méthodes, les erreurs classiques et ce qu'il faut regarder dans la tasse sont dans le <a href="/journal/v60-guide-complet" class="text-amber-700 font-medium hover:underline underline-offset-2">guide V60 complet</a>. Pour le choix du grain, le <a href="/journal/quel-cafe-pour-v60" class="text-amber-700 font-medium hover:underline underline-offset-2">quel café pour le V60</a> vous évitera d'acheter une torréfaction foncée qui ne donnera rien en filtre.</p>
+
+    <h2>Si le résultat ne tombe pas juste</h2>
+    <p>Le seul indicateur fiable, c'est le temps d'écoulement. Le lit de café doit être à sec entre 2 min 30 et 3 min 30 sur le protocole standard, entre 3 min 30 et 4 min sur la 4:6. Nettement plus long, desserrez la mouture. Nettement plus court, serrez-la. Ne changez qu'une variable à la fois, sinon vous ne saurez jamais laquelle a compté.</p>
+    <p>Et si tout est juste sur le papier mais que la tasse reste plate, regardez du côté de <a href="/journal/eau-cafe-filtre-tds-mineraux" class="text-amber-700 font-medium hover:underline underline-offset-2">votre eau</a>. Elle représente 98 % de ce que vous buvez, et dans une zone calcaire elle efface l'acidité avant même que vous ayez goûté.</p>
+
+    <section class="mt-16 rounded-2xl border border-stone-100 overflow-hidden">
+      <div class="px-6 pt-6 pb-4 border-b border-stone-100">
+        <p class="text-[10px] font-bold uppercase tracking-[0.3em] text-stone-400 mb-0">Les questions qui reviennent</p>
+      </div>
+      <div class="divide-y divide-stone-100">
+        <details class="group">
+          <summary class="flex items-center justify-between px-6 py-4 cursor-pointer font-semibold text-stone-900 text-sm leading-snug list-none">
+            Quel ratio café eau pour un V60 ?
+            <svg class="w-4 h-4 text-amber-600 flex-shrink-0 ml-4 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <div class="px-6 pb-5 text-stone-600 text-sm leading-relaxed border-t border-stone-100 pt-4">
+            1:15 est le point de départ standard, soit 15 g de café pour 225 g d'eau. Descendez à 1:14 pour une tasse plus dense et intense, montez à 1:16 pour quelque chose de plus léger et délicat. Ce n'est pas un dogme : gardez les autres paramètres constants le temps d'identifier ce qui vous convient.
+          </div>
+        </details>
+        <details class="group">
+          <summary class="flex items-center justify-between px-6 py-4 cursor-pointer font-semibold text-stone-900 text-sm leading-snug list-none">
+            Combien d'eau pour le bloom ?
+            <svg class="w-4 h-4 text-amber-600 flex-shrink-0 ml-4 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <div class="px-6 pb-5 text-stone-600 text-sm leading-relaxed border-t border-stone-100 pt-4">
+            Deux fois le poids de café, soit 30 g d'eau pour 15 g de café. Versez en mouvements circulaires pour couvrir tout le lit, puis attendez 30 secondes. Le café gonfle et dégaze : c'est le CO2 piégé qui s'échappe, et un bloom vigoureux indique un café frais.
+          </div>
+        </details>
+        <details class="group">
+          <summary class="flex items-center justify-between px-6 py-4 cursor-pointer font-semibold text-stone-900 text-sm leading-snug list-none">
+            Les poids affichés sont-ils cumulés ou à ajouter ?
+            <svg class="w-4 h-4 text-amber-600 flex-shrink-0 ml-4 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <div class="px-6 pb-5 text-stone-600 text-sm leading-relaxed border-t border-stone-100 pt-4">
+            Cumulés. La valeur indiquée est ce que votre balance doit afficher à ce moment de l'extraction, pas la quantité à verser en plus. Le rinçage du filtre est exclu du total : rincez, jetez l'eau, puis tarez à zéro avant de démarrer le minuteur.
+          </div>
+        </details>
+        <details class="group">
+          <summary class="flex items-center justify-between px-6 py-4 cursor-pointer font-semibold text-stone-900 text-sm leading-snug list-none">
+            C'est quoi la méthode 4:6 de Tetsu Kasuya ?
+            <svg class="w-4 h-4 text-amber-600 flex-shrink-0 ml-4 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <div class="px-6 pb-5 text-stone-600 text-sm leading-relaxed border-t border-stone-100 pt-4">
+            Une approche qui a remporté le World Brewers Cup 2016 et qui découpe l'eau en deux blocs. Les 40 % du début, en deux versements espacés de 45 secondes, contrôlent l'équilibre entre douceur et acidité. Les 60 % restants, en deux ou trois versements, contrôlent le corps : plus on divise, plus la tasse est dense. Tout s'ajuste sans toucher à la mouture, qui doit être plus grossière que sur le protocole standard.
+          </div>
+        </details>
+        <details class="group">
+          <summary class="flex items-center justify-between px-6 py-4 cursor-pointer font-semibold text-stone-900 text-sm leading-snug list-none">
+            Mon extraction est trop longue, que faire ?
+            <svg class="w-4 h-4 text-amber-600 flex-shrink-0 ml-4 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <div class="px-6 pb-5 text-stone-600 text-sm leading-relaxed border-t border-stone-100 pt-4">
+            Desserrez la mouture. Le lit doit être à sec entre 2 min 30 et 3 min 30 en protocole standard. Une extraction nettement plus longue signifie une mouture trop fine, qui donnera une tasse amère et astringente. Changez un seul réglage à la fois et refaites la même recette pour comparer.
+          </div>
+        </details>
+      </div>
+    </section>
+  </article>
+
+  <div class="mt-4 rounded-3xl bg-stone-900 px-8 py-10 text-center">
+    <p class="text-[10px] font-bold uppercase tracking-[0.4em] text-amber-400 mb-3">La lettre filtré.</p>
+    <h3 class="font-serif text-3xl text-white italic mb-3">Du grain à la tasse, sans bruit.</h3>
+    <p class="text-stone-400 text-sm mb-7 max-w-md mx-auto">Nouveaux cafés testés, guides techniques et histoires de terroirs, une lettre toutes les deux semaines.</p>
+    <form onsubmit="nlSubscribe(event)" class="flex flex-col sm:flex-row gap-3 max-w-sm mx-auto mt-1">
+      <input type="email" placeholder="votre@email.fr" required class="flex-1 px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-stone-50 placeholder-stone-500 text-sm focus:outline-none focus:border-amber-400">
+      <button type="submit" class="inline-flex items-center justify-center gap-2 bg-amber-500 hover:bg-amber-400 text-stone-900 font-bold text-sm px-6 py-3 rounded-xl transition-colors whitespace-nowrap">S'inscrire</button>
+    </form>
+    <p class="text-[11px] text-stone-600 mt-3">Gratuit · Pas de spam · <a href="/newsletter" class="underline underline-offset-2 hover:text-stone-400">Lire les archives</a></p>
+  </div>
+
+  <div style="background:#1c1917;border-radius:1.25rem;padding:1.75rem 2rem;margin:3rem 0 0;">
+    <p style="font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.3em;color:#f59e0b;margin:0 0 0.75rem;">Mon matériel</p>
+    <p style="font-family:'Instrument Serif',serif;font-style:italic;font-size:1.15rem;color:#fafaf9;margin:0 0 1.25rem;line-height:1.4;">Une balance au dixième de gramme change plus de choses ici qu'un meilleur café.</p>
+    <a href="/materiel" data-funnel-link="encart-materiel" style="display:inline-block;background:#f59e0b;color:#1c1917;padding:0.6rem 1.25rem;border-radius:0.5rem;font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;text-decoration:none;">Voir mon matériel →</a>
+  </div>
+</main>
+
+<script>
+(function () {
+  var $ = function (s) { return document.querySelector(s); };
+  var etat = { methode: 'standard', cafe: 15, eau: 225, ratio: 15, equilibre: 'standard', corps: 2 };
+
+  var inCafe = $('#cafe'), inEau = $('#eau');
+
+  var arrondi = function (n) { return Math.round(n); };
+  var mmss = function (s) {
+    var m = Math.floor(s / 60), r = s % 60;
+    return m + ':' + (r < 10 ? '0' : '') + r;
+  };
+
+  function etapes() {
+    var c = etat.cafe, e = etat.eau, out = [];
+    out.push({ t: null, txt: 'Rincer le filtre à l\'eau chaude, jeter l\'eau, <b>tarer la balance à zéro</b>.', cumul: '' });
+
+    if (etat.methode === 'standard') {
+      var bloom = Math.min(arrondi(c * 2), e);
+      out.push({ t: 0, txt: 'Bloom. Verser en spirale pour couvrir tout le lit, puis attendre.', cumul: bloom });
+      var paliers = [0.6, 0.8, 1];
+      for (var i = 0; i < 3; i++) {
+        var cible = Math.max(arrondi(e * paliers[i]), bloom);
+        out.push({
+          t: 30 + i * 30,
+          txt: i === 2 ? 'Versement final, terminer par un filet central pour lisser le lit.'
+                       : (i === 0 ? 'Premier versement, spirale lente du centre vers l\'extérieur.'
+                                  : 'Deuxième versement, attendre que le niveau baisse un peu avant de reprendre.'),
+          cumul: cible
+        });
+      }
+      out.push({ t: null, txt: 'Le lit doit être à sec entre <b>2:30 et 3:30</b>.', cumul: '' });
+      return out;
+    }
+
+    // 4:6 Kasuya : 40 % en deux versements, puis 60 % en deux ou trois
+    var quarante = e * 0.4, parts = [];
+    if (etat.equilibre === 'doux') parts = [quarante * 0.6, quarante * 0.4];
+    else if (etat.equilibre === 'acide') parts = [quarante * 0.4, quarante * 0.6];
+    else parts = [quarante * 0.5, quarante * 0.5];
+    var n = etat.corps, i2;
+    for (i2 = 0; i2 < n; i2++) parts.push((e * 0.6) / n);
+
+    var cumul = 0;
+    for (i2 = 0; i2 < parts.length; i2++) {
+      cumul += parts[i2];
+      var phase = i2 < 2 ? '40 %' : '60 %';
+      var role = i2 < 2 ? 'équilibre acidité et douceur' : 'corps et intensité';
+      out.push({
+        t: i2 * 45,
+        txt: 'Versement ' + (i2 + 1) + ' <b>(' + phase + ')</b>, ' + role + '.',
+        cumul: arrondi(cumul)
+      });
+    }
+    out.push({ t: null, txt: 'Le lit doit être à sec entre <b>3:30 et 4:00</b>. Mouture plus grossière que sur le protocole standard.', cumul: '' });
+    return out;
+  }
+
+  function rendre() {
+    var liste = $('#out-etapes');
+    liste.innerHTML = etapes().map(function (s) {
+      return '<li><span class="calc-t">' + (s.t === null ? '—' : mmss(s.t)) + '</span>'
+           + '<span class="calc-txt">' + s.txt + '</span>'
+           + '<span class="calc-cumul">' + (s.cumul === '' ? '' : s.cumul + ' g') + '</span></li>';
+    }).join('');
+
+    var k = etat.methode === 'kasuya';
+    $('#champ-equilibre').hidden = !k;
+    $('#champ-corps').hidden = !k;
+    $('#out-mouture').textContent = k ? 'Grossière' : 'Médium-fine';
+    $('#out-temps').textContent = k ? '3:30 – 4:00' : '2:30 – 3:30';
+    var note = k
+      ? 'Chaque versement est espacé de 45 secondes. Les poids sont cumulés, rinçage exclu.'
+      : 'Les poids sont cumulés : c\'est ce que la balance doit afficher, rinçage exclu.';
+    if (etat.eau > 400) {
+      note += ' <b>Au-delà de 400 g, vous dépassez ce qu\'un V60-02 encaisse confortablement.</b> '
+            + 'Passez sur un 03 ou faites deux extractions : les horaires ci-dessus valent pour un '
+            + 'cône standard, et sur un gros volume l\'écoulement sera plus long que la fenêtre annoncée.';
+    }
+    $('#out-note').innerHTML = note;
+  }
+
+  function depuisCafe() {
+    etat.cafe = parseFloat(inCafe.value) || 0;
+    etat.eau = arrondi(etat.cafe * etat.ratio);
+    inEau.value = etat.eau;
+    rendre();
+  }
+  function depuisEau() {
+    etat.eau = parseFloat(inEau.value) || 0;
+    etat.cafe = Math.round((etat.eau / etat.ratio) * 10) / 10;
+    inCafe.value = etat.cafe;
+    rendre();
+  }
+
+  inCafe.addEventListener('input', depuisCafe);
+  inEau.addEventListener('input', depuisEau);
+
+  function groupe(sel, attr, cb) {
+    var boutons = document.querySelectorAll(sel + ' button');
+    Array.prototype.forEach.call(boutons, function (b) {
+      b.addEventListener('click', function () {
+        Array.prototype.forEach.call(boutons, function (x) { x.setAttribute('aria-pressed', 'false'); });
+        b.setAttribute('aria-pressed', 'true');
+        cb(b.getAttribute(attr));
+      });
+    });
+  }
+  groupe('#grp-ratio', 'data-ratio', function (v) { etat.ratio = parseFloat(v); depuisCafe(); });
+  groupe('#grp-equilibre', 'data-equilibre', function (v) { etat.equilibre = v; rendre(); });
+  groupe('#grp-corps', 'data-corps', function (v) { etat.corps = parseInt(v, 10); rendre(); });
+
+  Array.prototype.forEach.call(document.querySelectorAll('.calc-onglets button'), function (b) {
+    b.addEventListener('click', function () {
+      Array.prototype.forEach.call(document.querySelectorAll('.calc-onglets button'), function (x) {
+        x.setAttribute('aria-selected', 'false');
+      });
+      b.setAttribute('aria-selected', 'true');
+      etat.methode = b.getAttribute('data-methode');
+      if (typeof equateur === 'function') equateur('track', 'OutilV60', { methode: etat.methode });
+      rendre();
+    });
+  });
+
+  rendre();
+})();
+</script>
