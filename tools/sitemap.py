@@ -175,7 +175,8 @@ def inventaire():
 
 
 def main():
-    ap = argparse.ArgumentParser(description="Met a jour les lastmod du sitemap.")
+    ap = argparse.ArgumentParser(
+        description="Met a jour les lastmod du sitemap et retire les URL redirigees.")
     ap.add_argument("--check", action="store_true",
                     help="ne rien ecrire, sortir 1 si le sitemap est perime")
     ap.add_argument("--oublis", action="store_true",
@@ -187,7 +188,8 @@ def main():
     sm = open(SITEMAP, encoding="utf-8").read()
     pages = inventaire()
     aujourdhui = datetime.date.today().isoformat()
-    bouges, orphelines = [], []
+    bouges, orphelines, retirees = [], [], []
+    redirs = redirigees()
 
     if args.oublis:
         edito, technique = commits_par_page()
@@ -242,7 +244,9 @@ def main():
         chemin = loc.group(1).replace(SITE, "") or "/"
         fichiers = sources(chemin)
         if not fichiers or not any(os.path.exists(os.path.join(ROOT, f)) for f in fichiers):
-            orphelines.append(chemin)
+            # Un 301 sur cette URL prouve un retrait volontaire : on nettoie.
+            # Sans redirection, c'est peut-etre une suppression accidentelle : on alerte.
+            (retirees if chemin in redirs else orphelines).append(chemin)
             return bloc
         ancien = lm.group(1)[:10]
         # jamais en arriere, jamais dans le futur
@@ -253,6 +257,12 @@ def main():
         return bloc.replace(lm.group(0), f"<lastmod>{neuf}</lastmod>")
 
     sortie = URL_RE.sub(lambda m: maj(m.group(0)), sm)
+
+    for chemin in retirees:
+        motif = re.compile(r"\n[^\S\n]*<url>(?:(?!</url>).)*?<loc>"
+                           + re.escape(SITE + chemin)
+                           + r"</loc>(?:(?!</url>).)*?</url>", re.S)
+        sortie = motif.sub("", sortie)
 
     presentes = {(LOC_RE.search(b).group(1).replace(SITE, "") or "/")
                  for b in URL_RE.findall(sm) if LOC_RE.search(b)}
@@ -275,10 +285,13 @@ def main():
         print(f"  {a} -> {b}  {chemin}")
     for chemin in manquantes:
         print(f"  + {chemin}  (entree ajoutee, priorite par defaut)")
+    for chemin in retirees:
+        print(f"  - {chemin}  (301 dans _redirects, entree retiree)")
     for chemin in orphelines:
-        print(f"  ! {chemin}  au sitemap mais plus aucune source — 404 ou redirection ?")
+        print(f"  ! {chemin}  au sitemap mais plus aucune source et aucun 301 — "
+              f"suppression voulue ? ajouter la redirection")
 
-    perime = bool(bouges or manquantes)
+    perime = bool(bouges or manquantes or retirees)
     if args.check:
         print(f"\n{'sitemap perime' if perime else 'sitemap a jour'}"
               f" — {len(presentes)} URL")
@@ -286,8 +299,9 @@ def main():
 
     if perime:
         open(SITEMAP, "w", encoding="utf-8").write(sortie)
-    print(f"\n{len(bouges)} date(s) avancee(s), {len(manquantes)} entree(s) ajoutee(s)"
-          f" — {len(presentes) + len(manquantes)} URL au sitemap")
+    print(f"\n{len(bouges)} date(s) avancee(s), {len(manquantes)} entree(s) ajoutee(s), "
+          f"{len(retirees)} retiree(s)"
+          f" — {len(presentes) + len(manquantes) - len(retirees)} URL au sitemap")
 
 
 if __name__ == "__main__":
