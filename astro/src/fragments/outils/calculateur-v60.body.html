@@ -41,7 +41,7 @@
     <div class="calc-champ">
       <label for="eau">Eau</label>
       <div class="calc-saisie">
-        <input type="number" id="eau" value="225" min="120" max="700" step="5" inputmode="numeric">
+        <input type="number" id="eau" value="240" min="120" max="700" step="5" inputmode="numeric">
         <span class="calc-unite">grammes</span>
       </div>
     </div>
@@ -49,9 +49,9 @@
     <div class="calc-champ">
       <label id="lbl-ratio">Ratio</label>
       <div class="calc-segments" role="group" aria-labelledby="lbl-ratio" id="grp-ratio">
-        <button type="button" data-ratio="14" aria-pressed="false">1:14<small>dense, intense</small></button>
-        <button type="button" data-ratio="15" aria-pressed="true">1:15<small>le point de départ</small></button>
-        <button type="button" data-ratio="16" aria-pressed="false">1:16<small>léger, délicat</small></button>
+        <button type="button" data-ratio="15" aria-pressed="false">1:15<small>dense, intense</small></button>
+        <button type="button" data-ratio="16" aria-pressed="true">1:16<small>le point de départ</small></button>
+        <button type="button" data-ratio="17" aria-pressed="false">1:17<small>léger, délicat</small></button>
       </div>
     </div>
 
@@ -109,7 +109,7 @@
             <svg class="w-4 h-4 text-amber-600 flex-shrink-0 ml-4 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
           </summary>
           <div class="px-6 pb-5 text-stone-600 text-sm leading-relaxed border-t border-stone-100 pt-4">
-            1:15 est le point de départ standard, soit 15 g de café pour 225 g d'eau. Descendez à 1:14 pour une tasse plus dense et intense, montez à 1:16 pour quelque chose de plus léger et délicat. Ce n'est pas un dogme : gardez les autres paramètres constants le temps d'identifier ce qui vous convient.
+            1:16 est le point de départ standard, soit 15 g de café pour 240 g d'eau, ce que j'arrondis à 250 g dans ma recette. Descendez à 1:15 pour une tasse plus dense et intense, montez à 1:17 pour quelque chose de plus léger et délicat. Ce n'est pas un dogme : gardez les autres paramètres constants le temps d'identifier ce qui vous convient.
           </div>
         </details>
         <details class="group">
@@ -173,7 +173,7 @@
 <script>
 (function () {
   var $ = function (s) { return document.querySelector(s); };
-  var etat = { methode: 'standard', cafe: 15, eau: 225, ratio: 15, equilibre: 'standard', corps: 2 };
+  var etat = { methode: 'standard', cafe: 15, eau: 240, ratio: 16, equilibre: 'standard', corps: 2 };
 
   var inCafe = $('#cafe'), inEau = $('#eau');
 
