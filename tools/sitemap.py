@@ -188,6 +188,12 @@ def main():
     sm = open(SITEMAP, encoding="utf-8").read()
     pages = inventaire()
     aujourdhui = datetime.date.today().isoformat()
+    # Le plafond anti-date-future tolere un jour. Sans cette marge, une page datee
+    # "aujourd'hui" a Paris apres minuit est vue comme future par la CI, qui tourne
+    # en UTC et a donc encore la date de la veille : le sitemap etait alors declare
+    # perime et le job echouait. Un jour d'ecart couvre tous les fuseaux; au-dela
+    # c'est une vraie faute de frappe et on veut toujours la corriger.
+    plafond = (datetime.date.today() + datetime.timedelta(days=1)).isoformat()
     bouges, orphelines, retirees = [], [], []
     redirs = redirigees()
 
@@ -250,7 +256,7 @@ def main():
             return bloc
         ancien = lm.group(1)[:10]
         # jamais en arriere, jamais dans le futur
-        neuf = min(max(ancien, date_declaree(fichiers)), aujourdhui)
+        neuf = min(max(ancien, date_declaree(fichiers)), plafond)
         if neuf == ancien:
             return bloc
         bouges.append((chemin, ancien, neuf))
@@ -271,7 +277,7 @@ def main():
         blocs = []
         for chemin in manquantes:
             fichiers = pages[chemin]
-            d = min(date_declaree(fichiers) or aujourdhui, aujourdhui)
+            d = min(date_declaree(fichiers) or aujourdhui, plafond)
             cf, pr = DEFAUTS.get(chemin.strip("/").split("/")[0], DEFAUT)
             blocs.append(f"  <url>\n    <loc>{SITE}{chemin}</loc>\n"
                          f"    <lastmod>{d}</lastmod>\n"
