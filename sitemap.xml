@@ -743,4 +743,12 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+
+  <!-- Ajouts automatiques : a reclasser dans la bonne section -->
+  <url>
+    <loc>https://filtre.cafe/journal/kaffeost-cafe-fromage-laponie</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>
