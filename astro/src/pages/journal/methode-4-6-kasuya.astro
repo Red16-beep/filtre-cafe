@@ -1,0 +1,11 @@
+---
+import Base from '../../layouts/Base.astro';
+import head from '../../fragments/journal/methode-4-6-kasuya.head.html?raw';
+import style from '../../fragments/journal/methode-4-6-kasuya.style.html?raw';
+import body from '../../fragments/journal/methode-4-6-kasuya.body.html?raw';
+---
+<Base>
+  <Fragment slot="head" set:html={head} />
+  <Fragment slot="style" set:html={style} />
+  <Fragment set:html={body} />
+</Base>
