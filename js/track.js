@@ -21,6 +21,8 @@
       if (host === 'anomcafeclub.com') return 'anom';
       if (host === 'tanat.coffee') return 'tanat';
       if (host === 'nouvojour.fr') return 'nouvojour';
+      if (host.indexOf('coffeefriend.') !== -1) return 'coffeefriend';
+      if (host.indexOf('adtraction.com') !== -1) return 'coffeefriend';
       return 'external';
     } catch (e) {
       return 'unknown';
@@ -56,9 +58,11 @@
 
     var destinationType = getDestinationType(link.href);
     if (destinationType === 'internal' || destinationType === 'unknown') return;
-    if (destinationType !== 'amazon' && (link.getAttribute('rel') || '').indexOf('sponsored') === -1) return;
+    // Marchands ou l'on touche une commission : le clic vaut AffiliateClick.
+    var remunere = destinationType === 'amazon' || destinationType === 'coffeefriend';
+    if (!remunere && (link.getAttribute('rel') || '').indexOf('sponsored') === -1) return;
 
-    var eventName = destinationType === 'amazon' ? 'AffiliateClick' : 'OutboundClick';
+    var eventName = remunere ? 'AffiliateClick' : 'OutboundClick';
     track(eventName, {
       merchant: destinationType,
       label: cleanText(link.textContent, 100),
