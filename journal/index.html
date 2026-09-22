@@ -194,6 +194,12 @@ body {
 }
 #journal-count { transition: opacity 0.16s ease; }
 #journal-count.is-updating { opacity: 0; }
+mark.journal-hit {
+  background: linear-gradient(transparent 62%, rgba(217, 119, 6, 0.28) 62%);
+  color: inherit;
+  padding: 0 0.05em;
+  border-radius: 2px;
+}
 @media (prefers-reduced-motion: reduce) {
   .article-card.is-entering { animation: none; }
   #journal-search-icon.is-searching { animation: none; }
@@ -354,6 +360,19 @@ body {
     <div class="md:col-span-2 flex items-center gap-5 mt-10 mb-2">
       <span class="text-[9px] font-bold uppercase tracking-[0.4em] text-stone-400 whitespace-nowrap">Technique &amp; Extraction</span>
       <div class="flex-1 h-px bg-stone-200"></div>
+    <article class="article-card reveal reveal-delay-1 bg-white border border-stone-100 rounded-3xl p-8 md:p-10 flex flex-col">
+      <div class="flex items-start justify-between mb-6">
+        <span class="tag-selection text-[9px] font-bold uppercase tracking-[0.3em] px-3 py-1.5 rounded-full">Technique</span>
+        <span class="text-[11px] text-stone-300 font-light">Septembre 2026</span>
+      </div>
+      <h2 class="serif text-3xl md:text-4xl italic text-stone-900 leading-tight mb-4">La méthode 4:6 de Tetsu Kasuya.</h2>
+      <p class="text-sm font-light text-stone-500 leading-relaxed mb-8 flex-1">Cinq versements, deux réglages indépendants. Et la règle d'équilibre que la plupart des articles français donnent à l'envers.</p>
+      <div class="flex items-center justify-between pt-6 border-t border-stone-100">
+        <span class="text-[10px] font-medium uppercase tracking-[0.2em] text-stone-300">9 min de lecture</span>
+        <a href="/journal/methode-4-6-kasuya" class="arrow-link text-[11px] font-bold uppercase tracking-[0.2em] text-stone-900 hover:text-amber-800 transition-colors">Lire <span aria-hidden="true">&rarr;</span></a>
+      </div>
+    </article>
+
     </div>
 
     <!-- Meilleur café de supermarché -->
@@ -728,6 +747,123 @@ body {
     <div class="md:col-span-2 flex items-center gap-5 mt-10 mb-2">
       <span class="text-[9px] font-bold uppercase tracking-[0.4em] text-stone-400 whitespace-nowrap">Sélection &amp; Achat</span>
       <div class="flex-1 h-px bg-stone-200"></div>
+    <article class="article-card reveal reveal-delay-1 bg-white border border-stone-100 rounded-3xl p-8 md:p-10 flex flex-col">
+      <div class="flex items-start justify-between mb-6">
+        <span class="tag-selection text-[9px] font-bold uppercase tracking-[0.3em] px-3 py-1.5 rounded-full">Matériel</span>
+        <span class="text-[11px] text-stone-300 font-light">Septembre 2026</span>
+      </div>
+      <h2 class="serif text-3xl md:text-4xl italic text-stone-900 leading-tight mb-4">Le Hario Switch, le V60 qu'on peut fermer.</h2>
+      <p class="text-sm font-light text-stone-500 leading-relaxed mb-8 flex-1">Une bille d'acier, un clapet, et le temps de contact cesse d'être une conséquence pour devenir un réglage. Deux recettes vérifiées.</p>
+      <div class="flex items-center justify-between pt-6 border-t border-stone-100">
+        <span class="text-[10px] font-medium uppercase tracking-[0.2em] text-stone-300">9 min de lecture</span>
+        <a href="/journal/hario-switch-guide-recettes" class="arrow-link text-[11px] font-bold uppercase tracking-[0.2em] text-stone-900 hover:text-amber-800 transition-colors">Lire <span aria-hidden="true">&rarr;</span></a>
+      </div>
+    </article>
+
+    <article class="article-card reveal reveal-delay-1 bg-white border border-stone-100 rounded-3xl p-8 md:p-10 flex flex-col">
+      <div class="flex items-start justify-between mb-6">
+        <span class="tag-selection text-[9px] font-bold uppercase tracking-[0.3em] px-3 py-1.5 rounded-full">Matériel</span>
+        <span class="text-[11px] text-stone-300 font-light">Septembre 2026</span>
+      </div>
+      <h2 class="serif text-3xl md:text-4xl italic text-stone-900 leading-tight mb-4">Balance Acaia : Pearl, Pearl S ou Lunar ?</h2>
+      <p class="text-sm font-light text-stone-500 leading-relaxed mb-8 flex-1">Ce qu'on achète chez Acaia n'est pas la précision mais la vitesse d'affichage. Et pour qui ça ne vaut pas le prix.</p>
+      <div class="flex items-center justify-between pt-6 border-t border-stone-100">
+        <span class="text-[10px] font-medium uppercase tracking-[0.2em] text-stone-300">10 min de lecture</span>
+        <a href="/journal/balance-acaia-pearl-lunar" class="arrow-link text-[11px] font-bold uppercase tracking-[0.2em] text-stone-900 hover:text-amber-800 transition-colors">Lire <span aria-hidden="true">&rarr;</span></a>
+      </div>
+    </article>
+
+    <article class="article-card reveal reveal-delay-1 bg-white border border-stone-100 rounded-3xl p-8 md:p-10 flex flex-col">
+      <div class="flex items-start justify-between mb-6">
+        <span class="tag-selection text-[9px] font-bold uppercase tracking-[0.3em] px-3 py-1.5 rounded-full">Matériel</span>
+        <span class="text-[11px] text-stone-300 font-light">Septembre 2026</span>
+      </div>
+      <h2 class="serif text-3xl md:text-4xl italic text-stone-900 leading-tight mb-4">Top 8 des tasses à café.</h2>
+      <p class="text-sm font-light text-stone-500 leading-relaxed mb-8 flex-1">La forme, l'épaisseur et le volume changent ce que vous goûtez. Huit références de 4 à 29 €, de l'espresso au mug de voyage.</p>
+      <div class="flex items-center justify-between pt-6 border-t border-stone-100">
+        <span class="text-[10px] font-medium uppercase tracking-[0.2em] text-stone-300">10 min de lecture</span>
+        <a href="/journal/top-tasses-cafe" class="arrow-link text-[11px] font-bold uppercase tracking-[0.2em] text-stone-900 hover:text-amber-800 transition-colors">Lire <span aria-hidden="true">&rarr;</span></a>
+      </div>
+    </article>
+
+    <article class="article-card reveal reveal-delay-1 bg-white border border-stone-100 rounded-3xl p-8 md:p-10 flex flex-col">
+      <div class="flex items-start justify-between mb-6">
+        <span class="tag-selection text-[9px] font-bold uppercase tracking-[0.3em] px-3 py-1.5 rounded-full">Matériel</span>
+        <span class="text-[11px] text-stone-300 font-light">Septembre 2026</span>
+      </div>
+      <h2 class="serif text-3xl md:text-4xl italic text-stone-900 leading-tight mb-4">Top 8 des machines à grain haut de gamme.</h2>
+      <p class="text-sm font-light text-stone-500 leading-relaxed mb-8 flex-1">Passé mille euros, un automatique ne fait pas un meilleur espresso qu'une machine à 700 €. Ce qu'on paie à la place.</p>
+      <div class="flex items-center justify-between pt-6 border-t border-stone-100">
+        <span class="text-[10px] font-medium uppercase tracking-[0.2em] text-stone-300">11 min de lecture</span>
+        <a href="/journal/top-machines-cafe-grain-haut-de-gamme" class="arrow-link text-[11px] font-bold uppercase tracking-[0.2em] text-stone-900 hover:text-amber-800 transition-colors">Lire <span aria-hidden="true">&rarr;</span></a>
+      </div>
+    </article>
+
+    <article class="article-card reveal reveal-delay-1 bg-white border border-stone-100 rounded-3xl p-8 md:p-10 flex flex-col">
+      <div class="flex items-start justify-between mb-6">
+        <span class="tag-selection text-[9px] font-bold uppercase tracking-[0.3em] px-3 py-1.5 rounded-full">Matériel</span>
+        <span class="text-[11px] text-stone-300 font-light">Septembre 2026</span>
+      </div>
+      <h2 class="serif text-3xl md:text-4xl italic text-stone-900 leading-tight mb-4">Top 8 des machines à grain de milieu de gamme.</h2>
+      <p class="text-sm font-light text-stone-500 leading-relaxed mb-8 flex-1">Automatique intégral ou porte-filtre à broyeur : deux philosophies au même prix, et se tromper de famille coûte cher.</p>
+      <div class="flex items-center justify-between pt-6 border-t border-stone-100">
+        <span class="text-[10px] font-medium uppercase tracking-[0.2em] text-stone-300">11 min de lecture</span>
+        <a href="/journal/top-machines-cafe-grain-milieu-de-gamme" class="arrow-link text-[11px] font-bold uppercase tracking-[0.2em] text-stone-900 hover:text-amber-800 transition-colors">Lire <span aria-hidden="true">&rarr;</span></a>
+      </div>
+    </article>
+
+    <article class="article-card reveal reveal-delay-1 bg-white border border-stone-100 rounded-3xl p-8 md:p-10 flex flex-col">
+      <div class="flex items-start justify-between mb-6">
+        <span class="tag-selection text-[9px] font-bold uppercase tracking-[0.3em] px-3 py-1.5 rounded-full">Matériel</span>
+        <span class="text-[11px] text-stone-300 font-light">Septembre 2026</span>
+      </div>
+      <h2 class="serif text-3xl md:text-4xl italic text-stone-900 leading-tight mb-4">Top 8 des machines à grain à moins de 600 €.</h2>
+      <p class="text-sm font-light text-stone-500 leading-relaxed mb-8 flex-1">Le palier le plus vendu de France, et les trois compromis que les fiches techniques passent sous silence.</p>
+      <div class="flex items-center justify-between pt-6 border-t border-stone-100">
+        <span class="text-[10px] font-medium uppercase tracking-[0.2em] text-stone-300">10 min de lecture</span>
+        <a href="/journal/top-machines-cafe-grain-entree-de-gamme" class="arrow-link text-[11px] font-bold uppercase tracking-[0.2em] text-stone-900 hover:text-amber-800 transition-colors">Lire <span aria-hidden="true">&rarr;</span></a>
+      </div>
+    </article>
+
+    <article class="article-card reveal reveal-delay-1 bg-white border border-stone-100 rounded-3xl p-8 md:p-10 flex flex-col">
+      <div class="flex items-start justify-between mb-6">
+        <span class="tag-selection text-[9px] font-bold uppercase tracking-[0.3em] px-3 py-1.5 rounded-full">Matériel</span>
+        <span class="text-[11px] text-stone-300 font-light">Septembre 2026</span>
+      </div>
+      <h2 class="serif text-3xl md:text-4xl italic text-stone-900 leading-tight mb-4">Top 8 des moulins haut de gamme.</h2>
+      <p class="text-sm font-light text-stone-500 leading-relaxed mb-8 flex-1">Au-delà de 500 €, les rendements sont décroissants. Ce que l'argent achète encore, et où il n'achète plus rien.</p>
+      <div class="flex items-center justify-between pt-6 border-t border-stone-100">
+        <span class="text-[10px] font-medium uppercase tracking-[0.2em] text-stone-300">11 min de lecture</span>
+        <a href="/journal/top-moulins-cafe-haut-de-gamme" class="arrow-link text-[11px] font-bold uppercase tracking-[0.2em] text-stone-900 hover:text-amber-800 transition-colors">Lire <span aria-hidden="true">&rarr;</span></a>
+      </div>
+    </article>
+
+    <article class="article-card reveal reveal-delay-1 bg-white border border-stone-100 rounded-3xl p-8 md:p-10 flex flex-col">
+      <div class="flex items-start justify-between mb-6">
+        <span class="tag-selection text-[9px] font-bold uppercase tracking-[0.3em] px-3 py-1.5 rounded-full">Matériel</span>
+        <span class="text-[11px] text-stone-300 font-light">Septembre 2026</span>
+      </div>
+      <h2 class="serif text-3xl md:text-4xl italic text-stone-900 leading-tight mb-4">Top 8 des moulins de milieu de gamme.</h2>
+      <p class="text-sm font-light text-stone-500 leading-relaxed mb-8 flex-1">Le palier où l'on n'achète plus un niveau mais une spécialité : meules plates ou coniques, single dose ou trémie.</p>
+      <div class="flex items-center justify-between pt-6 border-t border-stone-100">
+        <span class="text-[10px] font-medium uppercase tracking-[0.2em] text-stone-300">11 min de lecture</span>
+        <a href="/journal/top-moulins-cafe-milieu-de-gamme" class="arrow-link text-[11px] font-bold uppercase tracking-[0.2em] text-stone-900 hover:text-amber-800 transition-colors">Lire <span aria-hidden="true">&rarr;</span></a>
+      </div>
+    </article>
+
+    <article class="article-card reveal reveal-delay-1 bg-white border border-stone-100 rounded-3xl p-8 md:p-10 flex flex-col">
+      <div class="flex items-start justify-between mb-6">
+        <span class="tag-selection text-[9px] font-bold uppercase tracking-[0.3em] px-3 py-1.5 rounded-full">Matériel</span>
+        <span class="text-[11px] text-stone-300 font-light">Septembre 2026</span>
+      </div>
+      <h2 class="serif text-3xl md:text-4xl italic text-stone-900 leading-tight mb-4">Top 8 des moulins à moins de 200 €.</h2>
+      <p class="text-sm font-light text-stone-500 leading-relaxed mb-8 flex-1">Manuels et premiers électriques, de 25 à 149 €. Pour chacun, ce qu'il sait faire et surtout ce qu'il ne sait pas faire.</p>
+      <div class="flex items-center justify-between pt-6 border-t border-stone-100">
+        <span class="text-[10px] font-medium uppercase tracking-[0.2em] text-stone-300">10 min de lecture</span>
+        <a href="/journal/top-moulins-cafe-entree-de-gamme" class="arrow-link text-[11px] font-bold uppercase tracking-[0.2em] text-stone-900 hover:text-amber-800 transition-colors">Lire <span aria-hidden="true">&rarr;</span></a>
+      </div>
+    </article>
+
     </div>
 
     <!-- Idées cadeaux café -->
@@ -1056,6 +1192,136 @@ body {
     <div class="md:col-span-2 flex items-center gap-5 mt-10 mb-2">
       <span class="text-[9px] font-bold uppercase tracking-[0.4em] text-stone-400 whitespace-nowrap">Origines</span>
       <div class="flex-1 h-px bg-stone-200"></div>
+    <article class="article-card reveal reveal-delay-1 bg-white border border-stone-100 rounded-3xl p-8 md:p-10 flex flex-col">
+      <div class="flex items-start justify-between mb-6">
+        <span class="tag-selection text-[9px] font-bold uppercase tracking-[0.3em] px-3 py-1.5 rounded-full">Cafés du monde</span>
+        <span class="text-[11px] text-stone-300 font-light">Septembre 2026</span>
+      </div>
+      <h2 class="serif text-3xl md:text-4xl italic text-stone-900 leading-tight mb-4">Le café cubano et son espumita.</h2>
+      <p class="text-sm font-light text-stone-500 leading-relaxed mb-8 flex-1">Le sucre battu avec les premières gouttes de l'extraction. Le seul café sucré où le sucre transforme la boisson.</p>
+      <div class="flex items-center justify-between pt-6 border-t border-stone-100">
+        <span class="text-[10px] font-medium uppercase tracking-[0.2em] text-stone-300">8 min de lecture</span>
+        <a href="/journal/cafe-cubano-espumita" class="arrow-link text-[11px] font-bold uppercase tracking-[0.2em] text-stone-900 hover:text-amber-800 transition-colors">Lire <span aria-hidden="true">&rarr;</span></a>
+      </div>
+    </article>
+
+    <article class="article-card reveal reveal-delay-1 bg-white border border-stone-100 rounded-3xl p-8 md:p-10 flex flex-col">
+      <div class="flex items-start justify-between mb-6">
+        <span class="tag-selection text-[9px] font-bold uppercase tracking-[0.3em] px-3 py-1.5 rounded-full">Cafés du monde</span>
+        <span class="text-[11px] text-stone-300 font-light">Septembre 2026</span>
+      </div>
+      <h2 class="serif text-3xl md:text-4xl italic text-stone-900 leading-tight mb-4">Le yuanyang de Hong Kong.</h2>
+      <p class="text-sm font-light text-stone-500 leading-relaxed mb-8 flex-1">Trois parts de café, sept parts de thé au lait. Le nom vient des canards mandarins, et il ne dit pas « mélange » mais « paire ».</p>
+      <div class="flex items-center justify-between pt-6 border-t border-stone-100">
+        <span class="text-[10px] font-medium uppercase tracking-[0.2em] text-stone-300">8 min de lecture</span>
+        <a href="/journal/yuanyang-hong-kong" class="arrow-link text-[11px] font-bold uppercase tracking-[0.2em] text-stone-900 hover:text-amber-800 transition-colors">Lire <span aria-hidden="true">&rarr;</span></a>
+      </div>
+    </article>
+
+    <article class="article-card reveal reveal-delay-1 bg-white border border-stone-100 rounded-3xl p-8 md:p-10 flex flex-col">
+      <div class="flex items-start justify-between mb-6">
+        <span class="tag-selection text-[9px] font-bold uppercase tracking-[0.3em] px-3 py-1.5 rounded-full">Cafés du monde</span>
+        <span class="text-[11px] text-stone-300 font-light">Septembre 2026</span>
+      </div>
+      <h2 class="serif text-3xl md:text-4xl italic text-stone-900 leading-tight mb-4">Le kaffeost, le café au fromage de Laponie.</h2>
+      <p class="text-sm font-light text-stone-500 leading-relaxed mb-8 flex-1">Des cubes de leipäjuusto au fond de la tasse. Pourquoi ce fromage ne fond pas, et par quoi le remplacer.</p>
+      <div class="flex items-center justify-between pt-6 border-t border-stone-100">
+        <span class="text-[10px] font-medium uppercase tracking-[0.2em] text-stone-300">9 min de lecture</span>
+        <a href="/journal/kaffeost-cafe-fromage-laponie" class="arrow-link text-[11px] font-bold uppercase tracking-[0.2em] text-stone-900 hover:text-amber-800 transition-colors">Lire <span aria-hidden="true">&rarr;</span></a>
+      </div>
+    </article>
+
+    <article class="article-card reveal reveal-delay-1 bg-white border border-stone-100 rounded-3xl p-8 md:p-10 flex flex-col">
+      <div class="flex items-start justify-between mb-6">
+        <span class="tag-selection text-[9px] font-bold uppercase tracking-[0.3em] px-3 py-1.5 rounded-full">Cafés du monde</span>
+        <span class="text-[11px] text-stone-300 font-light">Septembre 2026</span>
+      </div>
+      <h2 class="serif text-3xl md:text-4xl italic text-stone-900 leading-tight mb-4">Le mazagran, le café glacé que la France a oublié.</h2>
+      <p class="text-sm font-light text-stone-500 leading-relaxed mb-8 flex-1">Café froid au citron né en Algérie en 1840, tombé en désuétude ici, devenu un classique national au Portugal.</p>
+      <div class="flex items-center justify-between pt-6 border-t border-stone-100">
+        <span class="text-[10px] font-medium uppercase tracking-[0.2em] text-stone-300">9 min de lecture</span>
+        <a href="/journal/mazagran-cafe-glace-citron" class="arrow-link text-[11px] font-bold uppercase tracking-[0.2em] text-stone-900 hover:text-amber-800 transition-colors">Lire <span aria-hidden="true">&rarr;</span></a>
+      </div>
+    </article>
+
+    <article class="article-card reveal reveal-delay-1 bg-white border border-stone-100 rounded-3xl p-8 md:p-10 flex flex-col">
+      <div class="flex items-start justify-between mb-6">
+        <span class="tag-selection text-[9px] font-bold uppercase tracking-[0.3em] px-3 py-1.5 rounded-full">Cafés du monde</span>
+        <span class="text-[11px] text-stone-300 font-light">Septembre 2026</span>
+      </div>
+      <h2 class="serif text-3xl md:text-4xl italic text-stone-900 leading-tight mb-4">Le bicerin, les trois couches de Turin.</h2>
+      <p class="text-sm font-light text-stone-500 leading-relaxed mb-8 flex-1">Chocolat épais, espresso, crème. Empilés dans un petit verre, et surtout jamais mélangés.</p>
+      <div class="flex items-center justify-between pt-6 border-t border-stone-100">
+        <span class="text-[10px] font-medium uppercase tracking-[0.2em] text-stone-300">9 min de lecture</span>
+        <a href="/journal/bicerin-turin" class="arrow-link text-[11px] font-bold uppercase tracking-[0.2em] text-stone-900 hover:text-amber-800 transition-colors">Lire <span aria-hidden="true">&rarr;</span></a>
+      </div>
+    </article>
+
+    <article class="article-card reveal reveal-delay-1 bg-white border border-stone-100 rounded-3xl p-8 md:p-10 flex flex-col">
+      <div class="flex items-start justify-between mb-6">
+        <span class="tag-selection text-[9px] font-bold uppercase tracking-[0.3em] px-3 py-1.5 rounded-full">Cafés du monde</span>
+        <span class="text-[11px] text-stone-300 font-light">Septembre 2026</span>
+      </div>
+      <h2 class="serif text-3xl md:text-4xl italic text-stone-900 leading-tight mb-4">L'Ipoh white coffee malaisien.</h2>
+      <p class="text-sm font-light text-stone-500 leading-relaxed mb-8 flex-1">Un grain torréfié à la margarine plutôt qu'au sucre. « Blanc » ne désigne pas la couleur de la tasse.</p>
+      <div class="flex items-center justify-between pt-6 border-t border-stone-100">
+        <span class="text-[10px] font-medium uppercase tracking-[0.2em] text-stone-300">9 min de lecture</span>
+        <a href="/journal/ipoh-white-coffee-malaisie" class="arrow-link text-[11px] font-bold uppercase tracking-[0.2em] text-stone-900 hover:text-amber-800 transition-colors">Lire <span aria-hidden="true">&rarr;</span></a>
+      </div>
+    </article>
+
+    <article class="article-card reveal reveal-delay-1 bg-white border border-stone-100 rounded-3xl p-8 md:p-10 flex flex-col">
+      <div class="flex items-start justify-between mb-6">
+        <span class="tag-selection text-[9px] font-bold uppercase tracking-[0.3em] px-3 py-1.5 rounded-full">Cafés du monde</span>
+        <span class="text-[11px] text-stone-300 font-light">Septembre 2026</span>
+      </div>
+      <h2 class="serif text-3xl md:text-4xl italic text-stone-900 leading-tight mb-4">Le kopi tubruk indonésien.</h2>
+      <p class="text-sm font-light text-stone-500 leading-relaxed mb-8 flex-1">Le marc reste dans la tasse et on attend qu'il tombe. La méthode la plus simple du monde, et la plus mal comprise.</p>
+      <div class="flex items-center justify-between pt-6 border-t border-stone-100">
+        <span class="text-[10px] font-medium uppercase tracking-[0.2em] text-stone-300">9 min de lecture</span>
+        <a href="/journal/kopi-tubruk-indonesie" class="arrow-link text-[11px] font-bold uppercase tracking-[0.2em] text-stone-900 hover:text-amber-800 transition-colors">Lire <span aria-hidden="true">&rarr;</span></a>
+      </div>
+    </article>
+
+    <article class="article-card reveal reveal-delay-1 bg-white border border-stone-100 rounded-3xl p-8 md:p-10 flex flex-col">
+      <div class="flex items-start justify-between mb-6">
+        <span class="tag-selection text-[9px] font-bold uppercase tracking-[0.3em] px-3 py-1.5 rounded-full">Cafés du monde</span>
+        <span class="text-[11px] text-stone-300 font-light">Septembre 2026</span>
+      </div>
+      <h2 class="serif text-3xl md:text-4xl italic text-stone-900 leading-tight mb-4">La qahwa, le café arabe à la cardamome.</h2>
+      <p class="text-sm font-light text-stone-500 leading-relaxed mb-8 flex-1">Torréfaction très claire, cardamome verte, safran parfois. Un café pâle et parfumé qui se sert par trois.</p>
+      <div class="flex items-center justify-between pt-6 border-t border-stone-100">
+        <span class="text-[10px] font-medium uppercase tracking-[0.2em] text-stone-300">10 min de lecture</span>
+        <a href="/journal/qahwa-cafe-arabe-cardamome" class="arrow-link text-[11px] font-bold uppercase tracking-[0.2em] text-stone-900 hover:text-amber-800 transition-colors">Lire <span aria-hidden="true">&rarr;</span></a>
+      </div>
+    </article>
+
+    <article class="article-card reveal reveal-delay-1 bg-white border border-stone-100 rounded-3xl p-8 md:p-10 flex flex-col">
+      <div class="flex items-start justify-between mb-6">
+        <span class="tag-selection text-[9px] font-bold uppercase tracking-[0.3em] px-3 py-1.5 rounded-full">Cafés du monde</span>
+        <span class="text-[11px] text-stone-300 font-light">Septembre 2026</span>
+      </div>
+      <h2 class="serif text-3xl md:text-4xl italic text-stone-900 leading-tight mb-4">Le café Touba sénégalais.</h2>
+      <p class="text-sm font-light text-stone-500 leading-relaxed mb-8 flex-1">Le poivre de Guinée torréfié avec le grain, et une boisson devenue marqueur d'appartenance religieuse.</p>
+      <div class="flex items-center justify-between pt-6 border-t border-stone-100">
+        <span class="text-[10px] font-medium uppercase tracking-[0.2em] text-stone-300">9 min de lecture</span>
+        <a href="/journal/cafe-touba-senegal" class="arrow-link text-[11px] font-bold uppercase tracking-[0.2em] text-stone-900 hover:text-amber-800 transition-colors">Lire <span aria-hidden="true">&rarr;</span></a>
+      </div>
+    </article>
+
+    <article class="article-card reveal reveal-delay-1 bg-white border border-stone-100 rounded-3xl p-8 md:p-10 flex flex-col">
+      <div class="flex items-start justify-between mb-6">
+        <span class="tag-selection text-[9px] font-bold uppercase tracking-[0.3em] px-3 py-1.5 rounded-full">Cafés du monde</span>
+        <span class="text-[11px] text-stone-300 font-light">Septembre 2026</span>
+      </div>
+      <h2 class="serif text-3xl md:text-4xl italic text-stone-900 leading-tight mb-4">Le café de olla mexicain.</h2>
+      <p class="text-sm font-light text-stone-500 leading-relaxed mb-8 flex-1">Cannelle, piloncillo et pot de terre cuite. Une préparation née dans les campements de la Révolution.</p>
+      <div class="flex items-center justify-between pt-6 border-t border-stone-100">
+        <span class="text-[10px] font-medium uppercase tracking-[0.2em] text-stone-300">9 min de lecture</span>
+        <a href="/journal/cafe-de-olla-mexique" class="arrow-link text-[11px] font-bold uppercase tracking-[0.2em] text-stone-900 hover:text-amber-800 transition-colors">Lire <span aria-hidden="true">&rarr;</span></a>
+      </div>
+    </article>
+
     </div>
 
     <!-- Café éthiopien -->
@@ -1696,19 +1962,27 @@ function closeMobileMenu() {
   let activeFilter = 'all';
   let premierRendu = true;
 
+  let dernierEtat = null;
+
   function applyFilters() {
     const query = normalize(searchInput.value);
     let visibleCount = 0;
+
+    // Rejouer l'animation des que la selection change, et pas seulement sur les
+    // cartes qui reapparaissent : sinon taper une requete de plus en plus etroite
+    // ne fait jamais rien bouger, puisque le resultat ne fait que retrecir.
+    const etat = activeFilter + '\u0000' + query;
+    const selectionAChange = etat !== dernierEtat;
+    dernierEtat = etat;
 
     articles.forEach((article) => {
       const matchesFilter = activeFilter === 'all' || article.dataset.categories.split(' ').includes(activeFilter);
       const matchesQuery = !query || article.dataset.searchText.includes(query);
       const isVisible = matchesFilter && matchesQuery;
-      const etaitCache = article.classList.contains('is-hidden');
       article.classList.toggle('is-hidden', !isVisible);
+      surligner(article, query);
       if (isVisible) {
-        // n'anime que ce qui reapparait, pas ce qui etait deja la
-        if (etaitCache || premierRendu) {
+        if (selectionAChange || premierRendu) {
           article.classList.remove('is-entering');
           // force le redemarrage de l'animation
           void article.offsetWidth;
@@ -1735,6 +2009,40 @@ function closeMobileMenu() {
         count.classList.remove('is-updating');
       }, 160);
     }
+  }
+
+  // Surligne le terme recherche. On repart du texte d'origine a chaque appel
+  // pour ne jamais imbriquer de <mark> les uns dans les autres.
+  function surligner(article, query) {
+    const cibles = [article.querySelector('h2'), article.querySelector('p.text-sm')];
+    cibles.forEach(function (el) {
+      if (!el) return;
+      if (el.dataset.brut === undefined) el.dataset.brut = el.textContent;
+      const brut = el.dataset.brut;
+      if (!query || query.length < 2) {
+        if (el.innerHTML !== brut) el.textContent = brut;
+        return;
+      }
+      const cible = normalize(brut);
+      let html = '';
+      let i = 0;
+      let j = cible.indexOf(query);
+      if (j === -1) {
+        if (el.textContent !== brut) el.textContent = brut;
+        return;
+      }
+      while (j !== -1) {
+        html += echapper(brut.slice(i, j)) + '<mark class="journal-hit">' + echapper(brut.slice(j, j + query.length)) + '</mark>';
+        i = j + query.length;
+        j = cible.indexOf(query, i);
+      }
+      html += echapper(brut.slice(i));
+      if (el.innerHTML !== html) el.innerHTML = html;
+    });
+  }
+
+  function echapper(t) {
+    return t.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
   }
 
   function nouveauCompte(n) {
