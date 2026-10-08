@@ -12,9 +12,13 @@ WARNINGS (reported, non-blocking):
 
 Usage: python3 lint.py dist
 """
-import re, sys, os, glob
+import re, sys, os, glob, datetime
 
 MAX_TITLE = 70
+
+# Promo Caprisette/Parallel (encadré <!-- cafe-cf -->) : valable jusqu'au 29 novembre 2026.
+# Au-delà, l'encadré doit avoir été retiré : python3 promo-cafe.py remove
+PROMO_CF_END = datetime.date(2026, 11, 29)
 
 # Canned AI phrases + banned section titles (subset of the editorial anti-IA rules).
 FORBIDDEN = [
@@ -60,6 +64,9 @@ def main():
             cands = url_to_path(root, href)
             if cands and not any(os.path.exists(c) for c in cands):
                 errors.append(f"[link] {rel}: dead internal link {href}")
+        # 1b. promo expirée encore en ligne (ERROR)
+        if datetime.date.today() > PROMO_CF_END and "Deux cafés en promotion chez Coffee Friend" in t:
+            errors.append(f"[promo] {rel}: encadré promo expiré le {PROMO_CF_END} — lancer promo-cafe.py remove")
         # 2. title length (WARN)
         m = re.search(r"<title>(.*?)</title>", t, re.S)
         if m and len(m.group(1).strip()) > MAX_TITLE:
