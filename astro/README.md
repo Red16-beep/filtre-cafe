@@ -9,11 +9,13 @@ le footer, les polices et le tracking vivent désormais dans **un seul fichier**
 - `src/layouts/Base.astro` — chrome partagé (head boilerplate, nav, footer,
   polices, scripts de tracking). On édite la nav **ici une fois**, plus dans 80 fichiers.
 - `src/fragments/<section>/<slug>.{head,style,body}.html` — contenu unique de
-  chaque page (meta, JSON-LD, `<style>`, corps), extrait des pages legacy.
+  chaque page (meta, JSON-LD, `<style>`, corps). **C'est la source de vérité**,
+  on édite ces fichiers directement.
 - `src/pages/<section>/<slug>.astro` — wrapper fin qui injecte les fragments dans
   `Base` via `set:html` (aucun ré-échappement, contenu fidèle au bit près).
-- `gen.py` — régénère fragments + pages depuis les HTML legacy de `journal/` et
-  `guides/`. Idempotent.
+- Les anciennes pages HTML de `journal/` et `guides/` et le script `gen.py` qui
+  les convertissait ont été supprimés. Seuls restent `journal/index.html` et
+  `guides/index.html` (pages hub). Tag de restauration : `legacy-html-avant-nettoyage`.
 - `sync-public.sh` — copie les assets et les pages racine/hub (qui gardent leur
   propre chrome) dans `public/`.
 
@@ -30,12 +32,11 @@ npm run preview         # sert dist/ en local
 `astro.config.mjs` utilise `build.format: 'file'` → sortie `/journal/<slug>.html`
 servie en `/journal/<slug>` (URLs identiques aux canonicals actuels).
 
-## Régénérer après une édition de contenu legacy
+## Éditer une page
 
-```bash
-python3 gen.py                      # toutes les pages
-python3 gen.py journal/mon-slug     # une page
-```
+Modifier directement `src/fragments/<section>/<slug>.body.html` (ou `.head.html`,
+`.style.html`), puis `npm run build`. Ne pas recréer de HTML legacy : il n'y a plus
+de générateur et il écraserait les fragments.
 
 ## Sitemap
 
@@ -76,7 +77,7 @@ avec, il en sort une vingtaine, et elles sont vraies.
 
 ## Vérification de fidélité
 
-`gen.py` + le build ont été validés : sur les 81 pages article/guide, **0 perte**
+La conversion (`gen.py`, depuis supprimé) et le build avaient été validés : sur les 81 pages article/guide, **0 perte**
 de meta / JSON-LD / scripts spécifiques. Les seules différences de sortie sont les
 normalisations voulues (footer clair + set de scripts complet partout) et
 l'expansion par Astro de son propre SVG de nav (`<path/>` → `<path></path>`,

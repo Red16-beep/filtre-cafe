@@ -116,7 +116,7 @@ def commits_par_page():
 
 def sources(chemin_url):
     """Les fichiers dont depend une URL, sans les wrappers .astro : ils sont
-    regeneres par gen.py, leur date de commit ne dit rien du contenu."""
+    minces et jamais retouches a la main, leur date de commit ne dit rien du contenu."""
     if chemin_url in STATIQUES:
         return [STATIQUES[chemin_url]]
     m = re.fullmatch(r"/newsletter/(\d+)", chemin_url)
