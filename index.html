@@ -422,7 +422,7 @@ async function subscribeNewsletter(e) {
   btnText.textContent = ''; spinner.classList.remove('hidden'); btn.disabled = true;
   try {
     const res = await fetch('/api/subscribe', {
-      method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({email})
+      method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({email, _ts: Math.round(performance.now())})
     });
     if (!res.ok) { const d = await res.json().catch(()=>({})); throw new Error(d.error||`Erreur ${res.status}`); }
     document.getElementById('newsletter-form').classList.add('hidden');

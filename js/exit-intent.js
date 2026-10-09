@@ -125,7 +125,7 @@
         var res = await fetch('/api/subscribe', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email: email, source: 'exit-intent' })
+          body: JSON.stringify({ email: email, source: 'exit-intent', _ts: Math.round(performance.now()) })
         });
         if (!res.ok) throw new Error();
         document.getElementById('ei-form').style.display = 'none';
