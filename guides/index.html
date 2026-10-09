@@ -14,7 +14,7 @@
 <meta property="og:url" content="https://filtre.cafe/guides/">
 <meta property="og:site_name" content="filtré.">
 <meta property="og:locale" content="fr_FR">
-<meta property="og:image" content="https://filtre.cafe/og-image.svg">
+<meta property="og:image" content="https://filtre.cafe/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Guides café de spécialité : méthodes & origines | filtré.">
 <meta name="twitter:description" content="Guides pratiques du café de spécialité : méthodes d'extraction, origines mondiales, traitement des cerises et lexique. Pour choisir et préparer son café.">
@@ -62,7 +62,7 @@ body { font-family: 'Inter', sans-serif; background-color: var(--stone-50); colo
       <li><a href="../journal/" class="text-stone-400 hover:text-stone-900 transition-colors">Le Journal</a></li>
       <li><a href="../materiel" class="text-stone-400 hover:text-stone-900 transition-colors">Matériel</a>
 <a href="../newsletter" class="text-stone-400 hover:text-stone-900 transition-colors">La Lettre</a></li>
-      <li><a href="../a-propos.html" class="text-stone-400 hover:text-stone-900 transition-colors">À propos</a></li>
+      <li><a href="/a-propos" class="text-stone-400 hover:text-stone-900 transition-colors">À propos</a></li>
     </ul>
     <div class="flex items-center gap-4">
       <button id="hamburger" onclick="toggleMobileMenu()" class="md:hidden flex flex-col gap-1.5 p-1" aria-label="Menu">
@@ -77,7 +77,7 @@ body { font-family: 'Inter', sans-serif; background-color: var(--stone-50); colo
       <a href="../journal/" onclick="closeMobileMenu()" class="text-[11px] font-semibold uppercase tracking-[0.18em] text-stone-500 hover:text-stone-900 transition-colors">Le Journal</a>
       <a href="../materiel" onclick="closeMobileMenu()" class="text-[11px] font-semibold uppercase tracking-[0.18em] text-stone-500 hover:text-stone-900 transition-colors">Matériel</a>
       <a href="../newsletter" onclick="closeMobileMenu()" class="text-[11px] font-semibold uppercase tracking-[0.18em] text-stone-500 hover:text-stone-900 transition-colors">La Lettre</a>
-      <a href="../a-propos.html" onclick="closeMobileMenu()" class="text-[11px] font-semibold uppercase tracking-[0.18em] text-stone-500 hover:text-stone-900 transition-colors">À propos</a>
+      <a href="/a-propos" onclick="closeMobileMenu()" class="text-[11px] font-semibold uppercase tracking-[0.18em] text-stone-500 hover:text-stone-900 transition-colors">À propos</a>
     </div>
   </div>
 </header>
@@ -100,7 +100,7 @@ body { font-family: 'Inter', sans-serif; background-color: var(--stone-50); colo
   <div class="mb-14">
     <p class="text-[10px] font-bold uppercase tracking-[0.4em] text-stone-400 mb-8">Point de départ</p>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-      <a href="../commencer-ici.html" data-funnel-link="guides-start-here" class="guide-card bg-white border border-stone-100 rounded-3xl p-7 md:p-9 flex flex-col md:col-span-2">
+      <a href="/commencer-ici" data-funnel-link="guides-start-here" class="guide-card bg-white border border-stone-100 rounded-3xl p-7 md:p-9 flex flex-col md:col-span-2">
         <div class="flex items-center justify-between mb-5">
           <span class="tag-comprendre text-[9px] font-bold uppercase tracking-[0.3em] px-3 py-1.5 rounded-full">Débuter</span>
         </div>
@@ -118,7 +118,7 @@ body { font-family: 'Inter', sans-serif; background-color: var(--stone-50); colo
   <div class="mb-14">
     <p class="text-[10px] font-bold uppercase tracking-[0.4em] text-stone-400 mb-8">Équipement café maison</p>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-      <a href="equipement-cafe-maison.html" data-funnel-link="guides-gear-hub" class="guide-card bg-stone-900 border border-stone-800 rounded-3xl p-7 md:p-9 flex flex-col md:col-span-2">
+      <a href="/guides/equipement-cafe-maison" data-funnel-link="guides-gear-hub" class="guide-card bg-stone-900 border border-stone-800 rounded-3xl p-7 md:p-9 flex flex-col md:col-span-2">
         <div class="flex items-center justify-between mb-5">
           <span class="text-[9px] font-bold uppercase tracking-[0.3em] px-3 py-1.5 rounded-full text-amber-400 border border-amber-800">Guide d'achat</span>
           <span class="text-2xl">⚙️</span>
@@ -138,7 +138,7 @@ body { font-family: 'Inter', sans-serif; background-color: var(--stone-50); colo
     <p class="text-[10px] font-bold uppercase tracking-[0.4em] text-stone-400 mb-8">Méthodes d'extraction</p>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
 
-      <a href="methodes-extraction.html" class="guide-card bg-white border border-stone-100 rounded-3xl p-7 flex flex-col">
+      <a href="/guides/methodes-extraction" class="guide-card bg-white border border-stone-100 rounded-3xl p-7 flex flex-col">
         <div class="flex items-center justify-between mb-5">
           <span class="tag-methode text-[9px] font-bold uppercase tracking-[0.3em] px-3 py-1.5 rounded-full">Méthode</span>
           <span class="text-2xl">☕</span>
@@ -151,7 +151,7 @@ body { font-family: 'Inter', sans-serif; background-color: var(--stone-50); colo
         </div>
       </a>
 
-      <a href="../journal/traitement-torrefaction.html" class="guide-card bg-white border border-stone-100 rounded-3xl p-7 flex flex-col">
+      <a href="/journal/traitement-torrefaction" class="guide-card bg-white border border-stone-100 rounded-3xl p-7 flex flex-col">
         <div class="flex items-center justify-between mb-5">
           <span class="tag-comprendre text-[9px] font-bold uppercase tracking-[0.3em] px-3 py-1.5 rounded-full">Comprendre</span>
           <span class="text-2xl">🍒</span>
@@ -164,7 +164,7 @@ body { font-family: 'Inter', sans-serif; background-color: var(--stone-50); colo
         </div>
       </a>
 
-      <a href="../journal/altitude-arabica-robusta.html" class="guide-card bg-white border border-stone-100 rounded-3xl p-7 flex flex-col">
+      <a href="/journal/altitude-arabica-robusta" class="guide-card bg-white border border-stone-100 rounded-3xl p-7 flex flex-col">
         <div class="flex items-center justify-between mb-5">
           <span class="tag-terroir text-[9px] font-bold uppercase tracking-[0.3em] px-3 py-1.5 rounded-full">Terroir</span>
           <span class="text-2xl">⛰️</span>
@@ -185,7 +185,7 @@ body { font-family: 'Inter', sans-serif; background-color: var(--stone-50); colo
     <p class="text-[10px] font-bold uppercase tracking-[0.4em] text-stone-400 mb-8">Origines & Terroirs</p>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
 
-      <a href="../journal/cafe-en-coree.html" class="guide-card bg-white border border-stone-100 rounded-3xl p-7 flex flex-col">
+      <a href="/journal/cafe-en-coree" class="guide-card bg-white border border-stone-100 rounded-3xl p-7 flex flex-col">
         <div class="flex items-center justify-between mb-5">
           <span class="tag-terroir text-[9px] font-bold uppercase tracking-[0.3em] px-3 py-1.5 rounded-full">Voyage</span>
           <span class="text-2xl">🇰🇷</span>
@@ -198,7 +198,7 @@ body { font-family: 'Inter', sans-serif; background-color: var(--stone-50); colo
         </div>
       </a>
 
-      <a href="../journal/cafe-en-thailande.html" class="guide-card bg-white border border-stone-100 rounded-3xl p-7 flex flex-col">
+      <a href="/journal/cafe-en-thailande" class="guide-card bg-white border border-stone-100 rounded-3xl p-7 flex flex-col">
         <div class="flex items-center justify-between mb-5">
           <span class="tag-terroir text-[9px] font-bold uppercase tracking-[0.3em] px-3 py-1.5 rounded-full">Voyage</span>
           <span class="text-2xl">🇹🇭</span>
@@ -211,7 +211,7 @@ body { font-family: 'Inter', sans-serif; background-color: var(--stone-50); colo
         </div>
       </a>
 
-      <a href="../journal/cafe-au-vietnam.html" class="guide-card bg-white border border-stone-100 rounded-3xl p-7 flex flex-col">
+      <a href="/journal/cafe-au-vietnam" class="guide-card bg-white border border-stone-100 rounded-3xl p-7 flex flex-col">
         <div class="flex items-center justify-between mb-5">
           <span class="tag-terroir text-[9px] font-bold uppercase tracking-[0.3em] px-3 py-1.5 rounded-full">Voyage</span>
           <span class="text-2xl">🇻🇳</span>

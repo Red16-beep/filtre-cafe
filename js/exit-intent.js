@@ -81,7 +81,7 @@
             <input type="checkbox" id="ei-consent" required style="margin-top:0.2rem;accent-color:#b45309;flex-shrink:0;">
             <span style="font-size:0.7rem;color:#a8a29e;line-height:1.5;">
               J'accepte de recevoir la newsletter filtré. Désabonnement en un clic.
-              <a href="/politique-confidentialite.html" style="color:#a8a29e;text-decoration:underline;">Politique de confidentialité</a>.
+              <a href="/politique-confidentialite" style="color:#a8a29e;text-decoration:underline;">Politique de confidentialité</a>.
             </span>
           </label>
         </form>
