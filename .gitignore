@@ -9,9 +9,13 @@ url_check.log
 .DS_Store
 Thumbs.db
 
-# Fichiers sensibles
+# Fichiers sensibles (variables locales Cloudflare Pages Functions comprises)
 .env
 .env.local
+.env.*
+!.env.example
+.dev.vars
+.dev.vars.*
 
 # Tailwind source (le CSS compilé tailwind.css est inclus volontairement)
 tailwind.input.css
