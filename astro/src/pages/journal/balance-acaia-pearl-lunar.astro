@@ -1,5 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
+import { withAuthorBio } from '../../lib/authorBio.js';
 import head from '../../fragments/journal/balance-acaia-pearl-lunar.head.html?raw';
 import style from '../../fragments/journal/balance-acaia-pearl-lunar.style.html?raw';
 import body from '../../fragments/journal/balance-acaia-pearl-lunar.body.html?raw';
@@ -7,5 +8,5 @@ import body from '../../fragments/journal/balance-acaia-pearl-lunar.body.html?ra
 <Base>
   <Fragment slot="head" set:html={head} />
   <Fragment slot="style" set:html={style} />
-  <Fragment set:html={body} />
+  <Fragment set:html={withAuthorBio(body)} />
 </Base>

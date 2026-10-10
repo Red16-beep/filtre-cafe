@@ -1,5 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
+import { withAuthorBio } from '../../lib/authorBio.js';
 import head from '../../fragments/journal/abonnement-cafe-machine-incluse-comparatif.head.html?raw';
 import style from '../../fragments/journal/abonnement-cafe-machine-incluse-comparatif.style.html?raw';
 import body from '../../fragments/journal/abonnement-cafe-machine-incluse-comparatif.body.html?raw';
@@ -7,5 +8,5 @@ import body from '../../fragments/journal/abonnement-cafe-machine-incluse-compar
 <Base>
   <Fragment slot="head" set:html={head} />
   <Fragment slot="style" set:html={style} />
-  <Fragment set:html={body} />
+  <Fragment set:html={withAuthorBio(body)} />
 </Base>
