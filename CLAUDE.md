@@ -69,3 +69,10 @@ tout commit qui touche `functions/`.
 Attention : les déploiements de preview utilisent les mêmes variables que la
 production. Le contrôle d'origine de `/api/subscribe` les bloque, mais toute
 nouvelle route qui écrit quelque part doit prévoir la même protection.
+
+## Après une publication
+
+Pour signaler à Bing les pages nouvelles ou modifiées, depuis une machine avec accès
+réseau : `node scripts/indexnow-submit.mjs <urls>` (sans argument, tout le sitemap part).
+Ne jamais le lancer sans l'accord de l'auteur : il émet des requêtes vers `api.indexnow.org`.
+La clé est publique par construction (fichier `.txt` à la racine), ce n'est pas un secret.
