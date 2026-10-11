@@ -194,7 +194,7 @@
   <!-- Articles — Comprendre -->
   <url>
     <loc>https://filtre.cafe/journal/arabica-vs-robusta</loc>
-    <lastmod>2026-10-09</lastmod>
+    <lastmod>2026-10-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -646,6 +646,12 @@
 
   <!-- Ajouts automatiques : a reclasser dans la bonne section -->
   <url>
+    <loc>https://filtre.cafe/newsletter/10</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://filtre.cafe/journal/meilleur-cafe-supermarche</loc>
     <lastmod>2026-10-09</lastmod>
     <changefreq>monthly</changefreq>
@@ -759,7 +765,7 @@
   <!-- Ajouts automatiques : a reclasser dans la bonne section -->
   <url>
     <loc>https://filtre.cafe/journal/methode-4-6-kasuya</loc>
-    <lastmod>2026-09-20</lastmod>
+    <lastmod>2026-10-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
