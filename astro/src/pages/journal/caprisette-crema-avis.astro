@@ -1,0 +1,12 @@
+---
+import Base from '../../layouts/Base.astro';
+import { withAuthorBio } from '../../lib/authorBio.js';
+import head from '../../fragments/journal/caprisette-crema-avis.head.html?raw';
+import style from '../../fragments/journal/caprisette-crema-avis.style.html?raw';
+import body from '../../fragments/journal/caprisette-crema-avis.body.html?raw';
+---
+<Base>
+  <Fragment slot="head" set:html={head} />
+  <Fragment slot="style" set:html={style} />
+  <Fragment set:html={withAuthorBio(body)} />
+</Base>

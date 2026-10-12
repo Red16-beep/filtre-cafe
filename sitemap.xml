@@ -646,6 +646,12 @@
 
   <!-- Ajouts automatiques : a reclasser dans la bonne section -->
   <url>
+    <loc>https://filtre.cafe/journal/caprisette-crema-avis</loc>
+    <lastmod>2026-10-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://filtre.cafe/newsletter/10</loc>
     <lastmod>2026-10-11</lastmod>
     <changefreq>monthly</changefreq>

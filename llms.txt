@@ -35,6 +35,16 @@
 - [Mousser le lait à la vapeur : température et technique](https://filtre.cafe/journal/mousser-lait-vapeur-temperature)
 - [Pourquoi mon café est acide — et comment corriger](https://filtre.cafe/journal/pourquoi-cafe-acide)
 - [Grammage café : combien de grammes par tasse selon la méthode](https://filtre.cafe/journal/grammage-cafe)
+- [Méthodes d'extraction : laquelle choisir](https://filtre.cafe/guides/methodes-extraction)
+- [Café filtre : le vrai, et comment le réussir](https://filtre.cafe/journal/debuter-cafe-filtre-guide)
+- [Mouture café V60 : réglage et calibration](https://filtre.cafe/journal/mouture-cafe-v60)
+- [Méthode 4:6 de Tetsu Kasuya](https://filtre.cafe/journal/methode-4-6-kasuya)
+- [Quel café pour le V60](https://filtre.cafe/journal/quel-cafe-pour-v60)
+- [Hario Switch : recettes et mode d'emploi](https://filtre.cafe/journal/hario-switch-guide-recettes)
+- [Comment faire un espresso parfait](https://filtre.cafe/journal/comment-faire-espresso-parfait)
+- [Comment faire un ristretto parfait](https://filtre.cafe/journal/comment-faire-ristretto-parfait)
+- [Dégazage du café : combien de jours attendre](https://filtre.cafe/journal/degazage-cafe)
+- [Quelle eau pour le café : test à l'aveugle de 6 eaux](https://filtre.cafe/journal/eau-cafe-filtre-tds-mineraux)
 
 ## Articles — Comprendre
 
@@ -50,6 +60,7 @@
 - [Lion's Mane et café](https://filtre.cafe/journal/champignon-lion-mane-cafe)
 - [Café soluble vs café en grain](https://filtre.cafe/journal/cafe-soluble-vs-grain)
 - [Le café de spécialité en France en chiffres (2026)](https://filtre.cafe/journal/cafe-specialite-france-chiffres-2026)
+- [Boire du café quand il fait chaud](https://filtre.cafe/journal/cafe-quand-il-fait-chaud)
 
 ## Articles — Sélection & Achat
 
@@ -60,6 +71,39 @@
 - [Torréfacteurs français](https://filtre.cafe/journal/torrefacteurs-francais)
 - [Café de spécialité en France : état des lieux](https://filtre.cafe/journal/cafe-specialite-france)
 - [Quitter Nespresso pour le café de spécialité](https://filtre.cafe/journal/nespresso-vers-specialite)
+- [Meilleur café en grain 2026](https://filtre.cafe/journal/meilleur-cafe-en-grain-2025)
+- [Meilleur café de supermarché](https://filtre.cafe/journal/meilleur-cafe-supermarche)
+- [Abonnement café de spécialité : Tanat et Anom testés](https://filtre.cafe/journal/abonnement-cafe-specialite)
+- [Anom Café Club : test de l'abonnement machine incluse](https://filtre.cafe/journal/anom-cafe-club-test-abonnement-machine)
+- [Abonnement café avec machine incluse : ça vaut le coup ?](https://filtre.cafe/journal/abonnement-cafe-machine-incluse-comparatif)
+- [Abonnement café : pourquoi s'abonner](https://filtre.cafe/journal/pourquoi-prendre-cafe-abonnement)
+- [Idées cadeaux café 2026](https://filtre.cafe/journal/idees-cadeaux-cafe)
+- [Équipement café maison : setup filtre et espresso](https://filtre.cafe/guides/equipement-cafe-maison)
+- [Meilleure machine espresso pour débutant 2026](https://filtre.cafe/journal/meilleure-machine-espresso-debutant)
+- [Meilleure machine espresso manuelle 2026](https://filtre.cafe/journal/meilleure-machine-espresso-manuelle-2026)
+- [De'Longhi Specialista Arte : test et avis](https://filtre.cafe/journal/delonghi-specialista-arte-test-avis)
+- [Top 8 des machines à grain à moins de 600 €](https://filtre.cafe/journal/top-machines-cafe-grain-entree-de-gamme)
+- [Top 8 des machines à grain de milieu de gamme](https://filtre.cafe/journal/top-machines-cafe-grain-milieu-de-gamme)
+- [Top 8 des machines à grain haut de gamme](https://filtre.cafe/journal/top-machines-cafe-grain-haut-de-gamme)
+- [Meilleur moulin à café manuel 2026](https://filtre.cafe/journal/meilleur-moulin-cafe-manuel)
+- [Top 8 des moulins à café manuels](https://filtre.cafe/journal/top-moulins-manuels-cafe)
+- [Top 8 des moulins à café à moins de 200 €](https://filtre.cafe/journal/top-moulins-cafe-entree-de-gamme)
+- [Top 8 des moulins à café de milieu de gamme](https://filtre.cafe/journal/top-moulins-cafe-milieu-de-gamme)
+- [Top 8 des moulins à café haut de gamme](https://filtre.cafe/journal/top-moulins-cafe-haut-de-gamme)
+- [Meilleur tamper espresso 2026](https://filtre.cafe/journal/meilleur-tamper-espresso)
+- [Meilleure balance café 2026](https://filtre.cafe/journal/meilleure-balance-cafe)
+- [Balance Acaia : Pearl, Pearl S ou Lunar](https://filtre.cafe/journal/balance-acaia-pearl-lunar)
+- [Top 8 des balances à café](https://filtre.cafe/journal/top-balances-cafe)
+- [Meilleure bouilloire café filtre 2026](https://filtre.cafe/journal/meilleure-bouilloire-cafe-filtre)
+- [Top 8 des bouilloires à col de cygne](https://filtre.cafe/journal/top-bouilloires-cafe-filtre)
+- [Meilleure cafetière filtre 2026](https://filtre.cafe/journal/meilleure-cafetiere-filtre-2025)
+- [Cafetière à piston : quelle marque choisir en 2026](https://filtre.cafe/journal/cafetiere-a-piston-quelle-marque)
+- [Top 8 des cafetières à piston](https://filtre.cafe/journal/top-cafetieres-piston-cafe)
+- [Top 8 des drippers à café filtre](https://filtre.cafe/journal/top-drippers-cafe-filtre)
+- [Top 8 des carafes et verseuses à café](https://filtre.cafe/journal/top-carafes-verseuses-cafe)
+- [Top 8 des tasses à café](https://filtre.cafe/journal/top-tasses-cafe)
+- [Top 8 des produits d'entretien pour machine à café](https://filtre.cafe/journal/top-entretien-machine-cafe)
+- [Caprisette Crema : mon avis sur le mélange de Coffee Friend](https://filtre.cafe/journal/caprisette-crema-avis)
 
 ## Articles — Recettes & Boissons
 
@@ -69,6 +113,18 @@
 - [Le cortado : recette et guide](https://filtre.cafe/journal/cafe-cortado-recette-guide)
 - [Café turc : recette au cezve](https://filtre.cafe/journal/cafe-turc-recette-guide)
 - [Cà phê sữa đá : café vietnamien glacé](https://filtre.cafe/journal/cafe-vietnamien-recette-ca-phe-sua-da)
+- [Café glacé maison : la vraie recette (flash brew)](https://filtre.cafe/journal/cafe-glace-maison)
+- [Pumpkin spice latte maison : recette](https://filtre.cafe/journal/pumpkin-spice-latte-recette-guide)
+- [Bicerin de Turin : les trois couches](https://filtre.cafe/journal/bicerin-turin)
+- [Café cubano : l'espumita, recette et origine](https://filtre.cafe/journal/cafe-cubano-espumita)
+- [Café de olla : recette mexicaine](https://filtre.cafe/journal/cafe-de-olla-mexique)
+- [Café Touba : recette sénégalaise](https://filtre.cafe/journal/cafe-touba-senegal)
+- [Ipoh white coffee : le café malaisien « blanc »](https://filtre.cafe/journal/ipoh-white-coffee-malaisie)
+- [Kaffeost : le café au fromage finlandais](https://filtre.cafe/journal/kaffeost-cafe-fromage-laponie)
+- [Kopi tubruk : le café indonésien sans filtre](https://filtre.cafe/journal/kopi-tubruk-indonesie)
+- [Mazagran : le café glacé au citron](https://filtre.cafe/journal/mazagran-cafe-glace-citron)
+- [Qahwa : le café arabe à la cardamome](https://filtre.cafe/journal/qahwa-cafe-arabe-cardamome)
+- [Yuanyang : le café au thé de Hong Kong](https://filtre.cafe/journal/yuanyang-hong-kong)
 
 ## Articles — Origines
 
@@ -77,6 +133,9 @@
 - [Café du Kenya](https://filtre.cafe/journal/cafe-kenya-guide)
 - [Café du Brésil](https://filtre.cafe/journal/cafe-bresil-specialite)
 - [Café geisha (gesha) : le plus prisé au monde](https://filtre.cafe/journal/cafe-geisha-gesha-guide)
+- [Café du Guatemala : Antigua, Huehuetenango](https://filtre.cafe/journal/cafe-guatemala-specialite)
+- [Café d'Indonésie : Sumatra, Java, Bali](https://filtre.cafe/journal/cafe-indonesie-specialite)
+- [Café brésilien pour espresso : le Cerrado Mineiro](https://filtre.cafe/journal/cafe-bresilien-espresso-cerrado-mineiro)
 
 ## Articles — Adresses & Voyages
 
