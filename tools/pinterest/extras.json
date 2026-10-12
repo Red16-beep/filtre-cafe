@@ -15,5 +15,25 @@
     ],
     "theme": "sombre",
     "photo": "calendrier-avent.jpg"
+  },
+  {
+    "slug": "eau-cafe-test-aveugle",
+    "url": "https://filtre.cafe/journal/eau-cafe-filtre-tds-mineraux",
+    "title": "Quelle eau pour le café ? Mon test à l'aveugle de 6 eaux",
+    "desc": "Quelle est la meilleure eau pour faire du café ? J'ai goûté six eaux à l'aveugle, sur le même café, avec un protocole inspiré du cupping SCA : Mont Blanc et Volvic en tête, puis Rocheval, l'eau filtrée Brita, Cristaline et le robinet. Résidu sec, calcium, bicarbonates et pH relevés sur les étiquettes, TDS et ppm de la Volvic, osmoseur, limites du test.",
+    "accroche": "Six eaux goûtées à l'aveugle sur le même café : Mont Blanc et Volvic en tête, mon robinet dernier.",
+    "board": "Méthodes & extraction",
+    "theme": "sombre",
+    "layout": "accroche"
+  },
+  {
+    "slug": "volvic-tds-ppm-cafe",
+    "url": "https://filtre.cafe/journal/eau-cafe-filtre-tds-mineraux#volvic",
+    "title": "Volvic, TDS et ppm : quel chiffre croire pour le café ?",
+    "desc": "Volvic ne publie ni TDS ni ppm sur sa page française. Son étiquette donne 130 mg/L de résidu sec à 180 °C et un pH de 7, un rapport NSF de 2013 sur la Volvic vendue aux États-Unis donne 150 mg/L, une page Wikipédia affiche 109. D'où viennent ces chiffres, lequel utiliser, et ce que la Volvic donne en tasse à l'aveugle face à Mont Blanc, Rocheval, Brita et Cristaline.",
+    "accroche": "130 sur l'étiquette, 150 dans un rapport américain, 109 sur Wikipédia : quel chiffre croire pour la Volvic ?",
+    "board": "Méthodes & extraction",
+    "theme": "clair",
+    "layout": "accroche"
   }
 ]
