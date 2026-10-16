@@ -52,7 +52,7 @@ def page(titre, desc, canon, corps, head_extra='', robots='index, follow', scrip
 </main>
 {shell.footer()}
 {shell.onglets()}
-<script src="/nl-subscribe.js"></script>
+<script defer src="/nl-subscribe.js"></script>
 <script defer src="/v2/v2.js"></script>
 <script defer src="/js/track.js"></script>
 {scripts_extra}
@@ -374,6 +374,7 @@ def base_astro():
     s = s.replace('\n<slot />\n', '\n<Fragment set:html={corps} />\n', 1)
     s = re.sub(r'<footer class="border-t.*?</footer>\n', lambda m: shell.footer() + '\n' + shell.onglets() + '\n', s, count=1, flags=re.S)
     s = s.replace('<script is:inline defer src="/js/track.js"></script>', '<script is:inline defer src="/v2/v2.js"></script>\n<script is:inline defer src="/js/track.js"></script>')
+    s = s.replace('<script is:inline src="/nl-subscribe.js"></script>', '<script is:inline defer src="/nl-subscribe.js"></script>')
     for attendu in ('v2-header', 'v2-footer', '/v2/v2.js', 'set:html={corps}', 'set:html={style}', 'set:html={tete}', 'v2ise('):
         assert attendu in s, f'Base.astro : {attendu} manquant'
     ecrire(p, s)

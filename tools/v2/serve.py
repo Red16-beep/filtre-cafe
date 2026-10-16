@@ -3,8 +3,8 @@
 - /page -> page.html ; /dossier/ -> dossier/index.html
 - /page/ -> 308 vers /page quand page.html existe ; /page.html -> 308 vers /page
 - règles exactes de _redirects ; jamais de liste de dossier ; sinon 404.html (statut 404)
-Usage : python3 tools/v2/serve.py [port]"""
-import http.server, os, sys
+Usage : python3 tools/v2/serve.py [port] [dossier dist]"""
+import http.server, os, sys, gzip, io
 
 RACINE = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'astro', 'dist'))
 
@@ -72,11 +72,35 @@ class Gestion(http.server.SimpleHTTPRequestHandler):
             return self.page_404()
         return super().send_head()
 
+    TEXTE = ('.html', '.css', '.js', '.svg', '.json', '.xml', '.txt')
+
+    def copyfile(self, source, outputfile):
+        if getattr(self, '_gz', None) is not None:
+            outputfile.write(self._gz); self._gz = None; return
+        super().copyfile(source, outputfile)
+
+    def send_header(self, cle, valeur):
+        # compresse les fichiers texte quand le navigateur l'accepte, comme Cloudflare
+        if cle == 'Content-Length' and getattr(self, '_compresser', False):
+            return super().send_header('Content-Length', str(len(self._gz)))
+        return super().send_header(cle, valeur)
+
     def end_headers(self):
         self.send_header('Cache-Control', 'no-store')
         super().end_headers()
 
+    def send_response(self, code, message=None):
+        self._compresser = False; self._gz = None
+        chemin = self.translate_path(self.path.split('?', 1)[0])
+        if code == 200 and 'gzip' in self.headers.get('Accept-Encoding', '') and chemin.endswith(self.TEXTE) and os.path.isfile(chemin):
+            self._gz = gzip.compress(open(chemin, 'rb').read(), 6); self._compresser = True
+        super().send_response(code, message)
+        if self._compresser:
+            super().send_header('Content-Encoding', 'gzip'); super().send_header('Vary', 'Accept-Encoding')
+
 if __name__ == '__main__':
     port = int(sys.argv[1]) if len(sys.argv) > 1 else 4322
+    if len(sys.argv) > 2:  # autre build à servir (ex. la version en ligne, pour comparer)
+        RACINE = os.path.abspath(sys.argv[2])
     print(f'filtré. v2 : http://localhost:{port}  ({RACINE})', flush=True)
     http.server.ThreadingHTTPServer(('127.0.0.1', port), Gestion).serve_forever()
