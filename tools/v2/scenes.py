@@ -10,14 +10,16 @@ TX = '#f4ece3'
 HALO = '<defs><radialGradient id="halo{i}" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#efc79c" stop-opacity=".16"/><stop offset="1" stop-color="#efc79c" stop-opacity="0"/></radialGradient></defs><circle cx="330" cy="360" r="300" fill="url(#halo{i})"/>'
 
 def scene_v60():
-    gouttes = ''.join(f'<circle class="v2-goutte" style="--h:{86}px;animation-delay:{d}s" cx="400" cy="462" r="4" fill="{CL}"/>' for d in (0, .45, .9))
+    gouttes = ''.join(f'<circle class="v2-goutte" style="--h:{86}px;animation-delay:{d}s" cx="400" cy="462" r="4" fill="{CL}"/>' for d in (.9, 1.35, 1.8))
     cotes = ''.join(f'<path d="M{318+k*22} 340 L{386+k*5} 446" stroke="{CR}" stroke-opacity=".28" stroke-width="1.2"/>' for k in range(8))
     return f'''<svg viewBox="0 0 600 700" aria-hidden="true">{HALO.format(i=1)}
 <g fill="none" stroke="{CR}" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+  <g class="v2-bouilloire">
   <path d="M70 175 Q70 150 98 150 H238 Q262 150 262 175 V250 Q262 270 242 270 H90 Q70 270 70 250 Z" fill="rgba(239,199,156,.06)"/>
   <path d="M140 150 V138 Q140 128 150 128 H182 Q192 128 192 138 V150"/>
   <path d="M70 182 Q32 196 36 226 Q40 252 70 254"/>
   <path d="M262 236 Q300 236 318 206 Q336 176 368 184 Q392 192 398 228"/>
+  </g>
   <path class="v2-flux" d="M399 236 C401 268 400 300 400 330" stroke="{CL}" stroke-width="3"/>
   <path d="M296 330 H504 L424 448 H376 Z" fill="rgba(239,199,156,.07)"/>
   {cotes}
@@ -45,10 +47,10 @@ def scene_espresso():
   <path d="M370 452 Q404 452 404 482 Q404 512 368 512"/>
   <rect x="190" y="556" width="220" height="30" rx="8"/>
   <circle cx="490" cy="560" r="46" stroke-opacity=".3"/>
-  <circle class="v2-arc" cx="490" cy="560" r="46" stroke="{CL}" stroke-width="4" style="--l:289;stroke-dasharray:289;transform:rotate(-90deg);transform-origin:490px 560px"/>
+  <circle class="v2-arc" cx="490" cy="560" r="46" stroke="{CL}" stroke-width="4" style="--l:289;transform:rotate(-90deg);transform-origin:490px 560px"/>
 </g>
 <clipPath id="tasse"><path d="M232 434 H368 V500 Q368 546 300 546 Q232 546 232 500 Z"/></clipPath>
-<g clip-path="url(#tasse)"><rect class="v2-monte" x="228" y="470" width="144" height="80" fill="{CF}"/><rect class="v2-monte" x="228" y="462" width="144" height="12" fill="{CL}" opacity=".9"/></g>
+<g clip-path="url(#tasse)"><g class="v2-monte"><rect x="228" y="470" width="144" height="80" fill="{CF}"/><rect x="228" y="462" width="144" height="12" fill="{CL}" opacity=".9"/></g></g>
 <text x="490" y="566" text-anchor="middle" fill="{TX}" font-family="Instrument Sans, Arial" font-size="18" font-weight="600">26 s</text>
 <text x="300" y="577" text-anchor="middle" fill="{TX}" font-family="Instrument Sans, Arial" font-size="15" font-weight="600">18 g → 36 g</text>
 </svg>'''
@@ -124,7 +126,7 @@ ICONES = {
               f'<circle class="v2-goutte" style="--h:-30px" cx="44" cy="84" r="3" fill="{CR}" stroke="none"/><circle class="v2-goutte" style="--h:-34px;animation-delay:.6s" cx="80" cy="88" r="2.5" fill="{CR}" stroke="none"/>'),
     'moulin': ic('<g class="v2-tourne-vite" style="animation-duration:6s">' + ''.join(f'<path d="M60 60 L{60+40*math.cos(math.radians(a)):.1f} {60+40*math.sin(math.radians(a)):.1f}" stroke-opacity=".7"/>' for a in range(0, 360, 30)) + '<circle cx="60" cy="60" r="40"/></g><circle cx="60" cy="60" r="12" fill="rgba(239,199,156,.2)"/>'),
     'ratio': ic('<path d="M60 22 V92 M36 96 H84"/><g class="v2-balance-anim"><path d="M20 40 H100"/><path d="M20 40 l-10 24 h20 z M100 40 l-10 24 h20 z" fill="rgba(239,199,156,.1)"/></g><text x="60" y="114" fill="#efc79c" stroke="none" font-family="Instrument Sans, Arial" font-size="14" text-anchor="middle" font-weight="600">1:16</text>'),
-    'espresso': ic(f'<path d="M30 52 H82 V74 Q82 96 56 96 Q30 96 30 74 Z" fill="rgba(239,199,156,.08)"/><path d="M82 60 Q96 60 96 70 Q96 80 82 80"/><circle cx="60" cy="30" r="16" stroke-opacity=".35"/><circle class="v2-arc" cx="60" cy="30" r="16" stroke="{CL}" style="--l:101;stroke-dasharray:101;transform:rotate(-90deg);transform-origin:60px 30px"/>'),
+    'espresso': ic(f'<path d="M30 52 H82 V74 Q82 96 56 96 Q30 96 30 74 Z" fill="rgba(239,199,156,.08)"/><path d="M82 60 Q96 60 96 70 Q96 80 82 80"/><circle cx="60" cy="30" r="16" stroke-opacity=".35"/><circle class="v2-arc" cx="60" cy="30" r="16" stroke="{CL}" style="--l:101;transform:rotate(-90deg);transform-origin:60px 30px"/>'),
     'temperature': ic(f'<path d="M52 20 Q52 12 60 12 Q68 12 68 20 V70 Q80 78 76 92 Q72 104 60 104 Q48 104 44 92 Q40 78 52 70 Z"/><rect class="v2-niveau" x="56" y="34" width="8" height="52" rx="4" fill="{CL}" stroke="none"/><circle cx="60" cy="88" r="9" fill="{CL}" stroke="none"/>'),
     'lait': ic(f'<path d="M32 30 H84 L80 96 Q80 102 74 102 H42 Q36 102 36 96 Z" fill="rgba(239,199,156,.06)"/><path d="M84 30 L98 22"/><path class="v2-tourne-vite" style="transform-origin:58px 66px;animation-duration:2.4s" d="M58 66 m-14 0 a14 14 0 1 1 28 0 a9 9 0 1 1 -18 0" stroke="{CL}"/>'),
     'quatre-six': ic(''.join(f'<rect class="v2-barreapp" style="animation-delay:{k*.6}s" x="{14+k*20}" y="{100-h}" width="14" height="{h}" rx="3" fill="{CL if k<2 else CR}" stroke="none" opacity="{.95 if k<2 else .55}"/>' for k, h in enumerate([34, 34, 52, 52, 52])) + '<path d="M54 18 V104" stroke-dasharray="3 5" stroke-opacity=".6"/>'),

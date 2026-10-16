@@ -1,7 +1,14 @@
 /* filtré. v2 : interactions et schémas animés (version test). Aucune dépendance. */
 (function () {
   'use strict';
-  var reduit = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var preference = window.matchMedia('(prefers-reduced-motion: reduce)');
+  var reduit = preference.matches;
+  var auChangement = function (e) {
+    reduit = e.matches;
+    if (reduit) $$('.v2-entree,.v2-scene.joue,.v2-anim.joue').forEach(function (el) { el.classList.remove('v2-entree', 'joue'); });
+  };
+  /* anciens Safari : addListener seulement */
+  if (preference.addEventListener) preference.addEventListener('change', auChangement); else if (preference.addListener) preference.addListener(auChangement);
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
 
@@ -26,26 +33,47 @@
     if (e.key === 'Escape') { tiroirFermer(); $$('.v2-nav__item.ouvert').forEach(function (x) { x.classList.remove('ouvert'); }); }
   });
 
-  /* ── Héros : scènes qui tournent ── */
-  var scenes = $$('.v2-scene');
+  /* ── Héros : un versement, puis lecture libre des scènes ── */
+  var scenes = $$('.v2-scene'), hero = $('.v2-hero__scenes');
   if (scenes.length) {
-    var i = 0, minuterie = null;
+    var i = 0, visible = false;
     var num = $('#v2-legende-num'), titre = $('#v2-legende-titre'), sous = $('#v2-legende-sous'), barre = $('#v2-legende-barre');
     function montrer(n) {
-      scenes[i].classList.remove('actif');
+      scenes[i].classList.remove('actif', 'joue');
       i = (n + scenes.length) % scenes.length;
       var s = scenes[i]; s.classList.add('actif');
+      scenes.forEach(function (sc, k) { sc.setAttribute('aria-hidden', k === i ? 'false' : 'true'); });
       if (num) num.textContent = String(i + 1).padStart(2, '0') + ' / ' + String(scenes.length).padStart(2, '0');
       if (titre) titre.textContent = s.dataset.titre || '';
       if (sous) sous.innerHTML = s.dataset.sous || '';
-      if (barre) { barre.classList.remove('joue'); void barre.offsetWidth; if (!reduit) barre.classList.add('joue'); }
+      if (barre) barre.style.transform = 'scaleX(' + ((i + 1) / scenes.length) + ')';
+      requestAnimationFrame(function () { if (!reduit && visible && scenes[i] === s) s.classList.add('joue'); });
     }
-    function lancer() { if (reduit) return; clearInterval(minuterie); minuterie = setInterval(function () { montrer(i + 1); }, 7000); }
     var prec = $('#v2-legende-prec'), suiv = $('#v2-legende-suiv');
-    if (prec) prec.addEventListener('click', function () { montrer(i - 1); lancer(); });
-    if (suiv) suiv.addEventListener('click', function () { montrer(i + 1); lancer(); });
-    document.addEventListener('visibilitychange', function () { if (document.hidden) clearInterval(minuterie); else lancer(); });
-    montrer(0); lancer();
+    if (prec) prec.addEventListener('click', function () { montrer(i - 1); });
+    if (suiv) suiv.addEventListener('click', function () { montrer(i + 1); });
+    if (hero && 'IntersectionObserver' in window) {
+      var vue = new IntersectionObserver(function (es) {
+        visible = es[0].isIntersecting;
+        hero.classList.toggle('en-vue', visible);
+        if (visible && !reduit) scenes[i].classList.add('joue');
+      }, { threshold: .2 });
+      vue.observe(hero);
+    }
+    document.addEventListener('visibilitychange', function () { if (hero) hero.classList.toggle('en-vue', visible && !document.hidden); });
+    montrer(0);
+  }
+
+  /* ── Entrées : contenu toujours visible, une seule respiration au défilement ── */
+  if ('IntersectionObserver' in window) {
+    var entrees = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        entrees.unobserve(e.target);
+        if (!reduit) e.target.classList.add('v2-entree');
+      });
+    }, { threshold: .12 });
+    $$('.v2-tete,.v2-carte,.v2-envie,.v2-pratique').forEach(function (el) { entrees.observe(el); });
   }
 
   /* ── Rail des incontournables ── */
@@ -55,9 +83,11 @@
     function maj() {
       var max = rail.scrollWidth - rail.clientWidth;
       var part = rail.clientWidth / rail.scrollWidth;
-      if (progres) { progres.style.width = (part * 100) + '%'; progres.style.left = (max > 0 ? (rail.scrollLeft / max) * (100 - part * 100) : 0) + '%'; }
+      if (progres) progres.style.transform = 'translateX(' + (max > 0 ? (rail.scrollLeft / max) * (1 - part) * 100 : 0) + '%) scaleX(' + part + ')';
     }
-    rail.addEventListener('scroll', maj, { passive: true }); window.addEventListener('resize', maj); maj();
+    var attenteRail = false;
+    function programmer() { if (attenteRail) return; attenteRail = true; requestAnimationFrame(function () { attenteRail = false; maj(); }); }
+    rail.addEventListener('scroll', programmer, { passive: true }); window.addEventListener('resize', programmer); maj();
     var pas = function () { var c = $('.v2-carte', rail); return c ? c.getBoundingClientRect().width + 18 : 320; };
     var p = $('[data-v2-prec]', bloc), s = $('[data-v2-suiv]', bloc);
     if (p) p.addEventListener('click', function () { rail.scrollBy({ left: -pas(), behavior: reduit ? 'auto' : 'smooth' }); });
@@ -74,27 +104,6 @@
   });
 
   /* ── Schémas animés ── */
-  var CSS_SCHEMAS = [
-    '.v2-anim *{animation-play-state:paused}', '.v2-anim.joue *{animation-play-state:running}',
-    '@keyframes v2-trace{from{stroke-dashoffset:var(--l,600)}to{stroke-dashoffset:0}}',
-    '@keyframes v2-balaye{from{transform:translateX(0)}to{transform:translateX(var(--d,600px))}}',
-    '@keyframes v2-pousse{from{transform:scaleY(0)}to{transform:scaleY(1)}}',
-    '@keyframes v2-pousse-x{from{transform:scaleX(0)}to{transform:scaleX(1)}}',
-    '@keyframes v2-apparait{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}',
-    '@keyframes v2-goutte{0%{transform:translateY(0);opacity:0}15%{opacity:1}100%{transform:translateY(var(--h,60px));opacity:0}}',
-    '@keyframes v2-bulle{0%{transform:translateY(0);opacity:0}20%{opacity:.9}100%{transform:translateY(-46px);opacity:0}}',
-    '@keyframes v2-pulse{0%,100%{r:5}50%{r:9}}',
-    '@keyframes v2-tombe{from{transform:translateY(-26px);opacity:0}to{transform:none;opacity:1}}',
-    '.v2-anim .trace{stroke-dasharray:var(--l,600);stroke-dashoffset:var(--l,600);animation:v2-trace 2.4s cubic-bezier(.4,0,.2,1) forwards}',
-    '.v2-anim .apparait{opacity:0;animation:v2-apparait .6s ease forwards}',
-    '.v2-anim .pousse{transform-box:fill-box;transform-origin:bottom;transform:scaleY(0);animation:v2-pousse 1.2s cubic-bezier(.2,.8,.2,1) forwards}',
-    '.v2-anim .pousse-x{transform-box:fill-box;transform-origin:left;transform:scaleX(0);animation:v2-pousse-x 1.2s cubic-bezier(.2,.8,.2,1) forwards}',
-    '.v2-anim .tombe{opacity:0;animation:v2-tombe .7s cubic-bezier(.2,.8,.2,1) forwards}'
-  ].join('\n');
-  function injecterCss() {
-    if (document.getElementById('v2-schemas-css')) return;
-    var st = document.createElement('style'); st.id = 'v2-schemas-css'; st.textContent = CSS_SCHEMAS; document.head.appendChild(st);
-  }
   function fig(cle, titre, etiquette, svg, legende) {
     return '<figure class="v2-schema" data-cle="' + cle + '"><div class="v2-schema__tete"><div><span>' + etiquette + '</span><h3>' + titre + '</h3></div>' +
       '<button type="button" class="rejouer">Rejouer l’animation</button></div><div class="v2-anim">' + svg + '</div>' +
@@ -119,7 +128,7 @@
       var c2 = '<path class="trace" style="--l:900;animation-delay:.5s" d="' + courbe(0.45, 12) + '" fill="none" stroke="' + C.crema + '" stroke-width="3"/>';
       var c3 = '<path class="trace" style="--l:900;animation-delay:1s" d="' + courbe(0.78, 12) + '" fill="none" stroke="' + C.cerise + '" stroke-width="3"/>';
       var leg = '<g font-size="12.5"><circle cx="60" cy="282" r="5" fill="' + C.feuille + '"/><text x="72" y="286" fill="' + C.texte + '">acides</text><circle cx="140" cy="282" r="5" fill="' + C.crema + '"/><text x="152" y="286" fill="' + C.texte + '">sucres</text><circle cx="222" cy="282" r="5" fill="' + C.cerise + '"/><text x="234" y="286" fill="' + C.texte + '">composés amers</text></g>';
-      var curseur = '<g style="animation:v2-balaye 6s 2.6s ease-in-out infinite alternate;--d:600px"><line x1="' + (x0 + 20) + '" y1="' + (y1 + 52) + '" x2="' + (x0 + 20) + '" y2="' + y0 + '" stroke="' + C.texte + '" stroke-dasharray="3 5"/><circle cx="' + (x0 + 20) + '" cy="' + y0 + '" r="6" fill="' + C.texte + '"/></g>';
+      var curseur = '<g style="animation:v2-balaye 2.2s .8s ease-in-out forwards;--d:600px"><line x1="' + (x0 + 20) + '" y1="' + (y1 + 52) + '" x2="' + (x0 + 20) + '" y2="' + y0 + '" stroke="' + C.texte + '" stroke-dasharray="3 5"/><circle cx="' + (x0 + 20) + '" cy="' + y0 + '" r="6" fill="' + C.texte + '"/></g>';
       return fig('extraction', 'Ce que le temps fait au goût', 'Extraction', '<svg viewBox="0 0 ' + w + ' 300" role="img" aria-label="Courbes d’extraction : acides, puis sucres, puis composés amers">' + zones + axes + labels + c1 + c2 + c3 + curseur + leg + '</svg>',
         'Les acides s’extraient en premier, les sucres ensuite, les composés amers en dernier. Un café trop court est acide, un café trop long est amer. Voir <a href="/journal/pourquoi-cafe-acide">café acide</a> et <a href="/journal/pourquoi-cafe-amer">café amer</a>.');
     },
@@ -136,7 +145,7 @@
       }).join('');
       var ticks = [0, 30, 60, 90, 120, 150, 180, 210].map(function (s) { return '<text x="' + sx(s) + '" y="250" fill="' + C.doux + '" font-size="11" text-anchor="middle">' + Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0') + '</text>'; }).join('');
       var fin = '<rect x="' + sx(150) + '" y="236" width="' + (sx(210) - sx(150)) + '" height="4" rx="2" fill="' + C.cerise + '"/><text x="' + sx(180) + '" y="272" fill="' + C.cerise + '" font-size="11.5" text-anchor="middle" font-weight="600">fin entre 2:30 et 3:30</text>';
-      var tete = '<g style="animation:v2-balaye 8s 3s linear infinite;--d:' + (x1 - x0) + 'px"><line x1="' + x0 + '" y1="40" x2="' + x0 + '" y2="236" stroke="' + C.texte + '" stroke-width="1.5"/><circle cx="' + x0 + '" cy="40" r="4" fill="' + C.texte + '"/></g>';
+      var tete = '<g style="animation:v2-balaye 2.8s 1.4s linear forwards;--d:' + (x1 - x0) + 'px"><line x1="' + x0 + '" y1="40" x2="' + x0 + '" y2="236" stroke="' + C.texte + '" stroke-width="1.5"/><circle cx="' + x0 + '" cy="40" r="4" fill="' + C.texte + '"/></g>';
       return fig('v60', 'La recette V60, seconde par seconde', 'V60 · 15 g · 250 g · 93 °C', '<svg viewBox="0 0 720 280" role="img" aria-label="Chronologie de la recette V60">' + '<line x1="' + x0 + '" y1="236" x2="' + x1 + '" y2="236" stroke="' + C.filet + '"/>' + barres + ticks + fin + tete + '</svg>',
         'Bloom de 30 g pendant 30 secondes, puis 150 g, 200 g et 250 g en trois versements en spirale. Le débit s’arrête vers 2:30 à 3:30 : plus long, desserrez la mouture. Recette complète dans le <a href="/journal/v60-guide-complet">guide V60</a>.');
     },
@@ -184,7 +193,7 @@
         '<rect class="pousse-x" style="animation-delay:.8s" x="' + sx(42) + '" y="186" width="' + (sx(49) - sx(42)) + '" height="20" rx="6" fill="rgba(224,103,63,.55)"/><text x="' + sx(45.5) + '" y="180" fill="' + C.cerise + '" font-size="12" font-weight="600" text-anchor="middle">les arômes fins s’estompent</text>';
       var ticks = [0, 7, 14, 21, 28, 35, 42, 49].map(function (j) { return '<line x1="' + sx(j) + '" y1="216" x2="' + sx(j) + '" y2="222" stroke="' + C.doux + '"/><text x="' + sx(j) + '" y="238" fill="' + C.doux + '" font-size="11" text-anchor="middle">' + (j === 0 ? 'torréfaction' : 'J+' + j) + '</text>'; }).join('');
       var bulles = '';
-      for (var b = 0; b < 16; b++) { var x = sx(1 + (b % 8) * 1.4), dl = (b * 0.37) % 3; bulles += '<circle cx="' + x.toFixed(1) + '" cy="200" r="' + (2 + (b % 3)) + '" fill="none" stroke="' + C.texte + '" stroke-opacity=".6" style="animation:v2-bulle 2.6s ' + dl.toFixed(2) + 's ease-out infinite"/>'; }
+      for (var b = 0; b < 16; b++) { var x = sx(1 + (b % 8) * 1.4), dl = (b * 0.37) % 3; bulles += '<circle cx="' + x.toFixed(1) + '" cy="200" r="' + (2 + (b % 3)) + '" fill="none" stroke="' + C.texte + '" stroke-opacity=".6" style="animation:v2-bulle 2.6s ' + dl.toFixed(2) + 's ease-out forwards"/>'; }
       return fig('degazage', 'Quand boire son café après torréfaction', 'Dégazage', '<svg viewBox="0 0 720 250" role="img" aria-label="Fenêtres de repos après torréfaction">' + '<line x1="' + x0 + '" y1="216" x2="' + x1 + '" y2="216" stroke="' + C.filet + '"/>' + zones + bulles + ticks + '<text x="' + sx(2.5) + '" y="150" fill="' + C.doux + '" font-size="11.5" text-anchor="middle">CO₂</text></svg>',
         'Le grain relâche du CO₂ pendant des jours après la torréfaction. Repères du <a href="/journal/degazage-cafe">guide du dégazage</a> ; au-delà de six semaines, les arômes les plus fins s’estompent (<a href="/journal/meilleur-cafe-en-grain-2025">café en grain</a>).');
     },
@@ -196,7 +205,7 @@
         '<text x="' + sx(40) + '" y="82" fill="' + C.cerise + '" font-size="12" font-weight="600" text-anchor="middle">trop lent : amer, astringent</text>';
       var ticks = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45].map(function (s) { return '<text x="' + sx(s) + '" y="152" fill="' + C.doux + '" font-size="11" text-anchor="middle">' + s + ' s</text>'; }).join('');
       var reel = '<rect x="' + sx(22) + '" y="166" width="' + (sx(40) - sx(22)) + '" height="6" rx="3" fill="' + C.doux + '"/><text x="' + sx(31) + '" y="190" fill="' + C.doux + '" font-size="11.5" text-anchor="middle">en coffee shop : de 22 à 40 s</text>';
-      var aiguille = '<g style="animation:v2-balaye 4s 1s cubic-bezier(.3,.1,.3,1) forwards;--d:' + (sx(26) - x0) + 'px"><line x1="' + x0 + '" y1="84" x2="' + x0 + '" y2="136" stroke="' + C.texte + '" stroke-width="2.5"/><circle cx="' + x0 + '" cy="84" r="5" fill="' + C.texte + '"/></g>';
+      var aiguille = '<g style="animation:v2-balaye 2s .8s cubic-bezier(.3,.1,.3,1) forwards;--d:' + (sx(26) - x0) + 'px"><line x1="' + x0 + '" y1="84" x2="' + x0 + '" y2="136" stroke="' + C.texte + '" stroke-width="2.5"/><circle cx="' + x0 + '" cy="84" r="5" fill="' + C.texte + '"/></g>';
       var tasse = '<g transform="translate(560 200)"><text x="0" y="40" fill="' + C.texte + '" font-size="13" font-weight="600" text-anchor="middle">18 g → 36 g</text></g><text x="' + x0 + '" y="240" fill="' + C.texte + '" font-size="13" font-weight="600">Mon protocole : environ 26 s, 92 à 94 °C</text>';
       return fig('espresso', 'Lire le temps d’un espresso', 'Espresso · 1:2', '<svg viewBox="0 0 720 255" role="img" aria-label="Temps d’extraction de l’espresso et goût">' + zones + ticks + reel + aiguille + tasse + '</svg>',
         'Le repère : 18 g de café pour 36 g en tasse, en 25 à 30 secondes. Plus rapide, le shot est acide et sous-extrait ; plus lent, sur-extrait et astringent. Diagnostic complet : <a href="/journal/espresso-trop-rapide-trop-lent-diagnostic">espresso trop rapide ou trop lent</a>.');
@@ -206,7 +215,6 @@
   function demarrerSchemas(racine) {
     var cibles = $$('[data-schema]', racine || document);
     if (!cibles.length) return;
-    injecterCss();
     cibles.forEach(function (el) {
       var f = SCHEMAS[el.getAttribute('data-schema')];
       if (!f || el.dataset.rendu) return;
@@ -217,11 +225,12 @@
       });
       var anim = $('.v2-anim', el), bouton = $('.rejouer', el);
       if (bouton) bouton.addEventListener('click', function () {
-        var neuf = anim.cloneNode(true); anim.parentNode.replaceChild(neuf, anim); anim = neuf;
+        if (reduit) return;
+        var neuf = anim.cloneNode(true); neuf.classList.remove('joue'); anim.parentNode.replaceChild(neuf, anim); anim = neuf;
         requestAnimationFrame(function () { anim.classList.add('joue'); });
       });
-      if (reduit || !('IntersectionObserver' in window)) { anim.classList.add('joue'); return; }
-      var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { anim.classList.add('joue'); io.disconnect(); } }); }, { threshold: 0.35 });
+      if (!('IntersectionObserver' in window)) return;
+      var io = new IntersectionObserver(function (es) { es.forEach(function (e) { anim.classList.toggle('en-vue', e.isIntersecting); if (e.isIntersecting && !reduit) anim.classList.add('joue'); }); }, { threshold: 0.35 });
       io.observe(el);
     });
   }
@@ -302,7 +311,6 @@
       ['/journal/ratio-cafe-eau-extraction', 'Le ratio café/eau, méthode par méthode'],
       ['/journal/methode-4-6-kasuya', 'La méthode 4:6 de Tetsu Kasuya']
     ];
-    var sansAnim = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
     var enCours = false;
     var fr = function (n, d) { return n.toFixed(d).replace('.', ','); };
     poids.classList.add('clignote');
@@ -315,7 +323,7 @@
       aiguille.style.transform = 'rotate(' + (-120 + bar / 12 * 240).toFixed(1) + 'deg)';
       filets.forEach(function (f) {
         f.classList.toggle('coule', coule);
-        f.style.strokeWidth = coule ? Math.max(1.4, Math.min(6, 1.2 + debit * 1.1)).toFixed(2) : 0;
+        f.style.transform = 'scaleX(' + Math.max(.24, Math.min(1, .2 + debit * .18)).toFixed(3) + ')';
       });
     };
 
@@ -340,7 +348,7 @@
       tampon.textContent = cachet;
       tampon.className = 'v2-err__tampon' + (reussi ? ' reussi' : '');
       fiche.hidden = false;
-      void tampon.offsetWidth; tampon.classList.add('frappe');
+      requestAnimationFrame(function () { tampon.classList.add('frappe'); });
     };
 
     tirer.addEventListener('click', function () {
@@ -355,11 +363,11 @@
       var poidsA = function (s) { var x = (s - pre) / (fin - pre); return x <= 0 ? 0 : wFin * Math.pow(Math.min(1, x), 1.1); };
       poids.classList.remove('clignote'); poids.classList.add('actif');
       voyant.setAttribute('fill', '#e0673f');
-      if (sansAnim) { afficher(fin, wFin, barMax, 0, false); conclure(g, t, bouche, wFin); return; }
+      if (reduit) { afficher(fin, wFin, barMax, 0, false); conclure(g, t, bouche, wFin); return; }
       var vitesse = 7, debut = null, avant = 0;
       var image = function (horo) {
         if (debut === null) debut = horo;
-        var s = Math.min(fin, (horo - debut) / 1000 * vitesse);
+        var s = reduit ? fin : Math.min(fin, (horo - debut) / 1000 * vitesse);
         var w = poidsA(s), debit = (w - avant) / Math.max(0.001, (s - (image.s || 0)));
         avant = w; image.s = s;
         afficher(s, w, barMax * Math.min(1, s / 3), debit, s > pre && s < fin);

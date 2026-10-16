@@ -449,6 +449,7 @@ def pages_racine():
     for f in RACINE_PAGES:
         p = os.path.join(R, f); s = v2ise(original(f))
         s = re.sub(r'<script defer src="https://equateur\.org/assets/js/cmp\.js"[^>]*></script>', '', s)
+        s = re.sub(r'\s*<script>\s*tailwind\.config\s*=.*?</script>', '', s, flags=re.S)  # reste du CDN Tailwind : erreur en console
         s = re.sub(r'\s*<link rel="preload" href="/fonts/(?!v2/)[^"]+" as="font"[^>]*>', '', s)
         s = re.sub(r'\s*<link rel="stylesheet" href="/fonts/fonts\.css">', '', s)
         s = s.replace('</head>', shell.HEAD_LIENS + '\n' + shell.CMP_PROD + '\n</head>', 1)
