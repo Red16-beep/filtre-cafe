@@ -1,0 +1,9 @@
+---
+import Base from '../layouts/Base.astro';
+import head from '../fragments/cafes-du-monde.head.html?raw';
+import body from '../fragments/cafes-du-monde.body.html?raw';
+---
+<Base>
+  <Fragment slot="head" set:html={head} />
+  <Fragment set:html={body} />
+</Base>

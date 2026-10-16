@@ -27,20 +27,32 @@
 <link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/fonts/fonts.css">
 <style>body { font-family: 'Inter', sans-serif; } .font-serif { font-family: 'Instrument Serif', serif; }</style>
-<script defer src="https://equateur.org/assets/js/cmp.js" data-site="aff654dd0df3f7e406ecb0a7e78ced5a"></script>
-</head>
-<body class="bg-white text-surface-900 antialiased">
 
-  <nav class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-surface-100">
-    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-      <a href="/" class="text-2xl font-serif italic text-surface-900">filtré<span class="text-amber-600">.</span></a>
-      <div class="flex items-center gap-6 text-sm font-medium text-surface-500">
-        <a href="/" class="hover:text-surface-900 transition-colors">Catalogue</a>
-        <a href="/journal/" class="hover:text-surface-900 transition-colors">Journal</a>
-        <a href="/guides/" class="hover:text-surface-900 transition-colors">Guides</a>
-      </div>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&display=swap">
+<link rel="stylesheet" href="/v2/v2.css">
+<script>(function(){if(location.hostname.replace(/^www\./,'')!=='filtre.cafe')return;var s=document.createElement('script');s.defer=true;s.src='https://equateur.org/assets/js/cmp.js';s.setAttribute('data-site','aff654dd0df3f7e406ecb0a7e78ced5a');document.head.appendChild(s);})();</script>
+</head>
+<body class="bg-white text-surface-900 antialiased v2">
+
+  <header class="v2-header">
+  <div class="v2-header__in">
+    <a class="v2-logo" href="/" aria-label="filtré., accueil"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="none" stroke="currentColor" stroke-width="1.4" opacity=".35"/><path d="M8 9h16l-5.4 9.2v4.6h-5.2v-4.6z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="16" cy="26" r="1.6" fill="#b8401f"/></svg><span><span class="v2-logo__nom">filtré<b>.</b></span><span class="v2-logo__devise">Extraire · Comprendre · Goûter</span></span></a>
+    <nav class="v2-nav" aria-label="Navigation principale"><div class="v2-nav__item"><button type="button" class="v2-nav__lien" aria-expanded="false" aria-haspopup="true">Méthodes <svg viewBox="0 0 10 10" aria-hidden="true"><path d="M1.5 3.5L5 7l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button><div class="v2-mega" role="region"><a class="v2-mega__intro" href="/guides/methodes-extraction" style="text-decoration:none"><p>Choisir sa méthode</p><span>Filtre, espresso, immersion : laquelle pour vous ? <span class="v2-fleche">→</span></span></a><ul><li><a href="/journal/v60-guide-complet">V60<small>guide complet</small></a></li><li><a href="/journal/aeropress-guide-complet">AeroPress<small>guide complet</small></a></li><li><a href="/journal/french-press-guide">French press<small>piston</small></a></li><li><a href="/journal/moka-pot-guide-complet">Moka<small>italienne</small></a></li><li><a href="/journal/comment-faire-espresso-parfait">Espresso<small>recette et réglages</small></a></li><li><a href="/journal/cold-brew-maison">Cold brew<small>12 à 16 h</small></a></li><li><a class="v2-mega__tous" href="/guides/methodes-extraction">Toutes les méthodes <span class="v2-fleche">→</span></a></li></ul></div></div><div class="v2-nav__item"><button type="button" class="v2-nav__lien" aria-expanded="false" aria-haspopup="true">Matériel <svg viewBox="0 0 10 10" aria-hidden="true"><path d="M1.5 3.5L5 7l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button><div class="v2-mega" role="region"><a class="v2-mega__intro" href="/guides/equipement-cafe-maison" style="text-decoration:none"><p>S’équiper sans se ruiner</p><span>L’ordre des achats compte plus que la marque. <span class="v2-fleche">→</span></span></a><ul><li><a href="/journal/meilleur-moulin-cafe-electrique">Moulins électriques<small>guide</small></a></li><li><a href="/journal/top-moulins-manuels-cafe">Moulins manuels<small>Top 8</small></a></li><li><a href="/journal/top-balances-cafe">Balances<small>Top 8</small></a></li><li><a href="/journal/top-bouilloires-cafe-filtre">Bouilloires<small>Top 8</small></a></li><li><a href="/journal/meilleure-machine-espresso-manuelle-2026">Machines espresso<small>guide</small></a></li><li><a href="/journal/meilleure-machine-cafe-grain-automatique">Machines à grain<small>guide</small></a></li><li><a class="v2-mega__tous" href="/materiel">Tout le matériel <span class="v2-fleche">→</span></a></li></ul></div></div><div class="v2-nav__item"><button type="button" class="v2-nav__lien" aria-expanded="false" aria-haspopup="true">Cafés du monde <svg viewBox="0 0 10 10" aria-hidden="true"><path d="M1.5 3.5L5 7l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button><div class="v2-mega" role="region"><a class="v2-mega__intro" href="/cafes-du-monde" style="text-decoration:none"><p>Le café, partout ailleurs</p><span>Origines, recettes et rituels, du Mexique à la Laponie. <span class="v2-fleche">→</span></span></a><ul><li><a href="/journal/cafe-ethiopien-yirgacheffe-sidama-guji">Éthiopie<small>origine</small></a></li><li><a href="/journal/cafe-colombie-specialite">Colombie<small>origine</small></a></li><li><a href="/journal/cafe-de-olla-mexique">Café de olla<small>recette</small></a></li><li><a href="/journal/bicerin-turin">Bicerin<small>recette</small></a></li><li><a href="/journal/qahwa-cafe-arabe-cardamome">Qahwa<small>recette</small></a></li><li><a href="/journal/cafe-au-japon">Japon<small>culture</small></a></li><li><a class="v2-mega__tous" href="/cafes-du-monde">Tous les cafés du monde <span class="v2-fleche">→</span></a></li></ul></div></div><div class="v2-nav__item"><a class="v2-nav__lien" href="/journal/">Le journal</a></div><div class="v2-nav__item"><a class="v2-nav__lien" href="/newsletter">La lettre</a></div></nav>
+    <div class="v2-header__droite">
+      <a class="v2-icone" href="/outils/calculateur-v60" aria-label="Calculateur V60" title="Calculateur V60"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="5" y="3" width="14" height="18" rx="2.5"/><path d="M8.5 7.5h7M8.5 12h1M12 12h1M15.5 12h0M8.5 16h1M12 16h1M15.5 16h0"/></svg></a>
+      <a class="v2-icone" href="/journal/" aria-label="Chercher dans le journal" title="Chercher dans le journal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg></a>
+      <button class="v2-icone v2-burger" type="button" data-v2-tiroir aria-label="Ouvrir le menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
     </div>
-  </nav>
+  </div>
+</header>
+<div class="v2-tiroir" id="v2-tiroir" role="dialog" aria-modal="true" aria-label="Menu">
+  <div class="v2-tiroir__fond" data-v2-fermer></div>
+  <div class="v2-tiroir__panneau">
+    <button class="v2-icone" type="button" data-v2-fermer aria-label="Fermer le menu" style="margin-left:auto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <h3>Méthodes</h3><a href="/journal/v60-guide-complet">V60</a><a href="/journal/aeropress-guide-complet">AeroPress</a><a href="/journal/french-press-guide">French press</a><a href="/journal/moka-pot-guide-complet">Moka</a><a href="/journal/comment-faire-espresso-parfait">Espresso</a><a href="/journal/cold-brew-maison">Cold brew</a><a href="/guides/methodes-extraction">Toutes les méthodes</a><h3>Matériel</h3><a href="/journal/meilleur-moulin-cafe-electrique">Moulins électriques</a><a href="/journal/top-moulins-manuels-cafe">Moulins manuels</a><a href="/journal/top-balances-cafe">Balances</a><a href="/journal/top-bouilloires-cafe-filtre">Bouilloires</a><a href="/journal/meilleure-machine-espresso-manuelle-2026">Machines espresso</a><a href="/journal/meilleure-machine-cafe-grain-automatique">Machines à grain</a><a href="/materiel">Tout le matériel</a><h3>Cafés du monde</h3><a href="/journal/cafe-ethiopien-yirgacheffe-sidama-guji">Éthiopie</a><a href="/journal/cafe-colombie-specialite">Colombie</a><a href="/journal/cafe-de-olla-mexique">Café de olla</a><a href="/journal/bicerin-turin">Bicerin</a><a href="/journal/qahwa-cafe-arabe-cardamome">Qahwa</a><a href="/journal/cafe-au-japon">Japon</a><a href="/cafes-du-monde">Tous les cafés du monde</a><h3>filtré.</h3><a href="/journal/">Le journal</a><a href="/newsletter">La lettre</a><a href="/a-propos">À propos</a><a href="/outils/calculateur-v60">Calculateur V60</a>
+  </div>
+</div>
 
   <main class="pt-32 pb-24 px-6 max-w-2xl mx-auto">
     <h1 class="font-serif text-4xl mb-2 text-surface-900">Politique de confidentialité</h1>
@@ -163,16 +175,29 @@
     </div>
   </main>
 
-  <footer class="py-12 px-6 border-t border-surface-200 bg-white">
-    <div class="max-w-2xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-      <a href="/" class="text-2xl font-serif italic text-surface-900">filtré<span class="text-amber-600">.</span></a>
-      <div class="flex gap-5 text-xs text-surface-400">
-        <a href="/mentions-legales" class="hover:text-surface-900 transition-colors">Mentions légales</a>
-        <span class="text-surface-900 font-semibold text-xs">Confidentialité</span>
-        <a href="/a-propos" class="hover:text-surface-900 transition-colors">À propos</a>
+  <footer class="v2-footer">
+  <div class="v2-footer__in">
+    <div class="v2-footer__grille">
+      <div class="v2-footer__marque">
+        <a class="v2-logo" href="/"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="none" stroke="currentColor" stroke-width="1.4" opacity=".35"/><path d="M8 9h16l-5.4 9.2v4.6h-5.2v-4.6z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="16" cy="26" r="1.6" fill="#b8401f"/></svg><span><span class="v2-logo__nom">filtré<b>.</b></span><span class="v2-logo__devise">Extraire · Comprendre · Goûter</span></span></a>
+        <p>Le guide indépendant du café de spécialité, écrit par Reda dans sa cuisine du Nord : ce qui est testé est dit, ce qui ne l’est pas aussi.</p>
+        <div class="v2-footer__reseaux"><a href="https://www.pinterest.com/filtrecafe/" rel="me noopener" target="_blank" aria-label="Pinterest"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.08 3.16 9.43 7.63 11.17-.11-.95-.2-2.4.04-3.44l1.41-5.97s-.36-.72-.36-1.78c0-1.67.97-2.91 2.17-2.91 1.02 0 1.52.77 1.52 1.69 0 1.03-.66 2.57-.99 4-.28 1.19.6 2.17 1.78 2.17 2.13 0 3.77-2.25 3.77-5.5 0-2.87-2.06-4.88-5.01-4.88-3.41 0-5.42 2.56-5.42 5.21 0 1.03.4 2.14.89 2.74a.36.36 0 0 1 .08.35l-.33 1.36c-.05.22-.17.27-.4.16-1.5-.7-2.44-2.89-2.44-4.65 0-3.79 2.75-7.26 7.93-7.26 4.16 0 7.4 2.97 7.4 6.93 0 4.14-2.61 7.46-6.23 7.46-1.22 0-2.36-.63-2.75-1.38l-.75 2.85c-.27 1.04-1 2.35-1.49 3.15A12 12 0 0 0 12 24c6.63 0 12-5.37 12-12S18.63 0 12 0z"/></svg></a><a href="/rss.xml" aria-label="Flux RSS"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="19" r="2.4"/><path d="M3 10.6a.9.9 0 0 1 .9-.9A10.4 10.4 0 0 1 14.3 20a.9.9 0 0 1-.9.9h-1.3a.9.9 0 0 1-.9-.85A7.3 7.3 0 0 0 3.95 12.8a.9.9 0 0 1-.85-.9zM3 4.1a.9.9 0 0 1 .9-.9A16.9 16.9 0 0 1 20.8 20.1a.9.9 0 0 1-.9.9h-1.3a.9.9 0 0 1-.9-.88A13.8 13.8 0 0 0 3.88 6.3.9.9 0 0 1 3 5.4z"/></svg></a></div>
       </div>
+      <div><h4>Explorer</h4><ul><li><a href="/journal/">Le journal</a></li><li><a href="/guides/">Tous les guides</a></li><li><a href="/guides/methodes-extraction">Les méthodes</a></li><li><a href="/cafes-du-monde">Cafés du monde</a></li><li><a href="/schemas">Le café en schémas</a></li><li><a href="/commencer-ici">Commencer ici</a></li></ul></div>
+      <div><h4>Matériel</h4><ul><li><a href="/journal/meilleur-moulin-cafe-electrique">Moulins électriques</a></li><li><a href="/journal/meilleur-moulin-cafe-manuel">Moulins manuels</a></li><li><a href="/journal/meilleure-machine-espresso-manuelle-2026">Machines espresso</a></li><li><a href="/journal/meilleure-machine-cafe-grain-automatique">Machines à grain</a></li><li><a href="/journal/meilleure-balance-cafe">Balances</a></li><li><a href="/journal/meilleure-bouilloire-cafe-filtre">Bouilloires</a></li><li><a href="/journal/top-drippers-cafe-filtre">Drippers</a></li><li><a href="/materiel">Tout le matériel</a></li></ul></div>
+      <div><h4>filtré.</h4><ul><li><a href="/newsletter">La lettre</a></li><li><a href="/a-propos">À propos</a></li><li><a href="/a-propos#transparence">Comment je me rémunère</a></li><li><a href="/journal/eau-cafe-filtre-tds-mineraux">Le test à l’aveugle</a></li><li><!--email_off--><a href="mailto:reda@filtre.cafe">reda@filtre.cafe</a><!--/email_off--></li></ul></div>
     </div>
-  </footer>
+    <div class="v2-footer__bas"><span>© 2026 filtré. · Guide indépendant du café de spécialité</span><nav aria-label="Informations légales"><a href="/mentions-legales">Mentions légales</a><a href="/politique-confidentialite">Confidentialité</a><a href="/a-propos#transparence">Liens affiliés signalés</a></nav></div>
+  </div>
+</footer>
+<nav class="v2-onglets" aria-label="Raccourcis">
+  <a href="/journal/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M5 4h11l3 3v13H5z"/><path d="M8 10h8M8 14h8"/></svg>Journal</a>
+  <a href="/guides/methodes-extraction"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M5 6h14l-5 8v4h-4v-4z"/></svg>Méthodes</a>
+  <a href="/materiel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="13" r="6"/><path d="M12 4v3M9 4h6"/></svg>Matériel</a>
+  <a href="/cafes-du-monde"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="8"/><path d="M4 12h16M12 4c3 3 3 13 0 16M12 4c-3 3-3 13 0 16"/></svg>Monde</a>
+  <button type="button" data-v2-tiroir><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 7h16M4 12h16M4 17h16"/></svg>Menu</button>
+</nav>
 
+<script defer src="/v2/v2.js"></script>
 </body>
 </html>
