@@ -369,4 +369,25 @@
       requestAnimationFrame(image);
     });
   }
+
+  /* ── Vidéos tutos : lecture quand elles sont à l'écran, pause sinon.
+     preload="none" : rien n'est téléchargé avant qu'on arrive dessus.
+     Animations réduites : la vidéo attend un clic. ── */
+  var videos = $$('video[data-auto]');
+  // Petit écran : la version verticale (choisie par <source media>) prend son affiche verticale.
+  if (window.matchMedia && window.matchMedia('(max-width: 640px)').matches) {
+    videos.forEach(function (v) { if (v.dataset.posterVertical) v.poster = v.dataset.posterVertical; });
+  }
+  if (videos.length && !reduit && 'IntersectionObserver' in window) {
+    var ioVid = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        var v = e.target;
+        if (e.isIntersecting && e.intersectionRatio >= 0.5) {
+          var p = v.play();
+          if (p && p.catch) p.catch(function () {});
+        } else if (!v.paused) v.pause();
+      });
+    }, { threshold: [0, 0.5] });
+    videos.forEach(function (v) { ioVid.observe(v); });
+  }
 })();

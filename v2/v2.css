@@ -498,3 +498,9 @@ body.v2 .v2-page-texte{padding-top:56px}
 .v2-bref__lien{margin:0 auto;padding-top:0!important;padding-bottom:18px;font-size:14px}
 /* titre des schémas (h3 dans les articles) : clair sur fond sombre, pas le style des intertitres */
 body.v2 .v2-schema__tete h3{color:#f6efe6!important;font-family:var(--serif)!important;font-weight:500!important;font-size:24px!important;margin:0!important;letter-spacing:-.01em!important}
+
+/* Vidéos tutos (motion design) dans les articles */
+body.v2 .video-tuto{margin:2.2em 0 2.6em}
+body.v2 .video-tuto video{display:block;width:100%;height:auto;aspect-ratio:16/9;border-radius:18px;background:#1f1610;box-shadow:0 22px 44px -22px rgba(31,22,16,.6)}
+@media (max-width:640px){body.v2 .video-tuto video{aspect-ratio:9/16;width:100%;max-width:calc(78vh * 9 / 16);max-height:78vh;margin:0 auto}}
+body.v2 .video-tuto figcaption{margin-top:.85em;font-family:var(--sans);font-size:var(--t-petit);line-height:1.5;color:#6a5d54}
