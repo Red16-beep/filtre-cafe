@@ -12,24 +12,19 @@
     tailwind.config = {
       theme: {
         extend: {
-          fontFamily: { sans: ['Inter', 'sans-serif'], serif: ['Instrument Serif', 'serif'] },
+          fontFamily: { sans: ['Instrument Sans', 'sans-serif'], serif: ['Newsreader', 'serif'] },
           colors: {
-            surface: { 50:'#f8fafc', 100:'#f1f5f9', 200:'#e2e8f0', 400:'#94a3b8', 500:'#64748b', 600:'#475569', 800:'#1e293b', 900:'#0f172a' },
-            amber: { 50:'#fffbeb', 100:'#fef3c7', 500:'#f59e0b', 600:'#d97706' }
+            surface: { 50:'#f6f1ea', 100:'#efe7dc', 200:'#e1d4c2', 400:'#6a5d54', 500:'#6a5d54', 600:'#5c4d42', 800:'#33251b', 900:'#231912' },
+            amber: { 50:'#fbf5ec', 100:'#f7ead9', 500:'#efc79c', 600:'#b8401f' }
           }
         }
       }
     }
   </script>
+<style>body { font-family: 'Instrument Sans', sans-serif; } .font-serif { font-family: 'Newsreader', serif; }</style>
 
-  <link rel="preload" href="/fonts/instrumentserif-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/fonts/instrumentserif-italic-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/fonts/fonts.css">
-<style>body { font-family: 'Inter', sans-serif; } .font-serif { font-family: 'Instrument Serif', serif; }</style>
-
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&display=swap">
+<link rel="preload" href="/fonts/v2/newsreader-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/v2/instrument-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/v2/v2.css">
 <script>(function(){if(location.hostname.replace(/^www\./,'')!=='filtre.cafe')return;var s=document.createElement('script');s.defer=true;s.src='https://equateur.org/assets/js/cmp.js';s.setAttribute('data-site','aff654dd0df3f7e406ecb0a7e78ced5a');document.head.appendChild(s);})();</script>
 </head>
@@ -54,9 +49,7 @@
   </div>
 </div>
 
-  <main class="pt-32 pb-24 px-6 max-w-2xl mx-auto">
-    <h1 class="font-serif text-4xl mb-2 text-surface-900">Mentions légales</h1>
-    <p class="text-surface-400 text-sm mb-12">Dernière mise à jour : octobre 2026</p>
+  <section class="v2-page-tete"><div class="v2-wrap"><div><nav class="v2-page-tete__fil" aria-label="Fil d’Ariane"><a href="/">Accueil</a> › <span aria-current="page">Mentions légales</span></nav><p class="v2-kicker v2-kicker--crema">Informations</p><h1>Mentions légales</h1><p class="v2-page-tete__chapeau">Dernière mise à jour : octobre 2026</p></div></div></section><main class="v2-page-texte pb-24 px-6 max-w-2xl mx-auto">
 
     <div class="space-y-10 text-surface-700 leading-relaxed">
 

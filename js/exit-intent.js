@@ -42,7 +42,7 @@
 
         <p style="font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.3em;color:#b45309;margin-bottom:1rem;">La lettre filtré.</p>
 
-        <p style="font-family:'Instrument Serif',serif;font-style:italic;font-size:1.6rem;line-height:1.25;color:#1c1917;margin-bottom:0.75rem;letter-spacing:-0.02em;">
+        <p style="font-family:'Newsreader',Georgia,serif;font-style:italic;font-size:1.6rem;line-height:1.25;color:#1c1917;margin-bottom:0.75rem;letter-spacing:-0.02em;">
           Avant de partir
         </p>
         <p style="font-size:0.9375rem;color:#78716c;font-weight:300;line-height:1.7;margin-bottom:1.75rem;">
@@ -62,7 +62,7 @@
                 border-radius:0.75rem;
                 padding:0.625rem 1rem;
                 font-size:0.875rem;
-                font-family:'Inter',sans-serif;
+                font-family:'Instrument Sans',Arial,sans-serif;
                 color:#1c1917;
                 background:#fff;
                 outline:none;
@@ -87,7 +87,7 @@
         </form>
 
         <div id="ei-ok" style="display:none;text-align:center;padding:1rem 0;">
-          <p style="font-family:'Instrument Serif',serif;font-style:italic;font-size:1.25rem;color:#1c1917;margin-bottom:0.5rem;">Bienvenue.</p>
+          <p style="font-family:'Newsreader',Georgia,serif;font-style:italic;font-size:1.25rem;color:#1c1917;margin-bottom:0.5rem;">Bienvenue.</p>
           <p style="font-size:0.875rem;color:#78716c;font-weight:300;">On se retrouve dans votre boîte mail.</p>
         </div>
 
@@ -165,7 +165,7 @@
   });
 
   // Mobile : scroll rapide vers le haut (geste "partir")
-  var lastScrollY = window.scrollY;
+  var lastScrollY = 0;  // pas de lecture de mise en page au chargement (reflow forcé relevé par PageSpeed)
   var scrollTimer;
   window.addEventListener('scroll', function () {
     clearTimeout(scrollTimer);

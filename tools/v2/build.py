@@ -23,7 +23,8 @@ def info(slug, d=J):
 NB_ARTICLES = len([f for f in os.listdir(J) if f.endswith('.body.html') and 'cafe-specialite-france-2024' not in f]) + len([f for f in os.listdir(G) if f.endswith('.body.html')])
 FL = '<span class="v2-fleche" aria-hidden="true">→</span>'
 
-def page(titre, desc, canon, corps, head_extra='', robots='index, follow', scripts_extra=''):
+def page(titre, desc, canon, corps, head_extra='', robots='index, follow', scripts_extra='', og_titre=None, og_desc=None):
+    og_titre = og_titre or titre; og_desc = og_desc or desc
     return f'''<!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -33,8 +34,8 @@ def page(titre, desc, canon, corps, head_extra='', robots='index, follow', scrip
 <meta name="description" content="{html.escape(desc, quote=True)}">
 <meta name="robots" content="{robots}">
 <link rel="canonical" href="https://filtre.cafe{canon}">
-<meta property="og:type" content="website"><meta property="og:url" content="https://filtre.cafe{canon}"><meta property="og:title" content="{titre}"><meta property="og:description" content="{html.escape(desc, quote=True)}"><meta property="og:image" content="https://filtre.cafe/og-image.png"><meta property="og:locale" content="fr_FR"><meta property="og:site_name" content="filtré.">
-<meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://filtre.cafe/og-image.png">
+<meta property="og:type" content="website"><meta property="og:url" content="https://filtre.cafe{canon}"><meta property="og:title" content="{og_titre}"><meta property="og:description" content="{html.escape(og_desc, quote=True)}"><meta property="og:image" content="https://filtre.cafe/og-image.png"><meta property="og:locale" content="fr_FR"><meta property="og:site_name" content="filtré.">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="{og_titre}"><meta name="twitter:description" content="{html.escape(og_desc, quote=True)}"><meta name="twitter:image" content="https://filtre.cafe/og-image.png">
 <link rel="icon" href="/favicon.ico" sizes="32x32"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="alternate" type="application/rss+xml" title="filtré." href="/rss.xml">
 {head_extra}
@@ -68,7 +69,7 @@ def accueil():
   <div class="v2-hero__scenes">{sc}</div>
   <div class="v2-hero__in">
     <p class="v2-kicker v2-kicker--crema">Le guide indépendant du café de spécialité</p>
-    <h1>Bien faire<br>son <em>café</em></h1>
+    <h1>Le café,<br><em>au gramme près</em>.</h1>
     <p class="v2-hero__chapeau">Pour bien commencer : un moulin à meules, une balance au dixième de gramme et une eau peu minéralisée. Ensuite, 15 g de café pour 250 g d’eau à 93 °C. Le reste se règle au goût.</p>
     <div class="v2-hero__actions"><a class="v2-btn" href="/commencer-ici">Commencer ici {FL}</a><a class="v2-lien" href="/guides/methodes-extraction">Les méthodes {FL}</a></div>
     <div class="v2-hero__bas">
@@ -223,35 +224,47 @@ def accueil():
     ld = '''<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"filtré.","url":"https://filtre.cafe/","description":"Le guide indépendant du café de spécialité : méthodes, matériel testé, origines et recettes.","inLanguage":"fr-FR"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"filtré.","url":"https://filtre.cafe/","sameAs":["https://www.pinterest.com/filtrecafe/"]}</script>
 <script type="application/ld+json">''' + faq_ld + '</script>\n<meta name="p:domain_verify" content="4e7a1938b80241103ae563d2e22cdc4f"/>'
-    ecrire(os.path.join(R, 'index.html'), page('Bien faire son café : le guide du café de spécialité | filtré.',
-        'Le guide indépendant du café de spécialité : méthodes, ratios, matériel testé, eau, origines et recettes du monde, avec ce qui est testé et ce qui ne l’est pas.',
-        '/', corps, head_extra=ld, scripts_extra='<script defer src="/js/exit-intent.js"></script>'))
+    # titre, description et Open Graph identiques à la version en ligne : la refonte ne touche pas au SEO
+    ecrire(os.path.join(R, 'index.html'), page('Cafés de spécialité : sélection & guides | filtré.',
+        "Guide indépendant du café de spécialité. Comparatifs matériel, guides d'extraction et sélection de cafés, V60, moulin, machine expresso.",
+        '/', corps, head_extra=ld, scripts_extra='<script defer src="/js/exit-intent.js"></script>',
+        og_titre='filtré. Le guide du café de spécialité', og_desc='Moulin, V60, machine espresso, eau, chaque variable compte. Le guide indépendant du café de spécialité.'))
 
 # ── 404 ────────────────────────────────────────────────────────────────────
 def page_404():
-    cartes = [('Il existe toujours', 'Le guide V60', 'La recette, seconde par seconde, avec le schéma animé.', '/journal/v60-guide-complet'),
-              ('Rubrique', 'Les méthodes', 'Filtre, espresso, immersion, à froid.', '/guides/methodes-extraction'),
-              ('Rubrique', 'Le matériel', 'Moulins, balances, bouilloires, machines.', '/materiel'),
-              ('Rubrique', 'Cafés du monde', 'Origines et recettes, du Mexique à la Laponie.', '/cafes-du-monde'),
-              ('Rubrique', 'La lettre', 'Les cafés goûtés et les erreurs corrigées.', '/newsletter')]
-    cs = ''.join(f'<a class="v2-pratique" href="{h}" style="background:var(--espresso-2);border-color:rgba(244,236,227,.14);color:#f4ece3!important"><span class="v2-kicker v2-kicker--crema">{k}</span><h3>{t}</h3><p style="color:rgba(244,236,227,.7)">{d}</p><span class="v2-carte__pied" style="color:var(--crema)">Découvrir {FL}</span></a>' for k, t, d, h in cartes)
-    corps = f'''<section class="v2-404" aria-label="Page introuvable">
-  {scenes.scene_404()}
-  <button class="v2-404__btn-dragon" type="button" data-v2-relancer><i>☕</i><span>Relancer l’extraction<small>et regarder la tasse se remplir</small></span></button>
-</section>
-<section class="v2-404__corps">
-  <div class="v2-wrap">
-    <p class="v2-kicker v2-kicker--crema">Erreur 404 · Page introuvable</p>
-    <h1>Cette page a été sur‑extraite.</h1>
-    <p class="v2-chapeau" style="color:rgba(244,236,227,.8)">On l’a moulue trop fin : elle s’est bouchée avant d’arriver jusqu’à vous. Ou alors elle a simplement changé d’adresse. Même les baristas ratent un réglage : on vous remet sur le bon chemin.</p>
-    <div class="v2-404__actions"><a class="v2-btn" href="/">Retour à l’accueil {FL}</a><a class="v2-btn v2-btn--clair" style="color:#f4ece3!important;border-color:rgba(244,236,227,.3)" href="/journal/">Chercher dans le journal</a></div>
-    <p class="v2-404__rappel">Petit rappel : à 4 h 04 du matin, même un double espresso ne fait pas de miracle.</p>
-    <div class="v2-404__tasse"><span>Une tasse traîne là. On la goûte ?</span><button type="button" data-v2-gouter>Goûter la tasse</button><output id="v2-note-404" aria-live="polite"></output></div>
-    <div style="margin-top:56px"><p class="v2-kicker v2-kicker--crema">Reprendre la route</p><h2 class="v2-h2" style="color:#f6efe6">Par où repartir ?</h2>
-    <div class="v2-pratiques" style="margin-top:28px">{cs}</div></div>
+    sorties = [('Il existe toujours', 'Le diagnostic espresso', 'Trop rapide, trop lent : lire le shot, puis corriger.', '/journal/espresso-trop-rapide-trop-lent-diagnostic'),
+               ('Rubrique', 'Les méthodes', 'Filtre, espresso, immersion, à froid.', '/guides/methodes-extraction'),
+               ('Rubrique', 'Le matériel', 'Moulins, balances, bouilloires, machines.', '/materiel'),
+               ('Rubrique', 'Cafés du monde', 'Origines et recettes, du Mexique à la Laponie.', '/cafes-du-monde')]
+    cs = ''.join(f'<a class="v2-pratique v2-pratique--sombre" href="{h}"><span class="v2-kicker v2-kicker--crema">{k}</span><h3>{t}</h3><p>{d}</p><span class="v2-carte__pied">Découvrir {FL}</span></a>' for k, t, d, h in sorties)
+    corps = f'''<section class="v2-err" aria-labelledby="t-404">
+  <div class="v2-wrap v2-err__grille">
+    <div class="v2-err__texte">
+      <p class="v2-kicker v2-kicker--crema">Erreur 404 · page introuvable</p>
+      <h1 id="t-404">Cette page n’existe pas.<br><em>Réglez le moulin.</em></h1>
+      <p class="v2-err__chapeau">L’adresse est fausse, ou la page a déménagé. Tirez un espresso réussi, 36 g en tasse entre 25 et 30 secondes, et je vous sers une page qui existe.</p>
+      <div class="v2-err__reglage">
+        <div class="v2-err__etiquette"><label for="v2-mouture">Mouture</label><output id="v2-mouture-val" for="v2-mouture">20</output></div>
+        <input type="range" id="v2-mouture" min="1" max="20" step="1" value="20" aria-describedby="v2-mouture-aide">
+        <div class="v2-err__graduation" id="v2-mouture-aide"><span>1 · très fin</span><span>20 · très gros</span></div>
+      </div>
+      <div class="v2-err__actions"><button class="v2-btn" type="button" id="v2-tirer">Tirer le shot {FL}</button><a class="v2-lien" href="/">Ou rentrer à l’accueil {FL}</a></div>
+      <div class="v2-err__fiche" id="v2-fiche" hidden>
+        <p class="v2-err__fiche-titre">Fiche de dégustation</p>
+        <dl><div><dt>Mouture</dt><dd id="v2-f-mouture"></dd></div><div><dt>Temps</dt><dd id="v2-f-temps"></dd></div><div><dt>En tasse</dt><dd id="v2-f-poids"></dd></div></dl>
+        <p class="v2-err__verdict" id="v2-verdict" aria-live="polite"></p>
+        <span class="v2-err__tampon" id="v2-tampon"></span>
+      </div>
+      <p class="v2-err__repere">Repère du site : 18 g de café moulu, 36 g en tasse, 25 à 30 secondes. Le détail est dans le <a href="/journal/espresso-trop-rapide-trop-lent-diagnostic">diagnostic espresso</a>.</p>
+    </div>
+    <div class="v2-err__machine">{scenes.machine_404()}</div>
   </div>
+</section>
+<section class="v2-section v2-dark" style="padding-top:24px" aria-labelledby="t-repartir">
+  <div class="v2-wrap"><p class="v2-kicker v2-kicker--crema">Sans passer par la machine</p><h2 class="v2-h2" id="t-repartir" style="color:#f6efe6">Par où repartir ?</h2>
+  <div class="v2-pratiques" style="margin-top:28px">{cs}</div></div>
 </section>'''
-    ecrire(os.path.join(R, '404.html'), page('Page introuvable · filtré.', 'Cette page a été sur-extraite : on vous remet sur le bon chemin.', '/', corps, robots='noindex, follow'))
+    ecrire(os.path.join(R, '404.html'), page('Page introuvable · filtré.', 'Cette page n’existe pas. Réglez le moulin, tirez un espresso réussi, et on vous sert une page qui existe.', '/', corps, robots='noindex, follow'))
 
 # ── Pages Astro : cafés du monde, schémas ──────────────────────────────────
 def astro_page(nom, titre, desc, canon, corps, fil):
@@ -325,39 +338,119 @@ def page_schemas():
     astro_page('schemas', 'Le café en schémas animés | filtré.', 'Extraction, recette V60, mouture, eau, dégazage, espresso : six schémas animés pour comprendre le café de spécialité.', '/schemas', corps, 'Le café en schémas')
 
 # ── Habillage : Base.astro et pages racine ────────────────────────────────
+BASE = '22fd46f'  # commit de main d'où part la refonte : on habille toujours les fichiers d'origine
+
+def original(rel):
+    import subprocess
+    return subprocess.run(['git', 'show', f'{BASE}:{rel}'], cwd=R, capture_output=True, text=True, check=True).stdout
+
+def _table_couleurs():
+    js = lire(os.path.join(R, 'astro/src/lib/v2.js'))
+    hexa = dict(re.findall(r"'(#[0-9a-f]{6})': '(#[0-9a-f]{6})'", js))
+    rgba = dict(re.findall(r"'(\d+,\d+,\d+)': '(\d+,\d+,\d+)'", js))
+    return hexa, rgba
+
+def v2ise(s):
+    """Même conversion que astro/src/lib/v2.js (table lue dans ce fichier), pour les pages hors Astro."""
+    hexa, rgba = _table_couleurs()
+    s = re.sub(r'#[0-9a-fA-F]{6}\b', lambda m: hexa.get(m.group(0).lower(), m.group(0)), s)
+    def _rgba(m):
+        k = ','.join(m.group(i) for i in (1, 2, 3))
+        return f'rgba({rgba[k]},' if k in rgba else m.group(0)
+    s = re.sub(r'rgba\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*,', _rgba, s)
+    s = re.sub(r"""(['"])Instrument Serif\1""", "'Newsreader'", s)
+    return re.sub(r"""(['"])Inter\1""", "'Instrument Sans'", s)
+
 def base_astro():
-    p = os.path.join(R, 'astro/src/layouts/Base.astro'); s = lire(p)
-    if 'v2-header' in s: print('Base.astro déjà habillé'); return
+    p = os.path.join(R, 'astro/src/layouts/Base.astro'); s = original('astro/src/layouts/Base.astro')
+    s = s.replace('\n---\n<!DOCTYPE html>', "\nimport { v2ise } from '../lib/v2.js';\nconst tete = v2ise(await Astro.slots.render('head'));\nconst corps = v2ise(await Astro.slots.render('default'));\nconst style = Astro.slots.has('style') ? v2ise(await Astro.slots.render('style')) : '';\n---\n<!DOCTYPE html>", 1)
+    s = s.replace('<slot name="head" />', '<Fragment set:html={tete} />', 1)
     s = s.replace('<slot name="style" />\n<script is:inline defer src="https://equateur.org/assets/js/cmp.js" data-site="aff654dd0df3f7e406ecb0a7e78ced5a"></script>',
-                  '<slot name="style" />\n' + shell.HEAD_LIENS.replace('<link', '<link') + '\n' + shell.CMP_PROD.replace('<script>', '<script is:inline>'))
+                  '<Fragment set:html={style} />\n' + shell.HEAD_LIENS + '\n' + shell.CMP_PROD.replace('<script>', '<script is:inline>'))
+    s = re.sub(r'<link rel="preload" href="/fonts/(?!v2/)[^"]+" as="font"[^>]*>\n', '', s)  # anciennes polices : plus utilisées
+    s = s.replace('<link rel="stylesheet" href="/fonts/fonts.css">\n', '')
     s = s.replace('<body class="antialiased">', '<body class="antialiased v2">')
     s = re.sub(r'<nav class="glass-nav.*?</nav>\n', lambda m: shell.header() + '\n' + shell.tiroir() + '\n', s, count=1, flags=re.S)
+    s = s.replace('\n<slot />\n', '\n<Fragment set:html={corps} />\n', 1)
     s = re.sub(r'<footer class="border-t.*?</footer>\n', lambda m: shell.footer() + '\n' + shell.onglets() + '\n', s, count=1, flags=re.S)
     s = s.replace('<script is:inline defer src="/js/track.js"></script>', '<script is:inline defer src="/v2/v2.js"></script>\n<script is:inline defer src="/js/track.js"></script>')
-    assert 'v2-header' in s and 'v2-footer' in s and '/v2/v2.js' in s, 'Base.astro : remplacement incomplet'
+    for attendu in ('v2-header', 'v2-footer', '/v2/v2.js', 'set:html={corps}', 'set:html={style}', 'set:html={tete}', 'v2ise('):
+        assert attendu in s, f'Base.astro : {attendu} manquant'
     ecrire(p, s)
 
+TETES = {  # page : (fil d'Ariane, icône du bandeau)
+    'journal/index.html': ('Le journal', 'grain'), 'guides/index.html': ('Les guides', 'v60'),
+    'a-propos.html': ('À propos', 'moulin'), 'commencer-ici.html': ('Commencer ici', 'quatre-six'),
+    'mentions-legales.html': ('Mentions légales', None), 'politique-confidentialite.html': ('Confidentialité', None),
+    'newsletter.html': ('La lettre', None),
+}
+
+def tete_v2(s, f):
+    """Transforme l'en-tête d'une page hub en bandeau sombre v2 (fil d'Ariane, surtitre, titre, chapeau, icône)."""
+    if f not in TETES: return s
+    fil, ico = TETES[f]
+    ariane = f'<nav class="v2-page-tete__fil" aria-label="Fil d’Ariane"><a href="/">Accueil</a> › <span aria-current="page">{fil}</span></nav>'
+    illu = f'<div class="v2-page-tete__illu" aria-hidden="true">{scenes.ICONES[ico]}</div>' if ico else ''
+    def habiller(bloc):
+        bloc = re.sub(r'<p class="text-\[10px\][^"]*text-amber-[0-9]+[^"]*">', '<p class="v2-kicker v2-kicker--crema">', bloc, count=1)
+        bloc = re.sub(r'<h1 class="[^"]*"', '<h1', bloc, count=1)
+        bloc = re.sub(r'(</h1>\s*)<p class="[^"]*"', r'\1<p class="v2-page-tete__chapeau"', bloc, count=1)
+        return bloc
+    # A : journal, guides, à propos (+ filet de séparation)
+    m = re.search(r'<section class="max-w-6xl mx-auto px-6 md:px-10 lg:px-12 pt-20 pb-16 md:pt-28 md:pb-20">(.*?)</section>\s*(<div class="max-w-6xl mx-auto px-6 md:px-10 lg:px-12">\s*<div class="h-px bg-stone-200"></div>\s*</div>)?', s, re.S)
+    # B : commencer ici
+    if not m: m = re.search(r'<section class="max-w-5xl mx-auto px-5 pt-16 pb-10">(.*?)</section>()', s, re.S)
+    if m:
+        return s[:m.start()] + f'<section class="v2-page-tete"><div class="v2-wrap"><div>{ariane}{habiller(m.group(1))}</div>{illu}</div></section>' + s[m.end():]
+    # C : mentions, confidentialité
+    m = re.search(r'<main class="pt-32 pb-24 px-6 max-w-2xl mx-auto">\s*<h1 class="[^"]*">(.*?)</h1>\s*<p class="[^"]*">(.*?)</p>', s, re.S)
+    if m:
+        return (s[:m.start()] + f'<section class="v2-page-tete"><div class="v2-wrap"><div>{ariane}<p class="v2-kicker v2-kicker--crema">Informations</p>'
+                f'<h1>{m.group(1)}</h1><p class="v2-page-tete__chapeau">{m.group(2)}</p></div></div></section>'
+                '<main class="v2-page-texte pb-24 px-6 max-w-2xl mx-auto">' + s[m.end():])
+    # D : la lettre (bandeau déjà sombre) : on ajoute le fil d'Ariane
+    m = re.search(r'(<section class="bg-stone-900 text-stone-50">\s*<div class="[^"]*">\s*<div class="reveal max-w-2xl">)', s)
+    if m:
+        return s[:m.end()] + ariane + s[m.end():]
+    return s
+
+RACINE_PAGES = ['journal/index.html', 'guides/index.html', 'a-propos.html', 'newsletter.html', 'commencer-ici.html',
+                'mentions-legales.html', 'politique-confidentialite.html'] + [f'newsletter/{k:02d}.html' for k in range(1, 11)]
+
 def pages_racine():
-    for f in ['journal/index.html', 'guides/index.html', 'a-propos.html', 'newsletter.html', 'commencer-ici.html', 'mentions-legales.html', 'politique-confidentialite.html']:
-        p = os.path.join(R, f); s = lire(p)
-        if 'v2-header' in s: continue
-        n0 = len(s)
+    for f in RACINE_PAGES:
+        p = os.path.join(R, f); s = v2ise(original(f))
         s = re.sub(r'<script defer src="https://equateur\.org/assets/js/cmp\.js"[^>]*></script>', '', s)
+        s = re.sub(r'\s*<link rel="preload" href="/fonts/(?!v2/)[^"]+" as="font"[^>]*>', '', s)
+        s = re.sub(r'\s*<link rel="stylesheet" href="/fonts/fonts\.css">', '', s)
         s = s.replace('</head>', shell.HEAD_LIENS + '\n' + shell.CMP_PROD + '\n</head>', 1)
         s = re.sub(r'<body class="([^"]*)">', lambda m: f'<body class="{m.group(1)} v2">', s, count=1)
         if re.search(r'<header class="glass-nav', s):
             s = re.sub(r'<header class="glass-nav.*?</header>', lambda m: shell.header() + '\n' + shell.tiroir(), s, count=1, flags=re.S)
+        elif re.search(r'<nav class="glass-nav', s):
+            s = re.sub(r'<nav class="glass-nav.*?</nav>', lambda m: shell.header() + '\n' + shell.tiroir(), s, count=1, flags=re.S)
         else:
             s = re.sub(r'<nav class="fixed top-0.*?</nav>', lambda m: shell.header() + '\n' + shell.tiroir(), s, count=1, flags=re.S)
         s = re.sub(r'<footer.*?</footer>', lambda m: shell.footer() + '\n' + shell.onglets(), s, count=1, flags=re.S)
+        s = tete_v2(s, f)
         s = s.replace('</body>', '<script defer src="/v2/v2.js"></script>\n</body>', 1)
         assert 'v2-header' in s and 'v2-footer' in s, f'{f} : habillage incomplet'
         ecrire(p, s)
 
+MINIFIER = '''# v2 : copies minifiées dans public/ (les sources lisibles restent dans v2/)
+ESB=astro/node_modules/.bin/esbuild
+if [ -x "$ESB" ]; then
+  "$ESB" v2/v2.css --minify --outfile="$PUB/v2/v2.css" --log-level=error
+  "$ESB" v2/v2.js --minify --outfile="$PUB/v2/v2.js" --log-level=error
+fi
+'''
+
 def sync_public():
     p = os.path.join(R, 'astro/sync-public.sh'); s = lire(p)
-    if ' v2 ' in s or ' v2;' in s: return
-    s = s.replace('js images.filtre fonts pins', 'js images.filtre fonts pins v2')
+    if ' v2 ' not in s and ' v2;' not in s:
+        s = s.replace('js images.filtre fonts pins', 'js images.filtre fonts pins v2')
+    if 'esbuild' not in s:
+        s = s.replace('echo "public/ synced."', MINIFIER + 'echo "public/ synced."')
     ecrire(p, s)
 
 if __name__ == '__main__':

@@ -227,55 +227,46 @@ def carte_monde():
     return f'<svg viewBox="0 26 720 268" role="img" aria-label="Ceinture du café entre les tropiques et huit origines">{g}{terre}{bande}{pts}</svg>'
 
 # ── Scène 404 ─────────────────────────────────────────────────────────────
-def _bezier(p0, c, p1, n=60):
-    return [((1-t)**2*p0[0]+2*(1-t)*t*c[0]+t*t*p1[0], (1-t)**2*p0[1]+2*(1-t)*t*c[1]+t*t*p1[1]) for t in (k/n for k in range(n+1))]
-
-def _hauteur(segments, x):
-    pts = [q for seg in segments for q in _bezier(*seg)]
-    return min(pts, key=lambda q: abs(q[0]-x))[1]
-
-def _cafeier(x, y, e, k):
-    """Un caféier : trois touffes de feuillage et quelques cerises."""
-    v1, v2 = ('#2f4a32', '#3e5f40') if k % 2 else ('#34503a', '#44684a')
-    cer = ''.join(f'<circle cx="{x+dx*e:.1f}" cy="{y+dy*e:.1f}" r="{2.6*e:.1f}" fill="{c}"/>'
-                  for dx, dy, c in ((-9, -10, '#c8442a'), (6, -16, '#e0673f'), (12, -6, '#c8442a'), (-2, -22, '#b8401f'))[:2 + k % 3])
-    return (f'<g><ellipse cx="{x:.1f}" cy="{y-12*e:.1f}" rx="{20*e:.1f}" ry="{14*e:.1f}" fill="{v1}"/>'
-            f'<ellipse cx="{x-12*e:.1f}" cy="{y-5*e:.1f}" rx="{13*e:.1f}" ry="{10*e:.1f}" fill="{v2}"/>'
-            f'<ellipse cx="{x+12*e:.1f}" cy="{y-4*e:.1f}" rx="{14*e:.1f}" ry="{10*e:.1f}" fill="{v1}"/>{cer}</g>')
-
-def scene_404():
-    arriere = [((0, 360), (240, 290), (480, 340)), ((480, 340), (720, 390), (960, 320)), ((960, 320), (1200, 250), (1440, 330))]
-    avant = [((0, 410), (300, 350), (640, 400)), ((640, 400), (980, 450), (1440, 390))]
-    loin = ''.join(_cafeier(x, _hauteur(arriere, x) + 8, .55, k) for k, x in enumerate(range(18, 1440, 44)) if not 900 < x < 1180)
-    pres = ''.join(_cafeier(x, _hauteur(avant, x) + 18, 1.05, k) for k, x in enumerate(range(30, 1440, 78)) if not (250 < x < 470 or 900 < x < 1180))
-    oiseaux = ''.join(f'<path class="v2-derive" style="--dx:{dx}px;--dy:-6px;animation-duration:{d}s" d="M{x} {y} q7 -7 14 0 q7 -7 14 0" stroke="#2b1a2e" stroke-width="2.2" fill="none" stroke-linecap="round"/>'
-                      for x, y, dx, d in ((520, 130, 26, 7), (556, 112, 18, 8), (590, 138, 22, 6.5)))
-    gouttes = ''.join(f'<circle class="v2-goutte" style="--h:96px;animation-delay:{d}s" cx="1040" cy="318" r="5" fill="#6b3a1f"/>' for d in (0, .5, 1))
-    return f'''<svg id="v2-scene-404" class="v2-404__scene" viewBox="0 0 1440 560" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
-<g class="v2-derive" style="--dx:40px;--dy:0px;animation-duration:24s" fill="#f4d3b0" opacity=".14"><ellipse cx="250" cy="104" rx="120" ry="14"/><ellipse cx="220" cy="90" rx="52" ry="22"/><ellipse cx="282" cy="86" rx="40" ry="18"/><ellipse cx="1190" cy="78" rx="100" ry="12"/><ellipse cx="1170" cy="66" rx="42" ry="17"/></g>
-<circle class="v2-soleil" cx="720" cy="330" r="120" fill="#f6c27a" opacity=".9"/>
-{oiseaux}
-<path d="M40 372 L210 196 Q232 184 254 196 L430 360 Z" fill="#7a3c2c" opacity=".85"/>
-<path d="M214 196 Q232 188 250 196 L236 212 Z" fill="#4a2420"/>
-<path class="v2-vapeur" d="M232 186 q-16 -30 4 -60" stroke="#f4d3b0" stroke-opacity=".5" stroke-width="5" fill="none"/>
-<path d="M0 360 Q240 290 480 340 T960 320 T1440 330 V560 H0 Z" fill="#5b2f22"/>
-{loin}
-<path d="M0 410 Q300 350 640 400 T1440 390 V560 H0 Z" fill="#3b2017"/>
-{pres}
-<path d="M0 470 H1440 V560 H0 Z" fill="#1f1610"/>
-<g transform="translate(360 300)" fill="none" stroke="#2b1d15" stroke-width="6" stroke-linecap="round">
-  <path d="M0 0 V170"/><path d="M-90 30 H70 L95 52 L70 74 H-90 Z" fill="#efc79c" stroke-width="4"/><path d="M90 96 H-70 L-95 118 L-70 140 H90 Z" fill="#efc79c" stroke-width="4"/>
-</g>
-<text x="350" y="360" font-family="Instrument Sans, Arial" font-size="24" font-weight="600" fill="#2b1d15" text-anchor="middle">Espresso</text>
-<text x="370" y="426" font-family="Instrument Sans, Arial" font-size="24" font-weight="600" fill="#2b1d15" text-anchor="middle">Page 404</text>
-<g fill="none" stroke="#2b1d15" stroke-width="5" stroke-linejoin="round">
-  <path d="M940 200 H1140 L1062 312 H1018 Z" fill="#efc79c"/>
-  <path d="M960 330 H1120" />
-  <path d="M990 336 H1090 Q1130 380 1126 430 Q1120 470 1040 470 Q960 470 954 430 Q950 380 990 336 Z" fill="rgba(239,199,156,.35)"/>
-</g>
-<path class="v2-remplit" d="M960 410 Q1040 396 1120 410 Q1124 462 1040 466 Q956 462 960 410 Z" fill="#6b3a1f"/>
-<text x="1040" y="452" font-family="Newsreader, Georgia" font-size="34" font-weight="500" fill="#efc79c" text-anchor="middle">404</text>
-{gouttes}
-<path class="v2-vapeur" d="M1010 196 q-14 -26 0 -54" stroke="#f4ece3" stroke-width="3" fill="none"/>
-<path class="v2-vapeur" style="animation-delay:1.2s" d="M1062 196 q-14 -26 0 -54" stroke="#f4ece3" stroke-width="3" fill="none"/>
+def machine_404():
+    """404 : machine « filtré. modèle 404 », porte-filtre, tasse sur balance à deux afficheurs."""
+    graduations = ''
+    import math
+    for k in range(13):
+        a = math.radians(-120 + k * 20)
+        x1, y1 = 112 + 31 * math.sin(a), 88 - 31 * math.cos(a)
+        x2, y2 = 112 + (25 if k % 3 else 22) * math.sin(a), 88 - (25 if k % 3 else 22) * math.cos(a)
+        graduations += f'<line x1="{x1:.1f}" y1="{y1:.1f}" x2="{x2:.1f}" y2="{y2:.1f}" stroke="#efc79c" stroke-width="{2 if k % 3 == 0 else 1.2}" stroke-opacity="{.9 if k in (8, 9) else .55}"/>'
+    return f'''<svg class="v2-err__svg" viewBox="0 0 520 600" role="img" aria-label="Machine à espresso filtré. modèle 404, tasse posée sur une balance qui affiche 404">
+<defs>
+  <clipPath id="v2-tasse-clip"><path d="M196 352 H324 L314 452 Q311 470 292 470 H228 Q209 470 206 452 Z"/></clipPath>
+  <linearGradient id="v2-cafe-grad" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d9a066"/><stop offset=".16" stop-color="#94532b"/><stop offset="1" stop-color="#3b1d0f"/></linearGradient>
+</defs>
+<path d="M40 120 V470 Q40 486 56 486 H112 V120 Z" fill="#2b1d15" stroke="#efc79c" stroke-width="3" stroke-linejoin="round"/>
+<path d="M58 210 V420" stroke="rgba(239,199,156,.25)" stroke-width="2" stroke-linecap="round"/><path d="M76 210 V420" stroke="rgba(239,199,156,.12)" stroke-width="2" stroke-linecap="round"/>
+<rect x="40" y="24" width="440" height="128" rx="22" fill="#2b1d15" stroke="#efc79c" stroke-width="3"/>
+<circle cx="112" cy="88" r="38" fill="#1f1610" stroke="#efc79c" stroke-width="3"/>
+{graduations}
+<g id="v2-aiguille" class="v2-err__aiguille"><path d="M112 92 L112 62" stroke="#e0673f" stroke-width="3" stroke-linecap="round"/></g>
+<circle cx="112" cy="88" r="5" fill="#efc79c"/>
+<text x="112" y="140" font-family="Instrument Sans, Arial" font-size="10" letter-spacing="2" fill="rgba(239,199,156,.6)" text-anchor="middle">BAR</text>
+<text x="310" y="84" font-family="Newsreader, Georgia" font-size="38" font-style="italic" fill="#efc79c" text-anchor="middle">filtré<tspan fill="#e0673f">.</tspan></text>
+<text x="310" y="112" font-family="Instrument Sans, Arial" font-size="11" letter-spacing="3.5" fill="rgba(239,199,156,.6)" text-anchor="middle">MODÈLE 404</text>
+<circle id="v2-voyant" cx="446" cy="52" r="6" fill="#4b6b4f"/>
+<path d="M205 152 H315 L305 176 H215 Z" fill="#33251b" stroke="#efc79c" stroke-width="3" stroke-linejoin="round"/>
+<path d="M210 176 H310 V196 Q310 210 296 210 H224 Q210 210 210 196 Z" fill="#45362c" stroke="#efc79c" stroke-width="3" stroke-linejoin="round"/>
+<rect x="306" y="182" width="172" height="16" rx="8" fill="#2b1d15" stroke="#efc79c" stroke-width="3"/>
+<path d="M244 210 v14 M276 210 v14" stroke="#efc79c" stroke-width="6" stroke-linecap="round"/>
+<path class="v2-err__filet" d="M244 228 V452" stroke="#7a3f1d" stroke-linecap="round"/>
+<path class="v2-err__filet" d="M276 228 V452" stroke="#7a3f1d" stroke-linecap="round"/>
+<g clip-path="url(#v2-tasse-clip)"><rect id="v2-liquide" class="v2-err__liquide" x="190" y="352" width="140" height="120" fill="url(#v2-cafe-grad)"/></g>
+<path d="M196 352 H324 L314 452 Q311 470 292 470 H228 Q209 470 206 452 Z" fill="rgba(239,199,156,.06)" stroke="#efc79c" stroke-width="3" stroke-linejoin="round"/>
+<path d="M321 372 Q354 372 352 398 Q350 424 316 426" fill="none" stroke="#efc79c" stroke-width="3" stroke-linecap="round"/>
+<rect x="100" y="472" width="316" height="14" rx="5" fill="#33251b" stroke="#efc79c" stroke-width="3"/>
+<rect x="140" y="486" width="240" height="84" rx="14" fill="#1f1610" stroke="#efc79c" stroke-width="3"/>
+<rect x="156" y="500" width="112" height="48" rx="6" fill="#120c08"/>
+<rect x="276" y="500" width="88" height="48" rx="6" fill="#120c08"/>
+<text id="v2-poids" class="v2-err__led" x="258" y="534" text-anchor="end">404</text>
+<text id="v2-chrono" class="v2-err__led v2-err__led--doux" x="354" y="534" text-anchor="end">--.-</text>
+<text x="212" y="563" font-family="Instrument Sans, Arial" font-size="10" letter-spacing="2" fill="rgba(239,199,156,.55)" text-anchor="middle">GRAMMES</text>
+<text x="320" y="563" font-family="Instrument Sans, Arial" font-size="10" letter-spacing="2" fill="rgba(239,199,156,.55)" text-anchor="middle">SECONDES</text>
 </svg>'''

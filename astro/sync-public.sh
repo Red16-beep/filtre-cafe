@@ -23,4 +23,10 @@ copy journal/index.html "$PUB/journal/"
 copy guides/index.html  "$PUB/guides/"
 # newsletter archive issues linked from newsletter.html (01.html, 02.html, ...)
 copy newsletter "$PUB/"
+# v2 : copies minifiées dans public/ (les sources lisibles restent dans v2/)
+ESB=astro/node_modules/.bin/esbuild
+if [ -x "$ESB" ]; then
+  "$ESB" v2/v2.css --minify --outfile="$PUB/v2/v2.css" --log-level=error
+  "$ESB" v2/v2.js --minify --outfile="$PUB/v2/v2.js" --log-level=error
+fi
 echo "public/ synced."

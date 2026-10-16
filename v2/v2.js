@@ -264,6 +264,17 @@
         html += '<li><a href="#' + h.id + '"><span>' + String(k + 1).padStart(2, '0') + '</span>' + h.textContent.trim().replace(/^\d+\s*/, '') + '</a></li>';
       });
       nav.innerHTML = html + '</ol>'; document.body.appendChild(nav); nav.classList.add('pret');
+      /* le sommaire s'efface dès que la fin de l'article remonte à sa hauteur :
+         il ne recouvre ni l'encadré auteur, ni les blocs de fin, ni le pied de page */
+      var attente = false;
+      var placer = function () {
+        attente = false;
+        var fin = article.getBoundingClientRect().bottom;
+        nav.classList.toggle('cache', fin < nav.getBoundingClientRect().top + nav.offsetHeight + 24);
+      };
+      window.addEventListener('scroll', function () { if (!attente) { attente = true; requestAnimationFrame(placer); } }, { passive: true });
+      window.addEventListener('resize', placer);
+      placer();
       var liens = $$('a', nav);
       if ('IntersectionObserver' in window) {
         var io2 = new IntersectionObserver(function (es) {
@@ -274,26 +285,88 @@
     }
   }
 
-  /* ── 404 : relancer l’extraction, goûter la tasse ── */
-  var scene404 = $('#v2-scene-404');
-  $$('[data-v2-relancer]').forEach(function (b) {
-    b.addEventListener('click', function () {
-      if (!scene404) return;
-      var neuf = scene404.cloneNode(true); scene404.parentNode.replaceChild(neuf, scene404); scene404 = neuf;
+  /* ── 404 : régler le moulin, tirer le shot ──
+     Temps pour 36 g selon la mouture (1 très fin, 20 très gros) : 4,04 s à 20, 27 s vers 8,
+     plus de 45 s en dessous de 5 : ça ne coule plus. Un shot entre 25 et 30 s ouvre une vraie page. */
+  var tirer = document.getElementById('v2-tirer');
+  if (tirer) {
+    var el = function (id) { return document.getElementById(id); };
+    var curseur = el('v2-mouture'), valeur = el('v2-mouture-val'), poids = el('v2-poids'), chrono = el('v2-chrono'),
+        liquide = el('v2-liquide'), aiguille = el('v2-aiguille'), voyant = el('v2-voyant'), filets = $$('.v2-err__filet'),
+        fiche = el('v2-fiche'), verdict = el('v2-verdict'), tampon = el('v2-tampon');
+    var PAGES = [
+      ['/journal/espresso-trop-rapide-trop-lent-diagnostic', 'Espresso trop rapide ou trop lent : le diagnostic'],
+      ['/journal/comment-faire-espresso-parfait', 'Comment faire un espresso, recette et réglages'],
+      ['/journal/v60-guide-complet', 'Le guide V60, dose et recette'],
+      ['/journal/eau-cafe-filtre-tds-mineraux', 'Six eaux goûtées à l’aveugle'],
+      ['/journal/ratio-cafe-eau-extraction', 'Le ratio café/eau, méthode par méthode'],
+      ['/journal/methode-4-6-kasuya', 'La méthode 4:6 de Tetsu Kasuya']
+    ];
+    var sansAnim = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var enCours = false;
+    var fr = function (n, d) { return n.toFixed(d).replace('.', ','); };
+    poids.classList.add('clignote');
+    curseur.addEventListener('input', function () { valeur.textContent = curseur.value; });
+
+    var afficher = function (s, w, bar, debit, coule) {
+      chrono.textContent = fr(s, 1);
+      poids.textContent = fr(w, 1);
+      liquide.style.transform = 'scaleY(' + Math.min(1, w / 40).toFixed(3) + ')';
+      aiguille.style.transform = 'rotate(' + (-120 + bar / 12 * 240).toFixed(1) + 'deg)';
+      filets.forEach(function (f) {
+        f.classList.toggle('coule', coule);
+        f.style.strokeWidth = coule ? Math.max(1.4, Math.min(6, 1.2 + debit * 1.1)).toFixed(2) : 0;
+      });
+    };
+
+    var conclure = function (g, t, bouche, w) {
+      enCours = false; tirer.disabled = false;
+      tirer.firstChild.nodeValue = 'Retirer un shot ';
+      voyant.setAttribute('fill', '#4b6b4f');
+      el('v2-f-mouture').textContent = g + ' / 20';
+      var dec = !bouche && t < 10 ? 2 : 1;
+      chrono.textContent = fr(bouche ? 45 : t, dec);
+      el('v2-f-temps').textContent = fr(bouche ? 45 : t, dec) + ' s';
+      el('v2-f-poids').textContent = fr(w, 1) + ' g';
+      var texte, cachet, reussi = false, lien = null;
+      if (g === 20) { texte = '4,04 secondes. Évidemment. Mouture beaucoup trop grosse : l’eau traverse sans rien extraire, comme vous à travers cette page. Moulez plus fin.'; cachet = 'Sous-extrait'; }
+      else if (bouche) { texte = 'Ça ne coule plus. Moulu trop fin, la galette bloque l’eau : la page s’est bouchée. Notes de dégustation : clope froide. Un cran plus gros.'; cachet = 'Bouché'; }
+      else if (t < 15) { texte = fr(t, 1) + ' s pour 36 g : beaucoup trop rapide. Sous-extrait, acide, creux. Plus fin.'; cachet = 'Sous-extrait'; }
+      else if (t < 25) { texte = fr(t, 1) + ' s : encore un peu rapide. Un cran plus fin.'; cachet = 'Presque'; }
+      else if (t <= 30) { texte = fr(t, 1) + ' s pour 36 g. Shot réussi. Votre page vous attend : '; cachet = 'Réussi'; reussi = true; lien = PAGES[Math.floor(Math.random() * PAGES.length)]; }
+      else { texte = fr(t, 1) + ' s : trop lent. Amer, astringent. Un cran plus gros.'; cachet = 'Sur-extrait'; }
+      verdict.textContent = texte;
+      if (lien) { var a = document.createElement('a'); a.href = lien[0]; a.textContent = lien[1] + ' →'; verdict.appendChild(a); }
+      tampon.textContent = cachet;
+      tampon.className = 'v2-err__tampon' + (reussi ? ' reussi' : '');
+      fiche.hidden = false;
+      void tampon.offsetWidth; tampon.classList.add('frappe');
+    };
+
+    tirer.addEventListener('click', function () {
+      if (enCours) return;
+      enCours = true; tirer.disabled = true;
+      var g = +curseur.value;
+      var t = g === 20 ? 4.04 : Math.max(3.6, 4.04 * Math.exp(0.158 * (20 - g)) + (Math.random() * 1.2 - 0.6));
+      var bouche = t > 45, fin = bouche ? 45 : t;
+      var pre = Math.min(4, t * 0.15);
+      var wFin = bouche ? 36 * 0.3 * (45 - pre) / (t - pre) : 36;
+      var barMax = bouche ? 11 : g >= 16 ? 4 : g >= 12 ? 7 : 9;
+      var poidsA = function (s) { var x = (s - pre) / (fin - pre); return x <= 0 ? 0 : wFin * Math.pow(Math.min(1, x), 1.1); };
+      poids.classList.remove('clignote'); poids.classList.add('actif');
+      voyant.setAttribute('fill', '#e0673f');
+      if (sansAnim) { afficher(fin, wFin, barMax, 0, false); conclure(g, t, bouche, wFin); return; }
+      var vitesse = 7, debut = null, avant = 0;
+      var image = function (horo) {
+        if (debut === null) debut = horo;
+        var s = Math.min(fin, (horo - debut) / 1000 * vitesse);
+        var w = poidsA(s), debit = (w - avant) / Math.max(0.001, (s - (image.s || 0)));
+        avant = w; image.s = s;
+        afficher(s, w, barMax * Math.min(1, s / 3), debit, s > pre && s < fin);
+        if (s < fin) requestAnimationFrame(image);
+        else { afficher(fin, wFin, 0, 0, false); conclure(g, t, bouche, wFin); }
+      };
+      requestAnimationFrame(image);
     });
-  });
-  var notes = [
-    'Notes de dégustation : carton mouillé, regrets, finale très courte.',
-    'Notes : papier filtre non rincé, pointe de 404, persistance nulle.',
-    'Notes : clope froide. On a moulu trop fin, encore.',
-    'Notes : rien. C’était une tasse vide.',
-    'Notes : URL brûlée, acidité de redirection, corps absent.',
-    'Notes : café de distributeur de gare, 4 h 04 du matin.'
-  ], n404 = 0;
-  $$('[data-v2-gouter]').forEach(function (b) {
-    b.addEventListener('click', function () {
-      var o = document.getElementById('v2-note-404'); if (!o) return;
-      o.textContent = notes[n404 % notes.length]; n404++;
-    });
-  });
+  }
 })();

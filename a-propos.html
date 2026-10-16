@@ -17,7 +17,7 @@
 <meta property="og:image" content="https://filtre.cafe/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://filtre.cafe/og-image.png">
-<meta name="theme-color" content="#1c1917">
+<meta name="theme-color" content="#231912">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -41,30 +41,26 @@
 </script>
 
 <link rel="stylesheet" href="/tailwind.css">
-<link rel="preload" href="/fonts/instrumentserif-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/fonts/instrumentserif-italic-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/fonts/fonts.css">
 
 <style>
 :root {
-  --stone-50: #fafaf9;
-  --stone-100: #f5f5f4;
-  --stone-200: #e7e5e4;
-  --stone-300: #d6d3d1;
-  --stone-400: #a8a29e;
-  --stone-500: #78716c;
-  --stone-900: #1c1917;
-  --amber-800: #92400e;
-  --amber-700: #b45309;
+  --stone-50: #f6f1ea;
+  --stone-100: #efe7dc;
+  --stone-200: #e1d4c2;
+  --stone-300: #d8cbbb;
+  --stone-400: #6a5d54;
+  --stone-500: #6a5d54;
+  --stone-900: #231912;
+  --amber-800: #9a3519;
+  --amber-700: #a8391b;
 }
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Instrument Sans', sans-serif;
   background-color: var(--stone-50);
   color: var(--stone-900);
   letter-spacing: -0.02em;
 }
-.serif { font-family: 'Instrument Serif', serif; }
+.serif { font-family: 'Newsreader', serif; }
 .noise {
   position: fixed;
   top: 0; left: 0; width: 100%; height: 100%;
@@ -74,7 +70,7 @@ body {
   z-index: 999;
 }
 .glass-nav {
-  background: rgba(250, 250, 249, 0.8);
+  background: rgba(246,241,234, 0.8);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
 }
@@ -97,7 +93,7 @@ body {
 .prose-filtre p strong { color: var(--stone-900); font-weight: 600; }
 .drop-cap::first-letter {
   float: left;
-  font-family: 'Instrument Serif', serif;
+  font-family: 'Newsreader', serif;
   font-size: 4.5rem;
   line-height: 0.85;
   margin-right: 0.12em;
@@ -106,8 +102,8 @@ body {
 }
 </style>
 
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&display=swap">
+<link rel="preload" href="/fonts/v2/newsreader-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/v2/instrument-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/v2/v2.css">
 <script>(function(){if(location.hostname.replace(/^www\./,'')!=='filtre.cafe')return;var s=document.createElement('script');s.defer=true;s.src='https://equateur.org/assets/js/cmp.js';s.setAttribute('data-site','aff654dd0df3f7e406ecb0a7e78ced5a');document.head.appendChild(s);})();</script>
 </head>
@@ -135,13 +131,11 @@ body {
 </div>
 
 <!-- ─── HERO ─── -->
-<section class="max-w-6xl mx-auto px-6 md:px-10 lg:px-12 pt-20 pb-16 md:pt-28 md:pb-20">
-  <p class="text-[10px] font-bold uppercase tracking-[0.4em] text-amber-800 mb-6">Le projet, filtré.</p>
-  <h1 class="serif text-6xl md:text-8xl lg:text-9xl italic text-stone-900 leading-[0.9] mb-6">À propos.</h1>
-  <p class="text-stone-400 font-light text-lg md:text-xl max-w-md leading-relaxed">Un guide honnête sur le matériel, les méthodes et les grains. Pas une marque. Pas un magazine.</p>
-</section>
-
-<!-- ─── DIVIDER ─── -->
+<section class="v2-page-tete"><div class="v2-wrap"><div><nav class="v2-page-tete__fil" aria-label="Fil d’Ariane"><a href="/">Accueil</a> › <span aria-current="page">À propos</span></nav>
+  <p class="v2-kicker v2-kicker--crema">Le projet, filtré.</p>
+  <h1>À propos.</h1>
+  <p class="v2-page-tete__chapeau">Un guide honnête sur le matériel, les méthodes et les grains. Pas une marque. Pas un magazine.</p>
+</div><div class="v2-page-tete__illu" aria-hidden="true"><svg viewBox="0 0 120 120" fill="none" stroke="#efc79c" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g class="v2-tourne-vite" style="animation-duration:6s"><path d="M60 60 L100.0 60.0" stroke-opacity=".7"/><path d="M60 60 L94.6 80.0" stroke-opacity=".7"/><path d="M60 60 L80.0 94.6" stroke-opacity=".7"/><path d="M60 60 L60.0 100.0" stroke-opacity=".7"/><path d="M60 60 L40.0 94.6" stroke-opacity=".7"/><path d="M60 60 L25.4 80.0" stroke-opacity=".7"/><path d="M60 60 L20.0 60.0" stroke-opacity=".7"/><path d="M60 60 L25.4 40.0" stroke-opacity=".7"/><path d="M60 60 L40.0 25.4" stroke-opacity=".7"/><path d="M60 60 L60.0 20.0" stroke-opacity=".7"/><path d="M60 60 L80.0 25.4" stroke-opacity=".7"/><path d="M60 60 L94.6 40.0" stroke-opacity=".7"/><circle cx="60" cy="60" r="40"/></g><circle cx="60" cy="60" r="12" fill="rgba(239,199,156,.2)"/></svg></div></div></section><!-- ─── DIVIDER ─── -->
 <div class="max-w-6xl mx-auto px-6 md:px-10 lg:px-12">
   <div class="h-px bg-stone-200"></div>
 </div>
@@ -179,8 +173,8 @@ body {
 
       <div class="space-y-10">
         <div class="flex gap-6">
-          <div style="width:2.75rem;height:2.75rem;border-radius:9999px;background:#1c1917;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:0.125rem;">
-            <span style="font-size:1rem;font-weight:700;color:#fafaf9;line-height:1;">1</span>
+          <div style="width:2.75rem;height:2.75rem;border-radius:9999px;background:#231912;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:0.125rem;">
+            <span style="font-size:1rem;font-weight:700;color:#f6f1ea;line-height:1;">1</span>
           </div>
           <div>
             <h3 class="text-sm font-bold uppercase tracking-[0.15em] text-stone-900 mb-3">Le matériel testé et comparé</h3>
@@ -189,8 +183,8 @@ body {
         </div>
 
         <div class="flex gap-6">
-          <div style="width:2.75rem;height:2.75rem;border-radius:9999px;background:#1c1917;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:0.125rem;">
-            <span style="font-size:1rem;font-weight:700;color:#fafaf9;line-height:1;">2</span>
+          <div style="width:2.75rem;height:2.75rem;border-radius:9999px;background:#231912;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:0.125rem;">
+            <span style="font-size:1rem;font-weight:700;color:#f6f1ea;line-height:1;">2</span>
           </div>
           <div>
             <h3 class="text-sm font-bold uppercase tracking-[0.15em] text-stone-900 mb-3">Les méthodes d'extraction</h3>
@@ -199,8 +193,8 @@ body {
         </div>
 
         <div class="flex gap-6">
-          <div style="width:2.75rem;height:2.75rem;border-radius:9999px;background:#1c1917;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:0.125rem;">
-            <span style="font-size:1rem;font-weight:700;color:#fafaf9;line-height:1;">3</span>
+          <div style="width:2.75rem;height:2.75rem;border-radius:9999px;background:#231912;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:0.125rem;">
+            <span style="font-size:1rem;font-weight:700;color:#f6f1ea;line-height:1;">3</span>
           </div>
           <div>
             <h3 class="text-sm font-bold uppercase tracking-[0.15em] text-stone-900 mb-3">La newsletter : les cafés, les terroirs</h3>

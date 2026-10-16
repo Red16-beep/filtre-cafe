@@ -98,8 +98,8 @@ def footer():
   </div>
 </footer>'''
 
-HEAD_LIENS = '''<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&display=swap">
+HEAD_LIENS = '''<link rel="preload" href="/fonts/v2/newsreader-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/v2/instrument-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/v2/v2.css">'''
 
 CMP_PROD = '''<script>(function(){if(location.hostname.replace(/^www\\./,'')!=='filtre.cafe')return;var s=document.createElement('script');s.defer=true;s.src='https://equateur.org/assets/js/cmp.js';s.setAttribute('data-site','aff654dd0df3f7e406ecb0a7e78ced5a');document.head.appendChild(s);})();</script>'''

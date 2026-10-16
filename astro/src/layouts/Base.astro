@@ -3,6 +3,10 @@
 // instead of in 80 files. Per-page <head> meta + JSON-LD + <style> arrive through
 // the named "head" slot; the page body arrives through the default slot. Both are
 // injected verbatim via <Fragment set:html> so nothing is re-escaped.
+import { v2ise } from '../lib/v2.js';
+const tete = v2ise(await Astro.slots.render('head'));
+const corps = v2ise(await Astro.slots.render('default'));
+const style = Astro.slots.has('style') ? v2ise(await Astro.slots.render('style')) : '';
 ---
 <!DOCTYPE html>
 <html lang="fr">
@@ -13,16 +17,12 @@
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="alternate" type="application/rss+xml" title="filtré." href="/rss.xml">
-<slot name="head" />
+<Fragment set:html={tete} />
 <link rel="stylesheet" href="/tailwind.css">
-<link rel="preload" href="/fonts/instrumentserif-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/fonts/instrumentserif-italic-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/fonts/fonts.css">
 
-<slot name="style" />
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&display=swap">
+<Fragment set:html={style} />
+<link rel="preload" href="/fonts/v2/newsreader-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/v2/instrument-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/v2/v2.css">
 <script is:inline>(function(){if(location.hostname.replace(/^www\./,'')!=='filtre.cafe')return;var s=document.createElement('script');s.defer=true;s.src='https://equateur.org/assets/js/cmp.js';s.setAttribute('data-site','aff654dd0df3f7e406ecb0a7e78ced5a');document.head.appendChild(s);})();</script>
 </head>
@@ -49,7 +49,7 @@
   </div>
 </div>
 
-<slot />
+<Fragment set:html={corps} />
 
 <footer class="v2-footer">
   <div class="v2-footer__in">
