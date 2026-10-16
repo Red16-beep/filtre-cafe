@@ -283,7 +283,7 @@ a:hover .v2-fleche{transform:translateX(4px)}
 /* ── Schémas animés (communs) ───────────────────── */
 .v2-schema{background:var(--espresso);color:#f4ece3;border-radius:24px;padding:clamp(18px,3vw,32px);margin:36px 0;font-family:var(--sans)}
 .v2-schema__tete{display:flex;justify-content:space-between;gap:16px;align-items:baseline;flex-wrap:wrap;margin-bottom:14px}
-.v2-schema__tete h4{font-family:var(--serif);font-weight:500;font-size:24px;margin:0;color:#f6efe6}
+.v2-schema__tete h3{font-family:var(--serif);font-weight:500;font-size:24px;margin:0;color:#f6efe6}
 .v2-schema__tete span{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--crema);font-weight:600}
 .v2-schema svg{width:100%;height:auto;display:block;overflow:visible}
 .v2-schema figcaption{font-size:13px;color:rgba(244,236,227,.62);margin-top:12px;line-height:1.5}

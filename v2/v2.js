@@ -96,7 +96,7 @@
     var st = document.createElement('style'); st.id = 'v2-schemas-css'; st.textContent = CSS_SCHEMAS; document.head.appendChild(st);
   }
   function fig(cle, titre, etiquette, svg, legende) {
-    return '<figure class="v2-schema" data-cle="' + cle + '"><div class="v2-schema__tete"><div><span>' + etiquette + '</span><h4>' + titre + '</h4></div>' +
+    return '<figure class="v2-schema" data-cle="' + cle + '"><div class="v2-schema__tete"><div><span>' + etiquette + '</span><h3>' + titre + '</h3></div>' +
       '<button type="button" class="rejouer">Rejouer l’animation</button></div><div class="v2-anim">' + svg + '</div>' +
       (legende ? '<figcaption>' + legende + '</figcaption>' : '') + '</figure>';
   }
