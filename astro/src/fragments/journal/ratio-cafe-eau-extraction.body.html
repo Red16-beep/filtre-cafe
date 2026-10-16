@@ -53,8 +53,110 @@
 <main class="max-w-3xl mx-auto px-5 pb-24">
   <article class="prose-article">
     <p class="drop-cap">Le ratio café/eau dépend de la méthode : 1:15 à 1:17 en filtre (V60, Chemex), 1:15 à 1:16 en French press, 1:2 à 1:2,5 en espresso, mesuré sur le liquide extrait. La notation 1:16 signifie 1 g de café pour 16 g d'eau, soit 15 g de café pour 240 g d'eau : plus le second chiffre est petit, plus le café est concentré. La moka impose son ratio, entre 1:7 et 1:10, par le remplissage du filtre ras bord, et l'AeroPress va de 1:6 à 1:16 selon la recette.</p>
-    <p>Le ratio est probablement la variable la plus négligée, et la plus impactante, de toute la préparation du café. Si vous cherchez seulement les chiffres pour votre prochaine tasse, le <a href="/outils/calculateur-v60" class="text-amber-700 font-medium hover:underline underline-offset-2">calculateur V60</a> les sort en une seconde ; cet article explique le pourquoi. La plupart des gens dosent à l'œil depuis des années, avec une cuillère approximative qui change de semaine en semaine selon le paquet, la mouture, l'humeur. Et puis ils se demandent pourquoi leur café est parfois excellent, parfois trop fort, parfois imbuvable. La réponse est presque toujours là : dans le rapport entre la quantité de café et la quantité d'eau. Comprendre le ratio, c'est comprendre pourquoi certains cafés sont trop amers, trop faibles, <a href="/journal/pourquoi-cafe-acide" class="text-amber-700 font-medium hover:underline underline-offset-2">trop acides</a> ou simplement déséquilibrés, et surtout, c'est comprendre comment y remédier en trente secondes.</p>
-    <h2>Comment lire un ratio</h2>
+    <p>Le ratio est probablement la variable la plus négligée, et la plus impactante, de toute la préparation du café. Si vous cherchez seulement les chiffres pour votre prochaine tasse, le calculateur juste en dessous les sort en une seconde, pour huit méthodes (le <a href="/outils/calculateur-v60" class="text-amber-700 font-medium hover:underline underline-offset-2">calculateur V60</a> détaille en plus les versements) ; cet article explique le pourquoi. La plupart des gens dosent à l'œil depuis des années, avec une cuillère approximative qui change de semaine en semaine selon le paquet, la mouture, l'humeur. Et puis ils se demandent pourquoi leur café est parfois excellent, parfois trop fort, parfois imbuvable. La réponse est presque toujours là : dans le rapport entre la quantité de café et la quantité d'eau. Comprendre le ratio, c'est comprendre pourquoi certains cafés sont trop amers, trop faibles, <a href="/journal/pourquoi-cafe-acide" class="text-amber-700 font-medium hover:underline underline-offset-2">trop acides</a> ou simplement déséquilibrés, et surtout, c'est comprendre comment y remédier en trente secondes.</p>
+    <h2>Le calculateur, méthode par méthode</h2>
+<section class="calc-ratio" aria-label="Calculateur de ratio café/eau">
+  <div class="calc-ratio__methodes" role="group" aria-label="Méthode d'extraction">
+    <button type="button" data-m="v60" aria-pressed="true">V60</button>
+    <button type="button" data-m="chemex" aria-pressed="false">Chemex</button>
+    <button type="button" data-m="aeropress" aria-pressed="false">AeroPress</button>
+    <button type="button" data-m="piston" aria-pressed="false">Piston</button>
+    <button type="button" data-m="cafetiere" aria-pressed="false">Cafetière filtre</button>
+    <button type="button" data-m="moka" aria-pressed="false">Moka</button>
+    <button type="button" data-m="espresso" aria-pressed="false">Espresso</button>
+    <button type="button" data-m="coldbrew" aria-pressed="false">Cold brew</button>
+  </div>
+  <div class="calc-ratio__champs">
+    <label for="cr-cafe">Café<span><input id="cr-cafe" type="number" inputmode="decimal" min="1" max="2000" step="0.5" value="15"> g</span></label>
+    <label for="cr-eau"><span id="cr-eau-label">Eau</span><span><input id="cr-eau" type="number" inputmode="decimal" min="1" max="20000" step="1" value="240"> g</span></label>
+  </div>
+  <div class="calc-ratio__curseur" id="cr-bloc-ratio">
+    <label for="cr-ratio">Ratio <output id="cr-ratio-val" for="cr-ratio">1:16</output></label>
+    <input id="cr-ratio" type="range" min="15" max="17" step="0.5" value="16">
+    <div class="calc-ratio__bornes"><span id="cr-min">1:15, plus dense</span><span id="cr-max">1:17, plus léger</span></div>
+  </div>
+  <div class="calc-ratio__resultat" aria-live="polite">
+    <p class="calc-ratio__phrase" id="cr-phrase">15 g de café pour 240 g d'eau, soit 62,5 g de café par litre.</p>
+    <dl>
+      <div><dt>Temps</dt><dd id="cr-temps">2 min 30 à 3 min 30</dd></div>
+      <div><dt>Mouture</dt><dd id="cr-mouture">médium-fine</dd></div>
+      <div><dt>Eau</dt><dd id="cr-temp">93 °C</dd></div>
+    </dl>
+    <p class="calc-ratio__note" id="cr-note"></p>
+    <a class="calc-ratio__lien" id="cr-lien" href="/journal/v60-guide-complet">Le guide V60 →</a>
+  </div>
+</section>
+<script>
+(function () {
+  /* Repères tirés des pages du site : ratio, guides V60, Chemex/V60/AeroPress, AeroPress, piston,
+     cafetière filtre, moka, espresso et cold brew. */
+  var M = {
+    v60: { nom: 'V60', min: 15, max: 17, pas: 0.5, ratio: 16, cafe: 15, temps: '2 min 30 à 3 min 30', mouture: 'médium-fine, comme du sucre semoule', temp: '93 °C', lien: ['/journal/v60-guide-complet', 'Le guide V60'], note: 'Le guide V60 arrondit la recette à 15 g pour 250 g, soit 1:16,7 : tout se joue entre 1:15 et 1:17.' },
+    chemex: { nom: 'Chemex', min: 15, max: 17, pas: 0.5, ratio: 16.5, cafe: 45, temps: '4 à 5 min', mouture: 'médium-grossière', temp: '94 °C', lien: ['/journal/chemex-v60-aeropress', 'Chemex, V60 ou AeroPress'], note: 'Filtre épais, tasse plus légère : certains tirent vers 1:16 à 1:17.' },
+    aeropress: { nom: 'AeroPress', min: 6, max: 16, pas: 0.5, ratio: 13, cafe: 15, temps: '2 à 3 min', mouture: 'médium-fine', temp: '85 °C pour les cafés clairs et médium', lien: ['/journal/aeropress-guide-complet', 'Le guide AeroPress'], note: 'De 1:6 à 1:8, un concentré proche du lungo ; de 1:12 à 1:16, une tasse proche du V60.' },
+    piston: { nom: 'piston', min: 13, max: 16, pas: 0.5, ratio: 15, cafe: 15, temps: '4 min, couvercle posé sans presser', mouture: 'grossière', temp: '92 à 95 °C', lien: ['/journal/french-press-guide', 'Le guide du piston'], note: 'La référence va de 1:15 à 1:16 ; montez à 1:13 pour un café plus corsé.' },
+    cafetiere: { nom: 'cafetière filtre', min: 15, max: 17, pas: 0.5, ratio: 16, cafe: 60, temps: 'selon la machine', mouture: 'selon le porte-filtre de la machine', temp: '92 à 96 °C, le premier critère du guide', lien: ['/journal/meilleure-cafetiere-filtre-2025', 'Le guide des cafetières filtre'], note: 'Le même repère que le filtre manuel : 1:16, soit 60 g de café pour près d\'un litre.' },
+    moka: { nom: 'moka', moka: true, temps: 'jusqu\'au gargouillis, puis hors du feu', mouture: 'médium-fine, entre filtre et espresso', temp: 'eau déjà chaude, autour de 70 °C', lien: ['/journal/moka-pot-guide-complet', 'Le guide de la moka'], note: 'Pas de ratio à régler : le filtre se remplit ras bord sans tasser, l\'eau monte jusqu\'à la valve. Les mesures sur une moka classique donnent 1:7 à 1:10.' },
+    espresso: { nom: 'espresso', min: 1, max: 3, pas: 0.1, ratio: 2, cafe: 18, rendement: true, temps: '25 à 30 s', mouture: 'fine', temp: '92 à 94 °C', lien: ['/journal/comment-faire-espresso-parfait', 'Le guide espresso'], note: 'Ici le second chiffre est le poids en tasse. 1:1 à 1:1,5 : ristretto ; 1:2 : la base ; 1:2,2 à 1:2,5 : plus long ; 1:3 : lungo.' },
+    coldbrew: { nom: 'cold brew', min: 8, max: 14, pas: 0.5, ratio: 10, cafe: 100, temps: '12 à 16 h au réfrigérateur', mouture: 'grossière', temp: 'eau froide', lien: ['/journal/cold-brew-maison', 'Le guide du cold brew'], note: '1:8 à 1:10 pour une base à diluer sur glace ; 1:12 à 1:14 pour le boire pur.' }
+  };
+  var q = function (id) { return document.getElementById(id); };
+  var cafe = q('cr-cafe'), eau = q('cr-eau'), curseur = q('cr-ratio');
+  var m = M.v60, dernier = 'cafe';
+  var fr = function (n, d) { var t = (Math.round(n * Math.pow(10, d)) / Math.pow(10, d)).toString().split('.'); return t[0].replace(/\B(?=(\d{3})+(?!\d))/g, '\u202f') + (t[1] ? ',' + t[1] : ''); };
+  var nb = function (el) { var v = parseFloat(String(el.value).replace(',', '.')); return isFinite(v) && v > 0 ? v : 0; };
+
+  function afficher() {
+    var c = nb(cafe), e = nb(eau);
+    q('cr-temps').textContent = m.temps; q('cr-mouture').textContent = m.mouture; q('cr-temp').textContent = m.temp;
+    q('cr-note').textContent = m.note;
+    q('cr-lien').href = m.lien[0]; q('cr-lien').textContent = m.lien[1] + ' →';
+    if (m.moka) { q('cr-phrase').textContent = 'Moka : filtre rempli ras bord, eau jusqu\'à la valve de sécurité.'; return; }
+    var r = parseFloat(curseur.value);
+    q('cr-ratio-val').textContent = '1:' + fr(r, 1);
+    if (m.rendement) q('cr-phrase').textContent = fr(c, 1) + ' g de café pour ' + fr(e, 0) + ' g en tasse, à tirer en ' + m.temps + '.';
+    else q('cr-phrase').textContent = fr(c, 1) + ' g de café pour ' + fr(e, 0) + ' g d\'eau, soit ' + fr(1000 / r, 1) + ' g de café par litre.';
+  }
+  function depuisCafe() { eau.value = Math.round(nb(cafe) * parseFloat(curseur.value) * (m.rendement ? 10 : 1)) / (m.rendement ? 10 : 1); afficher(); }
+  function depuisEau() { cafe.value = Math.round(nb(eau) / parseFloat(curseur.value) * 10) / 10; afficher(); }
+  function choisir(cle) {
+    m = M[cle];
+    document.querySelectorAll('.calc-ratio__methodes button').forEach(function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-m') === cle ? 'true' : 'false'); });
+    q('cr-eau-label').textContent = m.rendement ? 'En tasse' : 'Eau';
+    q('cr-bloc-ratio').hidden = !!m.moka;
+    cafe.disabled = eau.disabled = !!m.moka;
+    if (!m.moka) {
+      curseur.min = m.min; curseur.max = m.max; curseur.step = m.pas; curseur.value = m.ratio;
+      q('cr-min').textContent = '1:' + fr(m.min, 1) + ', plus dense';
+      q('cr-max').textContent = '1:' + fr(m.max, 1) + ', plus léger';
+      cafe.value = m.cafe; depuisCafe();
+    } else afficher();
+  }
+  document.querySelectorAll('.calc-ratio__methodes button').forEach(function (b) {
+    b.addEventListener('click', function () { choisir(b.getAttribute('data-m')); });
+  });
+  cafe.addEventListener('input', function () { dernier = 'cafe'; depuisCafe(); });
+  eau.addEventListener('input', function () { dernier = 'eau'; depuisEau(); });
+  curseur.addEventListener('input', function () { if (dernier === 'eau') depuisEau(); else depuisCafe(); });
+  choisir('v60');
+})();
+</script>
+<div class="calc-ratio__tableau" role="region" aria-label="Les repères par méthode" tabindex="0">
+<table>
+<thead><tr><th scope="col">Méthode</th><th scope="col">Ratio</th><th scope="col">Exemple</th><th scope="col">Temps</th><th scope="col">Mouture</th></tr></thead>
+<tbody>
+<tr><th scope="row">V60</th><td>1:15 à 1:17, départ 1:16</td><td>15 g pour 240 g</td><td>2 min 30 à 3 min 30</td><td>médium-fine</td></tr>
+<tr><th scope="row">Chemex</th><td>1:15 à 1:17</td><td>45 g pour 750 g</td><td>4 à 5 min</td><td>médium-grossière</td></tr>
+<tr><th scope="row">AeroPress</th><td>1:12 à 1:14 pour débuter</td><td>15 g pour 200 g</td><td>2 à 3 min</td><td>médium-fine</td></tr>
+<tr><th scope="row">Piston</th><td>1:15 à 1:16</td><td>15 g pour 225 g</td><td>4 min</td><td>grossière</td></tr>
+<tr><th scope="row">Cafetière filtre</th><td>1:16</td><td>60 g pour 960 g</td><td>selon la machine</td><td>selon le porte-filtre</td></tr>
+<tr><th scope="row">Moka</th><td>imposé, 1:7 à 1:10</td><td>filtre ras bord</td><td>jusqu'au gargouillis</td><td>médium-fine</td></tr>
+<tr><th scope="row">Espresso</th><td>1:2 à 1:2,5 (en tasse)</td><td>18 g pour 36 g</td><td>25 à 30 s</td><td>fine</td></tr>
+<tr><th scope="row">Cold brew</th><td>1:8 à 1:10 (base), 1:12 à 1:14 (pur)</td><td>100 g pour 1 litre</td><td>12 à 16 h</td><td>grossière</td></tr>
+</tbody>
+</table>
+</div>
+<h2>Comment lire un ratio</h2>
     <p>Un ratio café/eau s'exprime de deux façons. La notation <strong>1:15</strong> signifie littéralement 1 gramme de café pour 15 grammes d'eau. C'est une fraction : plus le second chiffre est petit, plus le café est concentré. Un ratio <strong>1:10</strong> donne un café très fort ; un ratio <strong>1:18</strong> donne quelque chose de léger et délicat.</p>
     <p>L'autre notation courante est en <strong>grammes par litre</strong>. 60 g/L signifie 60 grammes de café pour 1 litre d'eau, ce qui correspond à un ratio de 1:16,7. Les deux systèmes disent exactement la même chose, simplement exprimée différemment. Sur une balance, c'est la notation 1:X qui est la plus pratique au quotidien : on pèse le café, on multiplie par le second chiffre, on obtient le poids d'eau à verser.</p>
     <p>Un détail important : on parle ici de <strong>masse</strong>, pas de volume. 15 grammes d'eau ne font pas 15 millilitres exactement, mais l'écart est négligeable à ces températures. En pratique, on peut interchanger grammes et millilitres pour l'eau dans le contexte du café.</p>
@@ -96,7 +198,7 @@
           <div class="step-num">3</div>
           <div><strong>Zone légère :</strong> 1:17 (59g/L), plus de délicatesse aromatique, moins de corps.</div>
         </div>
-        <div style="margin-top:0.75rem;font-style:italic;color:#78716c">Temps d'extraction cible : 3 à 4 minutes pour le V60, 4 à 5 minutes pour la Chemex.</div>
+        <div style="margin-top:0.75rem;font-style:italic;color:#78716c">Temps d'extraction cible : 2 min 30 à 3 min 30 pour le V60, 4 à 5 minutes pour la Chemex.</div>
       </div>
     </div>
     <h3>French press</h3>

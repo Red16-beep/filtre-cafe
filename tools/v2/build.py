@@ -123,7 +123,8 @@ def accueil():
     envies = ''.join(f'<a class="v2-envie" href="{h}"><span class="v2-envie__icone">{scenes.ENVIES_ICONES[i]}</span><span class="v2-kicker">{k}</span><h3>{t}</h3><p>{d}</p><span class="v2-carte__pied">Découvrir {FL}</span></a>' for i, k, t, d, h in envies_l)
     section_envies = f'''<section class="v2-section" style="padding-top:0" aria-labelledby="t-envies">
   <div class="v2-wrap"><div class="v2-tete"><div><p class="v2-kicker">Vos envies</p><h2 class="v2-h2" id="t-envies">Quel café<br>vous fait envie ?</h2></div></div>
-  <div class="v2-envies">{envies}</div></div>
+  <div class="v2-envies">{envies}</div>
+  <p style="margin-top:22px"><a class="v2-lien" href="/recettes">Toutes les recettes, au lait, glacées, sans caféine {FL}</a></p></div>
 </section>'''
 
     reglages_l = [
@@ -188,14 +189,14 @@ def accueil():
   </div>
 </section>'''
 
-    bref_l = [('Ratio filtre', '1:16', '15 g pour 250 g d’eau'), ('Eau', '93 °C', '30 à 40 s après ébullition'), ('Espresso', '1:2', '18 g pour 36 g, 25 à 30 s'),
+    bref_l = [('Ratio filtre', '1:16', '15 g pour 240 g d’eau'), ('Eau', '93 °C', '30 à 40 s après ébullition'), ('Espresso', '1:2', '18 g pour 36 g, 25 à 30 s'),
               ('Repos', '7 à 14 j', 'après torréfaction, en filtre'), ('Minéraux', '75 à 250', 'mg/L de résidu sec (SCAA)'), ('Mouture', 'Juste avant', 'les arômes partent en minutes'), ('Balance', '0,1 g', 'avec minuteur, 40 à 60 €')]
     bref = ''.join(f'<div><dt>{a}</dt><dd>{b}<small>{c}</small></dd></div>' for a, b, c in bref_l)
-    section_bref = f'<section class="v2-bref" aria-label="Le café en bref"><dl class="v2-wrap v2-bref__in" style="margin:0 auto"><span class="v2-bref__titre">Le café en bref</span>{bref}</dl></section>'
+    section_bref = f'<section class="v2-bref" aria-label="Le café en bref"><dl class="v2-wrap v2-bref__in" style="margin:0 auto"><span class="v2-bref__titre">Le café en bref</span>{bref}</dl><p class="v2-wrap v2-bref__lien"><a class="v2-lien" href="/journal/cafe-specialite-france-chiffres-2026">Le café de spécialité en France, en chiffres {FL}</a></p></section>'
 
     faq_l = [
         ('Quel matériel pour commencer le café de spécialité ?', 'Un moulin à meules d’abord, puis une balance au dixième de gramme avec minuteur, et une méthode simple comme le V60 ou le piston. Le moulin compte plus que la machine.', '/guides/equipement-cafe-maison', 'Le guide de l’équipement'),
-        ('Quel ratio café/eau utiliser ?', 'En filtre, 1:16, soit 15 g de café pour 250 g d’eau. En espresso, 1:2 : 18 g de café pour 36 g en tasse. Ajustez ensuite au goût.', '/journal/ratio-cafe-eau-extraction', 'Les ratios par méthode'),
+        ('Quel ratio café/eau utiliser ?', 'En filtre, 1:16, soit 15 g de café pour 240 g d’eau. En espresso, 1:2 : 18 g de café pour 36 g en tasse. Ajustez ensuite au goût.', '/journal/ratio-cafe-eau-extraction', 'Les ratios par méthode'),
         ('Quelle eau pour faire son café ?', 'Une eau peu minéralisée. Dans mon test à l’aveugle de six eaux, la Mont Blanc et la Volvic sont arrivées en tête, l’eau du robinet très calcaire en dernier.', '/journal/eau-cafe-filtre-tds-mineraux', 'Le test des eaux'),
         ('Combien de temps attendre après la torréfaction ?', 'Pour le filtre, 7 à 14 jours de repos après la date de torréfaction. Pour l’espresso, 10 à 21 jours, davantage sur une torréfaction claire et dense.', '/journal/degazage-cafe', 'Le guide du dégazage'),
         ('Pourquoi mon café est-il amer ?', 'Souvent parce qu’il est trop extrait : mouture trop fine, contact trop long, ou eau trop chaude sur une torréfaction foncée. La torréfaction elle-même apporte aussi de l’amertume.', '/journal/pourquoi-cafe-amer', 'Café amer : causes et corrections'),
@@ -322,8 +323,34 @@ def cafes_du_monde():
 <section class="v2-section"><div class="v2-wrap"><div class="v2-tete"><div><p class="v2-kicker">Recettes</p><h2 class="v2-h2">Le café, ailleurs</h2></div><p class="v2-chapeau">Chaque recette avec son histoire, ses proportions et le café qui va avec.</p></div>
 <div class="v2-pratiques">{cartes(recettes, 'Recette du monde')}</div></div></section>
 <section class="v2-section" style="padding-top:0"><div class="v2-wrap"><div class="v2-tete"><div><p class="v2-kicker">Cultures</p><h2 class="v2-h2">Le café, au quotidien</h2></div></div>
-<div class="v2-pratiques">{cartes(cultures, 'Culture café')}</div></div></section>'''
+<div class="v2-pratiques">{cartes(cultures, 'Culture café')}</div></div></section>
+<section class="v2-section" style="padding-top:0"><div class="v2-wrap"><div class="v2-tete"><div><p class="v2-kicker">Adresses</p><h2 class="v2-h2">Où le boire</h2></div></div>
+<div class="v2-pratiques">{cartes(['meilleurs-cafes-paris', 'torrefacteurs-francais'], 'Adresses')}</div></div></section>'''
     astro_page('cafes-du-monde', 'Cafés du monde : origines et recettes | filtré.', 'Huit origines du café et une douzaine de recettes du monde : café de olla, qahwa, bicerin, kaffeost, touba, kopi tubruk.', '/cafes-du-monde', corps, 'Cafés du monde')
+
+def page_recettes():
+    groupes = [
+        ('Au lait', 'Avec un espresso', ['cappuccino-recette-maison-guide', 'flat-white-recette-guide', 'cafe-cortado-recette-guide', 'cafe-noisette-recette-guide', 'pumpkin-spice-latte-recette-guide', 'mousser-lait-vapeur-temperature']),
+        ('Glacé', 'Pour l’été', ['cafe-glace-maison', 'cold-brew-maison', 'cold-brew-vs-cafe-glace-differences', 'mazagran-cafe-glace-citron', 'cafe-vietnamien-recette-ca-phe-sua-da']),
+        ('Sans caféine, ou presque', 'Le soir', ['cafe-decafeine-specialite', 'champignon-lion-mane-cafe']),
+        ('Sans machine', 'Avec ce qu’on a', ['espresso-maison-sans-machine']),
+    ]
+    sections = ''
+    for titre_g, kick, slugs in groupes:
+        cartes = ''
+        for slug in slugs:
+            if not os.path.exists(J + slug + '.head.html'): continue
+            i = info(slug)
+            cartes += f'<a class="v2-pratique" href="/journal/{slug}"><span class="v2-kicker">{kick}</span><h3>{html.escape(i["titre"])}</h3><p>{html.escape(i["desc"])}</p><span class="v2-carte__pied">{i["rt"]} min de lecture {FL}</span></a>'
+        sections += f'<section class="v2-section" style="padding-top:0"><div class="v2-wrap"><div class="v2-tete"><div><h2 class="v2-h2">{titre_g}</h2></div></div><div class="v2-pratiques">{cartes}</div></div></section>'
+    corps = f'''<section class="v2-page-tete"><div class="v2-wrap"><div><nav class="v2-page-tete__fil" aria-label="Fil d’Ariane"><a href="/">Accueil</a> › <span aria-current="page">Les recettes</span></nav>
+  <p class="v2-kicker v2-kicker--crema">Recettes</p><h1>Les recettes</h1>
+  <p class="v2-page-tete__chapeau">Les boissons au lait, le café glacé, les soirs sans caféine. Chaque recette avec ses grammes, sa température et ce qui la rate.</p></div>
+  <div class="v2-page-tete__illu" aria-hidden="true">{scenes.ICONES['lait']}</div></div></section>
+<div style="height:56px"></div>
+{sections}
+<section class="v2-section" style="padding-top:0"><div class="v2-wrap"><p class="v2-chapeau">Les recettes d’ailleurs, du café de olla au kaffeost, sont sur la page <a class="v2-lien" href="/cafes-du-monde">Cafés du monde {FL}</a></p></div></section>'''
+    astro_page('recettes', 'Recettes de café : au lait, glacé, sans caféine | filtré.', 'Cappuccino, flat white, cortado, noisette, café glacé, cold brew, décaféiné : les recettes de filtré., avec les grammes et les températures.', '/recettes', corps, 'Les recettes')
 
 def page_schemas():
     corps = '''<section class="v2-section v2-dark" style="padding-bottom:56px"><div class="v2-wrap">
@@ -455,4 +482,4 @@ def sync_public():
     ecrire(p, s)
 
 if __name__ == '__main__':
-    accueil(); page_404(); cafes_du_monde(); page_schemas(); base_astro(); pages_racine(); sync_public()
+    accueil(); page_404(); cafes_du_monde(); page_schemas(); page_recettes(); base_astro(); pages_racine(); sync_public()

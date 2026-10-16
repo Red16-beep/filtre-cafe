@@ -8,6 +8,7 @@
 - [Le Journal](https://filtre.cafe/journal/)
 - [Cafés du monde : origines et recettes](https://filtre.cafe/cafes-du-monde)
 - [Le café en schémas animés](https://filtre.cafe/schemas)
+- [Les recettes : au lait, glacé, sans caféine](https://filtre.cafe/recettes)
 - [La Lettre](https://filtre.cafe/newsletter)
 - [À propos](https://filtre.cafe/a-propos)
 - [Mentions légales](https://filtre.cafe/mentions-legales)

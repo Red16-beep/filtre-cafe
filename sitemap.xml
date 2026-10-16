@@ -62,13 +62,13 @@
   <!-- Articles — Technique & Extraction -->
   <url>
     <loc>https://filtre.cafe/journal/moka-pot-guide-complet</loc>
-    <lastmod>2026-10-09</lastmod>
+    <lastmod>2026-10-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://filtre.cafe/journal/french-press-guide</loc>
-    <lastmod>2026-10-09</lastmod>
+    <lastmod>2026-10-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -80,7 +80,7 @@
   </url>
   <url>
     <loc>https://filtre.cafe/journal/chemex-v60-aeropress</loc>
-    <lastmod>2026-10-09</lastmod>
+    <lastmod>2026-10-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -795,7 +795,7 @@
   <!-- Ajouts automatiques : a reclasser dans la bonne section -->
   <url>
     <loc>https://filtre.cafe/journal/top-moulins-cafe-entree-de-gamme</loc>
-    <lastmod>2026-10-11</lastmod>
+    <lastmod>2026-10-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -803,13 +803,13 @@
   <!-- Ajouts automatiques : a reclasser dans la bonne section -->
   <url>
     <loc>https://filtre.cafe/journal/top-moulins-cafe-haut-de-gamme</loc>
-    <lastmod>2026-10-09</lastmod>
+    <lastmod>2026-10-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://filtre.cafe/journal/top-moulins-cafe-milieu-de-gamme</loc>
-    <lastmod>2026-10-09</lastmod>
+    <lastmod>2026-10-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -823,7 +823,7 @@
   </url>
   <url>
     <loc>https://filtre.cafe/journal/top-machines-cafe-grain-haut-de-gamme</loc>
-    <lastmod>2026-10-11</lastmod>
+    <lastmod>2026-10-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -837,7 +837,7 @@
   <!-- Ajouts automatiques : a reclasser dans la bonne section -->
   <url>
     <loc>https://filtre.cafe/journal/top-tasses-cafe</loc>
-    <lastmod>2026-10-14</lastmod>
+    <lastmod>2026-10-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -853,7 +853,7 @@
   <!-- Ajouts automatiques : a reclasser dans la bonne section -->
   <url>
     <loc>https://filtre.cafe/journal/top-entretien-machine-cafe</loc>
-    <lastmod>2026-10-09</lastmod>
+    <lastmod>2026-10-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -861,7 +861,7 @@
   <!-- Ajouts automatiques : a reclasser dans la bonne section -->
   <url>
     <loc>https://filtre.cafe/journal/top-bouilloires-cafe-filtre</loc>
-    <lastmod>2026-10-09</lastmod>
+    <lastmod>2026-10-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -869,7 +869,7 @@
   <!-- Ajouts automatiques : a reclasser dans la bonne section -->
   <url>
     <loc>https://filtre.cafe/journal/top-balances-cafe</loc>
-    <lastmod>2026-10-11</lastmod>
+    <lastmod>2026-10-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -877,7 +877,7 @@
   <!-- Ajouts automatiques : a reclasser dans la bonne section -->
   <url>
     <loc>https://filtre.cafe/journal/top-moulins-manuels-cafe</loc>
-    <lastmod>2026-10-11</lastmod>
+    <lastmod>2026-10-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -885,7 +885,7 @@
   <!-- Ajouts automatiques : a reclasser dans la bonne section -->
   <url>
     <loc>https://filtre.cafe/journal/top-cafetieres-piston-cafe</loc>
-    <lastmod>2026-10-11</lastmod>
+    <lastmod>2026-10-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -893,7 +893,7 @@
   <!-- Ajouts automatiques : a reclasser dans la bonne section -->
   <url>
     <loc>https://filtre.cafe/journal/top-drippers-cafe-filtre</loc>
-    <lastmod>2026-10-11</lastmod>
+    <lastmod>2026-10-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -901,7 +901,7 @@
   <!-- Ajouts automatiques : a reclasser dans la bonne section -->
   <url>
     <loc>https://filtre.cafe/journal/top-carafes-verseuses-cafe</loc>
-    <lastmod>2026-10-09</lastmod>
+    <lastmod>2026-10-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -937,6 +937,14 @@
   </url>
   <url>
     <loc>https://filtre.cafe/schemas</loc>
+    <lastmod>2026-10-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Ajouts automatiques : a reclasser dans la bonne section -->
+  <url>
+    <loc>https://filtre.cafe/recettes</loc>
     <lastmod>2026-10-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>

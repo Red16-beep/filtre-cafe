@@ -497,3 +497,4 @@ body.v2 [class*="toc"] .n{color:var(--cuivre)!important}
 body.v2 :is(.v2-page-texte,.prose-filtre) :is(p,li){font-family:var(--serif);font-size:19px;line-height:1.65;color:var(--torref)}
 body.v2 .v2-page-texte h2{font-family:var(--serif);font-weight:500;font-size:30px;letter-spacing:-.02em;color:var(--torref)}
 body.v2 .v2-page-texte{padding-top:56px}
+.v2-bref__lien{margin:0 auto;padding-top:0!important;padding-bottom:18px;font-size:14px}

@@ -51,4 +51,32 @@ body { font-family: 'Inter', sans-serif; background-color: var(--stone-50); colo
   color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center;
   font-size: 0.75rem; font-weight: 600; margin-top: 0.1rem;
 }
+
+/* Calculateur toutes méthodes et tableau des repères */
+.calc-ratio{border:1px solid #e7e5e4;border-radius:1.25rem;background:#fff;padding:1.25rem;margin:1.25rem 0 1.5rem;display:flex;flex-direction:column;gap:1.1rem}
+.calc-ratio__methodes{display:flex;flex-wrap:wrap;gap:.4rem}
+.calc-ratio__methodes button{font:inherit;font-size:.85rem;font-weight:600;padding:.45rem .85rem;border-radius:999px;border:1px solid #d6d3d1;background:#fafaf9;color:#44403c;cursor:pointer}
+.calc-ratio__methodes button[aria-pressed="true"]{background:#1c1917;border-color:#1c1917;color:#fafaf9}
+.calc-ratio__champs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.75rem}
+.calc-ratio__champs label{display:flex;flex-direction:column;gap:.35rem;font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#78716c}
+.calc-ratio__champs label>span:last-child{display:flex;align-items:baseline;gap:.4rem;font-size:1rem;letter-spacing:0;text-transform:none;color:#44403c}
+.calc-ratio__champs input{width:100%;font:inherit;font-size:1.6rem;font-weight:600;color:#1c1917;padding:.4rem .6rem;border:1px solid #d6d3d1;border-radius:.6rem;background:#fafaf9;font-variant-numeric:tabular-nums}
+.calc-ratio__champs input:disabled{opacity:.45}
+.calc-ratio__curseur label{display:flex;justify-content:space-between;align-items:baseline;font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#78716c}
+.calc-ratio__curseur output{font-size:1.4rem;letter-spacing:0;color:#b45309;font-variant-numeric:tabular-nums}
+.calc-ratio__curseur input{width:100%;accent-color:#b45309;margin:.4rem 0 .2rem}
+.calc-ratio__bornes{display:flex;justify-content:space-between;font-size:.75rem;color:#78716c}
+.calc-ratio__resultat{background:#fafaf9;border-radius:1rem;padding:1rem 1.1rem;display:flex;flex-direction:column;gap:.7rem}
+.calc-ratio__phrase{font-size:1.05rem;font-weight:600;color:#1c1917;margin:0}
+.calc-ratio__resultat dl{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.6rem;margin:0}
+.calc-ratio__resultat dt{font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#78716c}
+.calc-ratio__resultat dd{margin:.15rem 0 0;font-size:.9rem;color:#292524}
+.calc-ratio__note{font-size:.85rem;color:#57534e;margin:0}
+.calc-ratio__lien{font-size:.85rem;font-weight:600;color:#92400e}
+.calc-ratio__tableau{overflow-x:auto;margin:0 0 2rem;border:1px solid #e7e5e4;border-radius:1rem;background:#fff}
+.calc-ratio__tableau table{width:100%;border-collapse:collapse;font-size:.88rem;min-width:620px}
+.calc-ratio__tableau th,.calc-ratio__tableau td{padding:.65rem .85rem;text-align:left;vertical-align:top;border-bottom:1px solid #e7e5e4}
+.calc-ratio__tableau tbody tr:last-child th,.calc-ratio__tableau tbody tr:last-child td{border-bottom:0}
+.calc-ratio__tableau thead th{font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#78716c;background:#fafaf9}
+@media (max-width:560px){.calc-ratio__resultat dl{grid-template-columns:1fr}.calc-ratio__champs input{font-size:1.3rem}}
 </style>

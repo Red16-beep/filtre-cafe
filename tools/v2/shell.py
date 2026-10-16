@@ -65,7 +65,7 @@ def tiroir():
   <div class="v2-tiroir__fond" data-v2-fermer></div>
   <div class="v2-tiroir__panneau">
     <button class="v2-icone" type="button" data-v2-fermer aria-label="Fermer le menu" style="margin-left:auto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
-    {blocs}<h3>filtré.</h3><a href="/journal/">Le journal</a><a href="/newsletter">La lettre</a><a href="/a-propos">À propos</a><a href="/outils/calculateur-v60">Calculateur V60</a>
+    {blocs}<h3>filtré.</h3><a href="/recettes">Les recettes</a><a href="/journal/">Le journal</a><a href="/newsletter">La lettre</a><a href="/a-propos">À propos</a><a href="/outils/calculateur-v60">Calculateur V60</a>
   </div>
 </div>'''
 
@@ -90,7 +90,7 @@ def footer():
         <p>Le guide indépendant du café de spécialité, écrit par Reda dans sa cuisine du Nord : ce qui est testé est dit, ce qui ne l’est pas aussi.</p>
         <div class="v2-footer__reseaux"><a href="https://www.pinterest.com/filtrecafe/" rel="me noopener" target="_blank" aria-label="Pinterest">{PINTEREST}</a><a href="/rss.xml" aria-label="Flux RSS">{RSS}</a></div>
       </div>
-      <div><h2 class="v2-footer__titre">Explorer</h2><ul><li><a href="/journal/">Le journal</a></li><li><a href="/guides/">Tous les guides</a></li><li><a href="/guides/methodes-extraction">Les méthodes</a></li><li><a href="/cafes-du-monde">Cafés du monde</a></li><li><a href="/schemas">Le café en schémas</a></li><li><a href="/commencer-ici">Commencer ici</a></li></ul></div>
+      <div><h2 class="v2-footer__titre">Explorer</h2><ul><li><a href="/journal/">Le journal</a></li><li><a href="/guides/">Tous les guides</a></li><li><a href="/guides/methodes-extraction">Les méthodes</a></li><li><a href="/cafes-du-monde">Cafés du monde</a></li><li><a href="/recettes">Les recettes</a></li><li><a href="/schemas">Le café en schémas</a></li><li><a href="/commencer-ici">Commencer ici</a></li></ul></div>
       <div><h2 class="v2-footer__titre">Matériel</h2><ul><li><a href="/journal/meilleur-moulin-cafe-electrique">Moulins électriques</a></li><li><a href="/journal/meilleur-moulin-cafe-manuel">Moulins manuels</a></li><li><a href="/journal/meilleure-machine-espresso-manuelle-2026">Machines espresso</a></li><li><a href="/journal/meilleure-machine-cafe-grain-automatique">Machines à grain</a></li><li><a href="/journal/meilleure-balance-cafe">Balances</a></li><li><a href="/journal/meilleure-bouilloire-cafe-filtre">Bouilloires</a></li><li><a href="/journal/top-drippers-cafe-filtre">Drippers</a></li><li><a href="/materiel">Tout le matériel</a></li></ul></div>
       <div><h2 class="v2-footer__titre">filtré.</h2><ul><li><a href="/newsletter">La lettre</a></li><li><a href="/a-propos">À propos</a></li><li><a href="/a-propos#transparence">Comment je me rémunère</a></li><li><a href="/journal/eau-cafe-filtre-tds-mineraux">Le test à l’aveugle</a></li><li><!--email_off--><a href="mailto:reda@filtre.cafe">reda@filtre.cafe</a><!--/email_off--></li></ul></div>
     </div>
