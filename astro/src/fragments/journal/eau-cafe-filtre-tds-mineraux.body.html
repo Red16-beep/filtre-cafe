@@ -13,7 +13,7 @@
     <span class="text-stone-300">·</span>
     <time class="text-xs text-stone-400 font-medium">4 mai 2026</time>
     <span class="text-stone-300">·</span>
-    <time datetime="2026-10-12" class="text-xs text-amber-700 font-medium">Mis à jour le 12 octobre 2026</time>
+    <time datetime="2026-10-16" class="text-xs text-amber-700 font-medium">Mis à jour le 16 octobre 2026</time>
     <span class="text-stone-300">·</span>
     <span class="text-xs text-stone-400 font-medium" data-byline>Par <a href="/a-propos" class="underline underline-offset-2 hover:text-stone-900">Reda</a></span>
     <span class="text-stone-300">·</span>
@@ -249,7 +249,72 @@
     <p style="font-size:0.8rem;color:#78716c;margin-top:-0.25rem;">Dureté (TH) et alcalinité : moyennes des résultats de 2026, de janvier à avril pour Paris, de janvier à juillet pour les autres. 1 °f = 10 mg/L de CaCO₃. La dureté est le titre hydrotimétrique (TH). Lille compte 35 prélèvements, de 28,5 à 45,9 °f ; Bordeaux va de 11,6 à 34,5 °f. La <a href="https://www.paris.fr/pages/tout-savoir-sur-l-eau-a-paris-18395" target="_blank" rel="noopener noreferrer" style="color:#92400e;">Ville de Paris</a> annonce 20 à 30 °f, l'<a href="https://www.strasbourg.eu/eau-strasbourg-questions" target="_blank" rel="noopener noreferrer" style="color:#92400e;">Eurométropole de Strasbourg</a> 26 °f en moyenne.</p>
     <p>Le TH compte le calcium et le magnésium : il ne se compare pas à la dureté calcique des tableaux plus haut. Il va de 184 mg/L de CaCO₃ à Lyon à 366 mg/L à Lille. Lyon, Marseille (214), Strasbourg (238) et Bordeaux (246) sont dans la bande de 20 à 250 où Wellinger relève un effet négligeable ; Paris (266) et Lille la dépassent, là où il note un goût sur-extrait. Lille est la ville la plus dure du tableau. L'alcalinité va de 15 à 27 °f, soit de 150 à 270 mg/L de CaCO₃, 4 à 7 fois le 40 mg/L des références (4 °f, si c'est du CaCO₃).</p>
 
-    <h2 id="options">Eau filtrée, bouteille, osmose&nbsp;: les options</h2>
+    <h2 id="votre-eau">Et l'eau de votre commune&nbsp;?</h2>
+<p>Tapez le nom de votre commune : l'outil lit les derniers résultats du contrôle sanitaire de l'eau du robinet et les compare aux repères SCAA 2009 du tableau plus haut. C'est une estimation, pas un test : le goût reste le juge.</p>
+<div class="outil-eau">
+  <form class="outil-eau__form" id="oe-form" autocomplete="off">
+    <label for="oe-commune">Commune</label>
+    <div class="outil-eau__ligne"><input id="oe-commune" type="text" placeholder="Lens, Lyon, Rennes…" required minlength="2"><button type="submit">Voir mon eau</button></div>
+    <div class="outil-eau__choix" id="oe-choix" hidden></div>
+  </form>
+  <div class="outil-eau__resultat" id="oe-resultat" aria-live="polite" hidden></div>
+</div>
+<script>
+(function () {
+  var q = function (id) { return document.getElementById(id); };
+  var form = q('oe-form'), champ = q('oe-commune'), choix = q('oe-choix'), res = q('oe-resultat');
+  var fr = function (n, d) { return (Math.round(n * Math.pow(10, d)) / Math.pow(10, d)).toString().replace('.', ','); };
+  var esc = function (t) { return String(t).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
+  function message(t) { res.hidden = false; res.innerHTML = '<p class="outil-eau__info">' + t + '</p>'; }
+  function analyser(commune) {
+    choix.hidden = true;
+    message('Lecture des derniers prélèvements pour ' + esc(commune.nom) + '…');
+    var url = 'https://hubeau.eaufrance.fr/api/v1/qualite_eau_potable/resultats_dis?code_commune=' + commune.code +
+      '&code_parametre=1303,1302,1374,1372,1347,1327&size=80&sort=desc&fields=code_parametre,resultat_numerique,date_prelevement,nom_reseau';
+    fetch(url).then(function (r) { return r.json(); }).then(function (d) {
+      var v = {}, dates = {}, reseau = '';
+      (d.data || []).forEach(function (x) {
+        if (x.resultat_numerique === null || v[x.code_parametre] !== undefined) return;
+        v[x.code_parametre] = x.resultat_numerique; dates[x.code_parametre] = (x.date_prelevement || '').slice(0, 10);
+        if (!reseau && x.nom_reseau) reseau = [].concat(x.nom_reseau).join(', ');
+      });
+      if (v['1303'] === undefined && v['1374'] === undefined) { message('Pas de résultat récent publié pour ' + esc(commune.nom) + '. Essayez une commune voisine du même réseau.'); return; }
+      var lignes = [], alertes = 0, basses = 0;
+      function ligne(nom, val, ref, ok, bas) { lignes.push('<tr><th scope="row">' + nom + '</th><td>' + val + '</td><td>' + ref + '</td><td class="' + (ok ? 'oe-ok' : 'oe-ko') + '">' + (ok ? 'dans la plage' : (bas ? 'en dessous' : 'au-dessus')) + '</td></tr>'); if (!ok) { if (bas) basses++; else alertes++; } }
+      if (v['1303'] !== undefined) { var tds = v['1303'] * 0.65; ligne('Résidu sec, estimé', '≈ ' + fr(tds, 0) + ' mg/L', '75 à 250, cible 150', tds >= 75 && tds <= 250, tds < 75); }
+      if (v['1374'] !== undefined) { var dc = v['1374'] * 2.497; ligne('Dureté calcique', fr(dc, 0) + ' mg/L CaCO₃', '17 à 85, cible 68', dc >= 17 && dc <= 85, dc < 17); }
+      var alc = v['1347'] !== undefined ? v['1347'] * 10 : (v['1327'] !== undefined ? v['1327'] * 0.82 : undefined);
+      if (alc !== undefined) ligne('Alcalinité', fr(alc, 0) + ' mg/L CaCO₃', 'à ou près de 40', alc <= 80, false);
+      if (v['1302'] !== undefined) ligne('pH', fr(v['1302'], 1), '6,5 à 7,5', v['1302'] >= 6.5 && v['1302'] <= 7.5, v['1302'] < 6.5);
+      var verdict;
+      if (alertes) verdict = 'Votre eau est plus minéralisée que les repères du café. C’est le cas du robinet de mon test, classé dernier. Une eau en bouteille peu minéralisée fait la différence (Volvic et Mont Blanc en tête chez moi) ; une carafe filtrante est un minimum.';
+      else if (basses) verdict = 'Votre eau est très peu minéralisée : le café risque d’être plat ou acide. Une eau un peu plus minérale, comme la Volvic, l’arrondit.';
+      else verdict = 'Votre eau est dans les repères. Avant d’acheter des bouteilles, goûtez-la à l’aveugle contre une Volvic, comme dans mon test.';
+      var date = dates['1303'] || dates['1374'] || '';
+      res.hidden = false;
+      res.innerHTML = '<p class="outil-eau__titre">' + esc(commune.nom) + ' <small>(' + esc(commune.dep) + ')</small></p>' +
+        '<div class="outil-eau__tableau"><table><thead><tr><th scope="col">Mesure</th><th scope="col">Votre eau</th><th scope="col">Repère SCAA 2009</th><th scope="col"></th></tr></thead><tbody>' + lignes.join('') + '</tbody></table></div>' +
+        '<p class="outil-eau__verdict">' + verdict + '</p>' +
+        '<p class="outil-eau__source">Contrôle sanitaire de l’eau potable (Hub’Eau), dernier prélèvement du ' + esc(date.split('-').reverse().join('/')) + (reseau ? ', réseau ' + esc(reseau) : '') + '. Résidu sec estimé à partir de la conductivité (× 0,65), dureté calcique à partir du calcium.</p>';
+    }).catch(function () { message('Les données du contrôle sanitaire ne répondent pas pour l’instant. Réessayez dans un moment.'); });
+  }
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var nom = champ.value.trim(); if (nom.length < 2) return;
+    message('Recherche de la commune…');
+    fetch('https://geo.api.gouv.fr/communes?nom=' + encodeURIComponent(nom) + '&fields=nom,code,departement&boost=population&limit=5')
+      .then(function (r) { return r.json(); }).then(function (l) {
+        if (!l.length) { message('Commune introuvable. Vérifiez l’orthographe.'); return; }
+        var communes = l.map(function (c) { return { nom: c.nom, code: c.code, dep: c.departement ? c.departement.nom : '' }; });
+        if (communes.length === 1 || communes[0].nom.toLowerCase() === nom.toLowerCase()) { analyser(communes[0]); return; }
+        choix.hidden = false; res.hidden = true;
+        choix.innerHTML = '<p>Laquelle ?</p>' + communes.map(function (c, i) { return '<button type="button" data-i="' + i + '">' + esc(c.nom) + ' <small>' + esc(c.dep) + '</small></button>'; }).join('');
+        choix.querySelectorAll('button').forEach(function (bt) { bt.addEventListener('click', function () { analyser(communes[+bt.getAttribute('data-i')]); }); });
+      }).catch(function () { message('La recherche de commune ne répond pas pour l’instant. Réessayez dans un moment.'); });
+  });
+})();
+</script>
+<h2 id="options">Eau filtrée, bouteille, osmose&nbsp;: les options</h2>
     <h3>Option 1 : Volvic ou Mont Blanc en bouteille</h3>
     <p>Les deux eaux de tête de mon test : pas de matériel, pas d'installation. Volvic se trouve en grande distribution, et j'ai acheté Mont Blanc chez Carrefour. Pour Mont Blanc, lisez l'étiquette de votre bouteille.</p>
     <h3>Option 2 : eau filtrée, Brita ou équivalent</h3>
