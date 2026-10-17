@@ -13,6 +13,7 @@ def mega(intro_titre, intro_txt, lien_intro, items, tous):
 MENUS = [
     ('Méthodes', mega('Choisir sa méthode', 'Filtre, espresso, immersion : laquelle pour vous ?', '/guides/methodes-extraction', [
         ('/journal/v60-guide-complet', 'V60', 'guide complet'),
+        ('/journal/chemex-guide-complet', 'Chemex', 'filtre épais'),
         ('/journal/aeropress-guide-complet', 'AeroPress', 'guide complet'),
         ('/journal/french-press-guide', 'French press', 'piston'),
         ('/journal/moka-pot-guide-complet', 'Moka', 'italienne'),

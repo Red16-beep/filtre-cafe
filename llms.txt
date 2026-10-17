@@ -19,6 +19,7 @@
 - [AeroPress : guide complet](https://filtre.cafe/journal/aeropress-guide-complet)
 - [Moka pot : guide complet](https://filtre.cafe/journal/moka-pot-guide-complet)
 - [French press : guide complet](https://filtre.cafe/journal/french-press-guide)
+- [Chemex : la recette, le filtre et les réglages](https://filtre.cafe/journal/chemex-guide-complet)
 - [Espresso maison sans machine](https://filtre.cafe/journal/espresso-maison-sans-machine)
 - [Cold brew maison](https://filtre.cafe/journal/cold-brew-maison)
 - [Ratio café/eau par méthode](https://filtre.cafe/journal/ratio-cafe-eau-extraction)

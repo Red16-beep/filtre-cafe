@@ -525,6 +525,28 @@ def sync_public():
         s = s.replace('echo "public/ synced."', MINIFIER + 'echo "public/ synced."')
     ecrire(p, s)
 
+def _bloc_div(s, debut):
+    """Fin (exclue) de la <div> ouverte à `debut`, en comptant les <div> imbriquées."""
+    n, i = 0, debut
+    for m in re.finditer(r'<div\b|</div>', s[debut:]):
+        n += 1 if m.group(0) == '<div' else -1
+        if n == 0:
+            return debut + m.end()
+    return -1
+
+def rafraichir_coquille(s):
+    """Remet l'en-tête, le tiroir, le pied de page et les onglets à jour depuis shell.py,
+    sans toucher au reste de la page (menus identiques partout)."""
+    s = re.sub(r'<header class="v2-header">.*?</header>', lambda m: shell.header(), s, count=1, flags=re.S)
+    s = re.sub(r'<footer class="v2-footer">.*?</footer>', lambda m: shell.footer(), s, count=1, flags=re.S)
+    s = re.sub(r'<nav class="v2-onglets"[^>]*>.*?</nav>', lambda m: shell.onglets(), s, count=1, flags=re.S)
+    i = s.find('<div class="v2-tiroir" id="v2-tiroir"')
+    if i >= 0:
+        j = _bloc_div(s, i)
+        if j > 0:
+            s = s[:i] + shell.tiroir() + s[j:]
+    return s
+
 def entretenir_sources():
     """Base.astro et les pages racine sont des sources depuis le lancement de la v2 (17 oct. 2026) :
     on ne les régénère plus, on y met seulement à jour la version de v2.css / v2.js et la typographie
@@ -534,6 +556,7 @@ def entretenir_sources():
         if not os.path.exists(p): continue
         s = lire(p)
         t = re.sub(r'(/v2/v2\.(?:css|js))(?:\?v=[0-9a-f]+)?"', lambda m: f'{m.group(1)}?v={VERSION_V2}"', s)
+        t = rafraichir_coquille(t)
         if rel.endswith('.html'):
             i = t.find('<body'); t = t[:i] + typo(t[i:]) if i >= 0 else t
         if t != s:
