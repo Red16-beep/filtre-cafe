@@ -2,7 +2,7 @@ import { useId } from "react";
 import { C, SANS } from "../theme";
 import { Balance } from "./Balance";
 import { Bouilloire, pointeBec } from "./Bouilloire";
-import { Carafe, surfaceCarafe } from "./Carafe";
+import { Carafe, Remuer, impactCarafe } from "./Carafe";
 import { Dripper, demi, hautDuLit, niveauEau } from "./Dripper";
 import { CadrePoste, ChuteMouture, CompteARebours, Filet, Gouttes, Repere } from "./Poste";
 import { nettoyerId } from "./Trace";
@@ -39,7 +39,12 @@ export type EtatStation = {
   teinteCarafe: number;
   gouttes: number;
   dripperDy?: number;
+  dripperDx?: number; // le dripper sort par le côté (café glacé, avant de remuer)
   carafeDx?: number;
+  glace?: number; // glaçons dans la carafe (café glacé)
+  fonte?: number;
+  remuer?: Remuer | null;
+  buee?: number;
   mouture?: number; // 0 → 1 : le café tombe dans le filtre
   vapeur?: number;
   spirale?: {
@@ -51,7 +56,7 @@ export type EtatStation = {
   } | null;
   cible?: { texte: string; eau: number; visible: number } | null;
   note?: { lignes: string[]; y: number; visible: number } | null; // y : repère local du cône
-  attente?: { restant: number; p: number; visible: number } | null;
+  attente?: { restant: number; p: number; visible: number; libelle?: string } | null;
   camera?: { s: number; x: number; y: number };
 };
 
@@ -133,7 +138,7 @@ const EncartSpirale: React.FC<{
 
 export const Station: React.FC<{ e: EtatStation }> = ({ e }) => {
   const { frame } = e;
-  const D = POSTE.dripper;
+  const D = { x: POSTE.dripper.x + (e.dripperDx ?? 0), y: POSTE.dripper.y };
   const dy = e.dripperDy ?? 0;
   const sB = POSTE.echelleBouilloire;
   const pointe = pointeBec(e.bouilloire.x, e.bouilloire.y, e.bouilloire.angle, sB);
@@ -153,14 +158,23 @@ export const Station: React.FC<{ e: EtatStation }> = ({ e }) => {
       }
     >
       <Balance x={POSTE.balance.x} y={POSTE.balance.y} poids={e.poids} temps={e.temps} tare={e.tare ?? 0} />
-      <Carafe x={POSTE.carafe.x + (e.carafeDx ?? 0)} y={POSTE.carafe.y} niveau={e.carafe} teinte={e.teinteCarafe} />
+      <Carafe
+        x={POSTE.carafe.x + (e.carafeDx ?? 0)}
+        y={POSTE.carafe.y}
+        niveau={e.carafe}
+        teinte={e.teinteCarafe}
+        glace={e.glace ?? 0}
+        fonte={e.fonte ?? 0}
+        remuer={e.remuer ?? null}
+        buee={e.buee ?? 0}
+      />
       <Gouttes
         x={D.x}
         y0={D.y + dy + 246}
-        y1={POSTE.carafe.y + surfaceCarafe(e.carafe) - 4}
+        y1={POSTE.carafe.y + impactCarafe(e.carafe, e.glace ?? 0) - 4}
         intensite={e.gouttes}
         frame={frame}
-        xOnde={D.x + (e.carafeDx ?? 0)}
+        xOnde={POSTE.carafe.x + (e.carafeDx ?? 0)}
       />
       <Dripper
         x={D.x}

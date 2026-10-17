@@ -45,6 +45,8 @@ Prises retenues (graine, réglages) :
 - Cold brew (40,77 s) : graine 23, `MELODIE=flute`. Do majeur, ii9 V13 Imaj9 VI7b13, 83 bpm, Room.
 - Espresso (34,43 s) : graine 1476816975, `MELODIE=guitare`. Fa mineur, i9 bVImaj9 iv9 V7b13, 89 bpm, Standard.
 - Méthode 4:6 (52,87 s) : graine 19, `MELODIE=flute`. Si bémol majeur, vi9 ii9 V13 Imaj9, 83 bpm, Standard.
+- Café glacé (55,47 s) : graine 154, `MELODIE=guitare BATTERIE=jazz`. Sol mineur, iv9 bVII13 i9 i6/9, 87 bpm, Jazz.
+  C'était la dernière grille libre du générateur : une prochaine vidéo devra en ajouter une à `GRILLES`.
 
 Une même graine et les mêmes variables redonnent exactement le même morceau.
 

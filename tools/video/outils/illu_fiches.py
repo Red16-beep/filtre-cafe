@@ -77,7 +77,6 @@ F = [
     o("cafe-en-thailande", "Café en Thaïlande", 20.17, 99.62, "Doi Chang", 4),
     o("cafe-ethiopien-yirgacheffe-sidama-guji", "Café éthiopien", 6.16, 38.2, "Yirgacheffe", 3.6),
     s("cafe-geisha-gesha-guide", "Geisha ou gesha", "Cerises"),
-    s("cafe-glace-maison", "Flash brew", "Glace"),
     o("cafe-guatemala-specialite", "Café du Guatemala", 14.6, -90.7, "Guatemala", 4),
     o("cafe-indonesie-specialite", "Café d'Indonésie", -2.5, 112.0, "Indonésie", 2.2),
     o("cafe-kenya-guide", "Café du Kenya", -0.42, 36.95, "Kenya", 3.6),

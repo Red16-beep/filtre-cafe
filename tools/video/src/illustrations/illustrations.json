@@ -232,13 +232,6 @@
   "alt": "Branche de caféier avec des cerises rouges et jaunes, dessin au trait sur fond espresso"
  },
  {
-  "slug": "cafe-glace-maison",
-  "libelle": "Flash brew",
-  "scene": "Glace",
-  "props": {},
-  "alt": "Grand verre de café glacé avec glaçons et paille, dessin au trait sur fond espresso"
- },
- {
   "slug": "cafe-guatemala-specialite",
   "libelle": "Café du Guatemala",
   "scene": "Origine",
