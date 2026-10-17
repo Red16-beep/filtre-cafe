@@ -192,7 +192,7 @@ def accueil():
     bref_l = [('Ratio filtre', '1:16', '15 g pour 240 g d’eau'), ('Eau', '93 °C', '30 à 40 s après ébullition'), ('Espresso', '1:2', '18 g pour 36 g, 25 à 30 s'),
               ('Repos', '7 à 14 j', 'après torréfaction, en filtre'), ('Minéraux', '75 à 250', 'mg/L de résidu sec (SCAA)'), ('Mouture', 'Juste avant', 'les arômes partent en minutes'), ('Balance', '0,1 g', 'avec minuteur, 40 à 60 €')]
     bref = ''.join(f'<div><dt>{a}</dt><dd>{b}<small>{c}</small></dd></div>' for a, b, c in bref_l)
-    section_bref = f'<section class="v2-bref" aria-label="Le café en bref"><dl class="v2-wrap v2-bref__in" style="margin:0 auto"><span class="v2-bref__titre">Le café en bref</span>{bref}</dl><p class="v2-wrap v2-bref__lien"><a class="v2-lien" href="/journal/cafe-specialite-france-chiffres-2026">Le café de spécialité en France, en chiffres {FL}</a></p></section>'
+    section_bref = f'<section class="v2-bref" aria-label="Le café en bref"><div class="v2-wrap v2-bref__in" style="margin:0 auto"><span class="v2-bref__titre">Le café en bref</span><dl style="display:contents">{bref}</dl></div><p class="v2-wrap v2-bref__lien"><a class="v2-lien" href="/journal/cafe-specialite-france-chiffres-2026">Le café de spécialité en France, en chiffres {FL}</a></p></section>'
 
     faq_l = [
         ('Quel matériel pour commencer le café de spécialité ?', 'Un moulin à meules d’abord, puis une balance au dixième de gramme avec minuteur, et une méthode simple comme le V60 ou le piston. Le moulin compte plus que la machine.', '/guides/equipement-cafe-maison', 'Le guide de l’équipement'),
