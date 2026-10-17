@@ -17,6 +17,17 @@
   document.addEventListener('click', function (e) {
     if (!e.target.closest('.v2-nav__item')) $$('.v2-nav__item.ouvert').forEach(function (x) { x.classList.remove('ouvert'); });
   });
+  // Survol d'une autre catégorie : le panneau ouvert (clic ou focus) se ferme aussitôt, un seul à la fois.
+  $$('.v2-nav__item').forEach(function (it) {
+    it.addEventListener('pointerenter', function (e) {
+      if (e.pointerType !== 'mouse') return;
+      $$('.v2-nav__item').forEach(function (x) {
+        if (x === it) return;
+        if (x.classList.contains('ouvert')) { x.classList.remove('ouvert'); x.firstElementChild.setAttribute('aria-expanded', 'false'); }
+        if (x.contains(document.activeElement)) document.activeElement.blur();
+      });
+    });
+  });
   var tiroir = $('#v2-tiroir');
   function tiroirOuvrir() { if (!tiroir) return; tiroir.classList.add('ouvert'); document.body.style.overflow = 'hidden'; }
   function tiroirFermer() { if (!tiroir) return; tiroir.classList.remove('ouvert'); document.body.style.overflow = ''; }

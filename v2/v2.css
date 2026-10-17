@@ -75,12 +75,14 @@ a:hover .v2-fleche{transform:translateX(4px)}
 .v2-nav{display:flex;align-items:center;gap:4px;font-family:var(--sans);font-size:15px;font-weight:500}
 .v2-nav__item{position:relative}
 .v2-nav__lien{display:flex;align-items:center;gap:6px;padding:10px 14px;border-radius:999px;text-decoration:none;color:var(--torref);background:none;border:0;font:inherit;cursor:pointer}
-.v2-nav__lien:hover,.v2-nav__item:focus-within>.v2-nav__lien,.v2-nav__item.ouvert>.v2-nav__lien{background:var(--creme-fonce)}
+.v2-nav__lien:hover,.v2-nav__item:has(:focus-visible)>.v2-nav__lien,.v2-nav__item.ouvert>.v2-nav__lien{background:var(--creme-fonce)}
 .v2-nav__lien svg{width:10px;height:10px;transition:transform .2s}
 .v2-nav__item.ouvert>.v2-nav__lien svg{transform:rotate(180deg)}
-.v2-mega{position:absolute;top:calc(100% + 12px);left:50%;transform:translate(-50%,8px);width:min(720px,90vw);background:var(--creme);border:1px solid var(--filet);border-radius:20px;box-shadow:0 30px 60px -30px rgba(43,29,21,.45);padding:28px;display:grid;grid-template-columns:1.1fr 1fr;gap:28px;opacity:0;visibility:hidden;transition:opacity .2s,transform .2s,visibility .2s}
-.v2-nav__item.ouvert .v2-mega,.v2-nav__item:focus-within .v2-mega{opacity:1;visibility:visible;transform:translate(-50%,0)}
-@media (hover:hover){.v2-nav__item:hover .v2-mega{opacity:1;visibility:visible;transform:translate(-50%,0)}}
+.v2-mega{position:absolute;top:calc(100% + 12px);left:50%;transform:translate(-50%,8px);width:min(720px,90vw);background:var(--creme);border:1px solid var(--filet);border-radius:20px;box-shadow:0 30px 60px -30px rgba(43,29,21,.45);padding:28px;display:grid;grid-template-columns:1.1fr 1fr;gap:28px;opacity:0;visibility:hidden;transition:none}
+/* Un seul panneau à la fois : il se ferme net, seul l'ouverture est fondue ; le pont couvre l'écart sous le bouton. */
+.v2-mega::before{content:"";position:absolute;left:0;right:0;top:-14px;height:14px}
+.v2-nav__item.ouvert .v2-mega,.v2-nav__item:has(:focus-visible) .v2-mega{opacity:1;visibility:visible;transform:translate(-50%,0);transition:opacity .18s,transform .18s}
+@media (hover:hover){.v2-nav__item:hover .v2-mega{opacity:1;visibility:visible;transform:translate(-50%,0);transition:opacity .18s,transform .18s}}
 .v2-mega__intro{background:var(--espresso);color:#f4ece3;border-radius:14px;padding:22px;display:flex;flex-direction:column;justify-content:space-between;gap:18px;min-height:200px}
 .v2-mega__intro p{margin:0;font-family:var(--serif);font-size:22px;line-height:1.2}
 .v2-mega__intro span{font-family:var(--sans);font-size:13px;color:rgba(244,236,227,.7);line-height:1.5}
