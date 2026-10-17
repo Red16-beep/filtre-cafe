@@ -22,7 +22,7 @@ const style = Astro.slots.has('style') ? v2ise(await Astro.slots.render('style')
 
 <Fragment set:html={style} />
 <link rel="preload" href="/fonts/v2/newsreader-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/v2/v2.css">
+<link rel="stylesheet" href="/v2/v2.css?v=4fa3348e">
 <script is:inline>(function(){if(location.hostname.replace(/^www\./,'')!=='filtre.cafe')return;var c=document.currentScript,s=document.createElement('script');s.src='https://app.equateur.org/e.js';s.setAttribute('data-site','filtre.cafe');s.defer=true;c&&c.parentNode?c.parentNode.insertBefore(s,c):document.head.appendChild(s);})();</script>
 <script is:inline>(function(){if(location.hostname.replace(/^www\./,'')!=='filtre.cafe')return;var s=document.createElement('script');s.defer=true;s.src='https://equateur.org/assets/js/cmp.js';s.setAttribute('data-site','aff654dd0df3f7e406ecb0a7e78ced5a');document.head.appendChild(s);})();</script>
 </head>
@@ -82,7 +82,7 @@ window.addEventListener('scroll', () => {
 });
 </script>
 <script is:inline defer src="/nl-subscribe.js"></script>
-<script is:inline defer src="/v2/v2.js"></script>
+<script is:inline defer src="/v2/v2.js?v=4fa3348e"></script>
 <script is:inline defer src="/js/track.js"></script>
 <script is:inline defer src="/js/newsletter-inline.js"></script>
 <script is:inline defer src="/js/exit-intent.js"></script>

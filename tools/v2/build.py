@@ -10,7 +10,13 @@ J = os.path.join(R, 'astro/src/fragments/journal/')
 G = os.path.join(R, 'astro/src/fragments/guides/')
 
 def lire(p): return open(p, encoding='utf-8').read()
+# Version des feuilles v2 (empreinte du contenu) : les navigateurs rechargent v2.css et v2.js
+# dès qu'ils changent, malgré le cache de 4 h de Cloudflare.
+import hashlib
+VERSION_V2 = hashlib.sha1((lire(os.path.join(R, 'v2/v2.css')) + lire(os.path.join(R, 'v2/v2.js'))).encode('utf-8')).hexdigest()[:8]
 def ecrire(p, s):
+    if p.endswith(('.html', '.astro')):
+        s = re.sub(r'(/v2/v2\.(?:css|js))(?:\?v=[0-9a-f]+)?"', lambda m: f'{m.group(1)}?v={VERSION_V2}"', s)
     os.makedirs(os.path.dirname(p), exist_ok=True); open(p, 'w', encoding='utf-8').write(s); print('écrit', os.path.relpath(p, R))
 
 def info(slug, d=J):
