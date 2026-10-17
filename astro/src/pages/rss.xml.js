@@ -12,9 +12,20 @@ const unesc = s => s.replace(/&#39;/g, "'").replace(/&quot;/g, '"')
 const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;')
                   .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
+// Pages redirigées (fichier _redirects à la racine du dépôt) : jamais annoncées dans le flux.
+const redirigees = () => {
+  try {
+    return new Set(fs.readFileSync('../_redirects', 'utf8').split('\n')
+      .map(l => l.trim().split(/\s+/)[0]).filter(src => src && src.startsWith('/journal/'))
+      .map(src => src.replace('/journal/', '').replace(/\/$/, '')));
+  } catch { return new Set(); }
+};
+
 export async function GET() {
+  const exclues = redirigees();
   const items = fs.readdirSync(DIR)
     .filter(f => f.endsWith('.head.html'))
+    .filter(f => !exclues.has(f.replace('.head.html', '')))
     .map(f => {
       const html = fs.readFileSync(path.join(DIR, f), 'utf8');
       const slug = f.replace('.head.html', '');
