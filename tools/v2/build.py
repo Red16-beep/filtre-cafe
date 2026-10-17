@@ -48,7 +48,7 @@ def page(titre, desc, canon, corps, head_extra='', robots='index, follow', scrip
 {shell.header()}
 {shell.tiroir()}
 <main id="contenu">
-{corps}
+{typo(corps)}
 </main>
 {shell.footer()}
 {shell.onglets()}
@@ -398,9 +398,28 @@ def v2ise(s):
     s = re.sub(r"""(['"])Instrument Serif\1""", "'Newsreader'", s)
     return re.sub(r"""(['"])Inter\1""", "'Instrument Sans'", s)
 
+NBSP, FINE = '\u00a0', '\u202f'
+JETONS = re.compile(r'''(<!--.*?-->|<(script|style|svg|pre|code|textarea)\b.*?</\2\s*>|<(?:[^>"']|"[^"]*"|'[^']*')*>)|([^<]+)''', re.S | re.I)
+UNITES = re.compile(r'(\d) (€|%|°C|°|g|kg|mg|ml|cl|L|min|s|mm|bars?|ppm|mg/L)(?=[\s.,;:!?)»]|$)')
+def typo(s):
+    """Même passe que typo() de astro/src/lib/v2.js : texte seul, hors script, style, svg, pre, code."""
+    def texte(t):
+        t = re.sub(r' (?:&nbsp;|&#160;)(?=[?!;:»])', '&nbsp;', t)
+        t = re.sub(r'(?<=\S) ([?!;])', FINE + '\\1', t)
+        t = re.sub(r'(?<=\S) ([:»])', NBSP + '\\1', t)
+        t = t.replace('« ', '«' + NBSP)
+        t = UNITES.sub('\\1' + NBSP + '\\2', t)
+        t = re.sub(r'(?<![\d.,])(\d{1,3})((?: \d{3})+)(?!\d)', lambda m: m.group(1) + m.group(2).replace(' ', FINE), t)
+        return t.replace(' →', NBSP + '→')
+    return JETONS.sub(lambda m: m.group(0) if m.group(3) is None else texte(m.group(3)), s)
+
+# L'en-tête, le menu, le pied de page et les onglets passent aussi par typo().
+for _nom in ('header', 'tiroir', 'footer', 'onglets'):
+    setattr(shell, _nom, (lambda f: lambda *a, **k: typo(f(*a, **k)))(getattr(shell, _nom)))
+
 def base_astro():
     p = os.path.join(R, 'astro/src/layouts/Base.astro'); s = original('astro/src/layouts/Base.astro')
-    s = s.replace('\n---\n<!DOCTYPE html>', "\nimport { v2ise } from '../lib/v2.js';\nconst tete = v2ise(await Astro.slots.render('head'));\nconst corps = v2ise(await Astro.slots.render('default'));\nconst style = Astro.slots.has('style') ? v2ise(await Astro.slots.render('style')) : '';\n---\n<!DOCTYPE html>", 1)
+    s = s.replace('\n---\n<!DOCTYPE html>', "\nimport { v2ise, typo } from '../lib/v2.js';\nconst tete = v2ise(await Astro.slots.render('head'));\nconst corps = typo(v2ise(await Astro.slots.render('default')));\nconst style = Astro.slots.has('style') ? v2ise(await Astro.slots.render('style')) : '';\n---\n<!DOCTYPE html>", 1)
     s = s.replace('<slot name="head" />', '<Fragment set:html={tete} />', 1)
     s = s.replace('<slot name="style" />', '<Fragment set:html={style} />\n' + shell.HEAD_LIENS, 1)
     s = s.replace('<script is:inline defer src="https://equateur.org/assets/js/cmp.js" data-site="aff654dd0df3f7e406ecb0a7e78ced5a"></script>',
@@ -460,6 +479,9 @@ RACINE_PAGES = ['journal/index.html', 'guides/index.html', 'a-propos.html', 'new
 def pages_racine():
     for f in RACINE_PAGES:
         p = os.path.join(R, f); s = v2ise(original(f))
+        i = s.find('<body'); s = s[:i] + typo(s[i:])
+        if f in ('newsletter/09.html', 'newsletter/10.html'): s = s.replace(', &middot; ', ' &middot; ')
+        if f == 'journal/index.html': s = s.replace('Ces cinq portes d', 'Ces six portes d')
         s = re.sub(r'<script defer src="https://equateur\.org/assets/js/cmp\.js"[^>]*></script>', '', s)
         s = re.sub(r'\s*<script>\s*tailwind\.config\s*=.*?</script>', '', s, flags=re.S)  # reste du CDN Tailwind : erreur en console
         s = re.sub(r'\s*<link rel="preload" href="/fonts/(?!v2/)[^"]+" as="font"[^>]*>', '', s)

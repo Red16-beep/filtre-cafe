@@ -224,7 +224,29 @@ def carte_monde():
         pts += (f'<g class="point" id="point-{cle}"><circle class="v2-onde" style="animation-delay:{k*.3:.1f}s" cx="{x:.1f}" cy="{y:.1f}" r="4" fill="none" stroke="{CR}"/>'
                 f'<circle class="coeur" cx="{x:.1f}" cy="{y:.1f}" r="5"/><text x="{x+dx:.1f}" y="{y+dy:.1f}" text-anchor="{ancre}">{nom}</text></g>')
     terre = f'<path d="{terres_d()}" fill="rgba(244,236,227,.1)" stroke="rgba(244,236,227,.26)" stroke-width=".7" stroke-linejoin="round" fill-rule="evenodd"/>'
-    return f'<svg viewBox="0 26 720 268" role="img" aria-label="Ceinture du café entre les tropiques et huit origines">{g}{terre}{bande}{pts}</svg>'
+    large = f'<svg class="v2-carte-large" viewBox="0 26 720 268" role="img" aria-label="Ceinture du café entre les tropiques et huit origines">{g}{terre}{bande}{pts}</svg>'
+    return large + carte_monde_etroite(g, terre)
+
+# Téléphone : la carte recadrée sur la ceinture du café, des numéros lisibles
+# qui renvoient à la liste 01 à 08 affichée sous la carte (les noms y figurent).
+def carte_monde_etroite(g, terre):
+    _, yt = xy(23.44, 0); _, yc = xy(-23.44, 0); _, ye = xy(0, 0)
+    x0, x1 = 158, 624
+    bande = (f'<rect x="{x0}" y="{yt:.1f}" width="{x1-x0}" height="{yc-yt:.1f}" fill="rgba(239,199,156,.08)"/>'
+             f'<line x1="{x0}" y1="{yt:.1f}" x2="{x1}" y2="{yt:.1f}" stroke="{CR}" stroke-opacity=".5" stroke-dasharray="4 6"/>'
+             f'<line x1="{x0}" y1="{yc:.1f}" x2="{x1}" y2="{yc:.1f}" stroke="{CR}" stroke-opacity=".5" stroke-dasharray="4 6"/>'
+             f'<line x1="{x0}" y1="{ye:.1f}" x2="{x1}" y2="{ye:.1f}" stroke="rgba(244,236,227,.22)"/>'
+             f'<text x="250" y="{yt-6:.1f}" fill="{CR}" font-family="Instrument Sans, Arial" font-size="17">Tropique du Cancer</text>'
+             f'<text x="{x0+6}" y="{yc+19:.1f}" fill="{CR}" font-family="Instrument Sans, Arial" font-size="17">Tropique du Capricorne</text>')
+    # Côté du numéro, ajusté au recadrage (Guatemala et Brésil près des bords).
+    cotes = {'guatemala': -1, 'bresil': 2}
+    pts = ''
+    for k, (cle, nom, lat, lon, _l, _s, cote) in enumerate(ORIGINES):
+        x, y = xy(lat, lon)
+        dx, dy, ancre = {-1: (0, -13, 'middle'), 1: (0, 26, 'middle'), 2: (12, 6, 'start'), -2: (-12, 6, 'end')}[cotes.get(cle, cote)]
+        pts += (f'<g class="point" data-point="{cle}"><circle class="v2-onde" style="animation-delay:{k*.3:.1f}s" cx="{x:.1f}" cy="{y:.1f}" r="5" fill="none" stroke="{CR}"/>'
+                f'<circle class="coeur" cx="{x:.1f}" cy="{y:.1f}" r="6"/><text class="num" x="{x+dx:.1f}" y="{y+dy:.1f}" text-anchor="{ancre}">{k+1:02d}</text></g>')
+    return f'<svg class="v2-carte-etroite" viewBox="{x0} 108 {x1-x0} 140" role="img" aria-label="Ceinture du café : huit origines numérotées, détaillées dans la liste">{g}{terre}{bande}{pts}</svg>'
 
 # ── Scène 404 ─────────────────────────────────────────────────────────────
 def machine_404():

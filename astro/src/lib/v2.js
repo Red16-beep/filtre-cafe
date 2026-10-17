@@ -36,3 +36,21 @@ export function v2ise(html) {
     .replace(/(['"])Instrument Serif\1/g, "'Newsreader'")
     .replace(/(['"])Inter\1/g, "'Instrument Sans'");
 }
+
+// Typographie française : espace insécable devant « : » et « », fine insécable devant ; ! ?,
+// après «, dans les nombres (1 900) et entre un nombre et son unité (18 g, 93 °C, 25 €).
+// Seul le texte entre les balises est touché : ni attributs, ni commentaires, ni <script>, <style>, <svg>, <pre>, <code>, <textarea>.
+const NBSP = '\u00A0', FINE = '\u202F';
+const JETONS = /(<!--[\s\S]*?-->|<(script|style|svg|pre|code|textarea)\b[\s\S]*?<\/\2\s*>|<(?:[^>"']|"[^"]*"|'[^']*')*>)|([^<]+)/gi;
+const UNITES = /(\d) (€|%|°C|°|g|kg|mg|ml|cl|L|min|s|mm|bars?|ppm|mg\/L)(?=[\s.,;:!?)»]|$)/g;
+export function typo(html) {
+  if (!html) return html;
+  return html.replace(JETONS, (m, balise, nom, texte) => texte === undefined ? m : texte
+    .replace(/ (?:&nbsp;|&#160;)(?=[?!;:»])/g, '&nbsp;')
+    .replace(/(?<=\S) ([?!;])/g, `${FINE}$1`)
+    .replace(/(?<=\S) ([:»])/g, `${NBSP}$1`)
+    .replace(/« /g, `«${NBSP}`)
+    .replace(UNITES, `$1${NBSP}$2`)
+    .replace(/(?<![\d.,])(\d{1,3})((?: \d{3})+)(?!\d)/g, (t, a, b) => a + b.replace(/ /g, FINE))
+    .replace(/ →/g, `${NBSP}→`));
+}

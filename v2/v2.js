@@ -78,8 +78,9 @@
   /* ── Carte des origines : survol de la liste ── */
   $$('[data-origine]').forEach(function (lien) {
     var id = lien.getAttribute('data-origine');
-    function on() { var d = document.getElementById('point-' + id); if (d) d.classList.add('allume'); }
-    function off() { var d = document.getElementById('point-' + id); if (d) d.classList.remove('allume'); }
+    function points() { return $$('#point-' + id + ', [data-point="' + id + '"]'); }
+    function on() { points().forEach(function (d) { d.classList.add('allume'); }); }
+    function off() { points().forEach(function (d) { d.classList.remove('allume'); }); }
     lien.addEventListener('mouseenter', on); lien.addEventListener('mouseleave', off);
     lien.addEventListener('focus', on); lien.addEventListener('blur', off);
   });
@@ -100,18 +101,116 @@
     '.v2-anim .apparait{opacity:0;animation:v2-apparait .6s ease forwards}',
     '.v2-anim .pousse{transform-box:fill-box;transform-origin:bottom;transform:scaleY(0);animation:v2-pousse 1.2s cubic-bezier(.2,.8,.2,1) forwards}',
     '.v2-anim .pousse-x{transform-box:fill-box;transform-origin:left;transform:scaleX(0);animation:v2-pousse-x 1.2s cubic-bezier(.2,.8,.2,1) forwards}',
-    '.v2-anim .tombe{opacity:0;animation:v2-tombe .7s cubic-bezier(.2,.8,.2,1) forwards}'
+    '.v2-anim .tombe{opacity:0;animation:v2-tombe .7s cubic-bezier(.2,.8,.2,1) forwards}',
+    '.v2-anim .v2-svg-etroit{display:none}',
+    '@media (max-width:640px){.v2-anim .v2-svg-large{display:none}.v2-anim .v2-svg-etroit{display:block}}'
   ].join('\n');
   function injecterCss() {
     if (document.getElementById('v2-schemas-css')) return;
     var st = document.createElement('style'); st.id = 'v2-schemas-css'; st.textContent = CSS_SCHEMAS; document.head.appendChild(st);
   }
   function fig(cle, titre, etiquette, svg, legende) {
+    var etroit = ETROITS[cle] ? ETROITS[cle]() : '';
+    if (etroit) svg = svg.replace('<svg ', '<svg class="v2-svg-large" ');
     return '<figure class="v2-schema" data-cle="' + cle + '"><div class="v2-schema__tete"><div><span>' + etiquette + '</span><h3>' + titre + '</h3></div>' +
-      '<button type="button" class="rejouer">Rejouer l’animation</button></div><div class="v2-anim">' + svg + '</div>' +
+      '<button type="button" class="rejouer">Rejouer l’animation</button></div><div class="v2-anim">' + svg + etroit + '</div>' +
       (legende ? '<figcaption>' + legende + '</figcaption>' : '') + '</figure>';
   }
-  var C = { crema: '#efc79c', cerise: '#e0673f', feuille: '#8fb08f', cuivre: '#c98a5c', texte: '#f4ece3', doux: 'rgba(244,236,227,.55)', filet: 'rgba(244,236,227,.18)' };
+  var C = { crema: '#efc79c', cerise: '#e0673f', feuille: '#8fb08f', cuivre: '#c98a5c', texte: '#f4ece3', doux: 'rgba(244,236,227,.55)', filet: 'rgba(244,236,227,.18)', douxE: 'rgba(244,236,227,.72)' };
+
+  /* Versions étroites des schémas, affichées sous 640 px : viewBox de 360 de large,
+     texte d'au moins 13 unités (environ 11,5 px réels dans une colonne de téléphone). */
+  function svgE(h, label, contenu) { return '<svg class="v2-svg-etroit" viewBox="0 0 360 ' + h + '" role="img" aria-label="' + label + '">' + contenu + '</svg>'; }
+  function mmss(s) { return Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0'); }
+  var ETROITS = {
+    extraction: function () {
+      var x0 = 20, x1 = 340, y0 = 170, y1 = 14;
+      var courbe = function (debut, pente) { var d = ''; for (var k = 0; k <= 40; k++) { var t = k / 40, x = x0 + (x1 - x0) * t, v = 1 / (1 + Math.exp(-(t - debut) * pente)); d += (k ? 'L' : 'M') + x.toFixed(1) + ' ' + (y0 - (y0 - y1) * v * 0.92).toFixed(1); } return d; };
+      var zones = '<rect x="20" y="' + y1 + '" width="100" height="' + (y0 - y1) + '" fill="rgba(143,176,143,.10)"/><rect x="120" y="' + y1 + '" width="115" height="' + (y0 - y1) + '" fill="rgba(239,199,156,.12)"/><rect x="235" y="' + y1 + '" width="105" height="' + (y0 - y1) + '" fill="rgba(224,103,63,.12)"/>' +
+        '<text x="70" y="38" fill="' + C.feuille + '" font-size="16" font-weight="700" text-anchor="middle">1</text><text x="177" y="38" fill="' + C.crema + '" font-size="16" font-weight="700" text-anchor="middle">2</text><text x="287" y="38" fill="' + C.cerise + '" font-size="16" font-weight="700" text-anchor="middle">3</text>';
+      var axes = '<line x1="' + x0 + '" y1="' + y0 + '" x2="' + x1 + '" y2="' + y0 + '" stroke="' + C.filet + '"/>' +
+        '<text x="' + x0 + '" y="190" fill="' + C.douxE + '" font-size="15">Plus court, plus grossier</text><text x="' + x1 + '" y="208" fill="' + C.douxE + '" font-size="15" text-anchor="end">Plus long, plus fin</text>';
+      var c = '<path class="trace" style="--l:520" d="' + courbe(0.12, 14) + '" fill="none" stroke="' + C.feuille + '" stroke-width="3"/>' +
+        '<path class="trace" style="--l:520;animation-delay:.5s" d="' + courbe(0.45, 12) + '" fill="none" stroke="' + C.crema + '" stroke-width="3"/>' +
+        '<path class="trace" style="--l:520;animation-delay:1s" d="' + courbe(0.78, 12) + '" fill="none" stroke="' + C.cerise + '" stroke-width="3"/>';
+      var curseur = '<g style="animation:v2-balaye 6s 2.6s ease-in-out infinite alternate;--d:280px"><line x1="' + (x0 + 10) + '" y1="' + (y1 + 34) + '" x2="' + (x0 + 10) + '" y2="' + y0 + '" stroke="' + C.texte + '" stroke-dasharray="3 5"/><circle cx="' + (x0 + 10) + '" cy="' + y0 + '" r="6" fill="' + C.texte + '"/></g>';
+      var leg = '<g font-size="14"><circle cx="26" cy="231" r="5" fill="' + C.feuille + '"/><text x="38" y="236" fill="' + C.texte + '">acides</text><circle cx="114" cy="231" r="5" fill="' + C.crema + '"/><text x="126" y="236" fill="' + C.texte + '">sucres</text><circle cx="202" cy="231" r="5" fill="' + C.cerise + '"/><text x="214" y="236" fill="' + C.texte + '">composés amers</text></g>';
+      var rangs = [[C.feuille, '1 · Sous-extrait', 'acide, salé, maigre'], [C.crema, '2 · Équilibré', 'sucré, rond, long'], [C.cerise, '3 · Sur-extrait', 'amer, sec, astringent']].map(function (r, k) {
+        return '<text x="20" y="' + (268 + k * 22) + '" font-size="14"><tspan fill="' + r[0] + '" font-weight="600">' + r[1] + '</tspan><tspan fill="' + C.douxE + '"> — ' + r[2] + '</tspan></text>';
+      }).join('');
+      return svgE(326, 'Courbes d’extraction : acides, puis sucres, puis composés amers', zones + axes + c + curseur + leg + rangs);
+    },
+    v60: function () {
+      var etapes = [
+        { a: 0, b: 30, g: 30, n: 'Bloom' }, { a: 30, b: 60, g: 150, n: '1er versement' }, { a: 60, b: 90, g: 200, n: '2e versement' },
+        { a: 90, b: 120, g: 250, n: 'Versement final' }, { a: 120, b: 195, g: 250, n: 'Écoulement' }];
+      var lignes = etapes.map(function (e, k) {
+        var y = 14 + k * 50, w = e.g / 250 * 172, d = (0.3 + k * 0.4).toFixed(1);
+        var fond = k === 4 ? 'rgba(239,199,156,.22)' : (k === 0 ? C.feuille : C.crema);
+        return '<g class="apparait" style="animation-delay:' + d + 's"><text x="0" y="' + (y + 16) + '" fill="' + C.texte + '" font-size="14.5" font-weight="600">' + e.n + '</text>' +
+          '<text x="0" y="' + (y + 34) + '" fill="' + C.douxE + '" font-size="15">' + mmss(e.a) + ' – ' + mmss(e.b) + '</text>' +
+          '<rect class="pousse-x" style="animation-delay:' + d + 's" x="128" y="' + (y + 4) + '" width="' + w.toFixed(1) + '" height="20" rx="5" fill="' + fond + '"/>' +
+          (k === 4 ? '<text x="128" y="' + (y + 42) + '" fill="' + C.cerise + '" font-size="15" font-weight="600">fin entre 2:30 et 3:30</text>' : '<text x="' + (128 + w + 8).toFixed(1) + '" y="' + (y + 19) + '" fill="' + C.texte + '" font-size="14" font-weight="600">' + e.g + ' g</text>') + '</g>';
+      }).join('');
+      return svgE(272, 'Chronologie de la recette V60', lignes);
+    },
+    mouture: function () {
+      var m = [
+        { n: 'Espresso', d: 'fine', r: 2.2 }, { n: 'V60', d: 'médium-fine, sucre semoule', r: 3.4 }, { n: 'Moka', d: 'médium', r: 4.2 },
+        { n: 'Piston', d: 'grossière', r: 5.6 }, { n: 'Cold brew', d: 'très grossière, sucre gros', r: 7 }];
+      var lignes = m.map(function (e, k) {
+        var y = 32 + k * 54, cx = 34, cy = y + 20, pts = '';
+        for (var j = 0; j < 14; j++) {
+          var a = (j * 137.5) * Math.PI / 180, rr = 4 + 18 * Math.sqrt(j / 14), x = cx + rr * Math.cos(a), yy = cy + rr * Math.sin(a) * 0.9;
+          pts += '<circle class="tombe" style="animation-delay:' + (k * 0.25 + j * 0.03).toFixed(2) + 's" cx="' + x.toFixed(1) + '" cy="' + yy.toFixed(1) + '" r="' + (e.r * 0.72).toFixed(2) + '" fill="' + C.cuivre + '"/>';
+        }
+        return '<g>' + pts + '<text x="80" y="' + (y + 17) + '" fill="' + C.texte + '" font-size="15.5" font-weight="600">' + e.n + '</text><text x="80" y="' + (y + 36) + '" fill="' + C.douxE + '" font-size="15">' + e.d + '</text></g>';
+      }).join('');
+      var fl = '<text x="0" y="16" fill="' + C.douxE + '" font-size="15">Plus fin, extraction rapide</text><text x="0" y="324" fill="' + C.douxE + '" font-size="15">Plus grossier, contact long</text>' +
+        '<line x1="344" y1="28" x2="344" y2="300" stroke="' + C.filet + '"/><path d="M339 294 L344 302 L349 294" fill="none" stroke="' + C.douxE + '"/>';
+      return svgE(332, 'Taille de mouture par méthode, de l’espresso au cold brew', fl + lignes);
+    },
+    eau: function () {
+      var eaux = [
+        { n: 'Mont Blanc', v: 134, r: '1re ex æquo', c: C.crema }, { n: 'Volvic', v: 130, r: '1re ex æquo', c: C.crema },
+        { n: 'Rocheval', v: 240, r: '3e', c: C.cuivre }, { n: 'Cristaline (Louise)', v: 477, r: '5e', c: C.cerise },
+        { n: 'Mont Roucous', v: 33, r: 'non goûtée', c: 'rgba(244,236,227,.35)' }];
+      var x0 = 0, x1 = 340, sx = function (v) { return x0 + (x1 - x0) * v / 500; };
+      var bande = '<rect x="' + sx(75) + '" y="24" width="' + (sx(250) - sx(75)) + '" height="272" fill="rgba(143,176,143,.10)"/><text x="' + sx(162) + '" y="16" fill="' + C.feuille + '" font-size="15" font-weight="600" text-anchor="middle">SCAA : 75 à 250</text>' +
+        '<line x1="' + sx(150) + '" y1="24" x2="' + sx(150) + '" y2="296" stroke="' + C.feuille + '" stroke-dasharray="4 5"/>';
+      var lignes = eaux.map(function (e, k) {
+        var y = 32 + k * 54;
+        return '<text x="0" y="' + (y + 14) + '" fill="' + C.texte + '" font-size="14">' + e.n + '</text>' +
+          '<text class="apparait" style="animation-delay:' + (1 + k * 0.25) + 's" x="340" y="' + (y + 14) + '" fill="' + C.texte + '" font-size="15" font-weight="600" text-anchor="end">' + e.v + ' mg/L · ' + e.r + '</text>' +
+          '<rect class="pousse-x" style="animation-delay:' + (0.3 + k * 0.25) + 's" x="' + x0 + '" y="' + (y + 22) + '" width="' + (sx(e.v) - x0).toFixed(1) + '" height="16" rx="4" fill="' + e.c + '"/>';
+      }).join('');
+      var axe = [0, 100, 200, 300, 400, 500].map(function (v, k) { return '<text x="' + sx(v) + '" y="316" fill="' + C.douxE + '" font-size="15" text-anchor="' + (k === 0 ? 'start' : k === 5 ? 'end' : 'middle') + '">' + v + '</text>'; }).join('');
+      return svgE(324, 'Résidu sec des eaux testées face à la plage SCAA', bande + lignes + axe);
+    },
+    degazage: function () {
+      var x0 = 14, x1 = 346, sx = function (j) { return x0 + (x1 - x0) * j / 49; };
+      var zones = '<text x="' + sx(7) + '" y="40" fill="' + C.crema + '" font-size="14" font-weight="600">Filtre : 7 à 14 j de repos</text><rect class="pousse-x" x="' + sx(7) + '" y="48" width="' + (sx(14) - sx(7)).toFixed(1) + '" height="26" rx="6" fill="' + C.crema + '"/>' +
+        '<text x="' + sx(10) + '" y="104" fill="' + C.cuivre + '" font-size="14" font-weight="600">Espresso : 10 à 21 j</text><rect class="pousse-x" style="animation-delay:.4s" x="' + sx(10) + '" y="112" width="' + (sx(21) - sx(10)).toFixed(1) + '" height="26" rx="6" fill="' + C.cuivre + '"/>' +
+        '<text x="' + sx(49) + '" y="168" fill="' + C.cerise + '" font-size="14" font-weight="600" text-anchor="end">les arômes fins s’estompent</text><rect class="pousse-x" style="animation-delay:.8s" x="' + sx(42) + '" y="176" width="' + (sx(49) - sx(42)).toFixed(1) + '" height="18" rx="6" fill="rgba(224,103,63,.55)"/>';
+      var ticks = [0, 7, 14, 21, 28, 35, 42, 49].map(function (j, k) { return '<line x1="' + sx(j) + '" y1="212" x2="' + sx(j) + '" y2="218" stroke="' + C.douxE + '"/><text x="' + sx(j) + '" y="234" fill="' + C.douxE + '" font-size="15" text-anchor="' + (k === 0 ? 'start' : k === 7 ? 'end' : 'middle') + '">' + j + '</text>'; }).join('');
+      var bulles = '';
+      for (var b = 0; b < 10; b++) { var x = sx(0.6 + (b % 5) * 1.2), dl = (b * 0.37) % 3; bulles += '<circle cx="' + x.toFixed(1) + '" cy="200" r="' + (2 + (b % 3)) + '" fill="none" stroke="' + C.texte + '" stroke-opacity=".6" style="animation:v2-bulle 2.6s ' + dl.toFixed(2) + 's ease-out infinite"/>'; }
+      return svgE(262, 'Fenêtres de repos après torréfaction', '<line x1="' + x0 + '" y1="212" x2="' + x1 + '" y2="212" stroke="' + C.filet + '"/>' + zones + bulles + '<text x="' + sx(1.5) + '" y="152" fill="' + C.douxE + '" font-size="15">CO₂</text>' + ticks + '<text x="180" y="254" fill="' + C.douxE + '" font-size="15" text-anchor="middle">jours après la torréfaction</text>');
+    },
+    espresso: function () {
+      var x0 = 14, x1 = 346, sx = function (s) { return x0 + (x1 - x0) * s / 45; };
+      var zones = '<rect x="' + sx(0) + '" y="30" width="' + (sx(22) - sx(0)).toFixed(1) + '" height="40" fill="rgba(143,176,143,.18)"/><rect x="' + sx(25) + '" y="30" width="' + (sx(30) - sx(25)).toFixed(1) + '" height="40" fill="rgba(239,199,156,.45)"/><rect x="' + sx(35) + '" y="30" width="' + (sx(45) - sx(35)).toFixed(1) + '" height="40" fill="rgba(224,103,63,.25)"/>';
+      var ticks = [0, 10, 20, 30, 40].map(function (v) { return '<text x="' + sx(v) + '" y="90" fill="' + C.douxE + '" font-size="15" text-anchor="' + (v === 0 ? 'start' : 'middle') + '">' + v + ' s</text>'; }).join('');
+      var reel = '<rect x="' + sx(22) + '" y="100" width="' + (sx(40) - sx(22)).toFixed(1) + '" height="6" rx="3" fill="' + C.douxE + '"/>';
+      var aiguille = '<g style="animation:v2-balaye 4s 1s cubic-bezier(.3,.1,.3,1) forwards;--d:' + (sx(26) - x0).toFixed(1) + 'px"><line x1="' + x0 + '" y1="24" x2="' + x0 + '" y2="76" stroke="' + C.texte + '" stroke-width="2.5"/><circle cx="' + x0 + '" cy="24" r="5" fill="' + C.texte + '"/></g>';
+      var leg = [['rgba(143,176,143,.6)', C.feuille, 'trop rapide : acide, maigre'], ['rgba(239,199,156,.8)', C.crema, 'repère 25 à 30 s'], ['rgba(224,103,63,.6)', C.cerise, 'trop lent : amer, astringent']].map(function (r, k) {
+        var y = 134 + k * 24; return '<rect x="14" y="' + (y - 11) + '" width="12" height="12" rx="3" fill="' + r[0] + '"/><text x="34" y="' + y + '" fill="' + r[1] + '" font-size="14" font-weight="600">' + r[2] + '</text>';
+      }).join('');
+      var bas = '<rect x="14" y="' + 201 + '" width="12" height="5" rx="2" fill="' + C.douxE + '"/><text x="34" y="208" fill="' + C.douxE + '" font-size="15">en coffee shop : de 22 à 40 s</text>' +
+        '<text x="14" y="236" fill="' + C.texte + '" font-size="15" font-weight="600">18 g → 36 g</text><text x="14" y="260" fill="' + C.texte + '" font-size="14" font-weight="600">Mon protocole : environ 26 s, 92 à 94 °C</text>';
+      return svgE(270, 'Temps d’extraction de l’espresso et goût', zones + ticks + reel + aiguille + leg + bas);
+    }
+  };
 
   var SCHEMAS = {
     extraction: function () {
@@ -427,5 +526,39 @@
       });
     }, { threshold: 0.2 });
     illus.forEach(function (v) { ioIllu.observe(v); });
+  }
+  /* ── Tableaux plus larges que l'écran : mention « Faites glisser » et fondu à droite
+     jusqu'à ce que la fin soit visible (styles .v2-glisser et .v2-deborde dans v2.css). ── */
+  var defilants = $$('.prose-article table:not([role=presentation]), .prose-article .overflow-x-auto, .prose-article [style*="overflow"], .top8-tableau, .table-scroll, .calc-ratio__tableau, .outil-eau__tableau');
+  function marquerDefilants() {
+    var vus = [];
+    defilants.forEach(function (el) {
+      var ox = getComputedStyle(el).overflowX;
+      var deborde = (ox === 'auto' || ox === 'scroll') && el.scrollWidth > el.clientWidth + 4;
+      el.classList.toggle('v2-deborde', deborde);
+      if (deborde && !el.v2Indice) {
+        var cadre = el;
+        while (cadre.parentElement && cadre.parentElement.children.length === 1 && !cadre.parentElement.matches('article, main, body, .prose-article')) cadre = cadre.parentElement;
+        var avant = cadre.previousElementSibling;
+        if (avant && avant.classList.contains('v2-glisser')) el.v2Indice = avant;
+        else {
+          el.v2Indice = document.createElement('p');
+          el.v2Indice.className = 'v2-glisser';
+          el.v2Indice.setAttribute('aria-hidden', 'true');
+          el.v2Indice.textContent = 'Faites glisser le tableau\u00a0→';
+          cadre.parentNode.insertBefore(el.v2Indice, cadre);
+        }
+        el.addEventListener('scroll', function () { el.classList.toggle('fin', el.scrollLeft + el.clientWidth >= el.scrollWidth - 2); }, { passive: true });
+      }
+      if (el.v2Indice) {
+        if (vus.indexOf(el.v2Indice) < 0) { vus.push(el.v2Indice); el.v2Indice.hidden = true; }
+        if (deborde) el.v2Indice.hidden = false;
+      }
+    });
+  }
+  if (defilants.length) {
+    marquerDefilants();
+    window.addEventListener('load', marquerDefilants);
+    window.addEventListener('resize', marquerDefilants);
   }
 })();
