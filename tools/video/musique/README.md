@@ -44,6 +44,7 @@ Prises retenues (graine, réglages) :
 - Moka (41,87 s) : graine 1019387184, `MELODIE=flute`. Ré mineur, i9 iv9 bVII13 bIIImaj9, 88 bpm, Standard.
 - Cold brew (40,77 s) : graine 23, `MELODIE=flute`. Do majeur, ii9 V13 Imaj9 VI7b13, 83 bpm, Room.
 - Espresso (34,43 s) : graine 1476816975, `MELODIE=guitare`. Fa mineur, i9 bVImaj9 iv9 V7b13, 89 bpm, Standard.
+- Méthode 4:6 (52,87 s) : graine 19, `MELODIE=flute`. Si bémol majeur, vi9 ii9 V13 Imaj9, 83 bpm, Standard.
 
 Une même graine et les mêmes variables redonnent exactement le même morceau.
 

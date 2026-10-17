@@ -9,13 +9,14 @@ type Pos = { x: number; y: number; s: number };
 // une goutte tombe (si la méthode en a une), le nom s'annonce, trois repères.
 export const TitreMethode: React.FC<{
   nom: string;
+  surtitre?: string; // « La recette » par défaut
   tailleNom?: number;
   puces: string[];
   objet: { vertical: Pos; paysage: Pos };
   sol: { vertical: number; paysage: number };
   goutte?: { dx: number; dy: number } | null; // départ de la goutte, repère de l'objet
   dessin: (p: Pos & { trace: number; frame: number }) => React.ReactNode;
-}> = ({ nom, tailleNom = 300, puces, objet, sol, goutte = null, dessin }) => {
+}> = ({ nom, surtitre = "La recette", tailleNom = 300, puces, objet, sol, goutte = null, dessin }) => {
   const frame = useCurrentFrame();
   const paysage = usePaysage();
   const O = paysage ? objet.paysage : objet.vertical;
@@ -72,7 +73,7 @@ export const TitreMethode: React.FC<{
             : null}
         </svg>
         <Mots
-          texte="La recette"
+          texte={surtitre}
           debut={6}
           style={{
             position: "absolute",

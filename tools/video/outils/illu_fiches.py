@@ -133,7 +133,6 @@ F = [
     s("meilleure-machine-espresso-debutant", "Débuter l'espresso", "MachineEspresso"),
     s("meilleure-machine-espresso-manuelle-2026", "Machines manuelles", "MachineEspresso"),
     o("meilleurs-cafes-paris", "Adresses", 48.86, 2.35, "Paris", 5.5),
-    s("methode-4-6-kasuya", "Méthode 4:6", "V60"),
     s("mousser-lait-vapeur-temperature", "Mousse de lait", "Mousse"),
     s("mouture-cafe-v60", "Mouture", "MoulinManuel"),
     s("naturel-lave-honey", "Naturel, lavé, honey", "Cerises"),

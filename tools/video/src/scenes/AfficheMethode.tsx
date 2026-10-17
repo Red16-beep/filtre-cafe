@@ -49,10 +49,11 @@ const Signature: React.FC<{ style: React.CSSProperties }> = ({ style }) => (
 export const AfficheMethode: React.FC<{
   format: Format;
   nom: string;
+  surtitre?: string; // « La recette » par défaut
   tailleNom?: { paysage: number; vertical: number };
   puces: string[];
   poste: React.ReactNode;
-}> = ({ format, nom, tailleNom = { paysage: 400, vertical: 280 }, puces, poste }) => {
+}> = ({ format, nom, surtitre = "La recette", tailleNom = { paysage: 400, vertical: 280 }, puces, poste }) => {
   const paysage = format === "paysage";
   return (
     <FormatCtx.Provider value={format}>
@@ -71,9 +72,7 @@ export const AfficheMethode: React.FC<{
                   color: "#efc79c",
                   lineHeight: 1,
                 }}
-              >
-                La recette
-              </div>
+              >{surtitre}</div>
               <div
                 style={{
                   fontFamily: "Newsreader, serif",
@@ -106,9 +105,7 @@ export const AfficheMethode: React.FC<{
                   color: "#efc79c",
                   lineHeight: 1,
                 }}
-              >
-                La recette
-              </div>
+              >{surtitre}</div>
               <div
                 style={{
                   fontFamily: "Newsreader, serif",

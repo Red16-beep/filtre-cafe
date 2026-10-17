@@ -4,6 +4,8 @@ import { AERO_DUREE, AeroPressPaysage, AeroPressVertical } from "./aeropress/Aer
 import { AeroAffiche, AeroAfficheVerticale } from "./aeropress/Affiche";
 import { EssaiAero } from "./aeropress/Essai";
 import { EPINGLES } from "./epingles";
+import { KASUYA_DUREE, KasuyaPaysage, KasuyaVertical } from "./kasuya/Kasuya";
+import { KasuyaAffiche, KasuyaAfficheVerticale } from "./kasuya/Affiche";
 import { ESSAIS_ILLU } from "./illustrations/Essais";
 import { FICHES_ILLU, IlluArticle } from "./illustrations/Articles";
 import { PERIODE } from "./illustrations/Cadre";
@@ -89,6 +91,10 @@ export const RemotionRoot: React.FC = () => {
       <Composition id="EspPaysage" component={EspPaysage} durationInFrames={ESP_DUREE} fps={30} width={1920} height={1080} />
       <Still id="EspAffiche" component={EspAffiche} width={1920} height={1080} />
       <Still id="EspAfficheVerticale" component={EspAfficheVerticale} width={1080} height={1920} />
+      <Composition id="KasuyaVertical" component={KasuyaVertical} durationInFrames={KASUYA_DUREE} fps={30} width={1080} height={1920} />
+      <Composition id="KasuyaPaysage" component={KasuyaPaysage} durationInFrames={KASUYA_DUREE} fps={30} width={1920} height={1080} />
+      <Still id="KasuyaAffiche" component={KasuyaAffiche} width={1920} height={1080} />
+      <Still id="KasuyaAfficheVerticale" component={KasuyaAfficheVerticale} width={1080} height={1920} />
       <Folder name="Epingles">
         {EPINGLES.map((p) => (
           <Still key={p.id} id={p.id} component={p.c} width={1000} height={1500} />
