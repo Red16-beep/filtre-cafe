@@ -34,7 +34,7 @@
 
 /* ── Base ─────────────────────────────────────────── */
 html{scroll-padding-top:calc(var(--entete) + 16px)}
-body.v2{background:var(--creme)!important;color:var(--torref)!important;font-family:var(--serif)!important;font-size:var(--t-texte);letter-spacing:normal!important;-webkit-font-smoothing:antialiased}
+body.v2{margin:0;background:var(--creme)!important;color:var(--torref)!important;font-family:var(--serif)!important;font-size:var(--t-texte);letter-spacing:normal!important;-webkit-font-smoothing:antialiased}
 body.v2 .noise{display:none!important}
 body.v2 ::selection{background:var(--crema);color:var(--espresso)}
 @layer base{:where(.v2) a{color:inherit}}

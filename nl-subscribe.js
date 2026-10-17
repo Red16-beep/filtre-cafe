@@ -19,13 +19,26 @@ async function nlSubscribe(e) {
     });
 
     if (res.ok) {
+      if (typeof equateur === 'function') equateur('NewsletterSignup', { props: { source: form.dataset.source || 'fin-article', page: window.location.pathname } });
       form.outerHTML = '<p class="text-amber-400 text-sm font-medium mt-1">Bienvenue ! On se retrouve dans votre boîte mail.</p>';
     } else {
-      btn.disabled = false;
-      btn.textContent = 'Réessayer →';
+      nlErreur(form, btn);
     }
   } catch {
-    btn.disabled = false;
-    btn.textContent = 'Réessayer →';
+    nlErreur(form, btn);
   }
+}
+
+function nlErreur(form, btn) {
+  btn.disabled = false;
+  btn.textContent = 'Réessayer →';
+  let p = form.parentNode.querySelector('.nl-erreur');
+  if (!p) {
+    p = document.createElement('p');
+    p.className = 'nl-erreur';
+    p.setAttribute('role', 'alert');
+    p.style.cssText = 'margin:.5rem 0 0;font-size:.875rem;font-weight:600';
+    form.insertAdjacentElement('afterend', p);
+  }
+  p.textContent = 'Une erreur est survenue. Réessayez dans un moment.';
 }

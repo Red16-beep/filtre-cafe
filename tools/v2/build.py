@@ -226,7 +226,7 @@ def accueil():
   <div class="v2-wrap v2-lettre">
     <div><p class="v2-kicker">La lettre filtré.</p><h2 class="v2-h2" id="t-lettre">Du grain à la tasse,<br><em>sans bruit</em>.</h2>
     <p class="v2-chapeau" style="margin-top:18px">Les cafés que je goûte, les origines rares, les erreurs que je corrige. Gratuit, sans spam.</p></div>
-    <div><form onsubmit="nlSubscribe(event)"><label for="v2-email" style="position:absolute;left:-9999px">Votre adresse e-mail</label><input id="v2-email" type="email" placeholder="votre@email.fr" required autocomplete="email"><button type="submit" class="v2-btn">S’inscrire {FL}</button></form>
+    <div><form onsubmit="nlSubscribe(event)" data-source="accueil"><label for="v2-email" style="position:absolute;left:-9999px">Votre adresse e-mail</label><input id="v2-email" type="email" placeholder="votre@email.fr" required autocomplete="email"><button type="submit" class="v2-btn">S’inscrire {FL}</button></form>
     <p class="v2-lettre__note">Lire les <a href="/newsletter">lettres déjà parues</a>. Désinscription en un clic.</p></div>
   </div>
 </section>'''
