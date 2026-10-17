@@ -132,7 +132,7 @@
         document.getElementById('ei-ok').style.display = 'block';
         sessionStorage.setItem(STORAGE_KEY, '1');
         if (typeof equateur === 'function') {
-          equateur('track', 'NewsletterSignup', { source: 'exit-intent', page: window.location.pathname });
+          equateur('NewsletterSignup', { props: { source: 'exit-intent', page: window.location.pathname } });
         }
         setTimeout(dismissPopup, 3000);
       } catch {
