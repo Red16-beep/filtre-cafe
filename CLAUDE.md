@@ -52,10 +52,14 @@ La fonction appelle `POST /v3/contacts/doubleOptinConfirmation` dès que la
 variable d'environnement `BREVO_DOI_TEMPLATE_ID` existe : l'adresse n'entre dans
 la liste qu'après un clic dans le mail de confirmation, et une adresse injectée ne
 confirme jamais. Sans la variable, l'inscription est directe (ancien comportement).
-Pour l'activer : créer dans Brevo un modèle de mail de double opt-in (dans les
-paramètres des formulaires d'inscription du compte), puis renseigner son numéro
-dans Cloudflare Pages, Settings, Variables d'environnement (production). La redirection après clic va
-vers `https://filtre.cafe/newsletter`.
+Le modèle est prêt dans Brevo : n° 1, « Template de confirmation double opt-in par
+défaut », expéditeur « filtré. » <reda@news.filtre.cafe> (domaine authentifié), objet
+« Confirmez votre inscription à la lettre filtré. » (réglé le 18 octobre 2026). Pour
+l'activer : Cloudflare Pages, projet filtre-cafe, Settings, Variables d'environnement
+(production), `BREVO_DOI_TEMPLATE_ID` = `1`, puis redéployer. La redirection après clic
+va vers `https://filtre.cafe/newsletter`. Si Brevo refuse la demande de confirmation
+(modèle supprimé ou mal réglé), la fonction inscrit directement l'adresse et l'écrit dans
+les journaux : un réglage cassé ne fait jamais perdre un lecteur.
 
 Turnstile reste la réponse si l'abus devient réel. Ne pas l'ajouter par
 précaution : c'est du poids sur toutes les pages pour un problème hypothétique.

@@ -76,7 +76,7 @@ async function subscribe(env, email) {
   const templateId = parseInt(env.BREVO_DOI_TEMPLATE_ID, 10);
 
   if (templateId) {
-    return fetch('https://api.brevo.com/v3/contacts/doubleOptinConfirmation', {
+    const res = await fetch('https://api.brevo.com/v3/contacts/doubleOptinConfirmation', {
       method: 'POST',
       headers,
       body: JSON.stringify({
@@ -86,6 +86,12 @@ async function subscribe(env, email) {
         redirectionUrl: `${SITE}/newsletter`
       })
     });
+    if (res.status === 201 || res.status === 204) return res;
+    const data = await res.clone().json().catch(() => ({}));
+    if (data.code === 'duplicate_parameter') return res;
+    // Modèle absent ou mal configuré : on inscrit directement plutôt que de perdre
+    // un lecteur légitime (même règle que pour le compteur).
+    console.error('subscribe: double opt-in refusé, ajout direct', res.status, data.code || '');
   }
 
   // updateEnabled à false : une adresse déjà désinscrite n'est pas réactivée.
