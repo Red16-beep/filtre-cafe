@@ -75,7 +75,17 @@ def accueil():
     <div class="v2-hero__bas">
       <div class="v2-chiffres">
         <div class="v2-chiffre"><strong>{NB_ARTICLES}</strong><span>guides, tests et recettes, datés et mis à jour</span></div>
-        <div class="v2-chiffre"><strong>6</strong><span>eaux goûtées à l’aveugle<a href="/journal/eau-cafe-filtre-tds-mineraux">protocole</a></span></div>
+        <div class="v2-chiffre"><strong>6</strong><span>eaux goûtées à l’aveugle</span></div>
+        <a class="v2-protocole" href="/journal/eau-cafe-filtre-tds-mineraux#test">
+          <svg class="v2-protocole__anim" viewBox="0 0 48 56" aria-hidden="true">
+            <ellipse class="onde o1" cx="24" cy="31" rx="7" ry="1.4"/><ellipse class="onde o2" cx="24" cy="31" rx="7" ry="1.4"/><ellipse class="onde o3" cx="24" cy="31" rx="7" ry="1.4"/>
+            <path class="g g1" d="M24 2C26.5 6 28 8.5 28 10.5A4 4 0 0 1 20 10.5C20 8.5 21.5 6 24 2Z"/><path class="g g2" d="M24 2C26.5 6 28 8.5 28 10.5A4 4 0 0 1 20 10.5C20 8.5 21.5 6 24 2Z"/><path class="g g3" d="M24 2C26.5 6 28 8.5 28 10.5A4 4 0 0 1 20 10.5C20 8.5 21.5 6 24 2Z"/>
+            <ellipse class="surface" cx="24" cy="31" rx="15" ry="2.2"/>
+            <path class="trait" d="M9 31H39V35C39 44 33 50 24 50C15 50 9 44 9 35Z"/><path class="trait" d="M39 35C45 35 45 43 38.5 43.5"/><path class="trait" d="M5 53.5H43"/>
+          </svg>
+          <span><b>Mon protocole</b><small>ou comment goûter (vraiment) un café</small></span>
+          <span class="v2-fleche" aria-hidden="true">→</span>
+        </a>
       </div>
       <div class="v2-legende" aria-live="polite">
         <div class="v2-legende__nav"><button id="v2-legende-prec" type="button" aria-label="Scène précédente">‹</button><span id="v2-legende-num">01 / 05</span><button id="v2-legende-suiv" type="button" aria-label="Scène suivante">›</button></div>
