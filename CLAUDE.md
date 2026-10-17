@@ -76,3 +76,14 @@ Pour signaler à Bing les pages nouvelles ou modifiées, depuis une machine avec
 réseau : `node scripts/indexnow-submit.mjs <urls>` (sans argument, tout le sitemap part).
 Ne jamais le lancer sans l'accord de l'auteur : il émet des requêtes vers `api.indexnow.org`.
 La clé est publique par construction (fichier `.txt` à la racine), ce n'est pas un secret.
+
+## Pages générées par `tools/v2/build.py`
+
+Depuis le lancement de la v2 (17 octobre 2026), `astro/src/layouts/Base.astro` et les pages
+racine (`a-propos.html`, `commencer-ici.html`, `mentions-legales.html`, `newsletter/NN.html`…)
+sont des sources ordinaires : on les modifie directement. `python3 tools/v2/build.py` ne
+régénère plus que l'accueil, la 404, `/cafes-du-monde`, `/schemas` et `/recettes` (à modifier
+dans `build.py` ou `scenes.py`), puis met à jour en place, dans les sources, le numéro de
+version de `v2.css` / `v2.js` et les espaces insécables. L'option `--habiller-originaux`
+reconstruit encore Base.astro et les pages racine depuis l'ancien `main` (98c34d9) : elle écrase
+toute modification faite depuis, ne pas l'utiliser.

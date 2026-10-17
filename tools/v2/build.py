@@ -381,7 +381,7 @@ def page_schemas():
     astro_page('schemas', 'Le café en schémas animés | filtré.', 'Extraction, recette V60, mouture, eau, dégazage, espresso : six schémas animés pour comprendre le café de spécialité.', '/schemas', corps, 'Le café en schémas')
 
 # ── Habillage : Base.astro et pages racine ────────────────────────────────
-BASE = '98c34d9'  # commit de main d'où part la refonte (Equateur à jour) : on habille toujours les fichiers d'origine
+BASE = '98c34d9'  # commit de main d'où partait la refonte ; ne sert plus qu'avec --habiller-originaux
 
 def original(rel):
     import subprocess
@@ -525,5 +525,27 @@ def sync_public():
         s = s.replace('echo "public/ synced."', MINIFIER + 'echo "public/ synced."')
     ecrire(p, s)
 
+def entretenir_sources():
+    """Base.astro et les pages racine sont des sources depuis le lancement de la v2 (17 oct. 2026) :
+    on ne les régénère plus, on y met seulement à jour la version de v2.css / v2.js et la typographie
+    (passes idempotentes, faites en place, sans rien perdre des modifications faites à la main)."""
+    for rel in ['astro/src/layouts/Base.astro'] + RACINE_PAGES:
+        p = os.path.join(R, rel)
+        if not os.path.exists(p): continue
+        s = lire(p)
+        t = re.sub(r'(/v2/v2\.(?:css|js))(?:\?v=[0-9a-f]+)?"', lambda m: f'{m.group(1)}?v={VERSION_V2}"', s)
+        if rel.endswith('.html'):
+            i = t.find('<body'); t = t[:i] + typo(t[i:]) if i >= 0 else t
+        if t != s:
+            open(p, 'w', encoding='utf-8').write(t); print('entretenu', rel)
+
 if __name__ == '__main__':
-    accueil(); page_404(); cafes_du_monde(); page_schemas(); page_recettes(); base_astro(); pages_racine(); sync_public()
+    # Pages entièrement fabriquées ici (modifier leur contenu dans ce fichier ou dans scenes.py).
+    accueil(); page_404(); cafes_du_monde(); page_schemas(); page_recettes()
+    if '--habiller-originaux' in sys.argv:
+        # Ancienne migration : réécrit Base.astro et les pages racine à partir de main à 98c34d9.
+        # Écrase toute modification faite depuis dans ces fichiers : à ne lancer qu'en connaissance de cause.
+        base_astro(); pages_racine()
+    else:
+        entretenir_sources()
+    sync_public()
