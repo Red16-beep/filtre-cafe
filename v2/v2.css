@@ -561,6 +561,12 @@ body.v2 .v2-glisser+*{margin-top:0!important}
 body.v2 .verdict-yes{background:#edf2ea!important;color:var(--feuille)!important;border-color:#c9d8c6!important}
 /* G18 liens-cartes : pas de soulignement de texte courant */
 body.v2 .prose-article a:is([style*="display:flex"],.group){text-decoration:none!important;color:inherit!important}
+/* G18b liens d'achat en carte : le nom du produit reste un lien visible */
+body.v2 .prose-article a[rel~="sponsored"][style*="display:flex"] strong{text-decoration:underline;text-decoration-color:var(--cerise);text-decoration-thickness:1px;text-underline-offset:3px;color:var(--cerise-texte)!important}
+/* Prix des tableaux comparatifs : jamais coupés après le tiret */
+body.v2 .recap-table td:nth-child(2){white-space:nowrap}
+/* Article eau : le tableau des minéraux tient dans la colonne en bureau */
+@media (min-width:641px){body.v2 .prose-article .table-scroll .tds-table{min-width:0!important}body.v2 .prose-article .table-scroll .tds-table th{letter-spacing:.04em!important}body.v2 .prose-article .table-scroll .tds-table :is(th,td){padding-inline:.5rem!important}}
 /* G20 fins de page */
 body.v2 article.prose-article{counter-reset:v2sec}
 body.v2 main:not([class*="pb-"])>[data-author-bio]:last-child,body.v2>[data-author-bio]{margin-bottom:clamp(48px,8vw,80px)!important}
@@ -588,9 +594,6 @@ body.v2 .tag-lexique{background:var(--creme-fonce)!important;color:var(--cuivre)
 .v2-dark .v2-schema{background:var(--espresso-2);border:1px solid rgba(244,236,227,.1)}
 /* G24 pages à composants propres */
 body.v2 .calc-ratio p{margin:0!important}
-body.v2 main>.toc a{display:grid;grid-template-columns:2.4em minmax(0,1fr);align-items:baseline;font-size:16px;padding:10px 0}
-body.v2 main>.toc a .n{margin:0}
-body.v2 main>.toc .toc-title{font-size:12.5px}
 /* G26 journal : toute la carte est cliquable, champ de recherche réparé */
 body.v2 #journal-grid .article-card{position:relative}
 body.v2 #journal-grid .article-card .arrow-link::after{content:"";position:absolute;inset:0;z-index:1}
@@ -700,7 +703,9 @@ body.v2 #journal-search-icon{right:16px;left:auto;pointer-events:none}
   body.v2 .top8-tableau:has(td.rang) :is(th,td){display:block;padding:0;border:0}
   body.v2 .top8-tableau:has(td.rang) td:nth-child(n+4){grid-column:2/-1}
   body.v2 .top8-tableau:has(td.rang) td:nth-child(4){font-size:15px;line-height:1.45;color:var(--texte-doux)}
-  body.v2 .calc-ratio__tableau table{min-width:0!important}
+  body.v2 .prose-article :is(.table-scroll,.calc-ratio__tableau,.outil-eau__tableau)>table{display:table!important;max-width:none!important;overflow:visible!important}
+  body.v2 .calc-ratio__tableau table{min-width:34rem!important}
+  body.v2 .calc-ratio__tableau tbody th{position:sticky;left:0;z-index:1;background:#fff}
   body.v2 .table-scroll .tds-table td:first-child{min-width:7rem!important}
 
   /* G14 « À lire aussi » */
@@ -744,7 +749,8 @@ body.v2 #journal-search-icon{right:16px;left:auto;pointer-events:none}
   body.v2 .guide-card{padding:22px}
   body.v2 .guide-card span.text-2xl{display:none}
   body.v2 .border-dashed.opacity-60{padding:16px 20px;border-radius:18px}
-  body.v2 .border-dashed.opacity-60 :is(p,.text-2xl){display:none}
+  body.v2 .border-dashed.opacity-60 :is(p,span.text-2xl){display:none}
+  body.v2 .border-dashed.opacity-60>div:first-child{margin-bottom:8px}
   body.v2 .border-dashed.opacity-60 h2{font-size:20px!important;margin:0!important}
 
   /* G22 vidéos tutos : vidéo entière visible entre l'en-tête et la barre d'onglets */
@@ -805,6 +811,23 @@ body.v2 #journal-search-icon{right:16px;left:auto;pointer-events:none}
   .v2-err__machine{width:min(250px,62%)}
   .v2-err__verdict{padding-right:0;padding-bottom:44px}
   .v2-err__fiche dt,.v2-err__fiche-titre{font-size:12px}
+
+  /* Contre-vérification : finitions */
+  body.v2 main>.toc a{display:grid;grid-template-columns:2.4em minmax(0,1fr);align-items:baseline;font-size:16px;padding:10px 0}
+  body.v2 main>.toc a .n{margin:0}
+  body.v2 main>.toc .toc-title{font-size:12.5px}
+  body.v2 .info-box :is(p,div,ul)[style*="font-size:.9rem"]:not([style*="grid"]):not(:has(>div[style*="grid"])){font-size:16px!important;line-height:1.6!important;font-weight:400!important}
+  body.v2 .info-box span[style*="font-size:0.875rem"]{font-size:16px!important;font-weight:400!important}
+  body.v2 .prose-article>aside[style*="border-left:3px"] ul{font-size:16px!important;line-height:1.7!important}
+  body.v2 .prose-article>aside[style*="border-left:3px"]>p:first-child{font-size:12px!important;font-family:var(--sans)!important;letter-spacing:.16em!important}
+  body.v2 .prose-article table th{font-size:12px!important}
+  body.v2 .recap-table thead th{font-size:12.5px!important;white-space:nowrap}
+  body.v2 .prose-article .budget-card .budget-model>a{display:inline-block;padding-block:11px}
+  body.v2 .method-specs .spec-item{display:flex;flex-direction:column}
+  body.v2 .method-specs .spec-value{margin-top:auto}
+  body.v2 header span.tag{font-family:var(--sans);font-size:11.5px;letter-spacing:.12em}
+  body.v2 .kit-setup{padding:24px 20px}
+  body.v2 .kit-setup-label{letter-spacing:.1em;text-wrap:balance}
 }
 
 /* G24 calculateur de ratio : une ligne par réglage */

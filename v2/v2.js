@@ -109,7 +109,13 @@
     if (document.getElementById('v2-schemas-css')) return;
     var st = document.createElement('style'); st.id = 'v2-schemas-css'; st.textContent = CSS_SCHEMAS; document.head.appendChild(st);
   }
+  /* Typographie française des légendes (injectées ici, elles ne passent pas par typo() au build). */
+  function fines(t) {
+    return t.replace(/ ([;?!])/g, '\u202f$1').replace(/ ([:\u00bb])/g, '\u00a0$1').replace(/\u00ab /g, '\u00ab\u00a0')
+      .replace(/(\d) (g|kg|ml|cl|L|°C|s|min|mm|%|€)(?![A-Za-zÀ-ÿ])/g, '$1\u00a0$2');
+  }
   function fig(cle, titre, etiquette, svg, legende) {
+    legende = legende ? fines(legende) : legende;
     var etroit = ETROITS[cle] ? ETROITS[cle]() : '';
     if (etroit) svg = svg.replace('<svg ', '<svg class="v2-svg-large" ');
     return '<figure class="v2-schema" data-cle="' + cle + '"><div class="v2-schema__tete"><div><span>' + etiquette + '</span><h3>' + titre + '</h3></div>' +
@@ -529,8 +535,10 @@
   }
   /* ── Tableaux plus larges que l'écran : mention « Faites glisser » et fondu à droite
      jusqu'à ce que la fin soit visible (styles .v2-glisser et .v2-deborde dans v2.css). ── */
-  var defilants = $$('.prose-article table:not([role=presentation]), .prose-article .overflow-x-auto, .prose-article [style*="overflow"], .top8-tableau, .table-scroll, .calc-ratio__tableau, .outil-eau__tableau');
+  var SEL_DEFILANTS = '.prose-article table:not([role=presentation]), .prose-article .overflow-x-auto, .prose-article [style*="overflow"], .top8-tableau, .table-scroll, .calc-ratio__tableau, .outil-eau__tableau, .torref-tableau';
+  var defilants = $$(SEL_DEFILANTS);
   function marquerDefilants() {
+    defilants = $$(SEL_DEFILANTS);
     var vus = [];
     defilants.forEach(function (el) {
       var ox = getComputedStyle(el).overflowX;
@@ -556,9 +564,12 @@
       }
     });
   }
-  if (defilants.length) {
+  if (defilants.length || document.getElementById('oe-resultat')) {
     marquerDefilants();
     window.addEventListener('load', marquerDefilants);
     window.addEventListener('resize', marquerDefilants);
+    /* l'outil eau injecte son tableau après la recherche */
+    var oe = document.getElementById('oe-resultat');
+    if (oe && 'MutationObserver' in window) new MutationObserver(function () { marquerDefilants(); }).observe(oe, { childList: true, subtree: true });
   }
 })();
