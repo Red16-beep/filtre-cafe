@@ -41,7 +41,7 @@ def page(titre, desc, canon, corps, head_extra='', robots='index, follow', scrip
 {head_extra}
 {shell.HEAD_LIENS}
 {shell.CMP_PROD}
-<script>(function(){{if(location.hostname.replace(/^www\\./,'')!=='filtre.cafe')return;var s=document.createElement('script');s.setAttribute('data-equateur-key','aff654dd0df3f7e406ecb0a7e78ced5a');s.src='https://equateur.org/tracker.js';s.defer=true;s.async=false;(document.head||document.documentElement).appendChild(s);}})();</script>
+<script>(function(){{if(location.hostname.replace(/^www\\./,'')!=='filtre.cafe')return;var c=document.currentScript,s=document.createElement('script');s.src='https://app.equateur.org/e.js';s.setAttribute('data-site','filtre.cafe');s.defer=true;c&&c.parentNode?c.parentNode.insertBefore(s,c):document.head.appendChild(s);}})();</script>
 </head>
 <body class="v2">
 <a class="v2-lien" href="#contenu" style="position:absolute;left:-9999px">Aller au contenu</a>
@@ -365,7 +365,7 @@ def page_schemas():
     astro_page('schemas', 'Le café en schémas animés | filtré.', 'Extraction, recette V60, mouture, eau, dégazage, espresso : six schémas animés pour comprendre le café de spécialité.', '/schemas', corps, 'Le café en schémas')
 
 # ── Habillage : Base.astro et pages racine ────────────────────────────────
-BASE = '22fd46f'  # commit de main d'où part la refonte : on habille toujours les fichiers d'origine
+BASE = '98c34d9'  # commit de main d'où part la refonte (Equateur à jour) : on habille toujours les fichiers d'origine
 
 def original(rel):
     import subprocess
@@ -392,8 +392,9 @@ def base_astro():
     p = os.path.join(R, 'astro/src/layouts/Base.astro'); s = original('astro/src/layouts/Base.astro')
     s = s.replace('\n---\n<!DOCTYPE html>', "\nimport { v2ise } from '../lib/v2.js';\nconst tete = v2ise(await Astro.slots.render('head'));\nconst corps = v2ise(await Astro.slots.render('default'));\nconst style = Astro.slots.has('style') ? v2ise(await Astro.slots.render('style')) : '';\n---\n<!DOCTYPE html>", 1)
     s = s.replace('<slot name="head" />', '<Fragment set:html={tete} />', 1)
-    s = s.replace('<slot name="style" />\n<script is:inline defer src="https://equateur.org/assets/js/cmp.js" data-site="aff654dd0df3f7e406ecb0a7e78ced5a"></script>',
-                  '<Fragment set:html={style} />\n' + shell.HEAD_LIENS + '\n' + shell.CMP_PROD.replace('<script>', '<script is:inline>'))
+    s = s.replace('<slot name="style" />', '<Fragment set:html={style} />\n' + shell.HEAD_LIENS, 1)
+    s = s.replace('<script is:inline defer src="https://equateur.org/assets/js/cmp.js" data-site="aff654dd0df3f7e406ecb0a7e78ced5a"></script>',
+                  shell.CMP_PROD.replace('<script>', '<script is:inline>'), 1)
     s = re.sub(r'<link rel="preload" href="/fonts/(?!v2/)[^"]+" as="font"[^>]*>\n', '', s)  # anciennes polices : plus utilisées
     s = s.replace('<link rel="stylesheet" href="/fonts/fonts.css">\n', '')
     s = s.replace('<body class="antialiased">', '<body class="antialiased v2">')
@@ -402,7 +403,8 @@ def base_astro():
     s = re.sub(r'<footer class="border-t.*?</footer>\n', lambda m: shell.footer() + '\n' + shell.onglets() + '\n', s, count=1, flags=re.S)
     s = s.replace('<script is:inline defer src="/js/track.js"></script>', '<script is:inline defer src="/v2/v2.js"></script>\n<script is:inline defer src="/js/track.js"></script>')
     s = s.replace('<script is:inline src="/nl-subscribe.js"></script>', '<script is:inline defer src="/nl-subscribe.js"></script>')
-    for attendu in ('v2-header', 'v2-footer', '/v2/v2.js', 'set:html={corps}', 'set:html={style}', 'set:html={tete}', 'v2ise('):
+    assert 'tracker.js' not in s and s.count('app.equateur.org/e.js') == 1, 'Base.astro : chargeur Equateur'
+    for attendu in ('v2-header', 'v2-footer', '/v2/v2.js', 'set:html={corps}', 'set:html={style}', 'set:html={tete}', 'v2ise(', 'cmp.js'):
         assert attendu in s, f'Base.astro : {attendu} manquant'
     ecrire(p, s)
 

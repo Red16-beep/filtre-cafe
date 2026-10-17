@@ -22,7 +22,7 @@ async function subscribeInline(e) {
     if (!res.ok) throw new Error();
     form.style.display = 'none';
     if (ok) ok.style.display = 'block';
-    if (typeof equateur === 'function') equateur('track', 'NewsletterSignup', { source: 'inline', page: window.location.pathname });
+    if (typeof equateur === 'function') equateur('NewsletterSignup', { props: { source: 'inline', page: window.location.pathname } });
   } catch {
     if (err) { err.style.display = 'block'; err.textContent = 'Une erreur est survenue. Réessayez.'; }
     btn.disabled = false;

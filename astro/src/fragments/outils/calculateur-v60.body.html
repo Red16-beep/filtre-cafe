@@ -289,7 +289,7 @@
       });
       b.setAttribute('aria-selected', 'true');
       etat.methode = b.getAttribute('data-methode');
-      if (typeof equateur === 'function') equateur('track', 'OutilV60', { methode: etat.methode });
+      if (typeof equateur === 'function') equateur('OutilV60', { props: { methode: etat.methode } });
       rendre();
     });
   });

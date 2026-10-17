@@ -40,7 +40,7 @@
     window.dataLayer.push(Object.assign({ event: eventName }, payload));
 
     if (typeof window.equateur === 'function') {
-      window.equateur('track', eventName, payload);
+      window.equateur(eventName, { props: payload });
     }
   }
 
