@@ -82,7 +82,7 @@ export const FrenchPress: React.FC<{
                   {e.suspension > 0.01
                     ? Array.from({ length: 46 }).map((_, i) => {
                         const gx = (random(`fs-${i}`) - 0.5) * 2 * (RI - 8);
-                        const gy = yw + 12 + random(`fy-${i}`) * (-yw - 20) + Math.sin(e.frame * 0.05 + i) * 4;
+                        const gy = yw + 12 + random(`fy-${i}`) * (-yw - 20) + Math.sin(e.frame * (Math.PI * 2) / 180 * 2 + i) * 4;
                         return (
                           <circle key={i} cx={gx} cy={gy} r={1.8 + random(`fr-${i}`) * 2.4} fill="#4a2814" opacity={0.75 * e.suspension} />
                         );

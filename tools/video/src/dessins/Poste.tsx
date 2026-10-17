@@ -1,8 +1,12 @@
+import { createContext, useContext } from "react";
 import { random } from "remotion";
 import { usePaysage } from "../format";
 import { C, SANS, SERIF } from "../theme";
 
 // Pièces communes à tous les postes de préparation (V60, AeroPress, …).
+
+// Vue imposée (illustrations d'articles) : viewBox et style du svg principal.
+export const VueCtx = createContext<{ viewBox: string; style: React.CSSProperties } | null>(null);
 
 // Cadre : en vertical, toute l'image ; en paysage, la moitié droite, et une
 // surcouche (encart, minuteur) dans la colonne de gauche sous le texte.
@@ -13,15 +17,18 @@ export const CadrePoste: React.FC<{
   children: React.ReactNode;
 }> = ({ camera, surcouche, defs, children }) => {
   const paysage = usePaysage();
+  const vue = useContext(VueCtx);
   const cam = camera ?? { s: 1, x: 0, y: 0 };
   return (
     <>
       <svg
-        viewBox={paysage ? "100 470 1040 1083" : "0 0 1080 1920"}
+        viewBox={vue ? vue.viewBox : paysage ? "100 470 1040 1083" : "0 0 1080 1920"}
         style={
-          paysage
-            ? { position: "absolute", left: 880, top: 0, width: 1040, height: 1080, overflow: "hidden" }
-            : { position: "absolute", inset: 0, width: "100%", height: "100%", overflow: "visible" }
+          vue
+            ? vue.style
+            : paysage
+              ? { position: "absolute", left: 880, top: 0, width: 1040, height: 1080, overflow: "hidden" }
+              : { position: "absolute", inset: 0, width: "100%", height: "100%", overflow: "visible" }
         }
       >
         {defs ? <defs>{defs}</defs> : null}

@@ -67,7 +67,7 @@ export const Bocal: React.FC<{
                     <circle
                       key={i}
                       cx={(random(`cs-${i}`) - 0.5) * 2 * (RI - 8)}
-                      cy={yw + 10 + random(`cy-${i}`) * (-yw - 16) + Math.sin(e.frame * 0.07 + i) * 5}
+                      cy={yw + 10 + random(`cy-${i}`) * (-yw - 16) + Math.sin(e.frame * (Math.PI * 2) / 180 * 2 + i) * 5}
                       r={2.4 + random(`cr-${i}`) * 3}
                       fill="#4a2814"
                       opacity={0.8 * e.suspension}

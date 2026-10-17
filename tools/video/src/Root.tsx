@@ -4,6 +4,9 @@ import { AERO_DUREE, AeroPressPaysage, AeroPressVertical } from "./aeropress/Aer
 import { AeroAffiche, AeroAfficheVerticale } from "./aeropress/Affiche";
 import { EssaiAero } from "./aeropress/Essai";
 import { EPINGLES } from "./epingles";
+import { ESSAIS_ILLU } from "./illustrations/Essais";
+import { FICHES_ILLU, IlluArticle } from "./illustrations/Articles";
+import { PERIODE } from "./illustrations/Cadre";
 import { ESP_DUREE, EspAffiche, EspAfficheVerticale, EspPaysage, EspVertical } from "./espresso/scenes";
 import { FROID_DUREE, FroidAffiche, FroidAfficheVerticale, FroidPaysage, FroidVertical } from "./coldbrew/scenes";
 import { MOKA_DUREE, MokaAffiche, MokaAfficheVerticale, MokaPaysage, MokaVertical } from "./moka/scenes";
@@ -89,6 +92,25 @@ export const RemotionRoot: React.FC = () => {
       <Folder name="Epingles">
         {EPINGLES.map((p) => (
           <Still key={p.id} id={p.id} component={p.c} width={1000} height={1500} />
+        ))}
+      </Folder>
+      <Folder name="Illustrations">
+        {ESSAIS_ILLU.map((p) => (
+          <Composition key={p.id} id={p.id} component={p.c} durationInFrames={PERIODE} fps={30} width={1200} height={675} />
+        ))}
+      </Folder>
+      <Folder name="Articles">
+        {FICHES_ILLU.map((a) => (
+          <Composition
+            key={a.slug}
+            id={`A-${a.slug}`}
+            component={IlluArticle}
+            defaultProps={{ scene: a.scene, props: a.props, libelle: a.libelle }}
+            durationInFrames={PERIODE}
+            fps={30}
+            width={1200}
+            height={675}
+          />
         ))}
       </Folder>
       <Folder name="Essais">

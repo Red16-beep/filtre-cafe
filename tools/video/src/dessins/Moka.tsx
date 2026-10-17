@@ -113,7 +113,7 @@ export const Moka: React.FC<{ x: number; y: number; s?: number; trace?: number; 
                   d={`M ${cote * 4} ${COLONNE_HAUT + hDy} Q ${cote * 26} ${COLONNE_HAUT - 22 + hDy} ${cote * 22} ${COLONNE_HAUT + 18 + hDy} L ${cote * 12} ${yHaut + hDy}`}
                   fill="none"
                   stroke="#8a4b22"
-                  strokeWidth={5 + 3 * Math.sin(e.frame * 0.8 + cote)}
+                  strokeWidth={5 + 3 * Math.sin(e.frame * (Math.PI * 2) / 180 * 23 + cote)}
                   strokeLinecap="round"
                   opacity={e.flux}
                 />
@@ -121,7 +121,7 @@ export const Moka: React.FC<{ x: number; y: number; s?: number; trace?: number; 
             : null}
           {e.crachote > 0.01
             ? Array.from({ length: 8 }).map((_, i) => {
-                const ph = ((e.frame * 0.9 + i * 7) % 24) / 24;
+                const ph = ((e.frame + i * 7) % 20) / 20;
                 const dx = (random(`cr-${i}`) - 0.5) * 70 * ph;
                 const dy = -ph * 70;
                 return (
@@ -182,7 +182,7 @@ export const Bruleur: React.FC<{ x: number; y: number; s?: number; feu: number; 
       {feu > 0.01
         ? Array.from({ length: 9 }).map((_, k) => {
             const xx = -64 + k * 16;
-            const h = (14 + 26 * feu) * (0.8 + 0.25 * Math.sin(frame * 0.7 + k * 1.9));
+            const h = (14 + 26 * feu) * (0.8 + 0.25 * Math.sin(frame * (Math.PI * 2) / 180 * 20 + k * 1.9));
             const w = 5 + 3 * feu;
             return (
               <g key={k} opacity={Math.min(1, feu * 2.5)}>

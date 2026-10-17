@@ -390,4 +390,31 @@
     }, { threshold: [0, 0.5] });
     videos.forEach(function (v) { ioVid.observe(v); });
   }
+
+  /* ── Illustrations d'articles : l'image fixe s'affiche tout de suite ; la boucle (60 à 600 Ko)
+     ne se télécharge que si l'illustration est à l'écran, sauf animations réduites ou économie
+     de données. Elle apparaît en fondu quand elle joue vraiment. ── */
+  // Une illustration absente ne doit jamais laisser un cadre vide : la figure disparaît.
+  $$('figure[data-illu] img').forEach(function (img) {
+    var cacher = function () { img.closest('figure').hidden = true; };
+    if (img.complete && !img.naturalWidth) cacher(); else img.addEventListener('error', cacher);
+  });
+  var illus = $$('figure[data-illu] video');
+  var econome = navigator.connection && navigator.connection.saveData;
+  if (illus.length && !reduit && !econome && 'IntersectionObserver' in window) {
+    var ioIllu = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        var v = e.target;
+        if (e.isIntersecting) {
+          if (!v.getAttribute('src')) {
+            v.addEventListener('playing', function () { v.closest('figure').classList.add('joue'); }, { once: true });
+            v.src = v.dataset.src;
+          }
+          var p = v.play();
+          if (p && p.catch) p.catch(function () {});
+        } else if (!v.paused) v.pause();
+      });
+    }, { threshold: 0.2 });
+    illus.forEach(function (v) { ioIllu.observe(v); });
+  }
 })();

@@ -1,0 +1,967 @@
+[
+ {
+  "slug": "abonnement-cafe-machine-incluse-comparatif",
+  "libelle": "Abonnement et machine",
+  "scene": "Colis",
+  "props": {},
+  "alt": "Colis d'abonnement ouvert, deux sachets de café dépassent, dessin au trait sur fond espresso"
+ },
+ {
+  "slug": "abonnement-cafe-specialite",
+  "libelle": "Abonnements testés",
+  "scene": "Colis",
+  "props": {},
+  "alt": "Colis d'abonnement ouvert, deux sachets de café dépassent, dessin au trait sur fond espresso"
+ },
+ {
+  "slug": "altitude-arabica-robusta",
+  "libelle": "Altitude",
+  "scene": "Altitude",
+  "props": {},
+  "alt": "Montagne : caféiers d'arabica en altitude, de robusta plus bas, dessin au trait sur fond espresso"
+ },
+ {
+  "slug": "anom-cafe-club-test-abonnement-machine",
+  "libelle": "Machine incluse",
+  "scene": "MachineGrain",
+  "props": {
+   "variante": 0
+  },
+  "alt": "Machine à café à grain qui verse un café dans une tasse, dessin au trait sur fond espresso"
+ },
+ {
+  "slug": "arabica-vs-robusta",
+  "libelle": "Arabica ou robusta",
+  "scene": "DeuxGrains",
+  "props": {},
+  "alt": "Un grain d'arabica, ovale à fente sinueuse, et un grain de robusta, rond à fente droite, dessin au trait sur fond espresso"
+ },
+ {
+  "slug": "balance-acaia-pearl-lunar",
+  "libelle": "Pearl ou Lunar",
+  "scene": "Balance",
+  "props": {},
+  "alt": "Grains de café qui tombent dans une tasse posée sur une balance, dessin au trait sur fond espresso"
+ },
+ {
+  "slug": "bicerin-turin",
+  "libelle": "Bicerin",
+  "scene": "Origine",
+  "props": {
+   "lat": 45.07,
+   "lon": 7.69,
+   "nom": "Turin",
+   "zoom": 5
+  },
+  "alt": "Carte du monde dessinée au trait, une épingle sur Turin, sur fond espresso"
+ },
+ {
+  "slug": "cafe-au-japon",
+  "libelle": "Café au Japon",
+  "scene": "Origine",
+  "props": {
+   "lat": 35.7,
+   "lon": 139.7,
+   "nom": "Japon",
+   "zoom": 3.2
+  },
+  "alt": "Carte du monde dessinée au trait, une épingle sur le Japon, sur fond espresso"
+ },
+ {
+  "slug": "cafe-au-vietnam",
+  "libelle": "Café au Vietnam",
+  "scene": "Origine",
+  "props": {
+   "lat": 12.7,
+   "lon": 108.0,
+   "nom": "Vietnam",
+   "zoom": 3.2
+  },
+  "alt": "Carte du monde dessinée au trait, une épingle sur le Vietnam dans la ceinture du café, sur fond espresso"
+ },
+ {
+  "slug": "cafe-aux-epices-fes",
+  "libelle": "Café aux épices",
+  "scene": "Origine",
+  "props": {
+   "lat": 34.03,
+   "lon": -5.0,
+   "nom": "Fès",
+   "zoom": 4.5
+  },
+  "alt": "Carte du monde dessinée au trait, une épingle sur Fès, sur fond espresso"
+ },
+ {
+  "slug": "cafe-bio-specialite-france",
+  "libelle": "Bio et spécialité",
+  "scene": "Cerises",
+  "props": {},
+  "alt": "Branche de caféier avec des cerises rouges et jaunes, dessin au trait sur fond espresso"
+ },
+ {
+  "slug": "cafe-bresil-specialite",
+  "libelle": "Café du Brésil",
+  "scene": "Origine",
+  "props": {
+   "lat": -19.5,
+   "lon": -45.0,
+   "nom": "Brésil",
+   "zoom": 2.2
+  },
+  "alt": "Carte du monde dessinée au trait, une épingle sur le Brésil dans la ceinture du café, sur fond espresso"
+ },
+ {
+  "slug": "cafe-bresilien-espresso-cerrado-mineiro",
+  "libelle": "Espresso brésilien",
+  "scene": "Origine",
+  "props": {
+   "lat": -18.9,
+   "lon": -46.9,
+   "nom": "Cerrado Mineiro",
+   "zoom": 4
+  },
+  "alt": "Carte du monde dessinée au trait, une épingle sur le Cerrado Mineiro dans la ceinture du café, sur fond espresso"
+ },
+ {
+  "slug": "cafe-capsules-specialite",
+  "libelle": "Capsules de spécialité",
+  "scene": "Capsules",
+  "props": {},
+  "alt": "Machine à capsules et capsules colorées, dessin au trait sur fond espresso"
+ },
+ {
+  "slug": "cafe-colombie-specialite",
+  "libelle": "Café de Colombie",
+  "scene": "Origine",
+  "props": {
+   "lat": 4.6,
+   "lon": -75.6,
+   "nom": "Colombie",
+   "zoom": 3.4
+  },
+  "alt": "Carte du monde dessinée au trait, une épingle sur la Colombie dans la ceinture du café, sur fond espresso"
+ },
+ {
+  "slug": "cafe-cortado-recette-guide",
+  "libelle": "Cortado",
+  "scene": "Cappuccino",
+  "props": {},
+  "alt": "Tasse de cappuccino vue de dessus avec un cœur en latte art, dessin au trait sur fond espresso"
+ },
+ {
+  "slug": "cafe-cubano-espumita",
+  "libelle": "Café cubano",
+  "scene": "Origine",
+  "props": {
+   "lat": 23.1,
+   "lon": -82.4,
+   "nom": "Cuba",
+   "zoom": 4
+  },
+  "alt": "Carte du monde dessinée au trait, une épingle sur Cuba dans la ceinture du café, sur fond espresso"
+ },
+ {
+  "slug": "cafe-de-olla-mexique",
+  "libelle": "Café de olla",
+  "scene": "Origine",
+  "props": {
+   "lat": 19.4,
+   "lon": -99.1,
+   "nom": "Mexique",
+   "zoom": 3.4
+  },
+  "alt": "Carte du monde dessinée au trait, une épingle sur le Mexique dans la ceinture du café, sur fond espresso"
+ },
+ {
+  "slug": "cafe-decafeine-specialite",
+  "libelle": "Décaféiné",
+  "scene": "Grains",
+  "props": {
+   "teinte": "#7a5233"
+  },
+  "alt": "Grains de café versés à la pelle dans un bocal en verre, dessin au trait sur fond espresso"
+ },
+ {
+  "slug": "cafe-en-coree",
+  "libelle": "Café en Corée",
+  "scene": "Origine",
+  "props": {
+   "lat": 37.57,
+   "lon": 126.98,
+   "nom": "Séoul",
+   "zoom": 4
+  },
+  "alt": "Carte du monde dessinée au trait, une épingle sur Séoul, sur fond espresso"
+ },
+ {
+  "slug": "cafe-en-grains-ou-moulu",
+  "libelle": "Grains ou moulu",
+  "scene": "Moulin",
+  "props": {},
+  "alt": "Moulin à café électrique, la mouture tombe dans le récipient, dessin au trait sur fond espresso"
+ },
+ {
+  "slug": "cafe-en-thailande",
+  "libelle": "Café en Thaïlande",
+  "scene": "Origine",
+  "props": {
+   "lat": 20.17,
+   "lon": 99.62,
+   "nom": "Doi Chang",
+   "zoom": 4
+  },
+  "alt": "Carte du monde dessinée au trait, une épingle sur Doi Chang dans la ceinture du café, sur fond espresso"
+ },
+ {
+  "slug": "cafe-ethiopien-yirgacheffe-sidama-guji",
+  "libelle": "Café éthiopien",
+  "scene": "Origine",
+  "props": {
+   "lat": 6.16,
+   "lon": 38.2,
+   "nom": "Yirgacheffe",
+   "zoom": 3.6
+  },
+  "alt": "Carte du monde dessinée au trait, une épingle sur Yirgacheffe dans la ceinture du café, sur fond espresso"
+ },
+ {
+  "slug": "cafe-geisha-gesha-guide",
+  "libelle": "Geisha ou gesha",
+  "scene": "Cerises",
+  "props": {},
+  "alt": "Branche de caféier avec des cerises rouges et jaunes, dessin au trait sur fond espresso"
+ },
+ {
+  "slug": "cafe-glace-maison",
+  "libelle": "Flash brew",
+  "scene": "Glace",
+  "props": {},
+  "alt": "Grand verre de café glacé avec glaçons et paille, dessin au trait sur fond espresso"
+ },
+ {
+  "slug": "cafe-guatemala-specialite",
+  "libelle": "Café du Guatemala",
+  "scene": "Origine",
+  "props": {
+   "lat": 14.6,
+   "lon": -90.7,
+   "nom": "Guatemala",
+   "zoom": 4
+  },
+  "alt": "Carte du monde dessinée au trait, une épingle sur le Guatemala dans la ceinture du café, sur fond espresso"
+ },
+ {
+  "slug": "cafe-indonesie-specialite",
+  "libelle": "Café d'Indonésie",
+  "scene": "Origine",
+  "props": {
+   "lat": -2.5,
+   "lon": 112.0,
+   "nom": "Indonésie",
+   "zoom": 2.2
+  },
+  "alt": "Carte du monde dessinée au trait, une épingle sur l'Indonésie dans la ceinture du café, sur fond espresso"
+ },
+ {
+  "slug": "cafe-kenya-guide",
+  "libelle": "Café du Kenya",
+  "scene": "Origine",
+  "props": {
+   "lat": -0.42,
+   "lon": 36.95,
+   "nom": "Kenya",
+   "zoom": 3.6
+  },
+  "alt": "Carte du monde dessinée au trait, une épingle sur le Kenya dans la ceinture du café, sur fond espresso"
+ },
+ {
+  "slug": "cafe-noisette-recette-guide",
+  "libelle": "Café noisette",
+  "scene": "Cappuccino",
+  "props": {},
+  "alt": "Tasse de cappuccino vue de dessus avec un cœur en latte art, dessin au trait sur fond espresso"
+ },
+ {
+  "slug": "cafe-quand-il-fait-chaud",
+  "libelle": "Quand il fait chaud",
+  "scene": "Glace",
+  "props": {},
+  "alt": "Grand verre de café glacé avec glaçons et paille, dessin au trait sur fond espresso"
+ },
+ {
+  "slug": "cafe-soluble-vs-grain",
+  "libelle": "Soluble ou grain",
+  "scene": "Grains",
+  "props": {},
+  "alt": "Grains de café versés à la pelle dans un bocal en verre, dessin au trait sur fond espresso"
+ },
+ {
+  "slug": "cafe-specialite-france-chiffres-2026",
+  "libelle": "En chiffres",
+  "scene": "Chiffres",
+  "props": {},
+  "alt": "Histogramme surmonté d'une tasse de café fumante, dessin au trait sur fond espresso"
+ },
+ {
+  "slug": "cafe-specialite-france",
+  "libelle": "État des lieux",
+  "scene": "Origine",
+  "props": {
+   "lat": 46.6,
+   "lon": 2.4,
+   "nom": "France",
+   "zoom": 4.2
+  },
+  "alt": "Carte du monde dessinée au trait, une épingle sur la France, sur fond espresso"
+ },
+ {
+  "slug": "cafe-supermarche-vs-specialite",
+  "libelle": "Supermarché ou spécialité",
+  "scene": "Sachet",
+  "props": {},
+  "alt": "Sachet de café de spécialité, la valve laisse filer le gaz, dessin au trait sur fond espresso"
+ },
+ {
+  "slug": "cafe-touba-senegal",
+  "libelle": "Café Touba",
+  "scene": "Origine",
+  "props": {
+   "lat": 14.85,
+   "lon": -15.88,
+   "nom": "Touba",
+   "zoom": 4.2
+  },
+  "alt": "Carte du monde dessinée au trait, une épingle sur Touba dans la ceinture du café, sur fond espresso"
+ },
+ {
+  "slug": "cafe-turc-recette-guide",
+  "libelle": "Café turc",
+  "scene": "Origine",
+  "props": {
+   "lat": 41.01,
+   "lon": 28.98,
+   "nom": "Istanbul",
+   "zoom": 4.2
+  },
+  "alt": "Carte du monde dessinée au trait, une épingle sur Istanbul, sur fond espresso"
+ },
+ {
+  "slug": "cafe-vietnamien-recette-ca-phe-sua-da",
+  "libelle": "Café vietnamien",
+  "scene": "Glace",
+  "props": {},
+  "alt": "Grand verre de café glacé avec glaçons et paille, dessin au trait sur fond espresso"
+ },
+ {
+  "slug": "cafeine-effets-sante",
+  "libelle": "Caféine et santé",
+  "scene": "Molecule",
+  "props": {},
+  "alt": "Formule de la molécule de caféine, C8H10N4O2, dessin au trait sur fond espresso"
+ },
+ {
+  "slug": "cafetiere-a-piston-quelle-marque",
+  "libelle": "Quelle marque choisir",
+  "scene": "Piston",
+  "props": {},
+  "alt": "Cafetière à piston sur une balance, la vapeur s'échappe, dessin au trait sur fond espresso"
+ },
+ {
+  "slug": "cappuccino-recette-maison-guide",
+  "libelle": "Cappuccino",
+  "scene": "Cappuccino",
+  "props": {},
+  "alt": "Tasse de cappuccino vue de dessus avec un cœur en latte art, dessin au trait sur fond espresso"
+ },
+ {
+  "slug": "caprisette-crema-avis",
+  "libelle": "Caprisette Crema",
+  "scene": "Espresso",
+  "props": {},
+  "alt": "Extraction d'un espresso sous le groupe d'une machine, tasse sur la balance, dessin au trait sur fond espresso"
+ },
+ {
+  "slug": "champignon-lion-mane-cafe",
+  "libelle": "Café aux champignons",
+  "scene": "Tasse",
+  "props": {},
+  "alt": "Tasse de café fumante sur sa soucoupe, dessin au trait sur fond espresso"
+ },
+ {
+  "slug": "chemex-v60-aeropress",
+  "libelle": "Chemex, V60 ou AeroPress",
+  "scene": "AeroPress",
+  "props": {},
+  "alt": "AeroPress posée sur une carafe et une balance, dessin au trait sur fond espresso"
+ },
+ {
+  "slug": "cold-brew-vs-cafe-glace-differences",
+  "libelle": "Cold brew ou glacé",
+  "scene": "ColdBrew",
+  "props": {},
+  "alt": "Cold brew versé à travers un filtre dans une carafe, dessin au trait sur fond espresso"
+ },
+ {
+  "slug": "comment-conserver-cafe",
+  "libelle": "Conserver son café",
+  "scene": "Sachet",
+  "props": {},
+  "alt": "Sachet de café de spécialité, la valve laisse filer le gaz, dessin au trait sur fond espresso"
+ },
+ {
+  "slug": "comment-faire-ristretto-parfait",
+  "libelle": "Ristretto",
+  "scene": "Espresso",
+  "props": {},
+  "alt": "Extraction d'un espresso sous le groupe d'une machine, tasse sur la balance, dessin au trait sur fond espresso"
+ },
+ {
+  "slug": "comment-faire-un-bon-cafe",
+  "libelle": "Les 5 variables",
+  "scene": "Tasse",
+  "props": {},
+  "alt": "Tasse de café fumante sur sa soucoupe, dessin au trait sur fond espresso"
+ },
+ {
+  "slug": "debuter-cafe-filtre-guide",
+  "libelle": "Café filtre",
+  "scene": "V60",
+  "props": {},
+  "alt": "Café filtre au V60 : la bouilloire col de cygne verse en spirale, dessin au trait sur fond espresso"
+ },
+ {
+  "slug": "degazage-cafe",
+  "libelle": "Dégazage",
+  "scene": "Sachet",
+  "props": {},
+  "alt": "Sachet de café de spécialité, la valve laisse filer le gaz, dessin au trait sur fond espresso"
+ },
+ {
+  "slug": "delonghi-specialista-arte-test-avis",
+  "libelle": "Specialista Arte",
+  "scene": "MachineEspresso",
+  "props": {},
+  "alt": "Machine espresso domestique avec manomètre et buse vapeur, dessin au trait sur fond espresso"
+ },
+ {
+  "slug": "eau-cafe-filtre-tds-mineraux",
+  "libelle": "Quelle eau",
+  "scene": "Eau",
+  "props": {},
+  "alt": "Verre d'eau, goutte qui tombe et stylo de mesure TDS, dessin au trait sur fond espresso"
+ },
+ {
+  "slug": "espresso-maison-sans-machine",
+  "libelle": "Sans machine",
+  "scene": "Moka",
+  "props": {},
+  "alt": "Cafetière moka sur le feu, le café monte, dessin au trait sur fond espresso"
+ },
+ {
+  "slug": "espresso-trop-rapide-trop-lent-diagnostic",
+  "libelle": "Trop rapide, trop lent",
+  "scene": "Tamper",
+  "props": {},
+  "alt": "Tamper qui tasse la mouture dans le porte-filtre, dessin au trait sur fond espresso"
+ },
+ {
+  "slug": "flat-white-recette-guide",
+  "libelle": "Flat white",
+  "scene": "Mousse",
+  "props": {},
+  "alt": "Pichet de lait sous la buse vapeur, avec thermomètre, dessin au trait sur fond espresso"
+ },
+ {
+  "slug": "grammage-cafe",
+  "libelle": "Grammage",
+  "scene": "Balance",
+  "props": {},
+  "alt": "Grains de café qui tombent dans une tasse posée sur une balance, dessin au trait sur fond espresso"
+ },
+ {
+  "slug": "hario-switch-guide-recettes",
+  "libelle": "Hario Switch",
+  "scene": "V60",
+  "props": {},
+  "alt": "Café filtre au V60 : la bouilloire col de cygne verse en spirale, dessin au trait sur fond espresso"
+ },
+ {
+  "slug": "histoire-du-cafe",
+  "libelle": "Histoire du café",
+  "scene": "Origine",
+  "props": {
+   "lat": 7.5,
+   "lon": 36.5,
+   "nom": "Éthiopie",
+   "zoom": 1.25,
+   "centre": [
+    24,
+    2
+   ],
+   "route": [
+    [
+     7.5,
+     36.5
+    ],
+    [
+     13.3,
+     43.3
+    ],
+    [
+     41,
+     29
+    ],
+    [
+     45.4,
+     12.3
+    ],
+    [
+     48.9,
+     2.3
+    ],
+    [
+     14.6,
+     -61
+    ],
+    [
+     -15,
+     -47
+    ]
+   ]
+  },
+  "alt": "Carte du monde dessinée au trait : le voyage du café, de l'Éthiopie au Yémen, en Europe, puis aux Antilles et au Brésil, sur fond espresso"
+ },
+ {
+  "slug": "idees-cadeaux-cafe",
+  "libelle": "Idées cadeaux",
+  "scene": "Colis",
+  "props": {
+   "cadeau": true
+  },
+  "alt": "Paquet cadeau avec ruban rouge et étiquette, dessin au trait sur fond espresso"
+ },
+ {
+  "slug": "ipoh-white-coffee-malaisie",
+  "libelle": "White coffee",
+  "scene": "Origine",
+  "props": {
+   "lat": 4.6,
+   "lon": 101.08,
+   "nom": "Ipoh",
+   "zoom": 4.2
+  },
+  "alt": "Carte du monde dessinée au trait, une épingle sur Ipoh dans la ceinture du café, sur fond espresso"
+ },
+ {
+  "slug": "kaffeost-cafe-fromage-laponie",
+  "libelle": "Kaffeost",
+  "scene": "Origine",
+  "props": {
+   "lat": 67.5,
+   "lon": 26.0,
+   "nom": "Laponie",
+   "zoom": 3
+  },
+  "alt": "Carte du monde dessinée au trait, une épingle sur la Laponie, sur fond espresso"
+ },
+ {
+  "slug": "kopi-tubruk-indonesie",
+  "libelle": "Kopi tubruk",
+  "scene": "Origine",
+  "props": {
+   "lat": -7.6,
+   "lon": 110.2,
+   "nom": "Java",
+   "zoom": 4
+  },
+  "alt": "Carte du monde dessinée au trait, une épingle sur Java dans la ceinture du café, sur fond espresso"
+ },
+ {
+  "slug": "lire-etiquette-cafe-specialite",
+  "libelle": "Lire l'étiquette",
+  "scene": "Sachet",
+  "props": {},
+  "alt": "Sachet de café de spécialité, la valve laisse filer le gaz, dessin au trait sur fond espresso"
+ },
+ {
+  "slug": "machine-espresso-manuelle-vs-automatique",
+  "libelle": "Manuelle ou automatique",
+  "scene": "MachineEspresso",
+  "props": {},
+  "alt": "Machine espresso domestique avec manomètre et buse vapeur, dessin au trait sur fond espresso"
+ },
+ {
+  "slug": "mazagran-cafe-glace-citron",
+  "libelle": "Café glacé au citron",
+  "scene": "Origine",
+  "props": {
+   "lat": 35.9,
+   "lon": 0.06,
+   "nom": "Mazagran",
+   "zoom": 4.5
+  },
+  "alt": "Carte du monde dessinée au trait, une épingle sur Mazagran, sur fond espresso"
+ },
+ {
+  "slug": "meilleur-cafe-en-grain-2025",
+  "libelle": "Café en grain",
+  "scene": "Grains",
+  "props": {},
+  "alt": "Grains de café versés à la pelle dans un bocal en verre, dessin au trait sur fond espresso"
+ },
+ {
+  "slug": "meilleur-cafe-specialite-2025",
+  "libelle": "Cafés de spécialité",
+  "scene": "Grains",
+  "props": {
+   "teinte": "#8a5a32"
+  },
+  "alt": "Grains de café versés à la pelle dans un bocal en verre, dessin au trait sur fond espresso"
+ },
+ {
+  "slug": "meilleur-cafe-supermarche",
+  "libelle": "Supermarché",
+  "scene": "Sachet",
+  "props": {},
+  "alt": "Sachet de café de spécialité, la valve laisse filer le gaz, dessin au trait sur fond espresso"
+ },
+ {
+  "slug": "meilleur-moulin-cafe-electrique",
+  "libelle": "Moulins électriques",
+  "scene": "Moulin",
+  "props": {},
+  "alt": "Moulin à café électrique, la mouture tombe dans le récipient, dessin au trait sur fond espresso"
+ },
+ {
+  "slug": "meilleur-moulin-cafe-manuel",
+  "libelle": "Moulins manuels",
+  "scene": "MoulinManuel",
+  "props": {},
+  "alt": "Moulin à café manuel, la manivelle tourne, dessin au trait sur fond espresso"
+ },
+ {
+  "slug": "meilleur-tamper-espresso",
+  "libelle": "Tamper",
+  "scene": "Tamper",
+  "props": {},
+  "alt": "Tamper qui tasse la mouture dans le porte-filtre, dessin au trait sur fond espresso"
+ },
+ {
+  "slug": "meilleure-balance-cafe",
+  "libelle": "Balances",
+  "scene": "Balance",
+  "props": {},
+  "alt": "Grains de café qui tombent dans une tasse posée sur une balance, dessin au trait sur fond espresso"
+ },
+ {
+  "slug": "meilleure-bouilloire-cafe-filtre",
+  "libelle": "Col de cygne",
+  "scene": "Bouilloire",
+  "props": {},
+  "alt": "Bouilloire col de cygne avec thermomètre, vapeur au bec, dessin au trait sur fond espresso"
+ },
+ {
+  "slug": "meilleure-cafetiere-filtre-2025",
+  "libelle": "Cafetières filtre",
+  "scene": "Cafetiere",
+  "props": {},
+  "alt": "Cafetière filtre électrique : réservoir, porte-filtre et carafe qui se remplit, dessin au trait sur fond espresso"
+ },
+ {
+  "slug": "meilleure-machine-cafe-grain-automatique",
+  "libelle": "Machines à grain",
+  "scene": "MachineGrain",
+  "props": {
+   "variante": 2
+  },
+  "alt": "Machine à café à grain qui verse deux cafés à la fois, dessin au trait sur fond espresso"
+ },
+ {
+  "slug": "meilleure-machine-espresso-debutant",
+  "libelle": "Débuter l'espresso",
+  "scene": "MachineEspresso",
+  "props": {},
+  "alt": "Machine espresso domestique avec manomètre et buse vapeur, dessin au trait sur fond espresso"
+ },
+ {
+  "slug": "meilleure-machine-espresso-manuelle-2026",
+  "libelle": "Machines manuelles",
+  "scene": "MachineEspresso",
+  "props": {},
+  "alt": "Machine espresso domestique avec manomètre et buse vapeur, dessin au trait sur fond espresso"
+ },
+ {
+  "slug": "meilleurs-cafes-paris",
+  "libelle": "Adresses",
+  "scene": "Origine",
+  "props": {
+   "lat": 48.86,
+   "lon": 2.35,
+   "nom": "Paris",
+   "zoom": 5.5
+  },
+  "alt": "Carte du monde dessinée au trait, une épingle sur Paris, sur fond espresso"
+ },
+ {
+  "slug": "methode-4-6-kasuya",
+  "libelle": "Méthode 4:6",
+  "scene": "V60",
+  "props": {},
+  "alt": "Café filtre au V60 : la bouilloire col de cygne verse en spirale, dessin au trait sur fond espresso"
+ },
+ {
+  "slug": "mousser-lait-vapeur-temperature",
+  "libelle": "Mousse de lait",
+  "scene": "Mousse",
+  "props": {},
+  "alt": "Pichet de lait sous la buse vapeur, avec thermomètre, dessin au trait sur fond espresso"
+ },
+ {
+  "slug": "mouture-cafe-v60",
+  "libelle": "Mouture",
+  "scene": "MoulinManuel",
+  "props": {},
+  "alt": "Moulin à café manuel, la manivelle tourne, dessin au trait sur fond espresso"
+ },
+ {
+  "slug": "naturel-lave-honey",
+  "libelle": "Naturel, lavé, honey",
+  "scene": "Cerises",
+  "props": {},
+  "alt": "Branche de caféier avec des cerises rouges et jaunes, dessin au trait sur fond espresso"
+ },
+ {
+  "slug": "nespresso-vers-specialite",
+  "libelle": "Quitter les capsules",
+  "scene": "Capsules",
+  "props": {},
+  "alt": "Machine à capsules et capsules colorées, dessin au trait sur fond espresso"
+ },
+ {
+  "slug": "nettoyer-machine-cafe",
+  "libelle": "Entretien",
+  "scene": "MachineGrain",
+  "props": {
+   "bulles": true
+  },
+  "alt": "Machine à café à grain entourée de bulles, pour l'entretien, dessin au trait sur fond espresso"
+ },
+ {
+  "slug": "ou-acheter-cafe-specialite-en-ligne",
+  "libelle": "Acheter en ligne",
+  "scene": "Colis",
+  "props": {},
+  "alt": "Colis d'abonnement ouvert, deux sachets de café dépassent, dessin au trait sur fond espresso"
+ },
+ {
+  "slug": "pourquoi-cafe-acide",
+  "libelle": "Café acide",
+  "scene": "Extraction",
+  "props": {
+   "cote": "acide"
+  },
+  "alt": "Jauge d'extraction, aiguille du côté acide (sous-extrait), dessin au trait sur fond espresso"
+ },
+ {
+  "slug": "pourquoi-cafe-amer",
+  "libelle": "Café amer",
+  "scene": "Extraction",
+  "props": {
+   "cote": "amer"
+  },
+  "alt": "Jauge d'extraction, aiguille du côté amer (sur-extrait), dessin au trait sur fond espresso"
+ },
+ {
+  "slug": "pourquoi-prendre-cafe-abonnement",
+  "libelle": "Pourquoi s'abonner",
+  "scene": "Colis",
+  "props": {},
+  "alt": "Colis d'abonnement ouvert, deux sachets de café dépassent, dessin au trait sur fond espresso"
+ },
+ {
+  "slug": "pumpkin-spice-latte-recette-guide",
+  "libelle": "Pumpkin spice latte",
+  "scene": "Cappuccino",
+  "props": {},
+  "alt": "Tasse de cappuccino vue de dessus avec un cœur en latte art, dessin au trait sur fond espresso"
+ },
+ {
+  "slug": "qahwa-cafe-arabe-cardamome",
+  "libelle": "Qahwa",
+  "scene": "Origine",
+  "props": {
+   "lat": 24.7,
+   "lon": 46.7,
+   "nom": "Arabie",
+   "zoom": 3.4
+  },
+  "alt": "Carte du monde dessinée au trait, une épingle sur l'Arabie, sur fond espresso"
+ },
+ {
+  "slug": "quel-cafe-pour-v60",
+  "libelle": "Café pour le V60",
+  "scene": "Grains",
+  "props": {
+   "teinte": "#8a5a32"
+  },
+  "alt": "Grains de café versés à la pelle dans un bocal en verre, dessin au trait sur fond espresso"
+ },
+ {
+  "slug": "ratio-cafe-eau-extraction",
+  "libelle": "Ratio café et eau",
+  "scene": "Balance",
+  "props": {},
+  "alt": "Grains de café qui tombent dans une tasse posée sur une balance, dessin au trait sur fond espresso"
+ },
+ {
+  "slug": "ristretto-espresso-lungo-differences",
+  "libelle": "La différence",
+  "scene": "Trio",
+  "props": {},
+  "alt": "Trois verres : ristretto, espresso et lungo, du plus court au plus long, dessin au trait sur fond espresso"
+ },
+ {
+  "slug": "temperature-eau-cafe-filtre",
+  "libelle": "Température",
+  "scene": "Bouilloire",
+  "props": {},
+  "alt": "Bouilloire col de cygne avec thermomètre, vapeur au bec, dessin au trait sur fond espresso"
+ },
+ {
+  "slug": "top-balances-cafe",
+  "libelle": "Top 8 balances",
+  "scene": "Balance",
+  "props": {},
+  "alt": "Grains de café qui tombent dans une tasse posée sur une balance, dessin au trait sur fond espresso"
+ },
+ {
+  "slug": "top-bouilloires-cafe-filtre",
+  "libelle": "Top 8 bouilloires",
+  "scene": "Bouilloire",
+  "props": {},
+  "alt": "Bouilloire col de cygne avec thermomètre, vapeur au bec, dessin au trait sur fond espresso"
+ },
+ {
+  "slug": "top-cafetieres-piston-cafe",
+  "libelle": "Top 8 cafetières à piston",
+  "scene": "Piston",
+  "props": {},
+  "alt": "Cafetière à piston sur une balance, la vapeur s'échappe, dessin au trait sur fond espresso"
+ },
+ {
+  "slug": "top-carafes-verseuses-cafe",
+  "libelle": "Carafes et verseuses",
+  "scene": "V60",
+  "props": {
+   "vue": "120 930 900 740"
+  },
+  "alt": "Carafe de café filtre posée sur une balance, sous le dripper, dessin au trait sur fond espresso"
+ },
+ {
+  "slug": "top-drippers-cafe-filtre",
+  "libelle": "Top 8 drippers",
+  "scene": "V60",
+  "props": {
+   "vue": "200 560 720 640"
+  },
+  "alt": "Gros plan sur un dripper V60 pendant le versement à la bouilloire col de cygne, dessin au trait sur fond espresso"
+ },
+ {
+  "slug": "top-entretien-machine-cafe",
+  "libelle": "Produits d'entretien",
+  "scene": "MachineGrain",
+  "props": {
+   "bulles": true,
+   "variante": 1
+  },
+  "alt": "Machine à café à grain entourée de bulles, pour l'entretien, dessin au trait sur fond espresso"
+ },
+ {
+  "slug": "top-machines-cafe-grain-entree-de-gamme",
+  "libelle": "Moins de 600 €",
+  "scene": "MachineGrain",
+  "props": {
+   "variante": 0
+  },
+  "alt": "Machine à café à grain qui verse un café dans une tasse, dessin au trait sur fond espresso"
+ },
+ {
+  "slug": "top-machines-cafe-grain-haut-de-gamme",
+  "libelle": "Haut de gamme",
+  "scene": "MachineGrain",
+  "props": {
+   "variante": 2
+  },
+  "alt": "Machine à café à grain qui verse deux cafés à la fois, dessin au trait sur fond espresso"
+ },
+ {
+  "slug": "top-machines-cafe-grain-milieu-de-gamme",
+  "libelle": "Milieu de gamme",
+  "scene": "MachineGrain",
+  "props": {
+   "variante": 1
+  },
+  "alt": "Machine à café à grain qui prépare un latte macchiato dans un verre, dessin au trait sur fond espresso"
+ },
+ {
+  "slug": "top-moulins-cafe-entree-de-gamme",
+  "libelle": "Moins de 200 €",
+  "scene": "Moulin",
+  "props": {},
+  "alt": "Moulin à café électrique, la mouture tombe dans le récipient, dessin au trait sur fond espresso"
+ },
+ {
+  "slug": "top-moulins-cafe-haut-de-gamme",
+  "libelle": "Haut de gamme",
+  "scene": "Moulin",
+  "props": {},
+  "alt": "Moulin à café électrique, la mouture tombe dans le récipient, dessin au trait sur fond espresso"
+ },
+ {
+  "slug": "top-moulins-cafe-milieu-de-gamme",
+  "libelle": "Milieu de gamme",
+  "scene": "Moulin",
+  "props": {},
+  "alt": "Moulin à café électrique, la mouture tombe dans le récipient, dessin au trait sur fond espresso"
+ },
+ {
+  "slug": "top-moulins-manuels-cafe",
+  "libelle": "Top 8 moulins manuels",
+  "scene": "MoulinManuel",
+  "props": {},
+  "alt": "Moulin à café manuel, la manivelle tourne, dessin au trait sur fond espresso"
+ },
+ {
+  "slug": "top-tasses-cafe",
+  "libelle": "Tasses",
+  "scene": "Tasse",
+  "props": {},
+  "alt": "Tasse de café fumante sur sa soucoupe, dessin au trait sur fond espresso"
+ },
+ {
+  "slug": "torrefacteurs-francais",
+  "libelle": "Torréfacteurs français",
+  "scene": "Torrefaction",
+  "props": {},
+  "alt": "Torréfacteur à tambour : les grains tournent, fumée et bac de refroidissement, dessin au trait sur fond espresso"
+ },
+ {
+  "slug": "traitement-torrefaction",
+  "libelle": "Torréfaction",
+  "scene": "Torrefaction",
+  "props": {},
+  "alt": "Torréfacteur à tambour : les grains tournent, fumée et bac de refroidissement, dessin au trait sur fond espresso"
+ },
+ {
+  "slug": "yuanyang-hong-kong",
+  "libelle": "Yuanyang",
+  "scene": "Origine",
+  "props": {
+   "lat": 22.3,
+   "lon": 114.17,
+   "nom": "Hong Kong",
+   "zoom": 4.2
+  },
+  "alt": "Carte du monde dessinée au trait, une épingle sur Hong Kong dans la ceinture du café, sur fond espresso"
+ }
+]

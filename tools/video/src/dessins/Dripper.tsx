@@ -253,7 +253,7 @@ export const Dripper: React.FC<{
                 strokeWidth={3}
                 pathLength={1}
                 strokeDasharray="0.16 0.09"
-                strokeDashoffset={-frame * 0.012}
+                strokeDashoffset={-frame * (0.25 / 20)}
                 opacity={versementX !== null ? 0.55 : 0.18}
               />
               <path

@@ -504,5 +504,11 @@ body.v2 .video-tuto{margin:2.2em 0 2.6em}
 body.v2 .video-tuto video{display:block;width:100%;height:auto;aspect-ratio:16/9;border-radius:18px;background:#1f1610;box-shadow:0 22px 44px -22px rgba(31,22,16,.6)}
 @media (max-width:640px){body.v2 .video-tuto video{aspect-ratio:9/16;width:100%;max-width:calc(78vh * 9 / 16);max-height:78vh;margin:0 auto}}
 body.v2 .video-tuto figcaption{margin-top:.85em;font-family:var(--sans);font-size:var(--t-petit);line-height:1.5;color:#6a5d54}
+/* Illustrations animées sous l'en-tête des articles : l'image fixe s'affiche d'abord, la boucle prend le relais */
+body.v2 .illu-article{margin-top:-1.75rem;margin-bottom:2.25rem}
+body.v2 .illu-article__cadre{position:relative;aspect-ratio:16/9;border-radius:18px;overflow:hidden;background:#1f1610;box-shadow:0 22px 44px -22px rgba(31,22,16,.6)}
+body.v2 .illu-article__cadre img,body.v2 .illu-article__cadre video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+body.v2 .illu-article__cadre video{opacity:0;transition:opacity .5s ease}
+body.v2 .illu-article.joue .illu-article__cadre video{opacity:1}
 /* Tableaux d'article : défilement horizontal sur petit écran plutôt qu'une page qui déborde */
 @media (max-width:640px){body.v2 .prose-article table{display:block;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}}

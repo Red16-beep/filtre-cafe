@@ -19,6 +19,9 @@
 /videos/*
   Cache-Control: public, max-age=604800
 
+/illustrations/*
+  Cache-Control: public, max-age=604800
+
 /404.html
   Cache-Control: no-store
 
