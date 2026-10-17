@@ -9,16 +9,26 @@ montée sur 0,4 s, éteinte sur les 2,5 dernières secondes, à −1,5 dB. Les v
 (lecture automatique) ; le visiteur active le son avec les commandes du lecteur. Les versions verticales
 servent aussi aux épingles Pinterest.
 
-## Réglages retenus (les compositions sont tirées au hasard : ces valeurs servent à retrouver une prise)
+## Réglages retenus (17 oct. 2026, version jazz-hop)
 
-Uniquement du lo-fi (demande de Reda : pas de R&B, pas de folk ni de jazz rapide), une suite d'accords différente par tuto.
+Demande de Reda : l'esprit de *Horizon* (Nujabes, album *Modal Soul*), pour toutes les vidéos. On reprend le style,
+jamais le thème ni la grille du morceau : accords jazz égrenés comme un échantillon de piano, mélodie composée par
+`composeMelody`, boom-bap balancé (84-94 bpm), basse ronde, nappe de cordes en seconde moitié, souffle et craquements
+de vinyle synthétisés. Script : `gen_music_jazzhop.js` (les compositions sont tirées au hasard, ces valeurs servent à
+retrouver une prise).
 
-- V60 (44,8 s) : lofi-jazz, si bémol majeur, ii7 V7 Imaj7 vi7, 76 bpm, piano électrique, kalimba au milieu. Graines : harmonie 86804048, batterie 50569594.
-- AeroPress (42,0 s) : lofi, sol majeur, Imaj7 IVmaj7 iii7 vi7, 83 bpm, piano, marimba. Graines : harmonie 559708430, batterie 487461937.
-- French press (44,2 s) : lofi, do majeur, IVmaj7 iii7 ii7 Imaj7, 76 bpm, vibraphone, flûte. Graines : harmonie 138552678, batterie 637577733.
-- Moka (41,9 s) : lofi-jazz, la bémol majeur, Imaj7 vi7 ii7 V7, 77 bpm, piano, clarinette. Graines : harmonie 136219571, batterie 96023928.
-- Cold brew (40,8 s) : lofi, ré bémol majeur, vi7 ii7 V7 Imaj7, 69 bpm, piano électrique, boîte à musique. Graines : harmonie 324008732, batterie 307699834.
-- Espresso (34,4 s) : lofi, la bémol majeur, Imaj7 iii7 vi7 IVmaj7, 73 bpm, guitare nylon, vibraphone. Graines : harmonie 870561892, batterie 94340152.
+- V60 (44,8 s) : mi bémol dorien, i7 IV7 v7 i7, 90 bpm, piano, flûte. Graines : harmonie 82257475, batterie 790638952.
+- AeroPress (42,0 s) : sol mineur, i7 VImaj7 iv7 v7 (neuvièmes), 94 bpm, Rhodes, vibraphone. Graines : 885718626, 243724707.
+- French press (44,2 s) : mi bémol mineur, i7 iv7 IIImaj7 VImaj7, 88 bpm, guitare nylon, flûte. Graines : 712652756, 966442268.
+- Moka (41,9 s) : ré bémol mineur, VImaj7 v7 iv7 i7 (neuvièmes), 90 bpm, piano, clarinette. Graines : 212581101, 226732238.
+- Cold brew (40,8 s) : si bémol majeur, Imaj7 iii7 IVmaj7 iv7, 90 bpm, Rhodes, flûte. Graines : 33287063, 269896530.
+- Espresso (34,4 s) : mi bémol dorien, i7 ii7 IIImaj7 ii7 (neuvièmes), 84 bpm, piano, vibraphone. Graines : 854966377, 669501305.
+
+```bash
+node tools/video/musique/gen_music_jazzhop.js v60 44.8 dorian i7,IV7,v7,i7 piano flute 0.5
+```
+
+Les versions précédentes (lo-fi de `gen_music_tuto.js`) restent dans l'historique git.
 
 La basse et la mélodie n'exposent pas leur graine : une nouvelle exécution donne un morceau voisin, pas identique.
 Les WAV d'origine ne sont pas gardés ; la musique de référence est celle des MP4.
