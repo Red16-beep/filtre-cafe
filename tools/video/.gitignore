@@ -5,3 +5,7 @@ dist
 
 # Ignore the output video from Git but not videos you import into src/.
 out
+
+# Banques de sons (90 Mo) : à télécharger, voir musique/README.md
+sons/*.sf2
+public/audio

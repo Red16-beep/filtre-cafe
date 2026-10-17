@@ -9,6 +9,46 @@ montée sur 0,4 s, éteinte sur les 2,5 dernières secondes, à −1,5 dB. Les v
 (lecture automatique) ; le visiteur active le son avec les commandes du lecteur. Les versions verticales
 servent aussi aux épingles Pinterest.
 
+## Version retenue (17 oct. 2026) : vrais instruments échantillonnés
+
+Validée par Reda (« parfait les musiques comme ça »). Les versions précédentes, synthétisées (`gen_music_*.js`
+avec le skill build-music), sonnaient métalliques : timbres FM et additifs. Elles restent ici pour mémoire.
+
+Générateur : `outils/musique-sf2.mjs` (depuis `tools/video`) :
+
+```bash
+MELODIE=flute node outils/musique-sf2.mjs v60 44.8 462885100
+```
+
+- Composition originale tirée au hasard (graine), dans l'esprit de Nujabes (*Horizon*, *Modal Soul*) sans
+  reprendre de thème ni de grille : grilles génériques du jazz-hop (ii9 V13 Imaj9…, vamp dorien i9 IV13…),
+  accords sans fondamentale (formes A/B) menés au plus près, comp rejoué à l'identique sur 4 mesures comme un
+  échantillon, contrebasse avec notes de passage, boom-bap balancé (56 à 60 %), caisse claire 10 à 18 ms en
+  retard, notes fantômes, mélodie question-réponse. Règles reprises de la fiche « jazzy-downtempo » du skill
+  music-composer (jamcgrath/music-theory-skill, MIT).
+- Rendu : spessasynth_core 4.3.22 (npm, Apache-2.0), une partie à la fois, 48 kHz.
+- Banques de sons, dans `sons/` (non suivies par git, 90 Mo) :
+  - `UprightPianoKW-20220221.sf2` : piano droit Kawai, FreePats, **CC0**
+    (https://freepats.zenvoid.org/Piano/UprightPianoKW/UprightPianoKW-SF2-20220221.7z, à extraire avec `tar -xf`).
+  - `GeneralUser-GS.sf2` 2.0.3 : flûte, shakuhachi, guitare jazz, contrebasse, cordes, batteries ; usage commercial
+    libre, sans attribution (https://github.com/mrbumpy409/GeneralUser-GS). Licences copiées dans `sons/`.
+- Traitement « disque » : piano filtré (4,8 kHz), saturé, pleurage 0,55 Hz / 0,22 % et scintillement 7,5 Hz ;
+  batterie 12 bits / 26 kHz à 45 % en parallèle, saturation ; basse filtrée à 1,6 kHz ; compression 2:1 du bus ;
+  craquements et souffle de vinyle 26 dB sous la musique ; RMS -15 dBFS, crêtes sous -1 dB.
+
+Prises retenues (graine, réglages) :
+
+- V60 (44,8 s) : graine 462885100, `MELODIE=flute`. Si bémol dorien, i9 IV13, 89 bpm, batterie Jazz.
+- AeroPress (42,03 s) : graine 1247351084, `MELODIE=shakuhachi`. Mi bémol majeur, ii9 V13 Imaj9 IVmaj9, 89 bpm, Room.
+- French press (44,2 s) : graine 1580660788, `MELODIE=guitare`. Do majeur, iii9 Imaj9 ii9 V13, 90 bpm, Standard.
+- Moka (41,87 s) : graine 1019387184, `MELODIE=flute`. Ré mineur, i9 iv9 bVII13 bIIImaj9, 88 bpm, Standard.
+- Cold brew (40,77 s) : graine 23, `MELODIE=flute`. Do majeur, ii9 V13 Imaj9 VI7b13, 83 bpm, Room.
+- Espresso (34,43 s) : graine 1476816975, `MELODIE=guitare`. Fa mineur, i9 bVImaj9 iv9 V7b13, 89 bpm, Standard.
+
+Une même graine et les mêmes variables redonnent exactement le même morceau.
+
+## Anciennes versions
+
 ## Réglages retenus (17 oct. 2026, version jazz-hop)
 
 Demande de Reda : l'esprit de *Horizon* (Nujabes, album *Modal Soul*), pour toutes les vidéos. On reprend le style,
