@@ -411,6 +411,9 @@ def typo(s):
     """Même passe que typo() de astro/src/lib/v2.js : texte seul, hors script, style, svg, pre, code."""
     def texte(t):
         t = re.sub(r' (?:&nbsp;|&#160;)(?=[?!;:»])', '&nbsp;', t)
+        t = re.sub(r'(?:&nbsp;|&#160;|\u00a0)(?=[?!;])', FINE, t)
+        t = re.sub(r'(?<=\S) · ', NBSP + '· ', t)
+        t = re.sub(r'(\d)–(?=\d)', '\\1–\u2060', t)
         t = re.sub(r'(?<=\S) ([?!;])', FINE + '\\1', t)
         t = re.sub(r'(?<=\S) ([:»])', NBSP + '\\1', t)
         t = t.replace('« ', '«' + NBSP)

@@ -111,7 +111,7 @@
   }
   /* Typographie française des légendes (injectées ici, elles ne passent pas par typo() au build). */
   function fines(t) {
-    return t.replace(/ ([;?!])/g, '\u202f$1').replace(/ ([:\u00bb])/g, '\u00a0$1').replace(/\u00ab /g, '\u00ab\u00a0')
+    return t.replace(/(?:&nbsp;|\u00a0)(?=[?!;])/g, '\u202f').replace(/ ([;?!])/g, '\u202f$1').replace(/ ([:\u00bb])/g, '\u00a0$1').replace(/\u00ab /g, '\u00ab\u00a0').replace(/(\d)\u2013(?=\d)/g, '$1\u2013\u2060')
       .replace(/(\d) (g|kg|ml|cl|L|°C|s|min|mm|%|€)(?![A-Za-zÀ-ÿ])/g, '$1\u00a0$2');
   }
   function fig(cle, titre, etiquette, svg, legende) {
@@ -131,9 +131,9 @@
   var ETROITS = {
     extraction: function () {
       var x0 = 20, x1 = 340, y0 = 170, y1 = 14;
-      var courbe = function (debut, pente) { var d = ''; for (var k = 0; k <= 40; k++) { var t = k / 40, x = x0 + (x1 - x0) * t, v = 1 / (1 + Math.exp(-(t - debut) * pente)); d += (k ? 'L' : 'M') + x.toFixed(1) + ' ' + (y0 - (y0 - y1) * v * 0.92).toFixed(1); } return d; };
+      var courbe = function (debut, pente) { var d = ''; for (var k = 0; k <= 40; k++) { var t = k / 40, x = x0 + (x1 - x0) * t, v = 1 / (1 + Math.exp(-(t - debut) * pente)); d += (k ? 'L' : 'M') + x.toFixed(1) + ' ' + (y0 - (y0 - y1) * v * 0.85).toFixed(1); } return d; };
       var zones = '<rect x="20" y="' + y1 + '" width="100" height="' + (y0 - y1) + '" fill="rgba(143,176,143,.10)"/><rect x="120" y="' + y1 + '" width="115" height="' + (y0 - y1) + '" fill="rgba(239,199,156,.12)"/><rect x="235" y="' + y1 + '" width="105" height="' + (y0 - y1) + '" fill="rgba(224,103,63,.12)"/>' +
-        '<text x="70" y="38" fill="' + C.feuille + '" font-size="16" font-weight="700" text-anchor="middle">1</text><text x="177" y="38" fill="' + C.crema + '" font-size="16" font-weight="700" text-anchor="middle">2</text><text x="287" y="38" fill="' + C.cerise + '" font-size="16" font-weight="700" text-anchor="middle">3</text>';
+        '<text x="70" y="27" fill="' + C.feuille + '" font-size="16" font-weight="700" text-anchor="middle">1</text><text x="177" y="27" fill="' + C.crema + '" font-size="16" font-weight="700" text-anchor="middle">2</text><text x="287" y="27" fill="' + C.cerise + '" font-size="16" font-weight="700" text-anchor="middle">3</text>';
       var axes = '<line x1="' + x0 + '" y1="' + y0 + '" x2="' + x1 + '" y2="' + y0 + '" stroke="' + C.filet + '"/>' +
         '<text x="' + x0 + '" y="190" fill="' + C.douxE + '" font-size="15">Plus court, plus grossier</text><text x="' + x1 + '" y="208" fill="' + C.douxE + '" font-size="15" text-anchor="end">Plus long, plus fin</text>';
       var c = '<path class="trace" style="--l:520" d="' + courbe(0.12, 14) + '" fill="none" stroke="' + C.feuille + '" stroke-width="3"/>' +

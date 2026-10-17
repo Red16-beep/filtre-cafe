@@ -216,7 +216,7 @@
     var cumul = 0;
     for (i2 = 0; i2 < parts.length; i2++) {
       cumul += parts[i2];
-      var phase = i2 < 2 ? '40 %' : '60 %';
+      var phase = i2 < 2 ? '40\u00A0%' : '60\u00A0%';
       var role = i2 < 2 ? 'équilibre acidité et douceur' : 'corps et intensité';
       out.push({
         t: i2 * 45,
@@ -243,10 +243,10 @@
     $('#out-temps').textContent = k ? '3:30 – 4:00' : '2:30 – 3:30';
     var note = k
       ? 'Chaque versement est espacé de 45 secondes. Les poids sont cumulés, rinçage exclu.'
-      : 'Les poids sont cumulés : c\'est ce que la balance doit afficher, rinçage exclu.';
+      : 'Les poids sont cumulés\u00A0: c\'est ce que la balance doit afficher, rinçage exclu.';
     if (etat.eau > 400) {
       note += ' <b>Au-delà de 400 g, vous dépassez ce qu\'un V60-02 encaisse confortablement.</b> '
-            + 'Passez sur un 03 ou faites deux extractions : les horaires ci-dessus valent pour un '
+            + 'Passez sur un 03 ou faites deux extractions\u00A0: les horaires ci-dessus valent pour un '
             + 'cône standard, et sur un gros volume l\'écoulement sera plus long que la fenêtre annoncée.';
     }
     $('#out-note').innerHTML = note;

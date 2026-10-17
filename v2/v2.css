@@ -544,7 +544,6 @@ body.v2 .illu-article.joue .illu-article__cadre video{opacity:1}
    Bloc additif. Hors media query : défauts présents à toutes les largeurs. Gn = groupes du plan. */
 
 /* G2 filet entre un dernier bloc sombre et le pied de page sombre */
-.v2-footer{border-top:1px solid rgba(244,236,227,.1)}
 /* G10 titres qui cassent mal ; titre des schémas sans les capitales des fragments */
 .v2-kicker,.v2-err h1,.v2-page-tete h1{text-wrap:balance}
 body.v2 .prose-article h2{text-wrap:balance}
@@ -562,9 +561,10 @@ body.v2 .verdict-yes{background:#edf2ea!important;color:var(--feuille)!important
 /* G18 liens-cartes : pas de soulignement de texte courant */
 body.v2 .prose-article a:is([style*="display:flex"],.group){text-decoration:none!important;color:inherit!important}
 /* G18b liens d'achat en carte : le nom du produit reste un lien visible */
-body.v2 .prose-article a[rel~="sponsored"][style*="display:flex"] strong{text-decoration:underline;text-decoration-color:var(--cerise);text-decoration-thickness:1px;text-underline-offset:3px;color:var(--cerise-texte)!important}
+body.v2 .info-box a[rel~="sponsored"][style*="gap:0.875rem"] strong{color:var(--cerise-texte)!important;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+body.v2 .info-box a[rel~="sponsored"][style*="gap:0.875rem"]:hover strong{text-decoration-thickness:2px}
 /* Prix des tableaux comparatifs : jamais coupés après le tiret */
-body.v2 .recap-table td:nth-child(2){white-space:nowrap}
+body.v2 .prose-article .recap-table:has(tr>:nth-child(6)) td:nth-child(2){white-space:nowrap}
 /* Article eau : le tableau des minéraux tient dans la colonne en bureau */
 @media (min-width:641px){body.v2 .prose-article .table-scroll .tds-table{min-width:0!important}body.v2 .prose-article .table-scroll .tds-table th{letter-spacing:.04em!important}body.v2 .prose-article .table-scroll .tds-table :is(th,td){padding-inline:.5rem!important}}
 /* G20 fins de page */
@@ -584,14 +584,11 @@ body.v2 .v2-page-tete+section.max-w-5xl.pb-8{padding-top:28px}
 body.v2 .v2-page-texte h2{line-height:1.12}
 body.v2 .v2-page-texte .bg-surface-50{background:var(--creme-fonce);border:1px solid var(--filet)}
 body.v2 .max-w-2xl:not([class*="space-y"])>hr.divider{margin:48px 0 36px}
-body.v2 .border-dashed.opacity-60{opacity:1}
 body.v2 .border-dashed.opacity-60 :is(h2,p){color:var(--texte-doux)!important}
 body.v2 .tag-comprendre{background:var(--creme-fonce)!important;color:var(--texte-doux)!important}
 body.v2 .tag-terroir{background:#e8eee6!important;color:var(--feuille)!important;border-color:var(--feuille)!important}
 body.v2 .tag-lexique{background:var(--creme-fonce)!important;color:var(--cuivre)!important}
 /* G23 accueil */
-.v2-carte>.v2-carte__num{position:absolute;z-index:1}
-.v2-dark .v2-schema{background:var(--espresso-2);border:1px solid rgba(244,236,227,.1)}
 /* G24 pages à composants propres */
 body.v2 .calc-ratio p{margin:0!important}
 /* G26 journal : toute la carte est cliquable, champ de recherche réparé */
@@ -612,6 +609,7 @@ body.v2 #journal-search-icon{right:16px;left:auto;pointer-events:none}
 /* G2 pied de page sombre jusqu'en bas, derrière la barre d'onglets */
 @media (max-width:1080px){
   body.v2:has(.v2-footer){padding-bottom:0}
+  .v2-footer{border-top:1px solid rgba(244,236,227,.1)}
   .v2-footer .v2-footer__in{padding-bottom:calc(136px + env(safe-area-inset-bottom,0px))}
 }
 /* G23 héros : le texte des scènes ne traverse plus les chiffres */
@@ -694,7 +692,7 @@ body.v2 #journal-search-icon{right:16px;left:auto;pointer-events:none}
   body.v2 .prose-article :is(.overflow-x-auto,[style*="overflow-x:auto"],.info-box[style*="overflow"])>table:has(tr>:nth-child(4)){min-width:32rem}
   body.v2 .prose-article :is(.overflow-x-auto,[style*="overflow-x:auto"],.info-box[style*="overflow"])>table:has(tr>:nth-child(6)){min-width:42rem}
   body.v2 .prose-article .info-box[style*="overflow:hidden"]:has(>table){overflow-x:auto!important}
-  body.v2 .prose-article table th{letter-spacing:.06em!important}
+  body.v2 .prose-article table thead th{letter-spacing:.06em!important}
   body.v2 .top8-tableau:has(td.rang){overflow:visible}
   body.v2 .top8-tableau:has(td.rang) :is(table,tbody){display:block;min-width:0!important;width:100%}
   body.v2 .top8-tableau:has(td.rang) thead{display:none}
@@ -705,7 +703,6 @@ body.v2 #journal-search-icon{right:16px;left:auto;pointer-events:none}
   body.v2 .top8-tableau:has(td.rang) td:nth-child(4){font-size:15px;line-height:1.45;color:var(--texte-doux)}
   body.v2 .prose-article :is(.table-scroll,.calc-ratio__tableau,.outil-eau__tableau)>table{display:table!important;max-width:none!important;overflow:visible!important}
   body.v2 .calc-ratio__tableau table{min-width:34rem!important}
-  body.v2 .calc-ratio__tableau tbody th{position:sticky;left:0;z-index:1;background:#fff}
   body.v2 .table-scroll .tds-table td:first-child{min-width:7rem!important}
 
   /* G14 « À lire aussi » */
@@ -735,7 +732,8 @@ body.v2 #journal-search-icon{right:16px;left:auto;pointer-events:none}
   .v2-schema .rejouer{font-size:14px;padding:10px 16px;min-height:40px}
 
   /* G19 paragraphes à 16 px imposés par le style de 14 fragments */
-  body.v2 .prose-article>p:not([style*="font-size"]){font-size:var(--t-texte)}
+  body.v2 .prose-article>p:not([style*="font-size"]):not(.top8-note):not(.torref-note){font-size:var(--t-texte)}
+  body.v2 .prose-article>p:is(.top8-note,.torref-note){font-size:14px;line-height:1.5;margin-top:.6rem}
 
   /* G21 pages racine */
   body.v2 .prose-filtre .space-y-10>.flex{flex-direction:column;gap:10px}
@@ -817,17 +815,30 @@ body.v2 #journal-search-icon{right:16px;left:auto;pointer-events:none}
   body.v2 main>.toc a .n{margin:0}
   body.v2 main>.toc .toc-title{font-size:12.5px}
   body.v2 .info-box :is(p,div,ul)[style*="font-size:.9rem"]:not([style*="grid"]):not(:has(>div[style*="grid"])){font-size:16px!important;line-height:1.6!important;font-weight:400!important}
-  body.v2 .info-box span[style*="font-size:0.875rem"]{font-size:16px!important;font-weight:400!important}
+  body.v2 .info-box a[rel~="sponsored"][style*="gap:0.875rem"]>span[style*="font-size:0.875rem"]{font-size:16px!important;line-height:1.5!important;font-weight:400!important}
   body.v2 .prose-article>aside[style*="border-left:3px"] ul{font-size:16px!important;line-height:1.7!important}
   body.v2 .prose-article>aside[style*="border-left:3px"]>p:first-child{font-size:12px!important;font-family:var(--sans)!important;letter-spacing:.16em!important}
-  body.v2 .prose-article table th{font-size:12px!important}
-  body.v2 .recap-table thead th{font-size:12.5px!important;white-space:nowrap}
-  body.v2 .prose-article .budget-card .budget-model>a{display:inline-block;padding-block:11px}
+  body.v2 .prose-article :is(.overflow-x-auto,.info-box)>table.recap-table:has(tr>:nth-child(6)){min-width:46rem}
+  body.v2 .prose-article .recap-table th{font-size:12px}
+  body.v2 .prose-article .budget-card .budget-model>a{display:inline-block}
+  body.v2 .top8-tableau .marchand{display:inline-block;padding-block:7px}
+  body.v2 .step-num{font-size:12px}
   body.v2 .method-specs .spec-item{display:flex;flex-direction:column}
   body.v2 .method-specs .spec-value{margin-top:auto}
   body.v2 header span.tag{font-family:var(--sans);font-size:11.5px;letter-spacing:.12em}
   body.v2 .kit-setup{padding:24px 20px}
   body.v2 .kit-setup-label{letter-spacing:.1em;text-wrap:balance}
+  body.v2 section[aria-label="Guides d'achat rapides"] .grid>a>span:first-child{font-size:11.5px;letter-spacing:.1em}
+  .v2-err__svg text:not(.v2-err__led){display:none}
+  body.v2 main.px-5>section.max-w-2xl.px-6+div.mt-4.rounded-3xl{margin-top:40px!important}
+  body.v2 .kit-why:has(>a){gap:8px 0}
+  body.v2 .kit-why>a{margin-right:8px}
+  body.v2 .max-w-2xl>hr.divider:last-child{display:none}
+  body.v2 main>div.mt-16.pt-10.border-t>a{min-height:44px;display:inline-flex;align-items:center}
+  /* déplacées du bloc général : effets voulus sur mobile seulement */
+  body.v2 .border-dashed.opacity-60{opacity:1}
+  .v2-dark .v2-schema{background:var(--espresso-2);border:1px solid rgba(244,236,227,.1)}
+  .v2-carte>.v2-carte__num{position:absolute;z-index:1}
 }
 
 /* G24 calculateur de ratio : une ligne par réglage */

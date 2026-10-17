@@ -246,7 +246,7 @@ def carte_monde_etroite(g, terre):
         dx, dy, ancre = {-1: (0, -13, 'middle'), 1: (0, 26, 'middle'), 2: (12, 6, 'start'), -2: (-12, 6, 'end')}[cotes.get(cle, cote)]
         pts += (f'<g class="point" data-point="{cle}"><circle class="v2-onde" style="animation-delay:{k*.3:.1f}s" cx="{x:.1f}" cy="{y:.1f}" r="5" fill="none" stroke="{CR}"/>'
                 f'<circle class="coeur" cx="{x:.1f}" cy="{y:.1f}" r="6"/><text class="num" x="{x+dx:.1f}" y="{y+dy:.1f}" text-anchor="{ancre}">{k+1:02d}</text></g>')
-    return f'<svg class="v2-carte-etroite" viewBox="{x0} 108 {x1-x0} 140" role="img" aria-label="Ceinture du café : huit origines numérotées, détaillées dans la liste">{g}{terre}{bande}{pts}</svg>'
+    return f'<svg class="v2-carte-etroite" viewBox="{x0} 108 {x1-x0} 146" role="img" aria-label="Ceinture du café : huit origines numérotées, détaillées dans la liste">{g}{terre}{bande}{pts}</svg>'
 
 # ── Scène 404 ─────────────────────────────────────────────────────────────
 def machine_404():

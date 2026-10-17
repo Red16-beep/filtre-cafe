@@ -47,6 +47,9 @@ export function typo(html) {
   if (!html) return html;
   return html.replace(JETONS, (m, balise, nom, texte) => texte === undefined ? m : texte
     .replace(/ (?:&nbsp;|&#160;)(?=[?!;:»])/g, '&nbsp;')
+    .replace(/(?:&nbsp;|&#160;|\u00A0)(?=[?!;])/g, FINE)
+    .replace(/(?<=\S) · /g, `${NBSP}· `)
+    .replace(/(\d)–(?=\d)/g, '$1–\u2060')
     .replace(/(?<=\S) ([?!;])/g, `${FINE}$1`)
     .replace(/(?<=\S) ([:»])/g, `${NBSP}$1`)
     .replace(/« /g, `«${NBSP}`)
