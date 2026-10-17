@@ -39,7 +39,7 @@ MELODIE=flute node outils/musique-sf2.mjs v60 44.8 462885100
 Prises retenues (graine, réglages) :
 
 - V60 (44,8 s) : graine 462885100, `MELODIE=flute`. Si bémol dorien, i9 IV13, 89 bpm, batterie Jazz.
-- AeroPress (42,03 s) : graine 1247351084, `MELODIE=shakuhachi`. Mi bémol majeur, ii9 V13 Imaj9 IVmaj9, 89 bpm, Room.
+- AeroPress (42,03 s) : graine 1247351084, `MELODIE=sax` (saxophone ténor, une octave sous la flûte ; à la demande de Reda le 17 oct., à la place du shakuhachi). Mi bémol majeur, ii9 V13 Imaj9 IVmaj9, 89 bpm, Room.
 - French press (44,2 s) : graine 1580660788, `MELODIE=guitare`. Do majeur, iii9 Imaj9 ii9 V13, 90 bpm, Standard.
 - Moka (41,87 s) : graine 1019387184, `MELODIE=flute`. Ré mineur, i9 iv9 bVII13 bIIImaj9, 88 bpm, Standard.
 - Cold brew (40,77 s) : graine 23, `MELODIE=flute`. Do majeur, ii9 V13 Imaj9 VI7b13, 83 bpm, Room.

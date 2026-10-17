@@ -6,7 +6,7 @@
 // piano, batterie un peu dégradée (12 bits, 26 kHz en parallèle), saturation, craquements de vinyle.
 //
 // node outils/musique-sf2.mjs <nom> <durée en s> [graine]
-// Variables facultatives : MELODIE=flute|shakuhachi|guitare, BATTERIE=room|jazz|standard (sinon tirées au hasard).
+// Variables facultatives : MELODIE=flute|shakuhachi|guitare|sax, BATTERIE=room|jazz|standard (sinon tirées au hasard).
 import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -87,7 +87,8 @@ const grille = pick(GRILLES);
 const tonique = pick([53, 55, 56, 58, 60, 51, 50]); // fa, sol, la bémol, si bémol, do, mi bémol, ré
 const KITS = { room: { prog: 8, nom: "Room" }, jazz: { prog: 32, nom: "Jazz" }, standard: { prog: 0, nom: "Standard" } };
 const kit = KITS[process.env.BATTERIE] ?? pick(Object.values(KITS));
-const LEADS = { flute: { prog: 73, nom: "flûte" }, shakuhachi: { prog: 77, nom: "shakuhachi" }, guitare: { prog: 26, nom: "guitare jazz" } };
+// sax : ténor, joué une octave plus bas que la flûte (registre chaud du ténor, ré 3 à ré 5).
+const LEADS = { flute: { prog: 73, nom: "flûte" }, shakuhachi: { prog: 77, nom: "shakuhachi" }, guitare: { prog: 26, nom: "guitare jazz" }, sax: { prog: 66, nom: "saxophone ténor", octave: -12 } };
 const lead = LEADS[process.env.MELODIE] ?? pick([LEADS.flute, LEADS.flute, LEADS.shakuhachi, LEADS.guitare]);
 const swing = entre(0.56, 0.6);
 const intro = 2;
@@ -190,7 +191,7 @@ for (let m = debutLead; m < finLead; m += 2) {
     const fort = Math.abs(t - Math.round(t)) < 1e-6 && Math.round(t) % 2 === 0;
     if (fort) n = proche(n, a.v.flatMap((x) => [x + 12, x + 24]).filter((x) => x >= 62 && x <= 86));
     const dernier = k === rythme.length - 1;
-    note("lead", m * 4 + sw(t) + ms(ent(10, 30)), n, dernier ? entre(1.2, 2) : entre(0.35, 0.7), ent(72, 92) + (dernier ? -6 : 0));
+    note("lead", m * 4 + sw(t) + ms(ent(10, 30)), n + (lead.octave ?? 0), dernier ? entre(1.2, 2) : entre(0.35, 0.7), ent(72, 92) + (dernier ? -6 : 0));
   });
 }
 
