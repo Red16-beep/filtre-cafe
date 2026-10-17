@@ -568,6 +568,7 @@ body.v2 .prose-article .recap-table:has(tr>:nth-child(6)) td:nth-child(2){white-
 /* Article eau : le tableau des minéraux tient dans la colonne en bureau */
 @media (min-width:641px){body.v2 .prose-article .table-scroll .tds-table{min-width:0!important}body.v2 .prose-article .table-scroll .tds-table th{letter-spacing:.04em!important}body.v2 .prose-article .table-scroll .tds-table :is(th,td){padding-inline:.5rem!important}}
 /* G20 fins de page */
+body.v2 main section.max-w-2xl.px-6+div.rounded-3xl.bg-stone-900{margin-top:1rem!important}
 body.v2 article.prose-article{counter-reset:v2sec}
 body.v2 main:not([class*="pb-"])>[data-author-bio]:last-child,body.v2>[data-author-bio]{margin-bottom:clamp(48px,8vw,80px)!important}
 body.v2>p{max-width:768px;margin-left:auto!important;margin-right:auto!important;padding-inline:20px}
@@ -830,7 +831,7 @@ body.v2 #journal-search-icon{right:16px;left:auto;pointer-events:none}
   body.v2 .kit-setup-label{letter-spacing:.1em;text-wrap:balance}
   body.v2 section[aria-label="Guides d'achat rapides"] .grid>a>span:first-child{font-size:11.5px;letter-spacing:.1em}
   .v2-err__svg text:not(.v2-err__led){display:none}
-  body.v2 main.px-5>section.max-w-2xl.px-6+div.mt-4.rounded-3xl{margin-top:40px!important}
+  body.v2 main.px-5>section.max-w-2xl.px-6+div.rounded-3xl{margin-top:40px!important}
   body.v2 .kit-why:has(>a){gap:8px 0}
   body.v2 .kit-why>a{margin-right:8px}
   body.v2 .max-w-2xl>hr.divider:last-child{display:none}

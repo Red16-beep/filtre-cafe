@@ -22,9 +22,10 @@ def figure(slug, alt):
     return (
         f'<figure class="illu-article max-w-3xl mx-auto px-5" data-illu>\n'
         f'  <div class="illu-article__cadre">\n'
-        f'    <img src="/illustrations/{slug}-1200.webp" srcset="/illustrations/{slug}-720.webp 720w, /illustrations/{slug}-1200.webp 1200w" '
-        f'sizes="(max-width: 808px) calc(100vw - 2.5rem), 728px" width="1200" height="675" alt="{a}" fetchpriority="high" decoding="async">\n'
-        f'    <video muted loop playsinline preload="none" aria-hidden="true" tabindex="-1" data-src="/illustrations/{slug}.mp4"></video>\n'
+        f'    <picture><source media="(max-width: 640px)" srcset="/illustrations/{slug}-m-720.webp 720w, /illustrations/{slug}-m-1200.webp 1200w" sizes="calc(100vw - 2.5rem)">'
+        f'<img src="/illustrations/{slug}-1200.webp" srcset="/illustrations/{slug}-720.webp 720w, /illustrations/{slug}-1200.webp 1200w" '
+        f'sizes="(max-width: 808px) calc(100vw - 2.5rem), 728px" width="1200" height="675" alt="{a}" fetchpriority="high" decoding="async"></picture>\n'
+        f'    <video muted loop playsinline preload="none" aria-hidden="true" tabindex="-1" data-src="/illustrations/{slug}.mp4" data-src-m="/illustrations/{slug}-m.mp4"></video>\n'
         f'  </div>\n'
         f'</figure>\n'
     )

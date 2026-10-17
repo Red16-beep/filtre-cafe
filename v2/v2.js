@@ -524,7 +524,8 @@
         if (e.isIntersecting) {
           if (!v.getAttribute('src')) {
             v.addEventListener('playing', function () { v.closest('figure').classList.add('joue'); }, { once: true });
-            v.src = v.dataset.src;
+            /* téléphone : boucle sans bandeau de légende, plus légère (768 × 432) */
+            v.src = (v.dataset.srcM && matchMedia('(max-width: 640px)').matches) ? v.dataset.srcM : v.dataset.src;
           }
           var p = v.play();
           if (p && p.catch) p.catch(function () {});
