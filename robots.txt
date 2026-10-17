@@ -8,6 +8,7 @@ Disallow: /og-image.html
 Disallow: /newsletter/nl-
 Disallow: /newsletter/bienvenue
 Disallow: /newsletter/email-
+Disallow: /api/
 
 # Crawlers IA explicitement autorisés (citation, grounding, AI search).
 # Un crawler qui a son propre groupe ignore le groupe "*" : les Disallow sont donc répétés ici.
@@ -29,6 +30,7 @@ Disallow: /og-image.html
 Disallow: /newsletter/nl-
 Disallow: /newsletter/bienvenue
 Disallow: /newsletter/email-
+Disallow: /api/
 
 # Crawlers refusés (scraping abusif, peu d'intérêt en retour)
 User-agent: Bytespider
