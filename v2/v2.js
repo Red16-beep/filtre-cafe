@@ -221,7 +221,7 @@
   var SCHEMAS = {
     extraction: function () {
       var w = 720, h = 300, x0 = 50, x1 = 690, y0 = 240, y1 = 40;
-      var courbe = function (debut, pente) { var d = ''; for (var k = 0; k <= 40; k++) { var t = k / 40, x = x0 + (x1 - x0) * t, v = 1 / (1 + Math.exp(-(t - debut) * pente)); d += (k ? 'L' : 'M') + x.toFixed(1) + ' ' + (y0 - (y0 - y1) * v * 0.92).toFixed(1); } return d; };
+      var courbe = function (debut, pente) { var d = ''; for (var k = 0; k <= 40; k++) { var t = k / 40, x = x0 + (x1 - x0) * t, v = 1 / (1 + Math.exp(-(t - debut) * pente)); d += (k ? 'L' : 'M') + x.toFixed(1) + ' ' + (y0 - (y0 - y1) * v * 0.72).toFixed(1); } return d; };
       var zones = '<rect x="' + x0 + '" y="' + y1 + '" width="200" height="' + (y0 - y1) + '" fill="rgba(143,176,143,.10)"/>' +
         '<rect x="250" y="' + y1 + '" width="230" height="' + (y0 - y1) + '" fill="rgba(239,199,156,.12)"/>' +
         '<rect x="480" y="' + y1 + '" width="210" height="' + (y0 - y1) + '" fill="rgba(224,103,63,.12)"/>';
@@ -280,7 +280,7 @@
         { n: 'Mont Blanc', v: 134, r: '1re ex æquo', c: C.crema }, { n: 'Volvic', v: 130, r: '1re ex æquo', c: C.crema },
         { n: 'Rocheval', v: 240, r: '3e', c: C.cuivre }, { n: 'Cristaline (Louise)', v: 477, r: '5e', c: C.cerise },
         { n: 'Mont Roucous', v: 33, r: 'non goûtée', c: 'rgba(244,236,227,.35)' }];
-      var x0 = 170, x1 = 690, sx = function (v) { return x0 + (x1 - x0) * v / 500; };
+      var x0 = 170, x1 = 620, sx = function (v) { return x0 + (x1 - x0) * v / 500; };
       var bandes = '<rect x="' + sx(75) + '" y="20" width="' + (sx(250) - sx(75)) + '" height="232" fill="rgba(143,176,143,.10)"/><text x="' + sx(162) + '" y="14" fill="' + C.feuille + '" font-size="11.5" font-weight="600" text-anchor="middle">SCAA : 75 à 250</text>' +
         '<line x1="' + sx(150) + '" y1="20" x2="' + sx(150) + '" y2="252" stroke="' + C.feuille + '" stroke-dasharray="4 5"/>';
       var barres = eaux.map(function (e, k) {
@@ -314,7 +314,7 @@
       var reel = '<rect x="' + sx(22) + '" y="166" width="' + (sx(40) - sx(22)) + '" height="6" rx="3" fill="' + C.doux + '"/><text x="' + sx(31) + '" y="190" fill="' + C.doux + '" font-size="11.5" text-anchor="middle">en coffee shop : de 22 à 40 s</text>';
       var aiguille = '<g style="animation:v2-balaye 4s 1s cubic-bezier(.3,.1,.3,1) forwards;--d:' + (sx(26) - x0) + 'px"><line x1="' + x0 + '" y1="84" x2="' + x0 + '" y2="136" stroke="' + C.texte + '" stroke-width="2.5"/><circle cx="' + x0 + '" cy="84" r="5" fill="' + C.texte + '"/></g>';
       var tasse = '<g transform="translate(560 200)"><text x="0" y="40" fill="' + C.texte + '" font-size="13" font-weight="600" text-anchor="middle">18 g → 36 g</text></g><text x="' + x0 + '" y="240" fill="' + C.texte + '" font-size="13" font-weight="600">Mon protocole : environ 26 s, 92 à 94 °C</text>';
-      return fig('espresso', 'Lire le temps d’un espresso', 'Espresso · 1:2', '<svg viewBox="0 0 720 255" role="img" aria-label="Temps d’extraction de l’espresso et goût">' + zones + ticks + reel + aiguille + tasse + '</svg>',
+      return fig('espresso', 'Lire le temps d’un espresso', 'Espresso · 1:2', '<svg viewBox="0 62 720 193" role="img" aria-label="Temps d’extraction de l’espresso et goût">' + zones + ticks + reel + aiguille + tasse + '</svg>',
         'Le repère : 18 g de café pour 36 g en tasse, en 25 à 30 secondes. Plus rapide, le shot est acide et sous-extrait ; plus lent, sur-extrait et astringent. Diagnostic complet : <a href="/journal/espresso-trop-rapide-trop-lent-diagnostic">espresso trop rapide ou trop lent</a>.');
     }
   };

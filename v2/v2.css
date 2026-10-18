@@ -865,3 +865,334 @@ body.v2 #journal-search-icon{right:16px;left:auto;pointer-events:none}
   .v2-liste-num b{font-size:20px;line-height:1.2}
 }
 @media (max-width:400px){body.v2 .calc-resume>div:last-child:nth-child(odd){grid-column:1/-1}}
+
+/* ═══ Revue tablette du 18 octobre 2026 (641 à 1080 px) ═════════════════
+   Bloc additif, à coller en fin de fichier, après le bloc « Revue mobile ».
+   Toutes les règles vivent dans des media queries bornées entre 641 et 1080 px :
+   téléphone (≤ 640) et ordinateur (> 1080) inchangés. Tn = groupes du plan tablette. */
+
+/* ── Plage tablette entière, 641 à 1080 px ── */
+@media (min-width:641px) and (max-width:1080px){
+
+  /* T1 surtitres, étiquettes et mentions de 9 à 11 px (reprise de G3) */
+  body.v2 :is(.text-\[9px\],.text-\[10px\]){font-size:12px}
+  body.v2 .text-\[11px\]{font-size:13px}
+  body.v2 :is(.tracking-\[0\.3em\],.tracking-\[0\.35em\],.tracking-\[0\.4em\]){letter-spacing:.16em}
+  body.v2 :is(.text-\[9px\],.text-\[10px\],.text-\[11px\]).uppercase{font-family:var(--sans)}
+  body.v2 [style*="font-size:0.65rem"]{font-size:12px!important}
+  body.v2 [style*="font-size:0.65rem"][style*="uppercase"]{font-family:var(--sans)!important;letter-spacing:.16em!important}
+  body.v2 nav.flex.items-center.gap-2.uppercase{font-size:13px;letter-spacing:.02em;text-transform:none}
+
+  /* T2 en-tête et barre d'onglets : devise lisible, barre centrée de 600 px au plus */
+  .v2-header .v2-logo__devise{font-size:12px;letter-spacing:.14em}
+  .v2-onglets{max-width:600px;margin-inline:auto}
+  .v2-onglets a,.v2-onglets button{font-size:12.5px}
+
+  /* T3 pied de page : cibles des liens */
+  .v2-footer ul{gap:0}
+  .v2-footer li a{display:inline-block;padding-block:7px}
+  .v2-footer__bas nav a{display:inline-block;padding-block:10px;margin-block:-10px}
+
+  /* T4 cibles tactiles : zone agrandie, mise en page inchangée (marge négative) */
+  .v2-lien{padding-block:6px;margin-block:-6px}
+  .v2-reglage a{display:inline-block;padding-block:7px;margin-block:-7px}
+  .v2-legende__nav button{width:40px;height:40px}
+  .v2-schema .rejouer{min-height:40px;padding:8px 16px;font-size:14px}
+  body.v2 :is(.v2-page-tete__fil,nav[aria-label="Fil d'Ariane"],nav.flex.items-center.gap-2.uppercase) a{display:inline-block;padding-block:12px;margin-block:-12px}
+  body.v2 [data-byline] a{display:inline-block;padding-block:10px;margin-block:-10px}
+  /* liens dans un texte court : padding sur l'élément en ligne, aucune ligne ne bouge */
+  body.v2 :is([data-author-bio] p,.v2-schema figcaption,.v2-lettre__note,p.text-\[11px\],header>p.text-xs,p[style*="font-size:0.8rem"],form[onsubmit^="subscribeInline"] label>span,.kit-why,.kit-setup-body,.kit-sublead,.kit-disc) a{padding-block:8px}
+
+  /* T5 encadrés .info-box (reprise de G5 et des finitions) */
+  body.v2 .info-box :is(p,div,ul)[style*="font-size:0.875rem"]:not([style*="grid"]):not(:has(>div[style*="grid"])),
+  body.v2 .info-box :is(p,div,ul)[style*="font-size:.875rem"]:not([style*="grid"]):not(:has(>div[style*="grid"])),
+  body.v2 .info-box :is(p,div,ul)[style*="font-size:0.9rem"]:not([style*="grid"]):not(:has(>div[style*="grid"])),
+  body.v2 .info-box :is(p,div,ul)[style*="font-size:.9rem"]:not([style*="grid"]):not(:has(>div[style*="grid"])),
+  body.v2 .info-box a[rel~="sponsored"][style*="gap:0.875rem"]>span[style*="font-size:0.875rem"]{font-size:16px!important;line-height:1.6!important;font-weight:400!important}
+  body.v2 .info-box div[style*="font-size:0.875rem"]:has(>div[style*="grid"]){font-size:16px!important;font-weight:400!important}
+  body.v2 .info-box p[style*="font-size:0.8rem"]{font-size:15px!important;line-height:1.55!important}
+  body.v2 .info-box div:is([style*="font-size:0.875rem"],[style*="font-size:0.9rem"]) a{padding-block:8px}
+  body.v2 .info-box div[style*="grid-template-columns:1fr 1fr 1.4fr"]{grid-template-columns:auto auto minmax(0,1fr)!important}
+  body.v2 .info-box>div[style*="grid-template-columns:1fr 1fr"]:has(>.variety-card){font-size:15px!important;font-weight:400!important}
+  body.v2 .info-box a[rel~="sponsored"][style*="justify-content:space-between"]>span[style*="font-size:0.7rem"]{font-family:var(--sans)!important;font-size:12.5px!important}
+  body.v2 .prose-article .info-box .spec-row{font-size:16px;justify-content:flex-start;gap:16px}
+  body.v2 .prose-article .info-box .spec-label{flex:0 0 11rem}
+
+  /* T6 encadrés sombres à pastilles : une colonne de pastilles calée sur la plus large, texte aligné */
+  body.v2 section.max-w-3xl.mb-4{margin-bottom:32px!important}
+  body.v2 div[style*="flex-direction:column"]:has(>.correction-row),
+  body.v2 div[style*="flex-direction:column"]:has(>div[style^="display:flex;gap:1rem;align-items:flex-start"]>div[style*="white-space:nowrap"]){display:grid!important;grid-template-columns:max-content minmax(0,1fr);gap:14px 18px!important;align-items:start}
+  body.v2 div[style*="flex-direction:column"]>.correction-row,
+  body.v2 div[style*="flex-direction:column"]>div[style^="display:flex;gap:1rem;align-items:flex-start"]:has(>div[style*="white-space:nowrap"]){display:contents!important}
+  body.v2 div[style*="flex-direction:column"]:has(>div[style^="display:flex;gap:1rem;align-items:flex-start"]>div[style*="white-space:nowrap"])>:not(div[style^="display:flex;gap:1rem;align-items:flex-start"]){grid-column:1/-1}
+  body.v2 .correction-tag,
+  body.v2 div[style^="display:flex;gap:1rem;align-items:flex-start"]>div[style*="white-space:nowrap"]{justify-self:start;font-family:var(--sans)!important;font-size:12px!important;margin-top:.25rem!important}
+  body.v2 div[style^="font-size:0.875rem;color:#d8cbbb"]{font-size:16px!important;font-weight:400!important}
+  body.v2 section.max-w-3xl>div[style*="background:#231912"] div[style*="font-size:0.8rem"]{font-size:14.5px!important}
+
+  /* T7 FAQ (reprise de G7) */
+  body.v2 details.group>summary.text-sm{font-size:17px;line-height:1.35}
+  body.v2 details.group>summary+div.text-sm{font-size:16px;line-height:1.6}
+  body.v2 details.faq-item>summary{font-size:17px;line-height:1.35}
+  body.v2 details.faq-item .faq-answer{font-size:16px;font-weight:400}
+  body.v2 div[style*="border"]:has(>details.faq-item)>details.faq-item>:is(summary,.faq-answer){padding-inline:24px}
+
+  /* T8 lettre dans l'article et page La lettre (G8, champ et bouton gardés côte à côte) */
+  body.v2 form[onsubmit^="subscribeInline"] label{align-items:center!important;gap:12px!important;min-height:44px}
+  body.v2 form[onsubmit^="subscribeInline"] input[type=checkbox]{width:22px;height:22px;margin-top:0!important}
+  body.v2 form[onsubmit^="subscribeInline"] label>span{font-size:13px!important}
+  body.v2 form[onsubmit^="subscribeInline"] input[type=email]{min-height:48px;border-radius:999px!important;padding-inline:18px!important}
+  body.v2 form[onsubmit^="subscribeInline"] button[type=submit]{min-height:48px;border-radius:999px!important;font-family:var(--sans)!important;font-size:15px!important;letter-spacing:0!important;text-transform:none!important}
+  body.v2 label:has(>input[id^="nl-consent"]){align-items:center;gap:12px;min-height:44px}
+  body.v2 input[id^="nl-consent"]{width:22px;height:22px;margin-top:0}
+  body.v2 label:has(>input[id^="nl-consent"])>span{font-size:14px;font-weight:400;line-height:1.5}
+  body.v2 label:has(>input[id^="nl-consent"]) a{display:inline-block;padding-block:6px;margin-block:-6px}
+  body.v2 .nl-btn{font-family:var(--sans);font-size:15px;letter-spacing:.02em;text-transform:none;min-height:48px}
+
+  /* T9 fiches produit, Top 8, cartes budget (reprise de G15) */
+  body.v2 .prose-article :is(.top-item p:not(.top-verdict),.product-card p,.product-card ul,.budget-meta){font-size:16.5px!important;line-height:1.65!important;font-weight:400!important}
+  body.v2 .prose-article :is(.top-pourqui,.budget-meta){color:#4a3b31!important}
+  body.v2 .prose-article .top-item .top-pourqui{font-size:16px!important}
+  body.v2 .prose-article .top-item .top-verdict{font-size:18px!important;line-height:1.5!important}
+  body.v2 .prose-article :is(.top-item,.product-card) :is(h3,h4){font-family:var(--serif)!important;font-weight:500!important;font-size:24px!important;line-height:1.2!important;letter-spacing:-.01em!important;text-transform:none!important;color:var(--torref)!important}
+  body.v2 .top-rang{font-family:var(--sans);font-size:12.5px}
+  body.v2 .prose-article :is(.product-badge,.verdict-chip){font-family:var(--sans)!important;font-size:12.5px!important;letter-spacing:.06em!important}
+  body.v2 .prose-article .note-pill{font-family:var(--sans);font-size:12px!important;letter-spacing:.04em!important}
+  body.v2 .prose-article .product-card .product-sub{font-size:15px}
+  body.v2 .prose-article .spec-row{font-size:15px}
+  body.v2 .prose-article .product-card div:has(>.spec-row:first-child:nth-last-child(4)){display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:32px}
+  body.v2 .prose-article .product-card div:has(>.spec-row:first-child:nth-last-child(4))>.spec-row:nth-child(3){border-bottom:0}
+  body.v2 .prose-article .product-card .data-source{font-size:13.5px;line-height:1.75}
+  body.v2 .prose-article .product-card .data-source a{padding-block:7px}
+
+  /* T10 paragraphes et listes à 16 px imposés par les fragments (reprise de G19) */
+  body.v2 .prose-article>p:not([style*="font-size"]):not(.top8-note):not(.torref-note),
+  body.v2 .prose-article>ul>li{font-size:var(--t-texte)}
+  body.v2 .prose-article>p:is(.top8-note,.torref-note){font-size:14px;line-height:1.5}
+
+  /* T11 encadré « en bref » en tête d'article */
+  body.v2 .prose-article>aside[style*="border-left:3px"] ul{font-size:16px!important;line-height:1.7!important}
+  body.v2 .prose-article>aside[style*="border-left:3px"]>p:first-child{font-size:12px!important;font-family:var(--sans)!important;letter-spacing:.16em!important}
+
+  /* T12 boutons de l'ancien design (reprise de G16) */
+  body.v2 :is(a[data-funnel-link="encart-materiel"],[data-encart-saisonnier]>a,a[rel~="sponsored"][style*="padding:0.45rem 1rem"],main a.bg-amber-500.uppercase,article .mt-16.bg-stone-900 a.bg-amber-500){display:inline-flex!important;align-items:center;justify-content:center;min-height:46px;padding:12px 22px!important;border-radius:999px!important;font-family:var(--sans)!important;font-size:15px!important;font-weight:600!important;letter-spacing:0!important;text-transform:none!important;text-align:center}
+  body.v2 a[rel~="sponsored"][style*="padding:0.45rem 1rem"]{background:var(--cerise)!important;color:#fff!important}
+
+  /* T13 colonne d'article : gouttière alignée sur le logo tant que la colonne touche les bords,
+     « À lire aussi » et encadré auteur sur la même colonne */
+  body.v2 :is(nav,header,figure,section,main,article,div).max-w-3xl.mx-auto.px-5:not(.max-w-3xl.px-5 *),
+  body.v2 main:not(.px-5)>section.max-w-2xl.px-6{padding-inline:max(20px,calc(var(--marge) - max(0px,(100vw - 768px) / 2)))}
+  body.v2 main:not(.px-5)>section.max-w-2xl.px-6{max-width:48rem}
+  body.v2 main.px-5>section.max-w-2xl.px-6{max-width:none;margin-top:2.5rem;padding-inline:0}
+  body.v2 main.px-5>section.max-w-2xl.px-6+div.rounded-3xl{margin-top:40px!important}
+  body.v2 section.max-w-2xl.px-6 a>span.text-sm{font-size:16px;line-height:1.4}
+  body.v2 [data-author-bio]{width:min(728px,calc(100% - 2 * var(--marge)))}
+  /* les tableaux larges gardent leurs 728 px : ils débordent dans la gouttière ajoutée ci-dessus */
+  body.v2 .prose-article>:is(.table-scroll,.top8-tableau,.torref-tableau,.overflow-x-auto,div[style^="overflow-x:auto"]){margin-inline:min(0px,calc(20px - var(--marge) + max(0px,(100vw - 768px) / 2)))!important}
+
+  /* T14 schémas : cadre, légende, texte de la version large (en unités du viewBox de 720) */
+  .v2-schema{padding:22px 16px}
+  .v2-schema figcaption{font-size:15px;line-height:1.55;color:rgba(244,236,227,.8)}
+  .v2-schema svg:not(.v2-svg-etroit) :is(text[font-size="11"],text[font-size="11.5"],text[font-size="12"],text[font-size="12.5"],g[font-size="12.5"]){font-size:13.5px}
+  .v2-schema svg:not(.v2-svg-etroit) text[font-size="13"]{font-size:14px}
+  .v2-schema[data-cle="v60"] svg:not(.v2-svg-etroit) text[font-size="11.5"]{font-size:13px}
+
+  /* T15 accueil : réglages, en bref */
+  .v2-reglage dt,.v2-reglage__ideal b,.v2-bref dt{font-size:12px}
+  .v2-bref dd small{font-size:13.5px}
+
+  /* T16 commencer-ici : marges du bandeau, bloc « La règle filtré. », encadré final */
+  body.v2 .v2-page-tete~section.max-w-5xl.px-5{max-width:var(--largeur-max);padding-inline:var(--marge)}
+  body.v2 .rounded-3xl[style*="background:#231912"] p.text-xs{font-family:var(--sans);font-size:12.5px}
+  body.v2 .rounded-3xl[style*="background:#231912"] p.text-sm{font-size:16px;font-weight:400;line-height:1.55}
+  body.v2 .v2-page-tete~section .note p{font-size:17px;line-height:1.6;font-weight:400;max-width:62ch}
+
+  /* T17 pages racine : colonne alignée sur le bandeau */
+  body.v2 main.max-w-6xl:has(>.prose-filtre){padding-inline:var(--marge)}
+  body.v2 main.v2-page-texte.max-w-2xl{max-width:none;margin-inline:0;padding-inline:var(--marge)}
+  body.v2 main.v2-page-texte.max-w-2xl>div{max-width:42rem}
+  body.v2 .prose-filtre h3{font-family:var(--sans);font-size:15px;letter-spacing:.06em}
+
+  /* T18 journal : cartes, filtres, raccourcis */
+  body.v2 #journal-grid{gap:20px}
+  body.v2 #journal-grid .article-card{padding:28px 28px 22px}
+  body.v2 #journal-grid .article-card>div:first-child{margin-bottom:16px}
+  body.v2 #journal-grid .article-card:not(.md\:col-span-2) h2{font-size:clamp(26px,calc(14px + 2vw),34px);line-height:1.12;margin-bottom:10px;text-wrap:balance}
+  body.v2 #journal-grid .article-card>p{font-size:16px;font-weight:400;line-height:1.55;margin-bottom:20px}
+  body.v2 #journal-grid .article-card>div:last-child{padding-top:16px}
+  body.v2 .journal-filter{display:inline-flex;align-items:center;min-height:40px;padding:0 14px;font-size:12px;letter-spacing:.06em}
+  body.v2 section[aria-label="Guides d'achat rapides"] .grid>a>span:last-child{font-size:15px}
+
+  /* T19 guides : résumés, cartes « Bientôt » lisibles */
+  body.v2 .guide-card>p.text-sm,body.v2 .border-dashed.opacity-60>p{font-size:16px;font-weight:400;line-height:1.55}
+  body.v2 .border-dashed.opacity-60{opacity:1}
+
+  /* T20 méthodes : fiches de méthode (reprise de G24) */
+  body.v2 .method-card{padding:24px}
+  body.v2 .method-card .method-tagline{font-size:15px}
+  body.v2 .method-card .spec-label{font-family:var(--sans);font-size:12px;letter-spacing:.1em}
+  body.v2 .method-card .spec-value{font-size:16px}
+  body.v2 .method-specs .spec-item{display:flex;flex-direction:column}
+  body.v2 .method-specs .spec-value{margin-top:auto}
+  body.v2 .difficulty-dot{width:10px;height:10px}
+  body.v2 .method-card .step{gap:14px}
+  body.v2 .method-card .step-num{width:28px;height:28px;font-family:var(--sans)}
+  body.v2 .step-num{font-size:12px}
+  body.v2 .method-card .step-text{font-size:16px;line-height:1.55;font-weight:400;color:#4a3b31}
+  body.v2 .toc-link{font-size:16px;font-weight:400}
+
+  /* T21 matériel : étiquettes, boutons d'achat, colonne d'actions régulière */
+  body.v2 .kit-tag{font-family:var(--sans);font-size:12px;letter-spacing:.12em}
+  body.v2 .kit-setup-label{font-family:var(--sans);font-size:12.5px;letter-spacing:.16em}
+  body.v2 .kit-setup-body{font-size:17px}
+  body.v2 .kit-why{font-size:16px;line-height:1.55;font-weight:400}
+  body.v2 .kit-sublead{font-size:16px}
+  body.v2 .kit-disc{font-size:15px}
+  body.v2 .kit-act{display:grid;justify-items:stretch;min-width:11rem}
+  body.v2 .kit-btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:10px 18px;border-radius:999px;font-family:var(--sans);font-size:14px;letter-spacing:.02em;text-transform:none}
+  body.v2 .kit-btn.kit-btn-alt{padding:9px 17px}
+  body.v2 .kit-guide{justify-self:end;font-family:var(--sans);font-size:14px;color:var(--cerise-texte);text-decoration:underline;text-underline-offset:3px;padding:8px 0}
+
+  /* T22 calculateurs (V60 et ratio), outil eau */
+  body.v2 .calc-champ>label,body.v2 .calc-segments button small{font-size:12.5px}
+  body.v2 .calc-resume dt{font-size:12px;letter-spacing:.1em}
+  body.v2 .calc-note{font-size:14.5px}
+  body.v2 .calc-txt{font-size:16px;font-weight:400}
+  body.v2 .calc-ratio__methodes{display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
+  body.v2 .calc-ratio__methodes button{font-size:15px;min-height:44px}
+  body.v2 :is(.calc-ratio__champs,.calc-ratio__curseur) label,body.v2 #oe-form>label{font-size:12.5px}
+  body.v2 .calc-ratio__resultat dt{font-size:12px}
+  body.v2 .calc-ratio__resultat dd{font-size:16px}
+  body.v2 .calc-ratio__bornes{font-size:13.5px}
+  body.v2 .calc-ratio__note{font-size:15px}
+  body.v2 .calc-ratio__curseur input{height:32px}
+  body.v2 .calc-ratio__lien{display:inline-flex;align-items:center;min-height:44px;font-size:15px}
+  body.v2 main>div.rounded-3xl.bg-stone-900>p.text-sm{font-size:16px}
+  body.v2 main>div.rounded-3xl.bg-stone-900 form button{font-family:var(--sans);font-size:15px}
+
+  /* T23 page La lettre et lettre n° 10 */
+  body.v2 section.max-w-6xl>.grid:is(.md\:grid-cols-3,.md\:grid-cols-2) p.text-sm{font-size:16px;line-height:1.6;font-weight:400}
+  body.v2 span.tag{font-family:var(--sans);font-size:12px;letter-spacing:.1em}
+  body.v2 main p.text-xs.text-stone-400{font-size:13.5px}
+  body.v2 main p.text-sm.text-stone-500.pt-2{font-size:15.5px;line-height:1.7}
+  body.v2 main p.text-sm.text-stone-500.pt-2 a{display:inline-block;padding-block:4px;margin-right:.6em}
+
+  /* T24 histoire et Éthiopie : chronologies, sommaire, chapeau secondaire */
+  body.v2 .tl-year{width:5.75rem;white-space:nowrap;font-family:var(--sans);font-size:12.5px}
+  body.v2 .tl-text{font-size:16px;font-weight:400;line-height:1.55}
+  body.v2 main>.toc a{display:grid;grid-template-columns:2.6em minmax(0,1fr);align-items:baseline;font-size:16px;padding:10px 0}
+  body.v2 main>.toc a .n{margin:0;font-size:13px}
+  body.v2 main>.toc .toc-title{font-size:12.5px}
+  body.v2 header.max-w-3xl>p.text-sm{font-size:16px;line-height:1.6}
+
+  /* T25 tableaux : en-têtes à 12 px, liens touchables, colonnes qui ne cassent plus */
+  body.v2 :is(.top8-tableau,.torref-tableau,.calc-ratio__tableau) thead th,body.v2 .prose-article .recap-table th{font-size:12px;letter-spacing:.08em}
+  body.v2 .top8-tableau :is(tbody th a,.marchand){display:inline-block;padding-block:7px;margin-block:-7px}
+  body.v2 .prose-article .tds-table th{font-size:12px;letter-spacing:.03em!important}
+  body.v2 .prose-article .tds-table:not(:has(th:nth-child(6))) td{font-size:15px}
+  body.v2 .prose-article .table-scroll .tds-table:has(th:nth-child(6)) td:first-child{min-width:6.5rem}
+  body.v2 .calc-ratio__tableau td:nth-child(3){white-space:nowrap}
+  body.v2 .prose-article:has(.torref-tableau) div[style^="overflow-x:auto"]>table td:is(:nth-child(2),:nth-child(3)){white-space:nowrap}
+
+  /* T26 mentions d'affiliation, titre d'article, « À lire aussi » dans l'article */
+  body.v2 header>p.text-xs.font-light{font-size:13.5px;font-weight:400;line-height:1.5}
+  body.v2 :is(main,article,div.max-w-3xl)>p[style*="font-size:0.8rem"]{font-size:14px!important;font-weight:400!important}
+  body.v2 header h1.serif{text-wrap:balance}
+  body.v2 .prose-article section.mt-16>div.flex.flex-col.gap-3{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+  body.v2 .prose-article section.mt-16 a.group.p-5 p{margin:0;letter-spacing:normal}
+  body.v2 .prose-article section.mt-16 a.group.p-5 p.text-xs,body.v2 .prose-article section.mt-16>p.text-xs{font-family:var(--sans);font-size:12px;letter-spacing:.16em;margin-bottom:8px}
+  body.v2 .prose-article section.mt-16 a.group.p-5 p.text-sm{font-size:18px;line-height:1.3}
+}
+
+/* ── Tablette portrait, 641 à 860 px ── */
+@media (min-width:641px) and (max-width:860px){
+  /* T27 héros : dessin entier dans l'angle haut droit, plus de bouilloire coupée au bord */
+  .v2-scene svg{right:var(--marge);top:24px;height:40%;opacity:.45;max-width:none}
+  /* T28 envies : la 5e carte pleine largeur passe à l'horizontale */
+  .v2-envie:last-child{display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:24px;row-gap:6px;align-content:start}
+  .v2-envie:last-child>.v2-envie__icone{grid-column:1;grid-row:1/span 4;margin-bottom:0}
+  /* T29 réglages : une ligne par valeur dans les cartes de 285 px */
+  .v2-reglage dl{grid-template-columns:1fr;gap:6px;padding:10px 0}
+  .v2-reglage dl>div{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+  .v2-reglage dd{margin:0;font-size:19px;text-align:right}
+  /* T30 carte du monde, version large : noms et tropiques lisibles */
+  .v2-carte-monde .v2-carte-large .point text{font-size:15px}
+  .v2-carte-monde .v2-carte-large text[font-size="11"]{font-size:13px;letter-spacing:1px}
+  .v2-carte-monde .v2-carte-large text[font-size="11"][text-anchor="end"]{transform:translateY(22px)}
+  /* T31 pied de page sur deux colonnes : devise sur une ligne */
+  .v2-footer .v2-logo__devise{font-size:11px;letter-spacing:.1em}
+  /* T31b commencer-ici : trois cartes de 180 px empilées */
+  body.v2 .rounded-3xl[style*="background:#231912"]>.grid{grid-template-columns:1fr}
+}
+
+/* ── Tablette, 641 à 900 px : 404 et page La lettre ── */
+@media (min-width:641px) and (max-width:900px){
+  /* T32 404 : machine plus petite, bouton « Tirer le shot » au-dessus de la barre d'onglets */
+  .v2-err{padding-top:32px}
+  .v2-err__machine{width:min(300px,46%)}
+  .v2-err__svg text:is([font-size="10"],[font-size="11"]){display:none}
+  /* T33 La lettre, « Au programme » : une colonne de lecture au lieu de trois colonnes de 147 px */
+  body.v2 section.max-w-6xl>.grid.md\:grid-cols-3.gap-6{grid-template-columns:minmax(0,1fr);max-width:36rem;gap:16px}
+}
+
+/* ── 641 à 960 px : grilles à deux colonnes ── */
+@media (min-width:641px) and (max-width:960px){
+  /* T34 dernière carte impaire seule sur sa ligne : pleine largeur */
+  .v2-pratiques>.v2-pratique:last-child:nth-child(odd){grid-column:1/-1}
+  .v2-pratiques>.v2-pratique:last-child:nth-child(odd) p{max-width:62ch}
+}
+
+/* ── 641 à 1023 px : grilles Tailwind md: (deux colonnes) avant lg: ── */
+@media (min-width:641px) and (max-width:1023px){
+  /* T35 guides : troisième carte orpheline */
+  body.v2 .grid.md\:grid-cols-2.lg\:grid-cols-3>:last-child:nth-child(odd){grid-column:1/-1}
+  /* T36 journal : en-tête des raccourcis empilé */
+  body.v2 section[aria-label="Guides d'achat rapides"]>div:first-child{flex-direction:column;align-items:flex-start}
+  body.v2 section[aria-label="Guides d'achat rapides"]>div:first-child>p{max-width:60ch;font-size:16px;font-weight:400}
+}
+
+/* ── Méthodes : fin de page alignée sur la fiche (768 px et plus) ── */
+@media (min-width:768px) and (max-width:1080px){
+  body.v2 main>article.max-w-3xl.md\:px-10+section.max-w-2xl.px-6{max-width:48rem;padding-inline:2.5rem}
+  body.v2 main>article.max-w-3xl.md\:px-10~[data-author-bio]{width:min(688px,calc(100% - 80px))}
+}
+@media (min-width:1024px) and (max-width:1080px){
+  body.v2 main>article.max-w-3xl.md\:px-10+section.max-w-2xl.px-6{padding-inline:3rem}
+  body.v2 main>article.max-w-3xl.md\:px-10~[data-author-bio]{width:672px}
+}
+
+/* ── Tablette paysage, 861 à 1080 px ── */
+@media (min-width:861px) and (max-width:1080px){
+  /* T37 pied de page : la marque sur toute la largeur, trois colonnes de liens */
+  .v2-footer__grille{grid-template-columns:repeat(3,minmax(0,1fr));gap:40px 32px}
+  .v2-footer__marque{grid-column:1/-1}
+  .v2-footer .v2-logo__devise{font-size:12px;letter-spacing:.14em}
+  /* T38 héros : légende sous le dessin, textes des scènes à 12 px réels */
+  .v2-legende{margin-left:auto}
+  .v2-scene svg text:is([font-size="15"],[font-size="18"]){font-size:20px}
+  .v2-scene svg text[x="486"][y="262"]{transform:translateX(22px)}
+  /* T39 envies : 3 + 2 cartes au lieu de 2 + 2 + 1 */
+  .v2-envies{grid-template-columns:repeat(6,minmax(0,1fr))}
+  .v2-envie{grid-column:span 2}
+  .v2-envie:nth-child(n+4){grid-column:span 3}
+}
+
+/* ── 901 à 1080 px : 404 en deux colonnes ── */
+@media (min-width:901px) and (max-width:1080px){
+  /* T40 étiquettes de la machine à 12,6 px réels */
+  .v2-err__svg text:is([font-size="10"],[font-size="11"]){font-size:16px;letter-spacing:1.5px}
+}
+
+/* ── 961 à 1080 px : grilles à deux colonnes trop serrées ── */
+@media (min-width:961px) and (max-width:1080px){
+  /* T41 accueil et cafés du monde : la carte du monde en pleine largeur, liste sur deux colonnes */
+  .v2-origines{grid-template-columns:1fr;gap:32px}
+  .v2-origines>.v2-carte-monde{position:static}
+  .v2-origines .v2-liste-num{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:40px}
+  .v2-origines .v2-liste-num li:nth-child(2) a{border-top:1px solid var(--filet)}
+  .v2-origines .v2-liste-num--sombre li:nth-child(2) a{border-top-color:rgba(244,236,227,.16)}
+  /* T42 accueil : schéma d'extraction sous le texte, pas en demi-colonne de 400 px */
+  .v2-bandeau__grille{grid-template-columns:1fr}
+  /* T43 404 : quatre cartes en 2 × 2 */
+  .v2-pratiques:has(>.v2-pratique:nth-child(4):last-child){grid-template-columns:repeat(2,minmax(0,1fr))}
+}
