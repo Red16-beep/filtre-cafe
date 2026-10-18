@@ -91,3 +91,10 @@ dans `build.py` ou `scenes.py`), puis met à jour en place, dans les sources, le
 version de `v2.css` / `v2.js` et les espaces insécables. L'option `--habiller-originaux`
 reconstruit encore Base.astro et les pages racine depuis l'ancien `main` (98c34d9) : elle écrase
 toute modification faite depuis, ne pas l'utiliser.
+
+## Projet à part : `carnet/`
+
+`carnet/` est un side project, le carnet de bord du café (appli web installable). `astro/sync-public.sh` ne le
+copie pas : il n'est ni construit, ni déployé avec le site, et le lint ne le lit pas. Décisions, périmètre et façon
+de le tester : `carnet/README.md`. Il n'a aucune route serveur ; s'il lui en faut une un jour, elle suit les règles
+ci-dessus.

@@ -1,0 +1,177 @@
+/* Carnet filtré. : mêmes couleurs et polices que la v2 du site (v2/v2.css), pensé d'abord pour le téléphone. */
+@font-face{font-family:"Newsreader";font-style:normal;font-weight:400 600;font-display:swap;src:url(polices/newsreader-latin-wght-normal.woff2) format("woff2")}
+@font-face{font-family:"Newsreader";font-style:italic;font-weight:400 500;font-display:swap;src:url(polices/newsreader-latin-wght-italic.woff2) format("woff2")}
+@font-face{font-family:"Instrument Sans";font-style:normal;font-weight:400 600;font-display:swap;src:url(polices/instrument-sans-latin-wght-normal.woff2) format("woff2")}
+@font-face{font-family:"Newsreader Repli";src:local("Georgia");size-adjust:104%;ascent-override:90%}
+@font-face{font-family:"Instrument Sans Repli";src:local("Arial");size-adjust:97%}
+
+:root{
+  --creme:#f6f1ea; --creme-fonce:#ece2d4; --papier:#fffaf4; --filet:#e1d4c2;
+  --torref:#2b1d15; --espresso:#1f1610; --espresso-2:#2a1e16;
+  --cuivre:#8a5532; --crema:#efc79c; --crema-doux:#d9b48c;
+  --cerise:#b8401f; --cerise-survol:#9f3618; --cerise-texte:#a8391b;
+  --texte-doux:#6a5d54; --texte-carte:#f4ece3;
+  --serif:"Newsreader","Newsreader Repli",Georgia,"Times New Roman",serif;
+  --sans:"Instrument Sans","Instrument Sans Repli",Arial,sans-serif;
+  --marge:20px;
+}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{margin:0;background:var(--creme);color:var(--torref);font-family:var(--serif);font-size:18px;line-height:1.5;-webkit-font-smoothing:antialiased;padding-bottom:calc(84px + env(safe-area-inset-bottom))}
+a{color:var(--cerise-texte);text-underline-offset:.18em}
+button,input,select{font:inherit;color:inherit}
+button{cursor:pointer;-webkit-tap-highlight-color:transparent}
+[hidden]{display:none!important}
+:focus-visible{outline:2px solid var(--cerise);outline-offset:2px}
+
+/* ── En-tête ── */
+.entete{position:sticky;top:0;z-index:5;display:flex;align-items:center;justify-content:space-between;gap:16px;background:var(--espresso);color:var(--creme);padding:calc(12px + env(safe-area-inset-top)) var(--marge) 12px}
+.logo{display:flex;align-items:center;gap:10px;color:var(--creme);text-decoration:none}
+.logo svg{width:26px;height:26px;flex:none}
+.logo__nom{font-family:var(--serif);font-style:italic;font-size:22px;line-height:1;letter-spacing:-.02em}
+.logo__nom b{color:#e0774f;font-weight:500}
+.entete__titre{font-family:var(--sans);font-size:12.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--crema)}
+
+main{max-width:640px;margin:0 auto;padding:22px var(--marge) 28px}
+
+/* ── Typographie ── */
+.kicker{font-family:var(--sans);font-size:12.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--cerise-texte);margin:0}
+.titre{font-family:var(--serif);font-weight:500;font-size:34px;line-height:1.06;letter-spacing:-.025em;margin:.25em 0 .8em;text-wrap:balance}
+.chapeau{font-size:19px;line-height:1.5;color:var(--texte-doux);margin:-.4em 0 1em}
+.indice{font-family:var(--sans);font-size:14px;line-height:1.45;color:var(--texte-doux);margin:10px 0 0}
+.vide{font-style:italic;font-size:19px;color:var(--texte-doux);margin:0}
+
+/* ── Formulaire ── */
+.bloc{border:0;padding:0;margin:0 0 24px;min-width:0}
+.bloc legend{font-family:var(--sans);font-size:12.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--texte-doux);padding:0;margin:0 0 10px}
+.puces{display:flex;flex-wrap:wrap;gap:8px}
+.puce{font-family:var(--sans);font-size:15px;font-weight:500;line-height:1.2;min-height:42px;padding:10px 15px;border-radius:999px;border:1px solid var(--filet);background:var(--papier);color:var(--torref);transition:background .15s,color .15s,border-color .15s}
+.puce[aria-pressed="true"]{background:var(--torref);border-color:var(--torref);color:var(--creme)}
+.puces--petites .puce{font-size:14px;min-height:38px;padding:8px 13px}
+.champ{display:block;margin:0 0 12px;min-width:0}
+.champ>span:first-child{display:block;font-family:var(--sans);font-size:13.5px;color:var(--texte-doux);margin:0 0 6px}
+.saisie-unite{position:relative;display:block}
+.saisie-unite::after{content:attr(data-unite);position:absolute;right:14px;top:50%;transform:translateY(-50%);font-family:var(--sans);font-size:16px;color:var(--texte-doux);pointer-events:none}
+.saisie-unite input{padding-right:46px}
+.temps i{font-style:normal;color:var(--texte-doux)}
+input,.selection{width:100%;font-family:var(--sans);font-size:18px;line-height:1.3;padding:12px 14px;border:1px solid var(--filet);border-radius:12px;background:var(--papier);color:var(--torref);-webkit-appearance:none;appearance:none}
+input::placeholder{color:#a3958a}
+input:focus,.selection:focus{outline:none;border-color:var(--cerise);box-shadow:0 0 0 3px rgba(184,64,31,.14)}
+.selection{padding-right:42px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%236a5d54' stroke-width='1.6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;background-size:12px 8px}
+.nouveau-cafe{margin-top:14px;padding:16px 16px 4px;border-radius:14px;background:var(--creme-fonce)}
+.nouveau-cafe .champ:last-child{margin-bottom:12px}
+.grille{display:grid;grid-template-columns:1fr 1fr;gap:0 12px}
+.ratio{font-family:var(--serif);font-style:italic;font-size:20px;color:var(--cuivre);margin:-2px 0 14px;min-height:1.5em}
+.temps__libelle{display:block;font-family:var(--sans);font-size:13.5px;color:var(--texte-doux);margin:0 0 6px}
+.temps__champs{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+.temps__champs label{display:flex;align-items:center;gap:6px;font-family:var(--sans);font-size:15px}
+.temps__champs input{width:70px;text-align:center}
+.chrono{margin-left:auto;font-family:var(--sans);font-size:15px;font-weight:600;min-height:46px;padding:10px 18px;border-radius:999px;border:1px solid var(--cerise);background:none;color:var(--cerise-texte);font-variant-numeric:tabular-nums}
+.chrono.actif{background:var(--cerise);color:#fff}
+.reprise{font-family:var(--sans);font-size:14.5px;line-height:1.45;background:var(--creme-fonce);border-radius:12px;padding:11px 14px;margin:-6px 0 22px}
+.note{display:flex;gap:8px;margin:16px 0 14px}
+.note button{width:42px;height:42px;border-radius:50%;border:1px solid var(--filet);background:var(--papier);font-family:var(--sans);font-size:15px;font-weight:600;color:var(--texte-doux)}
+.note button.plein{background:var(--crema);border-color:var(--crema-doux);color:var(--torref)}
+
+.btn{display:flex;align-items:center;justify-content:center;gap:.6em;width:100%;font-family:var(--sans);font-weight:600;font-size:16px;line-height:1.2;min-height:52px;padding:15px 26px;border-radius:999px;border:0;background:var(--cerise);color:#fff;text-decoration:none;transition:background .2s}
+.btn:active{background:var(--cerise-survol)}
+.btn--clair{background:none;color:var(--torref);border:1px solid var(--torref)}
+.btn--clair:active{background:var(--creme-fonce)}
+.btn--petit{width:auto;min-height:42px;padding:10px 18px;font-size:15px}
+.lien{background:none;border:0;padding:8px 0;font-family:var(--sans);font-size:15px;font-weight:600;color:var(--cerise-texte);text-decoration:underline;text-underline-offset:.18em}
+.lien-danger{display:block;background:none;border:0;padding:12px 0;margin-top:22px;font-family:var(--sans);font-size:15px;color:var(--cerise-texte);text-decoration:underline;text-underline-offset:.18em}
+
+/* ── Conseil après une tasse ── */
+.conseil{background:var(--papier);border:1px solid var(--filet);border-left:4px solid var(--cerise);border-radius:14px;padding:18px 18px 16px;margin:0 0 28px}
+.conseil:focus{outline:none}
+.conseil h2{font-family:var(--serif);font-weight:500;font-size:28px;line-height:1.1;letter-spacing:-.02em;margin:.2em 0 .4em}
+.conseil p{margin:0 0 .6em}
+.conseil .regle{font-family:var(--sans);font-size:14.5px;color:var(--texte-doux)}
+.conseil__liens{font-family:var(--sans);font-size:15px;margin:.4em 0 .8em}
+.conseil__liens a{display:block;padding:3px 0}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+
+/* ── Cafés ── */
+.liste{display:grid;gap:10px}
+.carte-cafe{display:grid;gap:3px;width:100%;text-align:left;background:var(--papier);border:1px solid var(--filet);border-radius:14px;padding:14px 16px}
+.carte-cafe:active{background:var(--creme-fonce)}
+.carte-cafe__nom{font-family:var(--serif);font-weight:500;font-size:21px;line-height:1.2}
+.carte-cafe__meta{font-family:var(--sans);font-size:14px;color:var(--texte-doux)}
+.carte-cafe__stats{font-family:var(--sans);font-size:13.5px;color:var(--cuivre)}
+.retour{display:inline-flex;align-items:center;gap:6px;background:none;border:0;padding:6px 0;margin:0 0 10px;font-family:var(--sans);font-size:15px;font-weight:600;color:var(--cerise-texte)}
+.meta{font-family:var(--sans);font-size:15px;color:var(--texte-doux);margin:-.5em 0 1.2em}
+.encadre{background:var(--creme-fonce);border-radius:14px;padding:16px 18px;margin:18px 0}
+.encadre h2{font-family:var(--serif);font-weight:500;font-size:22px;line-height:1.15;margin:0 0 .35em}
+.encadre p{margin:0 0 .5em;font-size:17px}
+.encadre p:last-child{margin-bottom:0}
+.encadre--ok{background:#e6ece3}
+.tasses{list-style:none;margin:0;padding:0}
+.tasse{border-top:1px solid var(--filet);padding:14px 0}
+.tasse__tete{display:flex;justify-content:space-between;gap:12px;font-family:var(--sans);font-size:14px;color:var(--texte-doux)}
+.tasse__tete b{color:var(--torref);font-weight:600}
+.tasse__reglages{font-family:var(--sans);font-size:16px;margin:4px 0 6px;font-variant-numeric:tabular-nums}
+.tasse__gouts{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 6px}
+.etiquette{font-family:var(--sans);font-size:13px;padding:3px 10px;border-radius:999px;background:var(--creme-fonce)}
+.etiquette--equilibre{background:#e6ece3}
+.tasse__notes{font-style:italic;margin:0 0 4px}
+.tasse__actions{display:flex;gap:18px}
+.points{letter-spacing:.12em;color:var(--cuivre)}
+
+/* ── Carte des origines (même dessin que /cafes-du-monde) ── */
+.carte-monde{background:var(--espresso-2);border-radius:18px;padding:8px 0 12px;margin:0 0 26px;overflow:hidden}
+.carte-monde__defile{overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.carte-monde__defile::-webkit-scrollbar{display:none}
+.carte-monde svg{display:block;width:1000px;height:auto}
+.carte-monde__legende{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-family:var(--sans);font-size:13px;color:var(--crema-doux);margin:6px 16px 0}
+.pastille{display:inline-block;width:10px;height:10px;border-radius:50%;margin-left:6px}
+.pastille--goutee{background:var(--crema);margin-left:0}
+.pastille--guide{border:1.5px solid var(--crema);opacity:.7}
+.terres{fill:rgba(244,236,227,.1);stroke:rgba(244,236,227,.26);stroke-width:.7;stroke-linejoin:round}
+.grille-carte line{stroke:rgba(244,236,227,.07)}
+.bande{fill:rgba(239,199,156,.08)}
+.tropique{stroke:var(--crema);stroke-opacity:.5;stroke-dasharray:4 6}
+.equateur{stroke:rgba(244,236,227,.22)}
+.point{cursor:pointer;outline:none}
+.point .zone-tactile{fill:transparent}
+.point--goutee .coeur{fill:var(--crema)}
+.point--guide .coeur{fill:var(--espresso-2);stroke:var(--crema);stroke-opacity:.6;stroke-width:1.2}
+.point .onde{fill:none;stroke:var(--crema);transform-box:fill-box;transform-origin:center;animation:onde 2.6s ease-out infinite}
+.point text{display:none;font-family:var(--sans);font-size:11px;fill:var(--texte-carte);paint-order:stroke;stroke:var(--espresso-2);stroke-width:4px;stroke-linejoin:round}
+.point.choisi text,.point:focus-visible text{display:block}
+.point.choisi .coeur{stroke:#fff;stroke-width:1.4}
+@keyframes onde{from{transform:scale(1);opacity:.7}to{transform:scale(2.6);opacity:0}}
+.origines h2{font-family:var(--serif);font-weight:500;font-size:24px;line-height:1.15;margin:0 0 .5em}
+.origines .vide{margin-bottom:26px}
+.origines li[data-origine]{cursor:pointer}
+.origines ul{list-style:none;margin:0 0 26px;padding:0}
+.origines li{display:flex;justify-content:space-between;align-items:baseline;gap:14px;border-top:1px solid var(--filet);padding:11px 0}
+.origines li.choisi{background:linear-gradient(90deg,rgba(239,199,156,.35),transparent)}
+.origines__nom{font-size:18px}
+.origines__info{font-family:var(--sans);font-size:14px;color:var(--texte-doux);text-align:right;white-space:nowrap}
+
+/* ── Données ── */
+.resume{font-family:var(--sans);font-size:15px;color:var(--cuivre);margin:0 0 6px}
+.actions-donnees{display:grid;gap:10px;margin:22px 0 0}
+
+/* ── Onglets ── */
+.onglets{position:fixed;left:0;right:0;bottom:0;z-index:6;display:grid;grid-template-columns:repeat(4,1fr);background:rgba(246,241,234,.94);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-top:1px solid var(--filet);padding:6px 6px calc(6px + env(safe-area-inset-bottom))}
+.onglets button{display:flex;flex-direction:column;align-items:center;gap:3px;min-height:54px;padding:6px 0;background:none;border:0;font-family:var(--sans);font-size:12.5px;font-weight:600;color:var(--texte-doux)}
+.onglets svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.onglets button[aria-current="page"]{color:var(--cerise-texte)}
+
+.message{position:fixed;left:50%;bottom:calc(86px + env(safe-area-inset-bottom));transform:translateX(-50%);z-index:7;width:max-content;max-width:calc(100% - 32px);margin:0;background:var(--torref);color:var(--creme);font-family:var(--sans);font-size:15px;line-height:1.4;padding:12px 18px;border-radius:12px;box-shadow:0 8px 24px rgba(31,22,16,.25)}
+
+@media (min-width:720px){
+  :root{--marge:32px}
+  main{padding-top:36px}
+  .titre{font-size:42px}
+  .btn{width:auto}
+  .actions-donnees{display:flex;flex-wrap:wrap}
+  .carte-monde svg{width:100%}
+  .onglets{padding-left:calc(50% - 320px);padding-right:calc(50% - 320px)}
+}
+@media (prefers-reduced-motion:reduce){
+  .point .onde{animation:none;opacity:0}
+  *{transition:none!important}
+}

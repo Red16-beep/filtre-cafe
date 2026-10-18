@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Carnet filtré.</title>
+<meta name="description" content="Le carnet de bord du café : vos tasses, vos réglages, vos origines. Tout reste sur votre téléphone.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#1f1610">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Carnet">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icones/icone-192.png" type="image/png">
+<link rel="apple-touch-icon" href="icones/apple-touch-icon.png">
+<link rel="preload" href="polices/newsreader-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="polices/instrument-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="app.css">
+<script src="donnees.js" defer></script>
+<script src="carte.js" defer></script>
+<script src="app.js" defer></script>
+</head>
+<body>
+
+<header class="entete">
+  <a class="logo" href="https://filtre.cafe" aria-label="filtré., le site">
+    <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="none" stroke="currentColor" stroke-width="1.4" opacity=".35"/><path d="M8 9h16l-5.4 9.2v4.6h-5.2v-4.6z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="16" cy="26" r="1.6" fill="#b8401f"/></svg>
+    <span class="logo__nom">filtré<b>.</b></span>
+  </a>
+  <span class="entete__titre">Carnet</span>
+</header>
+
+<main>
+
+  <!-- ── Noter une tasse ── -->
+  <section class="vue" data-vue="noter" aria-labelledby="titre-noter">
+    <div id="conseil" class="conseil" hidden tabindex="-1"></div>
+
+    <form id="form-tasse" novalidate>
+      <p class="kicker">Nouvelle tasse</p>
+      <h1 class="titre" id="titre-noter">Qu’avez-vous dans la tasse ?</h1>
+
+      <fieldset class="bloc">
+        <legend>Méthode</legend>
+        <div class="puces" id="puces-methode"></div>
+      </fieldset>
+
+      <fieldset class="bloc">
+        <legend>Café</legend>
+        <select id="champ-cafe" class="selection" aria-label="Café"></select>
+        <div id="nouveau-cafe" class="nouveau-cafe" hidden>
+          <label class="champ"><span>Nom du café</span><input id="cafe-nom" autocomplete="off" placeholder="Sidama, Nibret Alamu"></label>
+          <label class="champ"><span>Torréfacteur</span><input id="cafe-torref" autocomplete="off" placeholder="La Brûlerie du Cantin"></label>
+          <label class="champ"><span>Origine</span><select id="cafe-origine" class="selection"></select></label>
+          <div class="champ"><span>Procédé</span><div class="puces puces--petites" id="puces-procede"></div></div>
+        </div>
+      </fieldset>
+
+      <p class="reprise" id="reprise" hidden></p>
+
+      <fieldset class="bloc">
+        <legend>Réglages</legend>
+        <div class="grille">
+          <label class="champ"><span>Dose</span><span class="saisie-unite" data-unite="g"><input id="t-dose" inputmode="decimal" autocomplete="off"></span></label>
+          <label class="champ"><span id="libelle-eau">Eau</span><span class="saisie-unite" data-unite="g"><input id="t-eau" inputmode="decimal" autocomplete="off"></span></label>
+          <label class="champ"><span>Mouture</span><input id="t-mouture" autocomplete="off" placeholder="22 clics"></label>
+          <label class="champ" id="champ-temp"><span>Température</span><span class="saisie-unite" data-unite="°C"><input id="t-temp" inputmode="numeric" autocomplete="off"></span></label>
+        </div>
+        <p class="ratio" id="t-ratio" aria-live="polite"></p>
+        <div class="temps" id="bloc-temps">
+          <span class="temps__libelle" id="libelle-temps">Temps total</span>
+          <div class="temps__champs">
+            <label id="champ-min"><input id="t-min" inputmode="numeric" autocomplete="off" placeholder="3" aria-label="Minutes"><i>min</i></label>
+            <label id="champ-sec"><input id="t-sec" inputmode="numeric" autocomplete="off" placeholder="00" aria-label="Secondes"><i>s</i></label>
+            <label id="champ-h" hidden><input id="t-h" inputmode="decimal" autocomplete="off" placeholder="14" aria-label="Heures"><i>h</i></label>
+            <button type="button" class="chrono" id="chrono">Chrono</button>
+          </div>
+        </div>
+        <p class="indice" id="indice"></p>
+      </fieldset>
+
+      <fieldset class="bloc">
+        <legend>En tasse</legend>
+        <div class="puces" id="puces-gout"></div>
+        <div class="note" id="note" role="group" aria-label="Note sur 5"></div>
+        <label class="champ"><span>Notes</span><input id="t-notes" autocomplete="off" placeholder="Deux mots : noisette, citron, sucre roux"></label>
+      </fieldset>
+
+      <button class="btn" type="submit">Enregistrer la tasse</button>
+    </form>
+  </section>
+
+  <!-- ── Cafés ── -->
+  <section class="vue" data-vue="cafes" aria-labelledby="titre-cafes" hidden>
+    <div id="cafes-liste">
+      <p class="kicker">Historique</p>
+      <h1 class="titre" id="titre-cafes">Vos cafés</h1>
+      <div id="liste-cafes" class="liste"></div>
+    </div>
+    <div id="cafe-detail" hidden></div>
+  </section>
+
+  <!-- ── Carte ── -->
+  <section class="vue" data-vue="carte" aria-labelledby="titre-carte" hidden>
+    <p class="kicker">Votre carte</p>
+    <h1 class="titre" id="titre-carte">Vos origines</h1>
+    <div class="carte-monde">
+      <div class="carte-monde__defile" id="carte-defile"></div>
+      <p class="carte-monde__legende"><span class="pastille pastille--goutee"></span>goûtée <span class="pastille pastille--guide"></span>à découvrir sur filtré.</p>
+    </div>
+    <div id="carte-listes"></div>
+  </section>
+
+  <!-- ── Données ── -->
+  <section class="vue" data-vue="donnees" aria-labelledby="titre-donnees" hidden>
+    <p class="kicker">Vos données</p>
+    <h1 class="titre" id="titre-donnees">Tout reste sur ce téléphone</h1>
+    <p class="chapeau">Pas de compte, pas de serveur. Le carnet est enregistré dans ce navigateur, et nulle part ailleurs.</p>
+    <p class="resume" id="resume-donnees"></p>
+
+    <div class="encadre" id="encadre-installer">
+      <h2>Gardez-le à l’abri</h2>
+      <p>Sur iPhone, Safari efface les données d’un site resté fermé pendant sept jours d’utilisation. Ajoutez le carnet à l’écran d’accueil : bouton Partager, puis « Sur l’écran d’accueil ». Installé, il n’est plus concerné.</p>
+    </div>
+    <div class="encadre encadre--ok" id="encadre-installe" hidden>
+      <h2>Installé sur l’écran d’accueil</h2>
+      <p>Le carnet garde vos données tant que vous l’utilisez. Un export de temps en temps reste la meilleure sauvegarde.</p>
+    </div>
+
+    <div class="actions-donnees">
+      <button type="button" class="btn" id="exporter">Exporter le carnet</button>
+      <label class="btn btn--clair">Importer un export<input type="file" id="importer" accept="application/json,.json" hidden></label>
+    </div>
+    <p class="indice">L’export est un fichier JSON avec tous vos cafés et toutes vos tasses. L’import ajoute ce qui manque, sans rien écraser.</p>
+    <button type="button" class="lien-danger" id="effacer">Tout effacer</button>
+  </section>
+
+</main>
+
+<nav class="onglets" aria-label="Sections du carnet">
+  <button type="button" data-vers="noter"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9h12v5a5 5 0 0 1-5 5h-2a5 5 0 0 1-5-5z"/><path d="M17 10h1.5a2.5 2.5 0 0 1 0 5H17"/><path d="M9 3c-.8 1 .8 2 0 3M13 3c-.8 1 .8 2 0 3"/></svg>Noter</button>
+  <button type="button" data-vers="cafes"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h11a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H6z"/><path d="M6 3v18"/><path d="M10 8h5M10 12h5"/></svg>Cafés</button>
+  <button type="button" data-vers="carte"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></svg>Carte</button>
+  <button type="button" data-vers="donnees"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5"/><path d="M4 17v3h16v-3"/></svg>Données</button>
+</nav>
+
+<p class="message" id="message" role="status" aria-live="polite" hidden></p>
+
+</body>
+</html>
