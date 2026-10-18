@@ -130,9 +130,11 @@
 
     <div class="actions-donnees">
       <button type="button" class="btn" id="exporter">Exporter le carnet</button>
+      <button type="button" class="btn btn--clair" id="copier-export">Copier l’export</button>
       <label class="btn btn--clair">Importer un export<input type="file" id="importer" accept="application/json,.json" hidden></label>
     </div>
-    <p class="indice">L’export est un fichier JSON avec tous vos cafés et toutes vos tasses. L’import ajoute ce qui manque, sans rien écraser.</p>
+    <textarea id="zone-export" class="zone-export" readonly hidden aria-label="Export du carnet"></textarea>
+    <p class="indice">L’export est un fichier JSON avec tous vos cafés et toutes vos tasses ; copié, il se colle dans une note. L’import ajoute ce qui manque, sans rien écraser.</p>
     <button type="button" class="lien-danger" id="effacer">Tout effacer</button>
   </section>
 

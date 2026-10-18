@@ -40,7 +40,8 @@
       var d = JSON.parse(localStorage.getItem(CLE) || 'null');
       if (d && d.version === 1 && Array.isArray(d.cafes) && Array.isArray(d.tasses)) return d;
     } catch (e) { /* stockage indisponible : on part d'un carnet vide */ }
-    return vide();
+    // CARNET_DEPART : carnet de départ facultatif (l'aperçu y met des tasses d'exemple).
+    return window.CARNET_DEPART ? JSON.parse(JSON.stringify(window.CARNET_DEPART)) : vide();
   }
   var etat = charger();
   function sauver() {
@@ -447,8 +448,25 @@
     viderSaisie();
     aller('noter');
   }
+  // Confirmation dans la page : un premier toucher arme le bouton, le second agit. confirm() n'est pas
+  // fiable partout (certains cadres le refusent sans rien afficher).
+  function confirmer(bouton, libelle, action) {
+    if (bouton.classList.contains('a-confirmer')) {
+      clearTimeout(bouton.minuterie);
+      bouton.classList.remove('a-confirmer');
+      bouton.textContent = bouton.getAttribute('data-libelle');
+      action();
+      return;
+    }
+    bouton.setAttribute('data-libelle', bouton.textContent);
+    bouton.classList.add('a-confirmer');
+    bouton.textContent = typo(libelle);
+    bouton.minuterie = setTimeout(function () {
+      bouton.classList.remove('a-confirmer');
+      bouton.textContent = bouton.getAttribute('data-libelle');
+    }, 4000);
+  }
   function supprimerTasse(tid) {
-    if (!window.confirm('Supprimer cette tasse ?')) return;
     var t = tasse(tid);
     etat.tasses = etat.tasses.filter(function (x) { return x.id !== tid; });
     sauver();
@@ -456,8 +474,7 @@
     if (t) ouvrirCafe(t.cafe);
   }
   function supprimerCafe(cid) {
-    var c = cafe(cid);
-    if (!c || !window.confirm('Supprimer « ' + c.nom + ' » et ses ' + tassesDu(cid).length + ' tasses ?')) return;
+    if (!cafe(cid)) return;
     etat.cafes = etat.cafes.filter(function (x) { return x.id !== cid; });
     etat.tasses = etat.tasses.filter(function (x) { return x.cafe !== cid; });
     sauver();
@@ -547,7 +564,8 @@
     $('#resume-donnees').textContent = nc + ' café' + (nc > 1 ? 's' : '') + ' · ' + nt + ' tasse' + (nt > 1 ? 's' : '') + ' dans le carnet';
     $('#encadre-installer').hidden = installe();
     $('#encadre-installe').hidden = !installe();
-    $('#exporter').disabled = !nc && !nt;
+    $('#exporter').disabled = $('#copier-export').disabled = !nc && !nt;
+    $('#zone-export').hidden = true;
     typographier($('[data-vue="donnees"]'));
   };
   function exporter() {
@@ -565,6 +583,20 @@
     document.body.appendChild(a);
     a.click();
     setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 1000);
+  }
+  // Copie de l'export, à coller dans une note : une sauvegarde sans fichier.
+  function copierExport() {
+    var texte = JSON.stringify(etat, null, 2), zone = $('#zone-export');
+    var aLaMain = function () {
+      zone.value = texte;
+      zone.hidden = false;
+      zone.focus();
+      zone.select();
+      message('Le texte est sélectionné : copiez-le.');
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(texte).then(function () { zone.hidden = true; message('Export copié. Collez-le dans une note pour le garder.'); }, aLaMain);
+    } else aLaMain();
   }
   function importer(fichier) {
     var lecteur = new FileReader();
@@ -586,7 +618,6 @@
     lecteur.readAsText(fichier);
   }
   function effacer() {
-    if (!window.confirm('Effacer tout le carnet ? Exportez-le d’abord si vous voulez le garder.')) return;
     etat = vide();
     sauver();
     saisie.cafe = null; saisie.methode = null; saisie.aRafraichir = true;
@@ -645,8 +676,9 @@
   $('#chrono').addEventListener('click', basculerChrono);
   $('#form-tasse').addEventListener('submit', enregistrer);
   $('#exporter').addEventListener('click', exporter);
+  $('#copier-export').addEventListener('click', copierExport);
   $('#importer').addEventListener('change', function () { if (this.files[0]) importer(this.files[0]); this.value = ''; });
-  $('#effacer').addEventListener('click', effacer);
+  $('#effacer').addEventListener('click', function () { confirmer(this, 'Toucher encore pour tout effacer', effacer); });
   $('#carte-defile').addEventListener('click', function (e) { var p = e.target.closest('.point'); if (p) choisirOrigine(p.getAttribute('data-origine')); });
   $('#carte-defile').addEventListener('keydown', function (e) {
     var p = e.target.closest('.point');
@@ -668,8 +700,11 @@
     else if (a === 'liste-cafes') rendre.cafes();
     else if (a === 'rejouer') rejouer(b.getAttribute('data-tasse'));
     else if (a === 'annuler') annuler(b.getAttribute('data-tasse'));
-    else if (a === 'supprimer-tasse') supprimerTasse(b.getAttribute('data-tasse'));
-    else if (a === 'supprimer-cafe') supprimerCafe(b.getAttribute('data-cafe'));
+    else if (a === 'supprimer-tasse') confirmer(b, 'Toucher encore pour supprimer', function () { supprimerTasse(b.getAttribute('data-tasse')); });
+    else if (a === 'supprimer-cafe') {
+      var n = tassesDu(b.getAttribute('data-cafe')).length;
+      confirmer(b, 'Toucher encore pour supprimer le café et ' + (n > 1 ? 'ses ' + n + ' tasses' : n ? 'sa tasse' : 'rien d’autre'), function () { supprimerCafe(b.getAttribute('data-cafe')); });
+    }
   });
 
   typographier(document.body);

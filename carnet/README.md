@@ -16,7 +16,8 @@ Prototype v0, 18 octobre 2026. Appli web installable sur l'écran d'accueil, qui
 - **Cafés** : l'historique par café, le meilleur réglage, « Rejouer » pour repartir d'une tasse.
 - **Carte** : les origines goûtées sur la carte de la ceinture du café (le dessin de `/cafes-du-monde`), et les
   origines que le site traite, à découvrir.
-- **Données** : export et import en JSON, effacement.
+- **Données** : export en JSON (fichier, ou copie à coller dans une note), import, effacement. Les suppressions
+  se confirment par un second toucher, dans la page : `confirm()` est refusé dans certains cadres.
 
 ## Décisions prises
 
