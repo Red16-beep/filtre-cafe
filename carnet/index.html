@@ -17,6 +17,7 @@
 <link rel="preload" href="polices/newsreader-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="polices/instrument-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="app.css">
+<script>/* Apparence choisie (clair ou sombre), appliquée avant le premier affichage. */try{var t=localStorage.getItem('filtre-carnet-theme');if(t==='clair'||t==='sombre')document.documentElement.setAttribute('data-theme',t==='sombre'?'dark':'light')}catch(e){}</script>
 <script src="donnees.js" defer></script>
 <script src="carte.js" defer></script>
 <script src="app.js" defer></script>
@@ -101,9 +102,9 @@
     <div id="cafe-detail" hidden></div>
   </section>
 
-  <!-- ── Carte ── -->
-  <section class="vue" data-vue="carte" aria-labelledby="titre-carte" hidden>
-    <p class="kicker">Votre carte</p>
+  <!-- ── Origines ── -->
+  <section class="vue" data-vue="origines" aria-labelledby="titre-carte" hidden>
+    <p class="kicker">Carte des origines</p>
     <h1 class="titre" id="titre-carte">Vos origines</h1>
     <div class="carte-monde">
       <div class="carte-monde__defile" id="carte-defile"></div>
@@ -112,12 +113,36 @@
     <div id="carte-listes"></div>
   </section>
 
+  <!-- ── Adresses ── -->
+  <section class="vue" data-vue="adresses" aria-labelledby="titre-adresses" hidden>
+    <p class="kicker">Autour de vous</p>
+    <h1 class="titre" id="titre-adresses">Bonnes adresses</h1>
+    <div class="recherche-lieu">
+      <button type="button" class="btn" id="me-localiser">Me localiser</button>
+      <form id="form-lieu" class="form-lieu" novalidate>
+        <label class="champ"><span>Ou une ville, une adresse</span><input id="champ-lieu" type="search" autocomplete="off" enterkeyhint="search" placeholder="Lyon, rue Oberkampf à Paris"></label>
+      </form>
+      <div id="resultats-lieu" class="resultats-lieu" hidden></div>
+      <div class="puces puces--petites" id="puces-villes" aria-label="Villes"></div>
+    </div>
+    <p class="lieu-actuel" id="lieu-actuel" hidden></p>
+    <div class="radar" id="radar" hidden></div>
+    <div id="listes-adresses"></div>
+    <p class="indice">La recherche autour de vous envoie la position, arrondie à 100 m, à OpenStreetMap ; elle n’est enregistrée nulle part. Une recherche de ville passe par la Géoplateforme de l’IGN.</p>
+    <p class="indice">Positions et coffee shops : © les contributeurs d’OpenStreetMap.</p>
+  </section>
+
   <!-- ── Données ── -->
   <section class="vue" data-vue="donnees" aria-labelledby="titre-donnees" hidden>
     <p class="kicker">Vos données</p>
     <h1 class="titre" id="titre-donnees">Tout reste sur ce téléphone</h1>
     <p class="chapeau">Pas de compte, pas de serveur. Le carnet est enregistré dans ce navigateur, et nulle part ailleurs.</p>
     <p class="resume" id="resume-donnees"></p>
+
+    <div class="apparence">
+      <h2 class="sous-titre">Apparence</h2>
+      <div class="puces puces--petites" id="puces-theme" aria-label="Apparence"></div>
+    </div>
 
     <div class="encadre" id="encadre-installer">
       <h2>Gardez-le à l’abri</h2>
@@ -143,7 +168,8 @@
 <nav class="onglets" aria-label="Sections du carnet">
   <button type="button" data-vers="noter"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9h12v5a5 5 0 0 1-5 5h-2a5 5 0 0 1-5-5z"/><path d="M17 10h1.5a2.5 2.5 0 0 1 0 5H17"/><path d="M9 3c-.8 1 .8 2 0 3M13 3c-.8 1 .8 2 0 3"/></svg>Noter</button>
   <button type="button" data-vers="cafes"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h11a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H6z"/><path d="M6 3v18"/><path d="M10 8h5M10 12h5"/></svg>Cafés</button>
-  <button type="button" data-vers="carte"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></svg>Carte</button>
+  <button type="button" data-vers="origines"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></svg>Origines</button>
+  <button type="button" data-vers="adresses"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.4"/></svg>Adresses</button>
   <button type="button" data-vers="donnees"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5"/><path d="M4 17v3h16v-3"/></svg>Données</button>
 </nav>
 

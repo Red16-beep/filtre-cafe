@@ -8,13 +8,13 @@
   var CLE = 'filtre-carnet';
 
   /* ── Typographie : même passe que typo() du site (astro/src/lib/v2.js), sur les nœuds texte ── */
-  var NBSP = ' ', FINE = ' ';
+  var NBSP = '\u00a0', FINE = '\u202f';
   var UNITES = /(\d) (€|%|°C|°|g|kg|mg|ml|cl|L|min|s|mm|bars?|ppm|mg\/L)(?=[\s.,;:!?)»]|$)/g;
   function typo(t) {
     return t
-      .replace(/ (?=[?!;])/g, FINE)
+      .replace(/\u00a0(?=[?!;])/g, FINE)
       .replace(/(\S) · /g, '$1' + NBSP + '· ')
-      .replace(/(\d)–(?=\d)/g, '$1–⁠')
+      .replace(/(\d)–(?=\d)/g, '$1–\u2060')
       .replace(/(\S) ([?!;])/g, '$1' + FINE + '$2')
       .replace(/(\S) ([:»])/g, '$1' + NBSP + '$2')
       .replace(/« /g, '«' + NBSP)
@@ -34,14 +34,14 @@
   }
 
   /* ── Stockage : un seul objet JSON, dans ce navigateur ── */
-  function vide() { return { version: 1, cafes: [], tasses: [] }; }
+  function vide() { return { version: 1, cafes: [], tasses: [], adresses: [] }; }
   function charger() {
-    try {
-      var d = JSON.parse(localStorage.getItem(CLE) || 'null');
-      if (d && d.version === 1 && Array.isArray(d.cafes) && Array.isArray(d.tasses)) return d;
-    } catch (e) { /* stockage indisponible : on part d'un carnet vide */ }
+    var d = null;
+    try { d = JSON.parse(localStorage.getItem(CLE) || 'null'); } catch (e) { /* stockage indisponible : on part d'un carnet vide */ }
     // CARNET_DEPART : carnet de départ facultatif (l'aperçu y met des tasses d'exemple).
-    return window.CARNET_DEPART ? JSON.parse(JSON.stringify(window.CARNET_DEPART)) : vide();
+    if (!(d && d.version === 1 && Array.isArray(d.cafes) && Array.isArray(d.tasses))) d = window.CARNET_DEPART ? JSON.parse(JSON.stringify(window.CARNET_DEPART)) : vide();
+    if (!Array.isArray(d.adresses)) d.adresses = [];
+    return d;
   }
   var etat = charger();
   function sauver() {
@@ -64,7 +64,7 @@
   }
   function nombre(v) {
     if (v == null || v === '') return null;
-    var n = parseFloat(String(v).replace(/[\s  ]/g, '').replace(',', '.'));
+    var n = parseFloat(String(v).replace(/[\s\u00a0\u202f]/g, '').replace(',', '.'));
     return isFinite(n) && n > 0 ? n : null;
   }
   function fr(n) { return NF.format(n); }
@@ -167,7 +167,7 @@
   }
 
   /* ── Navigation ── */
-  var VUES = ['noter', 'cafes', 'carte', 'donnees'];
+  var VUES = ['noter', 'cafes', 'origines', 'adresses', 'donnees'];
   var rendre = {};
   function aller(vue) {
     if (VUES.indexOf(vue) < 0) vue = 'noter';
@@ -537,7 +537,7 @@
       d.scrollTo({ left: cx / 720 * $('svg', d).getBoundingClientRect().width - d.clientWidth / 2, behavior: reduit ? 'auto' : 'smooth' });
     }
   }
-  rendre.carte = function () {
+  rendre.origines = function () {
     var compte = comptesOrigines();
     var goutees = D.origines.filter(function (o) { return compte[o.cle]; })
       .sort(function (a, b) { return compte[b.cle] - compte[a.cle] || a.nom.localeCompare(b.nom, 'fr'); });
@@ -551,17 +551,279 @@
     if (aDecouvrir.length) html += '<h2>À découvrir sur filtré.</h2><ul>' + aDecouvrir.map(function (o) { return ligneOrigine(o, 0); }).join('') + '</ul>';
     $('#carte-listes').innerHTML = html + '</div>';
     typographier($('#carte-listes'));
-    typographier($('[data-vue="carte"] .titre'));
+    typographier($('[data-vue="origines"] .titre'));
     requestAnimationFrame(centrerCarte);
   };
+
+  /* ── Adresses : les maisons de filtré., les coffee shops indépendants d'OpenStreetMap, les vôtres ── */
+  var RAYON = 2000;      // mètres : rayon de la recherche et du radar
+  var PROCHE = 30000;    // au-delà, une adresse de filtré. passe dans « Ailleurs en France »
+  var CLE_LIEU = 'filtre-carnet-lieu';
+  var lieu = null;       // point de départ : { nom, lat, lon, gps }
+  var osm = { cle: null, etat: 'vide', lieux: [] };
+  var resultatsLieu = [], choixAdresse = null;
+  var OVERPASS = ['https://overpass-api.de/api/interpreter', 'https://overpass.kumi.systems/api/interpreter'];
+  // Chaînes et faux amis (thé, capsules, CBD) écartés : il reste les indépendants.
+  var CHAINES = /starbucks|columbus|costa coffee|mc ?caf|nespresso|brioche dor|coffee shop company|caf[ée] coton|french coffee shop|(^|\W)cosi(\W|$)|capsul|(^|\W)cbd(\W|$)|bubble|boba|(^|\W)tea(\W|$)|(^|\W)thé(\W|$)/i;
+
+  function rad(x) { return x * Math.PI / 180; }
+  function distance(a, b) {
+    var dLat = rad(b.lat - a.lat), dLon = rad(b.lon - a.lon);
+    var h = Math.pow(Math.sin(dLat / 2), 2) + Math.cos(rad(a.lat)) * Math.cos(rad(b.lat)) * Math.pow(Math.sin(dLon / 2), 2);
+    return 12742000 * Math.asin(Math.min(1, Math.sqrt(h)));
+  }
+  function ecrireDistance(m) {
+    if (m < 1000) return Math.max(10, Math.round(m / 10) * 10) + ' m';
+    return (m < 10000 ? fr(Math.round(m / 100) / 10) : Math.round(m / 1000)) + ' km';
+  }
+  function aPied(m) { return m <= 3000 ? ' · ' + Math.max(1, Math.round(m / 80)) + ' min à pied' : ''; }
+  function itineraire(a) {
+    var ios = /iP(hone|ad|od)/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    return ios ? 'https://maps.apple.com/?daddr=' + a.lat + ',' + a.lon + '&dirflg=w&q=' + encodeURIComponent(a.nom)
+      : 'https://www.google.com/maps/dir/?api=1&destination=' + a.lat + ',' + a.lon + '&travelmode=walking';
+  }
+  function independant(t) {
+    return !!t.name && !t.brand && !t['brand:wikidata'] && !/bubble_tea/.test(t.cuisine || '') && !CHAINES.test(t.name);
+  }
+  // Coffee shops (amenity=cafe + cuisine=coffee_shop) et boutiques de café (shop=coffee) autour d'un point.
+  // Deux serveurs Overpass publics : le second si le premier ne répond pas.
+  function interrogerOverpass(lat, lon, rayon) {
+    var autour = '(around:' + rayon + ',' + lat + ',' + lon + ')';
+    var q = '[out:json][timeout:20];(nwr["amenity"="cafe"]["cuisine"~"coffee_shop"]' + autour + ';nwr["shop"="coffee"]' + autour + ';);out center tags 120;';
+    function essai(i) {
+      if (i >= OVERPASS.length) return Promise.reject(new Error('Overpass injoignable'));
+      var ctrl = typeof AbortController === 'function' ? new AbortController() : null;
+      var minuterie = setTimeout(function () { if (ctrl) ctrl.abort(); }, 15000);
+      return fetch(OVERPASS[i], { method: 'POST', body: 'data=' + encodeURIComponent(q), headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, signal: ctrl ? ctrl.signal : undefined })
+        .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+        .then(function (d) {
+          clearTimeout(minuterie);
+          return (d.elements || []).filter(function (e) { return e.tags && independant(e.tags); }).map(function (e) {
+            var t = e.tags, c = e.center || e;
+            return { id: e.type + '/' + e.id, nom: t.name, lat: c.lat, lon: c.lon, adresse: [t['addr:housenumber'], t['addr:street']].filter(Boolean).join(' '), type: t.shop === 'coffee' ? 'boutique' : 'cafe' };
+          });
+        })
+        .catch(function () { clearTimeout(minuterie); return essai(i + 1); });
+    }
+    return essai(0);
+  }
+  // CARNET_SOURCE_OSM : source de remplacement (l'aperçu, qui ne peut pas joindre Overpass, y met un échantillon).
+  var sourceOSM = window.CARNET_SOURCE_OSM || interrogerOverpass;
+  // Recherche d'une ville ou d'une adresse : Géoplateforme de l'IGN, sans clé.
+  function chercherLieux(q) {
+    return fetch('https://data.geopf.fr/geocodage/search?limit=5&q=' + encodeURIComponent(q))
+      .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+      .then(function (d) {
+        return (d.features || []).map(function (f) {
+          var p = f.properties || {};
+          return { nom: p.label || q, detail: p.context || '', lat: f.geometry.coordinates[1], lon: f.geometry.coordinates[0] };
+        });
+      });
+  }
+  function cleLieu() { return lieu ? Math.round(lieu.lat * 1000) / 1000 + ',' + Math.round(lieu.lon * 1000) / 1000 : null; }
+  function lieuGarde() {
+    try {
+      var l = JSON.parse(localStorage.getItem(CLE_LIEU) || 'null');
+      if (l && typeof l.nom === 'string' && isFinite(l.lat) && isFinite(l.lon)) return l;
+    } catch (e) { /* pas de ville gardée */ }
+    return null;
+  }
+  function choisirLieu(l) {
+    lieu = l;
+    // Une ville choisie est gardée pour la prochaine visite ; une position GPS, jamais.
+    if (!l.gps) { try { localStorage.setItem(CLE_LIEU, JSON.stringify({ nom: l.nom, lat: l.lat, lon: l.lon })); } catch (e) { /* simple confort */ } }
+    $('#resultats-lieu').hidden = true;
+    choixAdresse = null;
+    rendre.adresses();
+  }
+  // La position part arrondie à 100 m ; une recherche en échec ne se relance que sur demande.
+  function chargerOSM() {
+    var cle = cleLieu(), p = cle.split(',');
+    osm = { cle: cle, etat: 'chargement', lieux: [] };
+    sourceOSM(+p[0], +p[1], RAYON).then(function (lieux) {
+      if (osm.cle !== cle) return;
+      osm.etat = 'ok'; osm.lieux = lieux;
+      if (!$('[data-vue="adresses"]').hidden) rendre.adresses();
+    }, function () {
+      if (osm.cle !== cle) return;
+      osm.etat = 'erreur';
+      if (!$('[data-vue="adresses"]').hidden) rendre.adresses();
+    });
+  }
+  function meLocaliser() {
+    var b = $('#me-localiser');
+    if (!navigator.geolocation) { message('La localisation n’est pas disponible ici. Choisissez une ville.'); return; }
+    b.disabled = true;
+    b.textContent = 'Localisation…';
+    // Sans réponse à la demande d'autorisation, le bouton revient au bout de 20 s.
+    setTimeout(function () { if (b.disabled) { b.disabled = false; b.textContent = 'Me localiser'; } }, 20000);
+    navigator.geolocation.getCurrentPosition(function (p) {
+      b.disabled = false; b.textContent = 'Me localiser';
+      choisirLieu({ nom: 'votre position', lat: p.coords.latitude, lon: p.coords.longitude, gps: true });
+    }, function () {
+      b.disabled = false; b.textContent = 'Me localiser';
+      message('Position indisponible. Autorisez la localisation, ou choisissez une ville.');
+    }, { enableHighAccuracy: false, timeout: 10000, maximumAge: 300000 });
+  }
+  function rechercherLieu(e) {
+    e.preventDefault();
+    var q = $('#champ-lieu').value.trim(), boite = $('#resultats-lieu');
+    if (q.length < 2) return;
+    boite.innerHTML = '<p class="indice">Recherche…</p>';
+    boite.hidden = false;
+    chercherLieux(q).then(function (liste) {
+      resultatsLieu = liste;
+      boite.innerHTML = liste.length ? liste.map(function (l, i) {
+        return '<button type="button" data-lieu="' + i + '">' + echapper(l.nom) + (l.detail ? '<small>' + echapper(l.detail) + '</small>' : '') + '</button>';
+      }).join('') : '<p class="indice">Aucun lieu trouvé pour « ' + echapper(q) + ' ».</p>';
+      typographier(boite);
+    }, function () {
+      boite.hidden = true;
+      message('Recherche indisponible pour l’instant. Choisissez une ville ci-dessous.');
+    });
+  }
+
+  function gardee(cle) { return premier(etat.adresses, function (x) { return x.cle === cle; }); }
+  function trouverAdresse(cle) {
+    var id = cle.slice(2);
+    return gardee(cle) || (cle.charAt(0) === 'f' ? premier(D.adresses, function (a) { return a.id === id; }) : premier(osm.lieux, function (a) { return a.id === id; }));
+  }
+  function basculerGarde(cle) {
+    var g = gardee(cle), a = trouverAdresse(cle);
+    if (g) etat.adresses = etat.adresses.filter(function (x) { return x.cle !== cle; });
+    else if (a) etat.adresses.push({ cle: cle, nom: a.nom, type: a.type, adresse: a.adresse || '', ville: a.ville || '', lat: a.lat, lon: a.lon, guide: a.guide || null, garde: new Date().toISOString() });
+    else return;
+    sauver();
+    rendre.adresses();
+    message(g ? 'Retirée de vos adresses.' : 'Gardée dans vos adresses.');
+  }
+  function ligneAdresse(x) {
+    var a = x.a, g = !!gardee(x.cle), guide = a.guide && D.guidesAdresses[a.guide];
+    var meta = (a.type === 'boutique' ? 'Boutique' : 'Café') + ([a.adresse, a.ville].filter(Boolean).length ? ' · ' + [a.adresse, a.ville].filter(Boolean).join(', ') : '');
+    return '<li class="adresse" data-adresse="' + echapper(x.cle) + '">' +
+      '<div class="adresse__tete"><span class="adresse__nom">' + echapper(a.nom) + '</span>' + (x.d != null ? '<span class="adresse__distance">' + ecrireDistance(x.d) + aPied(x.d) + '</span>' : '') + '</div>' +
+      '<p class="adresse__meta">' + echapper(meta) + '</p>' +
+      (a.choix && guide ? '<span class="adresse__badge">Dans la sélection « ' + echapper(guide[1]) + ' »</span>' : '') +
+      '<div class="adresse__actions"><a href="' + echapper(itineraire(a)) + '" target="_blank" rel="noopener">Itinéraire</a>' +
+      (guide ? '<a href="' + D.site + guide[0] + '">L’article →</a>' : '') +
+      '<button type="button" class="lien" data-action="garder" data-adresse="' + echapper(x.cle) + '" aria-pressed="' + g + '">' + (g ? 'Gardée' : 'Garder') + '</button></div></li>';
+  }
+  // Radar : le point de départ au centre, le nord en haut, des anneaux à 500 m, 1 km et 2 km.
+  function radar(proches, autour, mes) {
+    var T = 340, C = T / 2, R = 150, k = R / RAYON, cosLat = Math.cos(rad(lieu.lat)), s = '';
+    function xy(a) { return [C + (a.lon - lieu.lon) * cosLat * 111320 * k, C - (a.lat - lieu.lat) * 110540 * k]; }
+    function pt(x, classe) {
+      var p = xy(x.a);
+      if (Math.sqrt(Math.pow(p[0] - C, 2) + Math.pow(p[1] - C, 2)) > R + 2) return '';
+      var r = classe === 'osm' ? 3.4 : 4.6, gauche = p[0] > C + R * 0.4, px = n1(p[0]), py = n1(p[1]);
+      return '<g class="radar__point radar__point--' + classe + '" data-adresse="' + echapper(x.cle) + '" tabindex="0" role="button" aria-label="' + echapper(x.a.nom + ', ' + ecrireDistance(x.d)) + '">' +
+        '<circle class="zone-tactile" cx="' + px + '" cy="' + py + '" r="11"/><circle class="coeur" cx="' + px + '" cy="' + py + '" r="' + r + '"/>' +
+        '<text x="' + n1(gauche ? p[0] - r - 4 : p[0] + r + 4) + '" y="' + n1(p[1] + 4) + '" text-anchor="' + (gauche ? 'end' : 'start') + '">' + echapper(x.a.nom) + '</text></g>';
+    }
+    s += '<line class="radar__axe" x1="' + C + '" y1="' + (C - R - 6) + '" x2="' + C + '" y2="' + (C + R + 6) + '"/>' +
+      '<line class="radar__axe" x1="' + (C - R - 6) + '" y1="' + C + '" x2="' + (C + R + 6) + '" y2="' + C + '"/>';
+    [[500, '500 m'], [1000, '1 km'], [2000, '2 km']].forEach(function (a) {
+      s += '<circle class="radar__anneau" cx="' + C + '" cy="' + C + '" r="' + n1(a[0] * k) + '"/>' +
+        '<text class="radar__echelle" x="' + (C + 6) + '" y="' + n1(C - a[0] * k - 4) + '">' + a[1] + '</text>';
+    });
+    s += '<text class="radar__nord" x="' + C + '" y="11" text-anchor="middle">N</text>';
+    var garde = {};
+    mes.forEach(function (x) { garde[x.cle] = true; });
+    s += autour.filter(function (x) { return !garde[x.cle]; }).map(function (x) { return pt(x, 'osm'); }).join('');
+    s += proches.filter(function (x) { return !garde[x.cle]; }).map(function (x) { return pt(x, 'filtre'); }).join('');
+    s += mes.filter(function (x) { return x.d != null; }).map(function (x) { return pt(x, 'garde'); }).join('');
+    s += (lieu.gps ? '<circle class="onde radar__centre-onde" cx="' + C + '" cy="' + C + '" r="6"/>' : '') +
+      '<circle class="radar__centre" cx="' + C + '" cy="' + C + '" r="' + (lieu.gps ? 5 : 3.5) + '"/>';
+    return '<svg viewBox="0 0 ' + T + ' ' + T + '" role="group" aria-label="Radar des adresses à moins de 2 km">' + s + '</svg>' +
+      '<p class="radar__legende"><span class="pastille pastille--filtre"></span>filtré. <span class="pastille pastille--osm"></span>OpenStreetMap' +
+      (mes.length ? ' <span class="pastille pastille--garde"></span>vos adresses' : '') + '</p>';
+  }
+  function choisirAdresse(cle, depuisRadar) {
+    choixAdresse = choixAdresse === cle ? null : cle;
+    $$('#radar .radar__point').forEach(function (p) { p.classList.toggle('choisi', p.getAttribute('data-adresse') === choixAdresse); });
+    $$('#listes-adresses .adresse').forEach(function (li) { li.classList.toggle('choisi', li.getAttribute('data-adresse') === choixAdresse); });
+    if (choixAdresse && depuisRadar) {
+      var li = premier($$('#listes-adresses .adresse'), function (x) { return x.getAttribute('data-adresse') === choixAdresse; });
+      if (li) li.scrollIntoView({ behavior: reduit ? 'auto' : 'smooth', block: 'center' });
+    }
+  }
+  rendre.adresses = function () {
+    if (!lieu) lieu = lieuGarde();
+    if (lieu && osm.cle !== cleLieu()) chargerOSM();
+    var info = $('#lieu-actuel'), html = '<div class="adresses">';
+    var parDistance = function (x, y) { return x.d - y.d; };
+    var avecDistance = function (a, cle) { return { a: a, cle: cle, d: lieu ? distance(lieu, a) : null }; };
+    var f = D.adresses.map(function (a) { return avecDistance(a, 'f:' + a.id); });
+    var mes = etat.adresses.map(function (a) { return avecDistance(a, a.cle); });
+    var proches = lieu ? f.filter(function (x) { return x.d <= PROCHE; }).sort(parDistance) : [];
+    var loin = lieu ? f.filter(function (x) { return x.d > PROCHE; }) : f;
+    var autour = !lieu || osm.etat !== 'ok' ? [] : osm.lieux
+      .filter(function (o) { return !premier(D.adresses, function (a) { return distance(a, o) < 60; }); })
+      .map(function (o) { return avecDistance(o, 'o:' + o.id); }).sort(parDistance).slice(0, 40);
+    marquer($('#puces-villes'), lieu && !lieu.gps ? D.villes.filter(function (v) { return v.nom === lieu.nom; }).map(function (v) { return v.cle; }) : []);
+    info.innerHTML = lieu ? 'Autour de <b>' + echapper(lieu.nom) + '</b>, dans un rayon de 2 km.' : '';
+    info.hidden = !lieu;
+    $('#radar').innerHTML = lieu ? radar(proches, autour, mes) : '';
+    $('#radar').hidden = !lieu;
+    // Les plus proches d'abord ; le reste se déplie.
+    var liste = function (items, visibles, suite) {
+      if (items.length <= visibles + 2) return '<ul>' + items.map(ligneAdresse).join('') + '</ul>';
+      return '<ul>' + items.slice(0, visibles).map(ligneAdresse).join('') + '</ul><details class="ville"><summary>' + suite +
+        ' <span>· ' + (items.length - visibles) + '</span></summary><ul>' + items.slice(visibles).map(ligneAdresse).join('') + '</ul></details>';
+    };
+    if (mes.length) html += '<h2>Vos adresses</h2>' + liste(lieu ? mes.sort(parDistance) : mes, 6, 'Les autres');
+    if (lieu) {
+      html += '<h2>Les adresses de filtré.</h2>' + (proches.length ? liste(proches, 6, 'Plus loin')
+        : '<p class="etat-osm">Aucune adresse de filtré. à moins de 30 km. Les villes couvertes sont plus bas.</p>');
+      html += '<h2>Coffee shops du quartier</h2><p class="indice">Indépendants recensés par OpenStreetMap, non testés par filtré. Les chaînes sont écartées.</p>';
+      if (osm.etat === 'chargement') html += '<p class="etat-osm">Recherche autour de ' + echapper(lieu.nom) + '…</p>';
+      else if (osm.etat === 'erreur') html += '<p class="etat-osm">OpenStreetMap ne répond pas pour l’instant. <button type="button" class="lien" data-action="osm-reessayer">Réessayer</button></p>';
+      else html += autour.length ? liste(autour, 10, 'Les autres') : '<p class="etat-osm">Aucun coffee shop indépendant recensé à moins de 2 km.</p>';
+    } else {
+      html += '<p class="vide">Choisissez un point de départ, votre position ou une ville : les adresses de filtré. et les coffee shops du quartier s’affichent autour.</p>';
+    }
+    var villes = {};
+    loin.forEach(function (x) { var v = x.a.ville.split(' ')[0]; (villes[v] = villes[v] || []).push(x); });
+    var noms = Object.keys(villes);
+    if (noms.length) {
+      html += '<h2>' + (lieu ? 'Ailleurs en France' : 'Les adresses de filtré.') + '</h2>' + noms.map(function (v) {
+        var n = villes[v].length;
+        return '<details class="ville"><summary>' + echapper(v) + ' <span>· ' + n + ' adresse' + (n > 1 ? 's' : '') + '</span></summary><ul>' + villes[v].map(ligneAdresse).join('') + '</ul></details>';
+      }).join('');
+    }
+    $('#listes-adresses').innerHTML = html + '</div>';
+    if (choixAdresse) { var c = choixAdresse; choixAdresse = null; choisirAdresse(c); }
+    typographier($('[data-vue="adresses"]'));
+  };
+
+  /* ── Apparence : celle du téléphone, ou claire, ou sombre (choix gardé sur l'appareil) ── */
+  var CLE_THEME = 'filtre-carnet-theme';
+  var THEMES = [{ cle: 'auto', nom: 'Comme le téléphone' }, { cle: 'clair', nom: 'Clair' }, { cle: 'sombre', nom: 'Sombre' }];
+  function lireTheme() { try { return localStorage.getItem(CLE_THEME) || 'auto'; } catch (e) { return 'auto'; } }
+  // Le lecteur d'un aperçu peut poser son propre data-theme : « Comme le téléphone » le lui rend.
+  var themeHote = lireTheme() === 'auto' ? document.documentElement.getAttribute('data-theme') : null;
+  function appliquerTheme(t) {
+    var r = document.documentElement;
+    if (t === 'clair') r.setAttribute('data-theme', 'light');
+    else if (t === 'sombre') r.setAttribute('data-theme', 'dark');
+    else if (themeHote) r.setAttribute('data-theme', themeHote);
+    else r.removeAttribute('data-theme');
+    marquer($('#puces-theme'), [t]);
+  }
+  function choisirTheme(t) {
+    try { if (t === 'auto') localStorage.removeItem(CLE_THEME); else localStorage.setItem(CLE_THEME, t); } catch (e) { /* le choix vaut pour cette visite */ }
+    appliquerTheme(t);
+  }
 
   /* ── Données : export, import, effacement ── */
   function installe() {
     return window.navigator.standalone === true || !!(window.matchMedia && window.matchMedia('(display-mode: standalone)').matches);
   }
   rendre.donnees = function () {
-    var nc = etat.cafes.length, nt = etat.tasses.length;
-    $('#resume-donnees').textContent = nc + ' café' + (nc > 1 ? 's' : '') + ' · ' + nt + ' tasse' + (nt > 1 ? 's' : '') + ' dans le carnet';
+    var nc = etat.cafes.length, nt = etat.tasses.length, na = etat.adresses.length;
+    $('#resume-donnees').textContent = nc + ' café' + (nc > 1 ? 's' : '') + ' · ' + nt + ' tasse' + (nt > 1 ? 's' : '') +
+      (na ? ' · ' + na + ' adresse' + (na > 1 ? 's' : '') : '') + ' dans le carnet';
+    marquer($('#puces-theme'), [lireTheme()]);
     $('#encadre-installer').hidden = installe();
     $('#encadre-installe').hidden = !installe();
     $('#exporter').disabled = $('#copier-export').disabled = !nc && !nt;
@@ -604,16 +866,20 @@
       var d;
       try { d = JSON.parse(lecteur.result); } catch (e) { d = null; }
       if (!d || d.version !== 1 || !Array.isArray(d.cafes) || !Array.isArray(d.tasses)) { message('Ce fichier n’est pas un export du carnet.'); return; }
-      var connus = {}, n = { cafes: 0, tasses: 0 };
+      var connus = {}, n = { cafes: 0, tasses: 0, adresses: 0 };
       etat.cafes.concat(etat.tasses).forEach(function (x) { connus[x.id] = true; });
       d.cafes.forEach(function (c) { if (c && typeof c.id === 'string' && typeof c.nom === 'string' && !connus[c.id]) { etat.cafes.push(c); n.cafes++; } });
       d.tasses.forEach(function (t) {
         if (t && typeof t.id === 'string' && typeof t.cafe === 'string' && typeof t.date === 'string' && !connus[t.id]) { etat.tasses.push(t); n.tasses++; }
       });
+      (Array.isArray(d.adresses) ? d.adresses : []).forEach(function (a) {
+        if (a && typeof a.cle === 'string' && typeof a.nom === 'string' && isFinite(a.lat) && isFinite(a.lon) && !gardee(a.cle)) { etat.adresses.push(a); n.adresses++; }
+      });
       sauver();
       saisie.aRafraichir = true;
       rendre.donnees();
-      message(n.cafes + ' café' + (n.cafes > 1 ? 's' : '') + ' et ' + n.tasses + ' tasse' + (n.tasses > 1 ? 's' : '') + ' ajoutés.');
+      message(n.cafes + ' café' + (n.cafes > 1 ? 's' : '') + ' et ' + n.tasses + ' tasse' + (n.tasses > 1 ? 's' : '') + ' ajoutés' +
+        (n.adresses ? ', plus ' + n.adresses + ' adresse' + (n.adresses > 1 ? 's' : '') : '') + '.');
     };
     lecteur.readAsText(fichier);
   }
@@ -640,6 +906,9 @@
   puces($('#puces-methode'), D.methodes);
   puces($('#puces-gout'), D.gouts);
   puces($('#puces-procede'), D.procedes);
+  puces($('#puces-villes'), D.villes);
+  puces($('#puces-theme'), THEMES);
+  appliquerTheme(lireTheme());
   remplirOrigines();
   $('#note').innerHTML = [1, 2, 3, 4, 5].map(function (n) { return '<button type="button" data-note="' + n + '" aria-pressed="false" aria-label="' + n + ' sur 5">' + n + '</button>'; }).join('');
   $$('[placeholder]').forEach(function (el) { el.placeholder = typo(el.placeholder); });
@@ -690,6 +959,26 @@
     choisirOrigine(li.getAttribute('data-origine'));
     $('.carte-monde').scrollIntoView({ behavior: reduit ? 'auto' : 'smooth', block: 'center' });
   });
+  $('#puces-theme').addEventListener('click', function (e) { var b = e.target.closest('.puce'); if (b) choisirTheme(b.getAttribute('data-cle')); });
+  $('#me-localiser').addEventListener('click', meLocaliser);
+  $('#form-lieu').addEventListener('submit', rechercherLieu);
+  $('#resultats-lieu').addEventListener('click', function (e) {
+    var b = e.target.closest('[data-lieu]');
+    if (b) choisirLieu(resultatsLieu[+b.getAttribute('data-lieu')]);
+  });
+  $('#puces-villes').addEventListener('click', function (e) {
+    var b = e.target.closest('.puce');
+    if (b) choisirLieu(premier(D.villes, function (v) { return v.cle === b.getAttribute('data-cle'); }));
+  });
+  $('#radar').addEventListener('click', function (e) { var p = e.target.closest('.radar__point'); if (p) choisirAdresse(p.getAttribute('data-adresse'), true); });
+  $('#radar').addEventListener('keydown', function (e) {
+    var p = e.target.closest('.radar__point');
+    if (p && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); choisirAdresse(p.getAttribute('data-adresse'), true); }
+  });
+  $('#listes-adresses').addEventListener('click', function (e) {
+    var li = e.target.closest('.adresse');
+    if (li && !e.target.closest('a, button')) choisirAdresse(li.getAttribute('data-adresse'));
+  });
   document.addEventListener('click', function (e) {
     var onglet = e.target.closest('[data-vers]');
     if (onglet) { aller(onglet.getAttribute('data-vers')); return; }
@@ -700,6 +989,8 @@
     else if (a === 'liste-cafes') rendre.cafes();
     else if (a === 'rejouer') rejouer(b.getAttribute('data-tasse'));
     else if (a === 'annuler') annuler(b.getAttribute('data-tasse'));
+    else if (a === 'garder') basculerGarde(b.getAttribute('data-adresse'));
+    else if (a === 'osm-reessayer') { osm.cle = null; rendre.adresses(); }
     else if (a === 'supprimer-tasse') confirmer(b, 'Toucher encore pour supprimer', function () { supprimerTasse(b.getAttribute('data-tasse')); });
     else if (a === 'supprimer-cafe') {
       var n = tassesDu(b.getAttribute('data-cafe')).length;
