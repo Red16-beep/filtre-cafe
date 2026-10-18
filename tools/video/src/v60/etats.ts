@@ -28,9 +28,20 @@ export type Versement = {
   eauCible: number;
 };
 
+// Où se fait le geste : pointe du bec pendant le versement, bouilloire au repos,
+// amplitude des cercles (le poste Chemex est plus haut et plus petit).
+export type LieuGeste = {
+  pointe?: { x: number; y: number };
+  repos?: { x: number; y: number; angle: number };
+  sx?: number;
+  sy?: number;
+};
+
 // Le geste du col de cygne : légère montée, inclinaison, cercles qui suivent
 // la spirale, filet qui traîne derrière la main, retrait.
-export const geste = (f: number, v: Versement) => {
+export const geste = (f: number, v: Versement, lieu: LieuGeste = {}) => {
+  const R = lieu.repos ?? POSTE.bouilloireRepos;
+  const pointe = lieu.pointe ?? { x: POINTE_X, y: POINTE_Y };
   const pa = prog(f, v.a0, v.a1, DOUX);
   const pr = prog(f, v.f1 + 2, v.r1, DOUX);
   const k = pa * (1 - pr);
@@ -48,8 +59,8 @@ export const geste = (f: number, v: Versement) => {
   const angleVerse =
     mix(v.angle0 ?? -22, v.angle1 ?? -26, f > v.f1 ? 1 : t) + onde;
   const corps = corpsPourPointe(
-    POINTE_X + sp.x * 0.95,
-    POINTE_Y + sp.y * 0.3,
+    pointe.x + sp.x * (lieu.sx ?? 0.95),
+    pointe.y + sp.y * (lieu.sy ?? 0.3),
     angleVerse,
     POSTE.echelleBouilloire,
   );

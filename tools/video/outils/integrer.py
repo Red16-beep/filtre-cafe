@@ -1,6 +1,7 @@
 """Intègre un tuto vidéo dans un article de la version test (filtre.cafe).
 
 python3 outils/integrer.py <article> <fichier> <titre> <description> <légende> <durée en s>
+(variable DATE facultative : date ISO de mise en ligne, le 17 octobre 2026 par défaut)
 
 - corps : <figure class="video-tuto"> juste avant le premier <h2> de l'article
   (ou remplace une figure existante) ;
@@ -9,12 +10,13 @@ python3 outils/integrer.py <article> <fichier> <titre> <description> <légende> 
 """
 import html
 import json
+import os
 import re
 import sys
 
 SITE = '/Users/redahassani/Webo-test-croatie'
 FRAG = f'{SITE}/astro/src/fragments/journal'
-DATE = '2026-10-17T00:00:00+02:00'
+DATE = os.environ.get('DATE', '2026-10-17T00:00:00+02:00')  # date de mise en ligne de la vidéo
 
 article, fichier, titre, description, legende, duree = sys.argv[1:7]
 url_article = f'https://filtre.cafe/journal/{article}'

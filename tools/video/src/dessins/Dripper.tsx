@@ -57,6 +57,7 @@ export const Dripper: React.FC<{
   bulles?: number;
   versementX?: number | null; // point d'impact du filet, repère local
   sansBras?: boolean;
+  corps?: boolean; // false : seulement le papier et son contenu (Chemex)
   frame?: number;
   couche?: "tout" | "arriere" | "avant";
 }> = ({
@@ -72,6 +73,7 @@ export const Dripper: React.FC<{
   bulles = 0,
   versementX = null,
   sansBras = false,
+  corps = true,
   frame = 0,
   couche = "tout",
 }) => {
@@ -124,7 +126,7 @@ export const Dripper: React.FC<{
       {/* Bord arrière et papier côté fond */}
       {arriere ? (
         <>
-          <Trace d={arcArriere(0, 0, 176, 27)} p={t(0, 0.25)} w={5} />
+          {corps ? <Trace d={arcArriere(0, 0, 176, 27)} p={t(0, 0.25)} w={5} /> : null}
           {papier > 0 ? (
             <g opacity={papier * remplir}>
               <path
@@ -323,6 +325,8 @@ export const Dripper: React.FC<{
             </g>
           ) : null}
 
+          {corps ? (
+          <>
           {/* Verre du cône */}
           <path
             d="M -172 0 L -38 228 A 38 6 0 0 0 38 228 L 172 0 A 172 26 0 0 1 -172 0 Z"
@@ -363,6 +367,8 @@ export const Dripper: React.FC<{
               <Trace d={BRAS} p={t(0.5, 0.85)} w={4.5} />
             </>
           )}
+          </>
+          ) : null}
         </>
       ) : null}
     </g>

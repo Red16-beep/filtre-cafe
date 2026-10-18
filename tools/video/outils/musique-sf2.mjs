@@ -6,7 +6,8 @@
 // piano, batterie un peu dégradée (12 bits, 26 kHz en parallèle), saturation, craquements de vinyle.
 //
 // node outils/musique-sf2.mjs <nom> <durée en s> [graine]
-// Variables facultatives : MELODIE=flute|shakuhachi|guitare|sax, BATTERIE=room|jazz|standard (sinon tirées au hasard).
+// Variables facultatives : MELODIE=flute|shakuhachi|guitare|sax, BATTERIE=room|jazz|standard (sinon tirées au hasard),
+// GRILLE=chemex (grille hors tirage).
 import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -83,7 +84,13 @@ function voicer(racine, qualite, avant) {
 const bpm = ent(82, 92);
 const beatSec = 60 / bpm;
 const MESURES = Math.ceil(DUREE / (4 * beatSec)) + 1;
-const grille = pick(GRILLES);
+// GRILLE=nom choisit une grille hors tirage ; le tirage a lieu quand même, pour que
+// les graines déjà utilisées redonnent exactement le même morceau.
+const GRILLES_HORS_TIRAGE = {
+  chemex: { mode: "majeur", g: [[0, "maj9"], [9, "m9"], [5, "maj9"], [7, "13"]] }, // Imaj9 vi9 IVmaj9 V13
+};
+const grilleTiree = pick(GRILLES);
+const grille = GRILLES_HORS_TIRAGE[process.env.GRILLE] ?? grilleTiree;
 const tonique = pick([53, 55, 56, 58, 60, 51, 50]); // fa, sol, la bémol, si bémol, do, mi bémol, ré
 const KITS = { room: { prog: 8, nom: "Room" }, jazz: { prog: 32, nom: "Jazz" }, standard: { prog: 0, nom: "Standard" } };
 const kit = KITS[process.env.BATTERIE] ?? pick(Object.values(KITS));

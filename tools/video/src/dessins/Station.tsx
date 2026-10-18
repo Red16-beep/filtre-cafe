@@ -74,7 +74,7 @@ export const spirale = (
 };
 
 // Vue de dessus : la spirale tracée par le filet.
-const EncartSpirale: React.FC<{
+export const EncartSpirale: React.FC<{
   p: number;
   rMax: number;
   tours: number;

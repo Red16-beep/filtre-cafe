@@ -1,4 +1,5 @@
 import { PosteAero } from "./aeropress/PosteAero";
+import { EpingleChemex } from "./chemex/scenes";
 import { etatInfusion } from "./aeropress/etats";
 import { PosteFroid } from "./coldbrew/PosteFroid";
 import { etatFiltrer } from "./coldbrew/etats";
@@ -75,4 +76,5 @@ export const EPINGLES = [
   { id: "EpingleMoka", c: EpingleMoka, fichier: "moka-pot-guide-complet-tuto" },
   { id: "EpingleFroid", c: EpingleFroid, fichier: "cold-brew-maison-tuto" },
   { id: "EpingleEsp", c: EpingleEsp, fichier: "comment-faire-espresso-parfait-tuto" },
+  { id: "EpingleChemex", c: EpingleChemex, fichier: "chemex-guide-complet-tuto" },
 ];
