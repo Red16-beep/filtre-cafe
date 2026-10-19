@@ -43,6 +43,12 @@ const faussesVeilles = () => {
   const texte = async sel => norm(await page.textContent(sel));
 
   console.log('1. Premier lancement');
+  const PAGES = path.join(RACINE, '..', 'astro', 'src', 'pages');
+  if (fs.existsSync(PAGES)) {
+    const liens = [...new Set(fs.readFileSync(path.join(RACINE, 'donnees.js'), 'utf8').match(/'\/journal\/[a-z0-9-]+'/g).map(l => l.slice(1, -1)))];
+    const manquants = liens.filter(l => !fs.existsSync(path.join(PAGES, l + '.astro')));
+    verif(liens.length > 30 && !manquants.length, liens.length + ' liens vers le journal, tous vers un article qui existe' + (manquants.length ? ' ; manquent : ' + manquants.join(', ') : ''));
+  }
   await page.goto(URL_, { waitUntil: 'networkidle' });
   verif((await page.$$('#puces-methode .puce')).length === 10, '10 méthodes');
   verif(await page.getAttribute('#puces-methode .puce[data-cle="v60"]', 'aria-pressed') === 'true', 'V60 par défaut');
@@ -86,6 +92,7 @@ const faussesVeilles = () => {
   const succes1 = await page.$$eval('#conseil .debloque__nom', l => l.map(x => x.textContent));
   verif(succes1.join() === 'Première tasse,Pic de fraîcheur', 'succès débloqués : ' + succes1.join(', '));
   verif(c1.includes('Nouveau niveau : Séchage.') && (await texte('#jeu-entete')) === 'Séchage 1 j', 'niveau Séchage, série d’un jour dans l’en-tête');
+  verif(c1.includes('Le saviez-vous ?') && (await texte('#conseil .anecdote__texte')).startsWith('Selon la légende, le chevrier Kaldi') && await page.getAttribute('#conseil .anecdote a', 'href') === 'https://filtre.cafe/journal/histoire-du-cafe', 'premier jour noté : la première anecdote, Kaldi, et son article');
   await cap('02-conseil.png', false);
   const rep1 = await texte('#reprise');
   verif(rep1 === 'Repris de votre dernière tasse de ce café, aujourd’hui. La dernière fois, c’était acide : moulez un cran plus fin.', 'rappel du conseil : ' + rep1);
@@ -114,6 +121,7 @@ const faussesVeilles = () => {
   verif(c2.includes('Réglage trouvé'), 'conseil : réglage trouvé');
   verif(c2.includes('Dans le mille') && c2.includes('Nouveau niveau : Jaunissement.'), 'succès « Dans le mille », niveau Jaunissement');
   verif(!(await page.$('#conseil .bsvg__fleche')), 'au centre : pas de flèche');
+  verif(!(await page.$('#conseil .anecdote')), 'deuxième tasse du jour : pas de nouvelle anecdote');
   verif((await texte('#reprise')).includes('Il vous avait plu : gardez-le.'), 'rappel : il vous avait plu');
 
   console.log('5. Troisième tasse : espresso, nouveau café, temps seul');
@@ -196,6 +204,8 @@ const faussesVeilles = () => {
   verif(await texte('#titre-passeport') === 'Jaunissement', 'titre : le niveau, Jaunissement');
   verif((await texte('#niveau')).startsWith('160 points') && (await texte('#niveau')).includes('Encore 140 points pour « Premier crack »'), 'jauge : 160 points, 140 avant Premier crack');
   verif(await texte('#titre-succes') === 'Succès · 3 sur 12' && (await page.$$('.succes__item--on')).length === 3, '3 succès sur 12');
+  const nbAnecdotes = await page.evaluate(() => CARNET.anecdotes.length);
+  verif(await texte('#titre-anecdotes') === 'Le saviez-vous ? · 1 sur ' + nbAnecdotes && (await page.$$('#anecdotes li')).length === 1 && (await texte('#anecdotes li')).startsWith('Selon la légende'), 'anecdotes : 1 sur ' + nbAnecdotes + ', celle du premier jour');
   verif(await texte('#titre-carte') === '2 origines goûtées', 'titre : 2 origines goûtées');
   verif((await page.$$('.point--goutee')).length === 2, '2 points allumés');
   verif((await page.$$('.point--guide')).length === 7, '7 origines à découvrir (guides du site)');
@@ -371,6 +381,9 @@ const faussesVeilles = () => {
   verif(await texte4('#jeu-entete') === 'Jaunissement 7 j', 'carnet v0.2 relu : 7 jours de suite, niveau Jaunissement');
   await p4.click('.onglets [data-vers="passeport"]');
   verif(await p4.$eval('.succes__item:nth-child(11)', li => li.classList.contains('succes__item--on')) && (await texte4('#niveau')).includes('7 jours de suite · record : 7 jours'), 'succès « Sept jours de suite », record de 7 jours');
+  const anecdotes7 = await p4.$$eval('#anecdotes .anecdote__texte', l => l.map(x => x.textContent));
+  const septieme = await p4.evaluate(() => CARNET.anecdotes[6].texte);
+  verif(norm(await p4.textContent('#titre-anecdotes')).startsWith('Le saviez-vous ? · 7 sur ') && anecdotes7.length === 7 && anecdotes7[0] === septieme && norm(await p4.textContent('#anecdotes summary')) === 'Les autres · 4', 'sept jours : 7 anecdotes, la septième en tête, 4 repliées');
   await p4.click('.onglets [data-vers="noter"]');
   await p4.click('#puces-methode .puce[data-cle="espresso"]');
   await p4.selectOption('#champ-cafe', 'nouveau');

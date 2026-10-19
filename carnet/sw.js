@@ -1,6 +1,6 @@
 /* Carnet filtré. : hors ligne. Réponse depuis le cache, mise à jour en arrière-plan pour la visite suivante.
    Changer VERSION quand la liste des fichiers change. */
-var VERSION = 'carnet-v3';
+var VERSION = 'carnet-v4';
 var FICHIERS = [
   './', 'index.html', 'app.css', 'app.js', 'donnees.js', 'carte.js', 'vendor/canvas-confetti.js', 'manifest.webmanifest',
   'polices/newsreader-latin-wght-normal.woff2', 'polices/newsreader-latin-wght-italic.woff2', 'polices/instrument-sans-latin-wght-normal.woff2',

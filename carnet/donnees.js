@@ -177,7 +177,35 @@ var CARNET = {
   // quand on saute un jour.
   poche: { premier: 3, suivant: 7 },
   // Anecdotes de café, une par jour de carnet, chacune tirée d'un article du site (texte, [chemin, titre]).
-  anecdotes: [],
+  // Relevées le 19 octobre 2026 ; si un article change, vérifier l'anecdote qui le cite.
+  anecdotes: [
+    { texte: 'Selon la légende, le chevrier Kaldi découvre le café en voyant ses chèvres rester éveillées toute la nuit, après avoir brouté les baies d’un arbuste inconnu.', lien: ['/journal/histoire-du-cafe', 'Histoire du café'] },
+    { texte: 'En Laponie, on verse le café brûlant sur des cubes d’un fromage qui ne fond pas, puis on mange le fromage à la cuillère : c’est le kaffeost.', lien: ['/journal/kaffeost-cafe-fromage-laponie', 'Kaffeost, le café au fromage'] },
+    { texte: 'Au premier crack de la torréfaction, le grain éclate sous la pression des gaz, comme du pop-corn qui commence à éclore.', lien: ['/journal/traitement-torrefaction', 'Comment la torréfaction transforme le goût'] },
+    { texte: 'Jeune officier sans le sou, Napoléon Bonaparte laisse son chapeau en gage au Procope, à Paris. Il y est toujours exposé.', lien: ['/journal/histoire-du-cafe', 'Histoire du café'] },
+    { texte: 'Le yuanyang de Hong Kong mêle café et thé au lait. Son nom vient des canards mandarins : le mâle et la femelle ne se ressemblent pas, mais vivent en couple.', lien: ['/journal/yuanyang-hong-kong', 'Yuanyang, le café au thé de Hong Kong'] },
+    { texte: 'Un grain « peaberry » est rond : il vient d’une cerise qui ne contient qu’un grain, au lieu des deux habituels.', lien: ['/journal/cafe-kenya-guide', 'Café du Kenya'] },
+    { texte: 'Le café arrive au Brésil caché dans un bouquet de fleurs, offert à l’officier Palheta par l’épouse du gouverneur français de Guyane.', lien: ['/journal/histoire-du-cafe', 'Histoire du café'] },
+    { texte: 'Pour qu’on cesse de vous resservir de la qahwa, secouez légèrement votre petite tasse de gauche à droite avant de la rendre.', lien: ['/journal/qahwa-cafe-arabe-cardamome', 'Qahwa, le café arabe à la cardamome'] },
+    { texte: 'Moudre le grain libère d’un coup une grande partie de son CO2 : c’est pour cela qu’un café moulu s’évente en quelques minutes.', lien: ['/journal/degazage-cafe', 'Dégazage du café'] },
+    { texte: 'Pour garder son monopole, le Yémen ébouillantait ou torréfiait en partie les grains exportés par Moka : impossible de les faire germer ailleurs.', lien: ['/journal/histoire-du-cafe', 'Histoire du café'] },
+    { texte: 'Le « white » de l’Ipoh white coffee ne désigne pas le lait : le grain est torréfié dans de la margarine.', lien: ['/journal/ipoh-white-coffee-malaisie', 'Ipoh white coffee'] },
+    { texte: 'Un café « honey » ne doit pas son nom au goût de miel : il le doit au mucilage sucré qui colle au grain comme du miel.', lien: ['/journal/naturel-lave-honey', 'Café naturel, lavé, honey'] },
+    { texte: 'En 1869, la rouille du caféier ravage les plantations d’arabica de Ceylan. L’Angleterre se convertit au thé.', lien: ['/journal/histoire-du-cafe', 'Histoire du café'] },
+    { texte: 'À Yogyakarta, le kopi joss est un café dans lequel on plonge un morceau de charbon de bois incandescent. « Joss », c’est le bruit que ça fait.', lien: ['/journal/kopi-tubruk-indonesie', 'Kopi tubruk, le café indonésien sans filtre'] },
+    { texte: 'L’arabica est un hybride naturel de deux espèces anciennes, dont le robusta lui-même.', lien: ['/journal/arabica-vs-robusta', 'Arabica et robusta'] },
+    { texte: 'Le jour où l’Hacienda La Esmeralda révèle son geisha, toute la salle de dégustation se pose la même question : est-ce vraiment du café ?', lien: ['/journal/cafe-geisha-gesha-guide', 'Café geisha'] },
+    { texte: 'À Turin, le bicerin superpose chocolat épais, espresso et crème de lait dans un petit verre. La règle : ne jamais mélanger.', lien: ['/journal/bicerin-turin', 'Bicerin de Turin'] },
+    { texte: 'Plus court et plus concentré qu’un espresso, le ristretto est aussi plus sucré, et moins amer.', lien: ['/journal/ristretto-espresso-lungo-differences', 'Ristretto, espresso, lungo'] },
+    { texte: 'Les premiers caféiers du Guatemala, plantés par les jésuites dans les couvents d’Antigua, auraient d’abord servi de décoration.', lien: ['/journal/cafe-guatemala-specialite', 'Café du Guatemala'] },
+    { texte: 'Le café à l’œuf de Hanoï est né d’une pénurie : faute de lait frais, un barman du Métropole bat un jaune d’œuf avec du lait concentré sucré.', lien: ['/journal/cafe-au-vietnam', 'Café au Vietnam'] },
+    { texte: 'Les cerises du Pink Bourbon, la variété star de Colombie, deviennent roses à maturité. Son origine génétique fait encore débat.', lien: ['/journal/cafe-colombie-specialite', 'Café de Colombie'] },
+    { texte: 'Beaucoup ont une tasse « mazagran » sans savoir que le mot désigne d’abord un café glacé au citron.', lien: ['/journal/mazagran-cafe-glace-citron', 'Mazagran, le café glacé au citron'] },
+    { texte: 'À Sumatra, le grain sèche nu, encore à environ 40 % d’humidité, et absorbe la terre, l’air, le bois des clayettes : voilà pourquoi un Sumatra sent la forêt.', lien: ['/journal/cafe-indonesie-specialite', 'Café d’Indonésie'] },
+    { texte: 'Au Japon, le café en canette règne dans les 5 millions de distributeurs automatiques du pays.', lien: ['/journal/cafe-au-japon', 'Café au Japon'] },
+    { texte: 'Dans les montagnes du nord de la Thaïlande, l’arabica est au cœur d’un projet pour remplacer la culture de l’opium.', lien: ['/journal/cafe-en-thailande', 'Café en Thaïlande'] },
+    { texte: 'Le café Touba, poivré et très sucré, est la boisson nationale du Sénégal, un pays qui ne produit pratiquement pas de café.', lien: ['/journal/cafe-touba-senegal', 'Café Touba'] }
+  ],
   niveaux: [
     { nom: 'Grain vert', points: 0, couleur: '#8f9a5b' },
     { nom: 'Séchage', points: 50, couleur: '#b5ad66' },

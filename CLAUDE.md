@@ -112,6 +112,10 @@ Il garde sa propre politique de sécurité, en `<meta>` dans `carnet/index.html`
 détache celle du site et rouvre la géolocalisation. Une nouvelle source externe du carnet s'ajoute dans cette
 balise, pas dans la politique du site.
 
+Le carnet cite le site : recettes, repères de repos et 26 anecdotes, chacune avec le lien de son article
+(`carnet/donnees.js`). Un article renommé, supprimé ou corrigé sur l'un de ces points se reporte dans `donnees.js` ;
+`node carnet/outils/tester.js` vérifie que chaque lien du carnet vers le journal mène à un article qui existe.
+
 Avant un lancement public : compléter la politique de confidentialité (position envoyée à OpenStreetMap, ville à la
 Géoplateforme de l'IGN), puis faire un lien depuis le site. Décisions, périmètre et tests : `carnet/README.md`. Il
 n'a aucune route serveur ; s'il lui en faut une un jour, elle suit les règles ci-dessus.

@@ -34,6 +34,9 @@ recherche d'adresses, qui a besoin du réseau).
     `/cafes-du-monde`), avec les origines que le site traite, à découvrir.
 - **Grain de poche** : après 3 jours de suite, « Oh, un grain de café dans votre poche ! ». Il sauve la série le
   jour où l'on en saute un. Un seul à la fois ; le suivant se trouve après 7 jours de suite.
+- **Le saviez-vous ?** : chaque jour où l'on note une tasse, une anecdote de café tirée d'un article du site, avec
+  son lien. Le conseil la donne à la première tasse du jour, le passeport les collectionne (26 pour l'instant, dans
+  l'ordre de `donnees.js` ; au-delà, elles reviennent dans le même ordre).
 - **Le jeu** : 10 points par tasse (trois tasses par jour au plus), 5 de plus avec un goût noté, 40 par succès.
   Tout se recalcule depuis les tasses et les sachets, sans état à part : un import ou une suppression restent
   cohérents. Un succès ou un niveau débloqué fait voler des grains et des cerises de café, sauf si le téléphone
@@ -82,6 +85,9 @@ recherche d'adresses, qui a besoin du réseau).
   confidentialité du site, puis un lien.
 - **Chiffres et conseils repris des guides** (étapes HowTo des pages du journal). Si une recette change sur le
   site, la changer aussi dans `donnees.js`.
+- **Anecdotes relevées dans les articles du site** (19 octobre 2026), rien d'ajouté : chacune renvoie à l'article
+  qui la raconte. Si un article change, vérifier l'anecdote qui le cite. Le test vérifie que chaque lien du carnet
+  vers le journal mène à un article qui existe.
 
 ## Adresses à compléter
 
@@ -95,13 +101,13 @@ recherche d'adresses, qui a besoin du réseau).
 | Fichier | Rôle |
 | --- | --- |
 | `index.html`, `app.css`, `app.js` | L'appli. Aucune étape de construction. |
-| `donnees.js` | Méthodes et recettes, origines, adresses de filtré., villes, goûts, conseils, repos, niveaux, succès et leurs icônes. |
+| `donnees.js` | Méthodes et recettes, origines, adresses de filtré., villes, goûts, conseils, repos, niveaux, succès et leurs icônes, anecdotes. |
 | `vendor/canvas-confetti.js` | Copie de canvas-confetti 1.9.4, licence ISC en tête du fichier. |
 | `carte.js` | Terres de la carte, généré par `python3 carnet/outils/carte.py` depuis `tools/v2/scenes.py`. |
 | `sw.js`, `manifest.webmanifest` | Hors ligne et installation. Changer `VERSION` dans `sw.js` à chaque modification des fichiers. |
 | `polices/` | Copies des polices v2 du site (Newsreader, Instrument Sans, sous-ensemble latin). |
 | `icones/` | `icone.svg`, le logo du site sur fond espresso, et ses rendus PNG (192, 512, masquable, Apple). |
-| `outils/tester.js` | Le parcours complet dans Chromium, réseau et écran allumé simulés (144 vérifications). |
+| `outils/tester.js` | Le parcours complet dans Chromium, réseau et écran allumé simulés (149 vérifications). |
 
 ## Tester
 
