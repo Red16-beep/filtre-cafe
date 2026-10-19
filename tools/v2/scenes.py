@@ -84,7 +84,7 @@ def scene_coldbrew():
 <path d="M210 290 H410 V588 Q410 626 372 626 H248 Q210 626 210 588 Z" fill="{CF}" opacity=".75"/>
 {glacons}
 <g fill="none" stroke="{CR}" stroke-width="2.6" stroke-linecap="round"><circle cx="486" cy="168" r="62"/>
-<path class="v2-tourne-vite" d="M486 168 V122" style="transform-origin:486px 168px"/><path class="v2-tourne-lent" d="M486 168 H520" style="transform-origin:486px 168px"/></g>
+<path class="v2-tourne-vite" d="M486 168 V122" style="transform-box:view-box;transform-origin:486px 168px"/><path class="v2-tourne-lent" d="M486 168 H520" style="transform-box:view-box;transform-origin:486px 168px"/></g>
 <text x="486" y="262" text-anchor="middle" fill="{TX}" font-family="Instrument Sans, Arial" font-size="15" font-weight="600">12 à 16 h au frais</text>
 </svg>'''
 
@@ -126,7 +126,7 @@ ICONES = {
     'ratio': ic('<path d="M60 22 V92 M36 96 H84"/><g class="v2-balance-anim"><path d="M20 40 H100"/><path d="M20 40 l-10 24 h20 z M100 40 l-10 24 h20 z" fill="rgba(239,199,156,.1)"/></g><text x="60" y="114" fill="#efc79c" stroke="none" font-family="Instrument Sans, Arial" font-size="14" text-anchor="middle" font-weight="600">1:16</text>'),
     'espresso': ic(f'<path d="M30 52 H82 V74 Q82 96 56 96 Q30 96 30 74 Z" fill="rgba(239,199,156,.08)"/><path d="M82 60 Q96 60 96 70 Q96 80 82 80"/><circle cx="60" cy="30" r="16" stroke-opacity=".35"/><circle class="v2-arc" cx="60" cy="30" r="16" stroke="{CL}" style="--l:101;stroke-dasharray:101;transform:rotate(-90deg);transform-origin:60px 30px"/>'),
     'temperature': ic(f'<path d="M52 20 Q52 12 60 12 Q68 12 68 20 V70 Q80 78 76 92 Q72 104 60 104 Q48 104 44 92 Q40 78 52 70 Z"/><rect class="v2-niveau" x="56" y="34" width="8" height="52" rx="4" fill="{CL}" stroke="none"/><circle cx="60" cy="88" r="9" fill="{CL}" stroke="none"/>'),
-    'lait': ic(f'<path d="M32 30 H84 L80 96 Q80 102 74 102 H42 Q36 102 36 96 Z" fill="rgba(239,199,156,.06)"/><path d="M84 30 L98 22"/><path class="v2-tourne-vite" style="transform-origin:58px 66px;animation-duration:2.4s" d="M58 66 m-14 0 a14 14 0 1 1 28 0 a9 9 0 1 1 -18 0" stroke="{CL}"/>'),
+    'lait': ic(f'<path d="M32 30 H84 L80 96 Q80 102 74 102 H42 Q36 102 36 96 Z" fill="rgba(239,199,156,.06)"/><path d="M84 30 L98 22"/><path class="v2-tourne-vite" style="transform-box:view-box;transform-origin:58px 66px;animation-duration:2.4s" d="M58 66 m-14 0 a14 14 0 1 1 28 0 a9 9 0 1 1 -18 0" stroke="{CL}"/>'),
     'quatre-six': ic(''.join(f'<rect class="v2-barreapp" style="animation-delay:{k*.6}s" x="{14+k*20}" y="{100-h}" width="14" height="{h}" rx="3" fill="{CL if k<2 else CR}" stroke="none" opacity="{.95 if k<2 else .55}"/>' for k, h in enumerate([34, 34, 52, 52, 52])) + '<path d="M54 18 V104" stroke-dasharray="3 5" stroke-opacity=".6"/>'),
     'grain': ic(f'<g class="v2-tourne-lent" style="animation-duration:14s"><ellipse cx="60" cy="60" rx="30" ry="40" fill="rgba(239,199,156,.1)"/><path d="M60 22 Q46 60 60 98" /></g>'),
 }
@@ -145,9 +145,18 @@ def ie(c):
 ENVIES_ICONES = {
     'filtre': ie('<path d="M8 12 H40 L28 30 H20 Z"/><path d="M18 38 H30"/><circle class="v2-goutte" style="--h:6px" cx="24" cy="32" r="1.8" fill="#b8401f" stroke="none"/>'),
     'espresso': ie('<path d="M10 20 H34 V28 Q34 38 22 38 Q10 38 10 28 Z"/><path d="M34 23 Q41 23 41 28 Q41 33 34 33"/><path class="v2-vapeur" d="M18 16 q-3 -4 0 -9 M26 16 q-3 -4 0 -9" stroke="#b8401f"/>'),
-    'monde': ie('<circle cx="24" cy="24" r="16"/><g class="v2-tourne-lent" style="transform-origin:24px 24px;animation-duration:12s"><path d="M24 8 Q14 24 24 40 Q34 24 24 8"/></g><path d="M8 24 H40"/><path d="M11 16 H37 M11 32 H37" stroke-opacity=".5"/>'),
+    'monde': ie('<circle cx="24" cy="24" r="16"/><g class="v2-tourne-lent" style="transform-box:view-box;transform-origin:24px 24px;animation-duration:12s"><path d="M24 8 Q14 24 24 40 Q34 24 24 8"/></g><path d="M8 24 H40"/><path d="M11 16 H37 M11 32 H37" stroke-opacity=".5"/>'),
     'glace': ie('<path d="M12 10 H36 L33 40 H15 Z"/><rect class="v2-flotte" x="17" y="18" width="8" height="8" rx="2"/><rect class="v2-flotte" style="animation-delay:1s" x="25" y="24" width="8" height="8" rx="2"/>'),
-    'materiel': ie('<rect x="14" y="20" width="20" height="20" rx="3"/><path d="M18 20 L20 12 H28 L30 20"/><g class="v2-tourne-vite" style="transform-origin:24px 8px;animation-duration:4s"><path d="M24 8 H34"/></g>'),
+    'materiel': ie('<rect x="14" y="20" width="20" height="20" rx="3"/><path d="M18 20 L20 12 H28 L30 20"/><g class="v2-tourne-vite" style="transform-box:view-box;transform-origin:24px 8px;animation-duration:4s"><path d="M24 8 H34"/></g>'),
+}
+
+# ── Icônes de la lettre (même trait que les envies) : tools/lettre/icones.py les exporte en GIF pour le mail ──
+LETTRE_ICONES = {
+    'telephone': ie('<rect x="14" y="5" width="20" height="38" rx="4"/><path d="M21 38 H27"/><path d="M18 13 H30 L26 20 H22 Z"/>'
+                    '<circle class="v2-goutte" style="--h:7px" cx="24" cy="23" r="1.6" fill="#b8401f" stroke="none"/>'),
+    'lait': ie('<path d="M13 12 H33 L31 38 Q31 41 28 41 H18 Q15 41 15 38 Z"/><path d="M33 12 L39 8"/>'
+               '<path class="v2-tourne-vite" style="transform-box:view-box;transform-origin:23px 26px;animation-duration:2.4s"'
+               ' d="M23 26 m-6 0 a6 6 0 1 1 12 0 a4 4 0 1 1 -8 0" stroke="#b8401f"/>'),
 }
 
 # ── Carte des origines (projection équirectangulaire 720×360) ─────────────
