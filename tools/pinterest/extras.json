@@ -4,14 +4,14 @@
     "slug": "calendrier-avent-cafe",
     "url": "https://filtre.cafe/journal/idees-cadeaux-cafe",
     "title": "Calendrier de l'avent café 2026 : lesquels valent le coup",
-    "desc": "Quatre calendriers de l'avent en café de spécialité passés au crible : Drip et son tour de France des torréfacteurs indépendants, Arlo's et ses doses de 30 g, Kaffebox et ses sachets de 50 g scandinaves, 19grams et ses vingt-quatre pays. Les trois critères qui éliminent presque tous les autres : grain entier, origines nommées, doses assez larges pour rater sa tasse une fois avant de la réussir. Les prix 2026, et pourquoi ces éditions se commandent dès octobre.",
-    "accroche": "Quatre calendriers de l'avent en café de spécialité passés au crible : grain entier, origines nommées, prix 2026.",
+    "desc": "Trois calendriers de l'avent en café de spécialité passés au crible : Arlo's et ses doses de 30 g torréfiées près de Rambouillet, Kaffebox et ses tubes de 50 g de douze torréfacteurs scandinaves, 19grams et ses vingt-quatre pays. Les trois critères qui éliminent presque tous les autres : grain entier, origines nommées, doses assez larges pour rater sa tasse une fois avant de la réussir. Les prix 2026, et les dates limites pour être livré avant le 1er décembre.",
+    "accroche": "Trois calendriers de l'avent en café de spécialité passés au crible : grain entier, origines nommées, prix 2026.",
     "board": "Matériel & achat",
     "outline": [
       "Ce qui fait un bon calendrier",
-      "Drip, le tour de France",
+      "Arlo's, une seule main",
       "Kaffebox, le plus abouti",
-      "19grams, le plus simple à recevoir"
+      "19grams, vingt-quatre pays"
     ],
     "theme": "sombre",
     "photo": "calendrier-avent.jpg"
@@ -35,5 +35,21 @@
     "board": "Méthodes & extraction",
     "theme": "clair",
     "layout": "accroche"
+  },
+  {
+    "slug": "cadeau-noel-cafe",
+    "url": "https://filtre.cafe/journal/idees-cadeaux-cafe",
+    "title": "Cadeau de Noël café : 4 packs prêts à offrir",
+    "desc": "Quatre packs cadeau pour amateur de café, du minimum utile à la station complète, de 85 à 665 € : un moulin et un V60 pour celui qui n'a rien, un calendrier de l'avent pour celui qui a déjà le matériel, la station filtre complète, puis la machine espresso avec son moulin. Et la règle qui évite le cadeau raté : on offre le moulin d'abord, jamais la machine seule.",
+    "accroche": "Quatre packs de 85 à 665 €, et la règle qui évite le cadeau raté : le moulin d'abord, jamais la machine seule.",
+    "board": "Matériel & achat",
+    "outline": [
+      "Il n'a rien : moulin et V60",
+      "Il a le matériel, pas le café",
+      "La station filtre complète",
+      "Machine et moulin, le grand jeu"
+    ],
+    "theme": "clair",
+    "photo": "paquets-cadeau.jpg"
   }
 ]
