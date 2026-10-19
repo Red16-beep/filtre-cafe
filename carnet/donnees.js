@@ -176,6 +176,8 @@ var CARNET = {
   // Grain de poche : trouvé après 3 jours de suite, puis tous les 7 jours (un seul à la fois), il sauve la série
   // quand on saute un jour.
   poche: { premier: 3, suivant: 7 },
+  // Anecdotes de café, une par jour de carnet, chacune tirée d'un article du site (texte, [chemin, titre]).
+  anecdotes: [],
   niveaux: [
     { nom: 'Grain vert', points: 0, couleur: '#8f9a5b' },
     { nom: 'Séchage', points: 50, couleur: '#b5ad66' },

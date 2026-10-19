@@ -220,7 +220,7 @@
   function jeu() {
     var ts = etat.tasses.slice().sort(function (a, b) { return a.date < b.date ? -1 : a.date > b.date ? 1 : 0; });
     var gagnes = {}, methodes = {}, origines = {}, zones = {}, suites = {}, parJour = {}, P = D.points, G = D.poche;
-    var points = 0, serie = 0, record = 0, veille = null, poche = 0, trouves = 0, compteur = 0, evenements = {};
+    var points = 0, serie = 0, record = 0, veille = null, poche = 0, trouves = 0, compteur = 0, evenements = {}, nbJours = 0;
     function gagne(cle, date) { if (!gagnes[cle]) gagnes[cle] = date; }
     ts.forEach(function (t, i) {
       var g = t.gouts || [], eq = g.indexOf('equilibre') >= 0, m = methode(t.methode), c = cafe(t.cafe), o = c && origine(c.origine);
@@ -243,6 +243,7 @@
         else if (veille !== null && j === veille + 2 && poche) { poche = 0; compteur = 0; serie++; evenements[t.id] = 'sauve'; }
         else { serie = 1; compteur = 0; }
         veille = j;
+        nbJours++;
         record = Math.max(record, serie);
         if (!poche && ++compteur >= (trouves ? G.suivant : G.premier)) { poche = 1; trouves++; compteur = 0; evenements[t.id] = evenements[t.id] || 'trouve'; }
       }
@@ -261,8 +262,15 @@
     D.niveaux.forEach(function (x, k) { if (points >= x.points) n = k; });
     return {
       gagnes: gagnes, points: points, niveau: n, serie: vivante ? serie : 0, record: record, aujourdhui: veille === auj,
-      poche: poche, aSauver: ecart === 2 && !!poche, avantGrain: poche ? 0 : vivante ? seuil - compteur : seuil, evenements: evenements
+      poche: poche, aSauver: ecart === 2 && !!poche, avantGrain: poche ? 0 : vivante ? seuil - compteur : seuil, evenements: evenements,
+      nbJours: nbJours
     };
+  }
+  // Une anecdote par jour de carnet, dans l'ordre de la liste : le jour noté n donne la n-ième (puis on recommence).
+  function anecdote(n) { var A = D.anecdotes || []; return A.length ? A[(n - 1) % A.length] : null; }
+  function blocAnecdote(a) {
+    return '<div class="anecdote"><p class="kicker">Le saviez-vous ?</p><p class="anecdote__texte">' + echapper(a.texte) + '</p>' +
+      (a.lien ? '<a href="' + D.site + a.lien[0] + '">' + echapper(a.lien[1]) + ' →</a>' : '') + '</div>';
   }
   // Le grain de poche, dans le conseil : trouvé, ou qui vient de sauver la série.
   function blocPoche(ev, J) {
@@ -617,7 +625,8 @@
     viderSaisie();
     remplirCafes(cid);
     preRemplir();
-    afficherConseil(t, { gain: apres.points - avant.points, nouveaux: nouveauxSucces(avant, apres), monte: apres.niveau > avant.niveau, J: apres, poche: apres.evenements[t.id] });
+    afficherConseil(t, { gain: apres.points - avant.points, nouveaux: nouveauxSucces(avant, apres), monte: apres.niveau > avant.niveau, J: apres, poche: apres.evenements[t.id],
+      anecdote: apres.nbJours > avant.nbJours ? anecdote(apres.nbJours) : null });
   }
   // Âge du café dans le conseil : trop frais, il dégaze encore ; au-delà de six semaines, il s'éteint.
   function ligneAge(t, m) {
@@ -660,6 +669,7 @@
     if (bilan && bilan.poche) html += blocPoche(bilan.poche, bilan.J);
     if (bilan && bilan.nouveaux.length) html += blocSucces(bilan.nouveaux);
     if (bilan && bilan.monte) html += blocNiveau(bilan.J);
+    if (bilan && bilan.anecdote) html += blocAnecdote(bilan.anecdote);
     html += '<div class="actions"><button type="button" class="btn btn--petit btn--clair" data-action="voir-cafe" data-cafe="' + echapper(t.cafe) + '">Voir ce café</button>' +
       '<button type="button" class="lien" data-action="annuler" data-tasse="' + echapper(t.id) + '">Annuler cette tasse</button></div>';
     boite.innerHTML = html;
@@ -967,6 +977,15 @@
         '<p class="succes__nom">' + echapper(s.nom) + '</p><p class="succes__but">' + echapper(s.but) + '</p>' +
         (d ? '<p class="succes__date">Débloqué ' + quand(d) + '</p>' : '') + '</li>';
     }).join('');
+    // Les anecdotes trouvées, la dernière en tête ; au-delà de trois, le reste se déplie.
+    var A = D.anecdotes || [], vues = Math.min(J.nbJours, A.length), liste = [];
+    for (var k = vues; k >= 1; k--) liste.push(anecdote(k));
+    var li = function (a) { return '<li><p class="anecdote__texte">' + echapper(a.texte) + '</p>' + (a.lien ? '<a href="' + D.site + a.lien[0] + '">' + echapper(a.lien[1]) + ' →</a>' : '') + '</li>'; };
+    $('#titre-anecdotes').hidden = $('#anecdotes').hidden = !A.length;
+    $('#titre-anecdotes').textContent = 'Le saviez-vous ? · ' + vues + ' sur ' + A.length;
+    $('#anecdotes').innerHTML = !vues ? '<p class="vide">Chaque jour où vous notez une tasse, une anecdote de café s’ajoute ici.</p>'
+      : '<ul class="anecdotes">' + liste.slice(0, 3).map(li).join('') + '</ul>' +
+        (liste.length > 3 ? '<details class="ville"><summary>Les autres <span>· ' + (liste.length - 3) + '</span></summary><ul class="anecdotes">' + liste.slice(3).map(li).join('') + '</ul></details>' : '');
     var compte = comptesOrigines(), premieres = premieresOrigines();
     var goutees = D.origines.filter(function (o) { return compte[o.cle]; })
       .sort(function (a, b) { return premieres[a.cle] < premieres[b.cle] ? -1 : 1; });

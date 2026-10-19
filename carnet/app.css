@@ -187,6 +187,13 @@ input[type="date"]{min-height:50px;display:block}
 .fin-sachet .actions{margin-top:8px;align-items:center}
 .fin-sachet--ok{background:var(--age-fenetre-fond)}
 .gain{font-family:var(--sans);font-size:14px;font-weight:600;color:var(--cuivre);margin:12px 0 0;font-variant-numeric:tabular-nums}
+.anecdote{border-top:1px solid var(--filet);margin:14px 0 0;padding-top:12px}
+.anecdote .kicker{color:var(--cuivre)}
+.anecdote__texte{font-family:var(--serif);font-style:italic;font-size:18px;line-height:1.4;margin:4px 0 4px}
+.anecdote a,.anecdotes a{font-family:var(--sans);font-size:14.5px}
+.anecdotes{list-style:none;margin:0 0 18px;padding:0}
+.anecdotes li{border-top:1px solid var(--filet);padding:12px 0}
+.anecdotes .anecdote__texte{margin-top:0}
 .debloque{display:grid;gap:10px;margin:10px 0 0}
 .debloque__item{display:flex;align-items:center;gap:12px;background:var(--crema);color:var(--sur-crema);border-radius:14px;padding:10px 14px}
 .debloque__item .kicker{color:var(--sur-crema);opacity:.75;font-size:11px}
