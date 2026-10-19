@@ -81,6 +81,13 @@ réseau : `node scripts/indexnow-submit.mjs <urls>` (sans argument, tout le site
 Ne jamais le lancer sans l'accord de l'auteur : il émet des requêtes vers `api.indexnow.org`.
 La clé est publique par construction (fichier `.txt` à la racine), ce n'est pas un secret.
 
+Pour la Search Console : `node scripts/gsc.mjs` donne l'état d'indexation des pages du dernier `lastmod`
+du sitemap (ou des URL passées en argument), `--sitemap` renvoie le sitemap à Google. Il lit la clé d'un
+compte de service Google dans les variables d'environnement `GSC_CLIENT_EMAIL` et `GSC_PRIVATE_KEY`
+(réglages de l'environnement cloud, jamais dans le dépôt), ajouté comme utilisateur de la propriété
+filtre.cafe ; en session cloud, préfixer la commande de `NODE_USE_ENV_PROXY=1`. L'API ne sait pas
+« Demander l'indexation » : ce clic se fait dans la Search Console.
+
 ## Illustration et icônes de la lettre
 
 Depuis la N°11, chaque lettre porte l'illustration de l'article du sujet et une icône par rubrique.
