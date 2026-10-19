@@ -75,8 +75,11 @@ recherche d'adresses, qui a besoin du réseau).
   vibration courte ne joue que sur Android.
 - **Écran allumé** : Screen Wake Lock, dans Safari depuis iOS 16.4 et dans l'appli installée depuis iOS 18.4. Refusé
   ou absent, le chrono marche pareil.
-- **Hors du site** : `astro/sync-public.sh` ne copie pas ce dossier. Il n'est ni construit ni déployé avec
-  filtre.cafe, et `astro/lint.py` ne le lit pas.
+- **Bêta cachée sur filtre.cafe/carnet/** (19 octobre 2026) : `astro/sync-public.sh` copie le dossier (sans
+  `outils/` ni ce README) ; aucun lien depuis le site, `noindex` en balise et en `X-Robots-Tag`. Le carnet a sa
+  propre politique de sécurité en `<meta>` dans `index.html` (OpenStreetMap, IGN) ; le bloc `/carnet/*` de
+  `_headers` détache celle du site et permet la géolocalisation. Avant un lancement public : la politique de
+  confidentialité du site, puis un lien.
 - **Chiffres et conseils repris des guides** (étapes HowTo des pages du journal). Si une recette change sur le
   site, la changer aussi dans `donnees.js`.
 
@@ -111,11 +114,8 @@ navigateur ne sont pas trouvés).
 
 Pour l'essayer à la main : `python3 -m http.server 8765 --directory carnet`, puis `http://localhost:8765/`.
 
-Sur téléphone, il faut une adresse en HTTPS. Le plus simple : un projet Cloudflare Pages à part, branché sur ce
-dépôt, avec `carnet` comme répertoire racine et aucune commande de construction. Chaque branche y a son aperçu,
-et le site n'est pas touché. Le dossier n'ayant pas de `functions/`, aucune route ni variable d'environnement
-n'y est exposée. Dans les réglages de construction du projet, limiter les chemins surveillés (build watch paths)
-à `carnet/*` : une modification du site ne relance alors pas le carnet.
+Sur téléphone : https://filtre.cafe/carnet/ dans Safari, puis Partager, « Sur l'écran d'accueil ». Chaque
+branche poussée a aussi son aperçu Cloudflare, `https://<branche>.filtre-cafe.pages.dev/carnet/`.
 
 ## Suite possible
 

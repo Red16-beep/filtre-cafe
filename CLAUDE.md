@@ -102,9 +102,16 @@ version de `v2.css` / `v2.js` et les espaces insécables. L'option `--habiller-o
 reconstruit encore Base.astro et les pages racine depuis l'ancien `main` (98c34d9) : elle écrase
 toute modification faite depuis, ne pas l'utiliser.
 
-## Projet à part : `carnet/`
+## Projet à part : `carnet/`, en bêta cachée sur `/carnet/`
 
-`carnet/` est un side project, le carnet de bord du café (appli web installable). `astro/sync-public.sh` ne le
-copie pas : il n'est ni construit, ni déployé avec le site, et le lint ne le lit pas. Décisions, périmètre et façon
-de le tester : `carnet/README.md`. Il n'a aucune route serveur ; s'il lui en faut une un jour, elle suit les règles
-ci-dessus.
+`carnet/` est un side project, le carnet de bord du café (appli web installable). Depuis le 19 octobre 2026, il est
+en bêta cachée sur https://filtre.cafe/carnet/ : aucun lien depuis le site, `noindex` (balise et `X-Robots-Tag`).
+`astro/sync-public.sh` le copie sans `outils/` ni `README.md`, et le lint le lit.
+
+Il garde sa propre politique de sécurité, en `<meta>` dans `carnet/index.html` : le bloc `/carnet/*` de `_headers`
+détache celle du site et rouvre la géolocalisation. Une nouvelle source externe du carnet s'ajoute dans cette
+balise, pas dans la politique du site.
+
+Avant un lancement public : compléter la politique de confidentialité (position envoyée à OpenStreetMap, ville à la
+Géoplateforme de l'IGN), puis faire un lien depuis le site. Décisions, périmètre et tests : `carnet/README.md`. Il
+n'a aucune route serveur ; s'il lui en faut une un jour, elle suit les règles ci-dessus.

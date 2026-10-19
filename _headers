@@ -34,3 +34,11 @@
 
 /newsletter/email-*
   X-Robots-Tag: noindex
+
+# Carnet de bord, en bêta cachée : sa politique de sécurité est en <meta> dans carnet/index.html (requêtes vers
+# OpenStreetMap et l'IGN), celle du site ne s'y applique pas ; la géolocalisation y est permise, à la demande.
+/carnet/*
+  ! Content-Security-Policy
+  ! Permissions-Policy
+  Permissions-Policy: camera=(), microphone=(), geolocation=(self)
+  X-Robots-Tag: noindex

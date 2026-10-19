@@ -23,6 +23,9 @@ copy journal/index.html "$PUB/journal/"
 copy guides/index.html  "$PUB/guides/"
 # newsletter archive issues linked from newsletter.html (01.html, 02.html, ...)
 copy newsletter "$PUB/"
+# carnet/ : le carnet de bord du café, en bêta cachée sur /carnet/ (sans ses outils de test ni son README)
+copy carnet "$PUB/"
+rm -rf "$PUB/carnet/outils" "$PUB/carnet/README.md"
 # v2 : copies minifiées dans public/ (les sources lisibles restent dans v2/)
 ESB=astro/node_modules/.bin/esbuild
 if [ -x "$ESB" ]; then
