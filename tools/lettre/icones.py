@@ -31,7 +31,7 @@ import scenes  # noqa: E402
 
 SITE = 'https://filtre.cafe'
 ICONES = {**scenes.ENVIES_ICONES, **scenes.LETTRE_ICONES}
-BOUCLES = {'espresso': 3.2, 'lait': 2.4, 'monde': 4, 'glace': 4, 'materiel': 4}  # durée d'un tour du GIF (s), 2,6 s sinon
+BOUCLES = {'espresso': 3.2, 'lait': 2.4, 'monde': 4, 'glace': 4, 'materiel': 4, 'cadeau': 4}  # durée d'un tour du GIF (s), 2,6 s sinon
 DEPART = {'filtre': .1, 'telephone': .1, 'espresso': .45}  # première image, en fraction du tour
 IPS = 12             # images par seconde
 COTE, DESSIN = 64, 40  # pastille et dessin, en px CSS ; capture en 2x

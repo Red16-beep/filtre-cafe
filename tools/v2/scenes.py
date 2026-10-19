@@ -157,6 +157,9 @@ LETTRE_ICONES = {
     'lait': ie('<path d="M13 12 H33 L31 38 Q31 41 28 41 H18 Q15 41 15 38 Z"/><path d="M33 12 L39 8"/>'
                '<path class="v2-tourne-vite" style="transform-box:view-box;transform-origin:23px 26px;animation-duration:2.4s"'
                ' d="M23 26 m-6 0 a6 6 0 1 1 12 0 a4 4 0 1 1 -8 0" stroke="#b8401f"/>'),
+    'cadeau': ie('<rect x="11" y="23" width="26" height="17" rx="2"/><rect x="8" y="17" width="32" height="7" rx="2"/><path d="M24 17 V40"/>'
+                 '<g class="v2-balance-anim" style="transform-box:view-box;transform-origin:24px 17px">'
+                 '<path d="M24 17 C19 9 12 10 14 15 C15 17 20 17 24 17 C28 17 33 17 34 15 C36 10 29 9 24 17" stroke="#b8401f"/></g>'),
 }
 
 # ── Carte des origines (projection équirectangulaire 720×360) ─────────────
