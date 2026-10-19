@@ -219,8 +219,8 @@
   function compter(o) { return Object.keys(o).length; }
   function jeu() {
     var ts = etat.tasses.slice().sort(function (a, b) { return a.date < b.date ? -1 : a.date > b.date ? 1 : 0; });
-    var gagnes = {}, methodes = {}, origines = {}, zones = {}, suites = {}, parJour = {}, P = D.points;
-    var points = 0, serie = 0, record = 0, veille = null;
+    var gagnes = {}, methodes = {}, origines = {}, zones = {}, suites = {}, parJour = {}, P = D.points, G = D.poche;
+    var points = 0, serie = 0, record = 0, veille = null, poche = 0, trouves = 0, compteur = 0, evenements = {};
     function gagne(cle, date) { if (!gagnes[cle]) gagnes[cle] = date; }
     ts.forEach(function (t, i) {
       var g = t.gouts || [], eq = g.indexOf('equilibre') >= 0, m = methode(t.methode), c = cafe(t.cafe), o = c && origine(c.origine);
@@ -237,7 +237,15 @@
       if (compter(zones) >= 3) gagne('continents', t.date);
       if (t.jours != null && t.jours >= 0 && etatAge(t.jours, m.cle === 'espresso') === 'fenetre') gagne('fraicheur', t.date);
       if (t.tour) gagne('tour', t.date);
-      if (j !== veille) { serie = veille !== null && j === veille + 1 ? serie + 1 : 1; veille = j; record = Math.max(record, serie); }
+      // Premier jour noté : la série avance, ou le grain de poche la sauve (un seul jour sauté), ou elle repart à 1.
+      if (j !== veille) {
+        if (veille !== null && j === veille + 1) serie++;
+        else if (veille !== null && j === veille + 2 && poche) { poche = 0; compteur = 0; serie++; evenements[t.id] = 'sauve'; }
+        else { serie = 1; compteur = 0; }
+        veille = j;
+        record = Math.max(record, serie);
+        if (!poche && ++compteur >= (trouves ? G.suivant : G.premier)) { poche = 1; trouves++; compteur = 0; evenements[t.id] = evenements[t.id] || 'trouve'; }
+      }
       if (serie >= 7) gagne('semaine', t.date);
       if (i >= 29) gagne('carnet', t.date);
       parJour[j] = (parJour[j] || 0) + 1;
@@ -247,10 +255,28 @@
       [c.sachet].concat(c.anciens || []).forEach(function (s) { if (s && s.fini && (!gagnes.sachet || s.fini < gagnes.sachet)) gagnes.sachet = s.fini; });
     });
     points += P.succes * compter(gagnes);
-    // La série tient tant que la dernière tasse date d'aujourd'hui ou d'hier.
-    var auj = numJour(cleJour(new Date().toISOString())), n = 0;
+    // La série tient tant que la dernière tasse date d'aujourd'hui ou d'hier, ou d'avant-hier avec un grain en poche.
+    var auj = numJour(cleJour(new Date().toISOString())), n = 0, ecart = veille === null ? null : auj - veille;
+    var vivante = ecart !== null && (ecart <= 1 || (ecart === 2 && !!poche)), seuil = trouves ? G.suivant : G.premier;
     D.niveaux.forEach(function (x, k) { if (points >= x.points) n = k; });
-    return { gagnes: gagnes, points: points, niveau: n, serie: veille !== null && auj - veille <= 1 ? serie : 0, record: record, aujourdhui: veille === auj };
+    return {
+      gagnes: gagnes, points: points, niveau: n, serie: vivante ? serie : 0, record: record, aujourdhui: veille === auj,
+      poche: poche, aSauver: ecart === 2 && !!poche, avantGrain: poche ? 0 : vivante ? seuil - compteur : seuil, evenements: evenements
+    };
+  }
+  // Le grain de poche, dans le conseil : trouvé, ou qui vient de sauver la série.
+  function blocPoche(ev, J) {
+    if (ev === 'trouve') {
+      return '<div class="poche poche--trouve">' + svgGrain('#9c6438', 'grain grain--poche') + '<div><p class="poche__titre">Oh, un grain de café dans votre poche !</p>' +
+        '<p>Gardez-le : si vous sautez un jour, il sauvera votre série.</p></div></div>';
+    }
+    return '<div class="poche">' + svgGrain('#9c6438', 'grain grain--poche') + '<div><p class="poche__titre">Ouf ! Votre grain de poche a sauvé la série.</p>' +
+      '<p>' + J.serie + ' jours de suite. Le prochain grain se trouve après ' + D.poche.suivant + ' jours de suite.</p></div></div>';
+  }
+  function textePoche(J) {
+    if (J.aSauver) return 'Vous avez sauté hier : notez une tasse aujourd’hui, votre grain de poche sauvera la série.';
+    if (J.poche) return 'Un grain de café dans votre poche : il sauvera la série si vous sautez un jour.';
+    return 'Prochain grain de poche : encore ' + J.avantGrain + ' jour' + (J.avantGrain > 1 ? 's' : '') + ' de suite.';
   }
   function niveauInfo(J) {
     var N = D.niveaux, n = N[J.niveau], suivant = N[J.niveau + 1] || null;
@@ -273,8 +299,10 @@
     J = J || jeu();
     var n = niveauInfo(J), b = $('#jeu-entete');
     b.innerHTML = svgGrain(n.couleur, 'grain grain--mini') + '<span class="jeu__niveau">' + echapper(n.nom) + '</span>' +
-      (J.serie ? ' <span class="jeu__serie">' + J.serie + NBSP + 'j</span>' : '');
-    b.setAttribute('aria-label', 'Niveau ' + n.nom + (J.serie ? ', ' + J.serie + ' jour' + (J.serie > 1 ? 's' : '') + ' de suite' : '') + '. Ouvrir le passeport.');
+      (J.serie ? ' <span class="jeu__serie' + (J.aSauver ? ' jeu__serie--a-sauver' : '') + '">' + J.serie + NBSP + 'j</span>' : '') +
+      (J.poche ? svgGrain('#9c6438', 'grain grain--poche-mini') : '');
+    b.setAttribute('aria-label', 'Niveau ' + n.nom + (J.serie ? ', ' + J.serie + ' jour' + (J.serie > 1 ? 's' : '') + ' de suite' + (J.aSauver ? ', à sauver aujourd’hui' : '') : '') +
+      (J.poche ? ', un grain de café en poche' : '') + '. Ouvrir le passeport.');
   }
   function blocSucces(cles) {
     return '<div class="debloque">' + cles.map(function (k) {
@@ -589,7 +617,7 @@
     viderSaisie();
     remplirCafes(cid);
     preRemplir();
-    afficherConseil(t, { gain: apres.points - avant.points, nouveaux: nouveauxSucces(avant, apres), monte: apres.niveau > avant.niveau, J: apres });
+    afficherConseil(t, { gain: apres.points - avant.points, nouveaux: nouveauxSucces(avant, apres), monte: apres.niveau > avant.niveau, J: apres, poche: apres.evenements[t.id] });
   }
   // Âge du café dans le conseil : trop frais, il dégaze encore ; au-delà de six semaines, il s'éteint.
   function ligneAge(t, m) {
@@ -629,6 +657,7 @@
     html += '</div>' + (ca >= 0 ? svgBoussole([ca], 'bsvg bsvg--conseil') : '') + '</div>';
     html += ligneAge(t, m) + ligneSachet(cf);
     if (bilan && bilan.gain) html += '<p class="gain">+' + bilan.gain + ' points · ' + bilan.J.points + ' au total</p>';
+    if (bilan && bilan.poche) html += blocPoche(bilan.poche, bilan.J);
     if (bilan && bilan.nouveaux.length) html += blocSucces(bilan.nouveaux);
     if (bilan && bilan.monte) html += blocNiveau(bilan.J);
     html += '<div class="actions"><button type="button" class="btn btn--petit btn--clair" data-action="voir-cafe" data-cafe="' + echapper(t.cafe) + '">Voir ce café</button>' +
@@ -924,12 +953,13 @@
   rendre.passeport = function () {
     var J = jeu(), n = niveauInfo(J), nb = compter(J.gagnes);
     $('#titre-passeport').textContent = n.nom;
-    var serie = J.serie ? J.serie + ' jour' + (J.serie > 1 ? 's' : '') + ' de suite' + (J.aujourdhui ? '' : ' : notez une tasse aujourd’hui pour continuer') : 'Aucune série en cours : une tasse par jour la lance.';
+    var serie = J.serie ? J.serie + ' jour' + (J.serie > 1 ? 's' : '') + ' de suite' + (J.aujourdhui || J.aSauver ? '' : ' : notez une tasse aujourd’hui pour continuer') : 'Aucune série en cours : une tasse par jour la lance.';
     $('#niveau').innerHTML = svgGrain(n.couleur, 'grain grain--grand') + '<div class="niveau__texte"><p class="niveau__points">' + J.points + ' points</p>' +
       '<div class="jauge jauge--niveau" role="img" aria-label="Progression vers le niveau suivant : ' + Math.round(n.part * 100) + ' %"><span style="width:' + Math.round(n.part * 100) +
       '%;background:linear-gradient(90deg,' + D.niveaux[0].couleur + ',' + n.couleur + ')"></span></div>' +
       '<p class="niveau__suite">' + (n.suivant ? 'Encore ' + n.manque + ' points pour « ' + echapper(n.suivant.nom) + ' »' : 'Dernier niveau atteint') + '</p>' +
-      '<p class="niveau__serie">' + echapper(serie) + (J.record > 1 ? ' · record : ' + J.record + ' jours' : '') + '</p></div>';
+      '<p class="niveau__serie">' + echapper(serie) + (J.record > 1 ? ' · record : ' + J.record + ' jours' : '') + '</p>' +
+      '<p class="niveau__poche' + (J.poche ? ' niveau__poche--plein' : '') + '">' + (J.poche ? svgGrain('#9c6438', 'grain grain--poche-mini') : '') + echapper(textePoche(J)) + '</p></div>';
     $('#titre-succes').textContent = 'Succès · ' + nb + ' sur ' + D.succes.length;
     $('#succes').innerHTML = D.succes.map(function (s) {
       var d = J.gagnes[s.cle];

@@ -436,6 +436,44 @@ const faussesVeilles = () => {
   await p4.screenshot({ path: path.join(CAP, '11-sombre-passeport.png'), fullPage: true });
   await ctx4.close();
 
+  console.log('18. Grain de poche : trouvé après 3 jours, il sauve la série d’un jour sauté');
+  const ctx5 = await nav.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true, locale: 'fr-FR', timezoneId: 'Europe/Paris' });
+  const p5 = await ctx5.newPage();
+  p5.on('pageerror', e => erreurs.push(String(e)));
+  p5.on('console', m => { if (m.type() === 'error') erreurs.push(m.text()); });
+  const texte5 = async sel => norm(await p5.innerText(sel));
+  // Un carnet dont les tasses tombent ces jours-là (0 : aujourd'hui), à 8 h.
+  const carnetDeJours = async jours => {
+    await p5.goto(URL_, { waitUntil: 'networkidle' });
+    await p5.evaluate(js => {
+      const J = 864e5, tasses = js.map(j => { const d = new Date(Date.now() - j * J); d.setHours(8, 0, 0, 0); return { id: 'p' + j, cafe: 'c1', methode: 'v60', date: d.toISOString(), dose: 15, eau: 250, mouture: '', temperature: 93, temps: 170, gouts: ['equilibre'], note: null, notes: '' }; });
+      localStorage.setItem('filtre-carnet', JSON.stringify({ version: 1, cafes: [{ id: 'c1', nom: 'Guji', torrefacteur: '', origine: 'ethiopie', procede: null, cree: tasses[0].date }], tasses, adresses: [] }));
+    }, jours);
+    await p5.reload({ waitUntil: 'networkidle' });
+  };
+  const noterUneTasse = async () => {
+    await p5.click('.onglets [data-vers="noter"]');
+    await p5.click('#grille-gout .case[data-case="4"]');
+    await p5.click('#form-tasse button[type="submit"]');
+  };
+  await carnetDeJours([2, 1]);
+  verif(!(await p5.$('#jeu-entete .grain--poche-mini')), 'deux jours de suite : poche vide');
+  await noterUneTasse();
+  verif((await texte5('#conseil .poche')).startsWith('Oh, un grain de café dans votre poche !'), 'troisième jour : « Oh, un grain de café dans votre poche ! »');
+  verif(!!(await p5.$('#jeu-entete .grain--poche-mini')) && (await p5.getAttribute('#jeu-entete', 'aria-label')).includes('un grain de café en poche'), 'en-tête : le grain en poche');
+  await carnetDeJours([4, 3, 2]);
+  verif((await p5.$eval('#jeu-entete .jeu__serie', s => s.classList.contains('jeu__serie--a-sauver'))) && (await texte5('#jeu-entete')).endsWith('3 j'), 'hier sauté, grain en poche : série de 3 jours à sauver');
+  await p5.click('.onglets [data-vers="passeport"]');
+  verif((await texte5('#niveau')).includes('Vous avez sauté hier : notez une tasse aujourd’hui, votre grain de poche sauvera la série.'), 'passeport : la série est à sauver aujourd’hui');
+  await noterUneTasse();
+  verif((await texte5('#conseil .poche')).startsWith('Ouf ! Votre grain de poche a sauvé la série. 4 jours de suite.'), 'tasse du jour : « Ouf ! », la série passe à 4 jours');
+  verif(!(await p5.$('#jeu-entete .grain--poche-mini')) && (await texte5('#jeu-entete')).endsWith('4 j'), 'grain utilisé : poche vide, 4 jours de suite');
+  await p5.click('.onglets [data-vers="passeport"]');
+  verif((await texte5('#niveau')).includes('Prochain grain de poche : encore 6 jours de suite.'), 'le prochain grain : dans 6 jours de suite');
+  await carnetDeJours([5, 4, 2, 1]);
+  verif((await texte5('#jeu-entete')).endsWith('2 j'), 'sans grain en poche, un jour sauté fait repartir la série : 2 jours depuis');
+  await ctx5.close();
+
   console.log('14. Bureau');
   const bureau = await nav.newPage({ viewport: { width: 1280, height: 900 } });
   bureau.on('pageerror', e => erreurs.push(String(e)));

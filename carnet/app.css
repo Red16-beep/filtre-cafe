@@ -70,6 +70,8 @@ button{cursor:pointer;-webkit-tap-highlight-color:transparent}
 .jeu__serie{background:var(--cerise);color:#fff;border-radius:999px;padding:1px 8px;font-size:12.5px;font-variant-numeric:tabular-nums}
 .grain ellipse{stroke:var(--crema);stroke-width:.8}
 .grain--mini{width:24px;height:24px;flex:none}
+.grain--poche-mini{width:16px;height:16px;flex:none}
+.jeu__serie--a-sauver{background:none;border:1.5px solid var(--cerise);color:var(--crema);padding:0 7px}
 .grain--grand{width:72px;height:72px;flex:none}
 @media (max-width:359px){.jeu__niveau{display:none}}
 
@@ -192,6 +194,12 @@ input[type="date"]{min-height:50px;display:block}
 .debloque__but{font-family:var(--sans);font-size:13.5px;line-height:1.35;margin:0}
 .debloque .icone-succes{width:44px;height:44px;flex:none;background:var(--papier);color:var(--torref);border-radius:50%;padding:7px}
 .niveau-monte{display:flex;align-items:center;gap:10px;font-family:var(--sans);font-size:15px;margin:12px 0 0;padding:10px 14px;border-radius:14px;background:var(--espresso-2);color:var(--texte-carte)}
+.poche{display:flex;align-items:center;gap:12px;background:var(--creme-fonce);border-radius:14px;padding:10px 14px;margin:10px 0 0}
+.poche p{margin:0;font-family:var(--sans);font-size:14px;line-height:1.4}
+.poche .poche__titre{font-family:var(--serif);font-weight:500;font-size:19px;line-height:1.2;margin:0 0 2px}
+.grain--poche{width:36px;height:36px;flex:none}
+.poche--trouve .grain--poche{animation:tombe .8s cubic-bezier(.3,1.5,.5,1) both}
+@keyframes tombe{from{transform:translateY(-26px) rotate(-50deg);opacity:0}to{transform:none;opacity:1}}
 .niveau-monte b{color:var(--crema)}
 
 /* ── Cafés ── */
@@ -291,6 +299,8 @@ input[type="date"]{min-height:50px;display:block}
 .jauge--niveau{background:rgba(244,236,227,.14);height:12px}
 .niveau__suite{font-family:var(--sans);font-size:14.5px;margin:0}
 .niveau__serie{font-family:var(--sans);font-size:14px;color:var(--crema-doux);margin:4px 0 0}
+.niveau__poche{display:flex;align-items:center;gap:6px;font-family:var(--sans);font-size:13.5px;line-height:1.35;color:var(--crema-doux);margin:6px 0 0}
+.niveau__poche--plein{color:var(--crema)}
 .succes{list-style:none;margin:0 0 28px;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
 .succes__item{display:grid;justify-items:start;align-content:start;gap:2px;background:var(--papier);border:1px dashed var(--filet);border-radius:14px;padding:12px 12px 13px}
 .succes__item--on{border-style:solid;border-color:var(--crema-doux);background:var(--creme-fonce)}
@@ -364,6 +374,7 @@ input[type="date"]{min-height:50px;display:block}
 }
 @media (prefers-reduced-motion:reduce){
   .onde{animation:none;opacity:0}
+  .poche--trouve .grain--poche{animation:none}
   *{transition:none!important}
 }
 @media (max-width:380px){

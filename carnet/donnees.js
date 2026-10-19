@@ -173,6 +173,9 @@ var CARNET = {
   // Le jeu : des points pour chaque tasse (trois par jour au plus) et chaque succès, des niveaux qui suivent
   // la torréfaction, du grain vert au maître torréfacteur. couleur : celle du grain à ce niveau.
   points: { tasse: 10, gout: 5, succes: 40, parJour: 3 },
+  // Grain de poche : trouvé après 3 jours de suite, puis tous les 7 jours (un seul à la fois), il sauve la série
+  // quand on saute un jour.
+  poche: { premier: 3, suivant: 7 },
   niveaux: [
     { nom: 'Grain vert', points: 0, couleur: '#8f9a5b' },
     { nom: 'Séchage', points: 50, couleur: '#b5ad66' },

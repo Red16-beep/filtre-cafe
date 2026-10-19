@@ -32,6 +32,8 @@ recherche d'adresses, qui a besoin du réseau).
   - douze succès, du premier espresso dans la fenêtre au sachet fini ;
   - un tampon par origine goûtée, à la couleur de son continent, et la carte de la ceinture du café (le dessin de
     `/cafes-du-monde`), avec les origines que le site traite, à découvrir.
+- **Grain de poche** : après 3 jours de suite, « Oh, un grain de café dans votre poche ! ». Il sauve la série le
+  jour où l'on en saute un. Un seul à la fois ; le suivant se trouve après 7 jours de suite.
 - **Le jeu** : 10 points par tasse (trois tasses par jour au plus), 5 de plus avec un goût noté, 40 par succès.
   Tout se recalcule depuis les tasses et les sachets, sans état à part : un import ou une suppression restent
   cohérents. Un succès ou un niveau débloqué fait voler des grains et des cerises de café, sauf si le téléphone
@@ -96,7 +98,7 @@ recherche d'adresses, qui a besoin du réseau).
 | `sw.js`, `manifest.webmanifest` | Hors ligne et installation. Changer `VERSION` dans `sw.js` à chaque modification des fichiers. |
 | `polices/` | Copies des polices v2 du site (Newsreader, Instrument Sans, sous-ensemble latin). |
 | `icones/` | `icone.svg`, le logo du site sur fond espresso, et ses rendus PNG (192, 512, masquable, Apple). |
-| `outils/tester.js` | Le parcours complet dans Chromium, réseau et écran allumé simulés (135 vérifications). |
+| `outils/tester.js` | Le parcours complet dans Chromium, réseau et écran allumé simulés (144 vérifications). |
 
 ## Tester
 
