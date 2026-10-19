@@ -45,8 +45,11 @@
   }
   var etat = charger();
   function sauver() {
-    try { localStorage.setItem(CLE, JSON.stringify(etat)); return true; }
-    catch (e) { message('Enregistrement impossible sur ce téléphone. Exportez le carnet avant de fermer.'); return false; }
+    var ok = true;
+    try { localStorage.setItem(CLE, JSON.stringify(etat)); }
+    catch (e) { ok = false; message('Enregistrement impossible sur ce téléphone. Exportez le carnet avant de fermer.'); }
+    majEntete();
+    return ok;
   }
   function demanderPersistance() {
     if (navigator.storage && navigator.storage.persist) navigator.storage.persist().catch(function () {});
@@ -111,12 +114,58 @@
     else if (t.dose) p.push(fr(t.dose) + ' g');
     if (t.temperature) p.push(fr(t.temperature) + ' °C');
     if (t.temps) p.push(ecrireTemps(t.temps));
+    if (t.tour) p.push((m.tour === 'goutte' ? '1re goutte à ' : 'bloom ') + ecrireTemps(t.tour));
     if (t.mouture) p.push('mouture ' + t.mouture);
     return p.length ? p.join(' · ') : m.nom;
   }
   function pointsNote(n) {
     n = Math.max(0, Math.min(5, Math.round(+n || 0)));
     return n ? '<span class="points" aria-label="Note ' + n + ' sur 5">' + '●'.repeat(n) + '○'.repeat(5 - n) + '</span>' : '';
+  }
+
+  /* ── Jours et sachets : l'âge du café depuis sa torréfaction, ce qu'il reste dans le sachet ── */
+  // Jour local « AAAA-MM-JJ » et son numéro : âges et séries se comptent en jours du calendrier.
+  function cleJour(iso) { var d = new Date(iso); return d.getFullYear() + '-' + deux(d.getMonth() + 1) + '-' + deux(d.getDate()); }
+  function numJour(cle) { var p = cle.split('-'); return Math.round(Date.UTC(+p[0], +p[1] - 1, +p[2]) / 864e5); }
+  function joursDepuis(torrefie, iso) { return torrefie ? numJour(cleJour(iso)) - numJour(torrefie) : null; }
+  function jourTorref(cle) { var p = cle.split('-'); return new Date(+p[0], +p[1] - 1, +p[2]).toISOString(); }
+  function sachetDe(c) { return (c && c.sachet) || null; }
+  function estFini(c) { var s = sachetDe(c); return !!(s && s.fini); }
+  // Tasses du sachet en cours : celles notées depuis son ouverture dans le carnet.
+  function tassesDuSachet(c) {
+    var s = sachetDe(c);
+    return tassesDu(c.id).filter(function (t) { return !s || !s.debut || t.date >= s.debut; });
+  }
+  function reste(c) {
+    var s = sachetDe(c);
+    if (!s || !s.poids) return null;
+    var pris = tassesDuSachet(c).reduce(function (n, t) { return n + (t.dose || methode(t.methode).dose || 0); }, 0);
+    return Math.max(0, Math.round((s.poids - pris) * 10) / 10);
+  }
+  // Tasses restantes, d'après la dose moyenne des cinq dernières tasses du sachet.
+  function tassesRestantes(c, r) {
+    var ts = tassesDuSachet(c).filter(function (t) { return t.dose; }).sort(parDate).slice(0, 5);
+    var dose = ts.length ? ts.reduce(function (n, t) { return n + t.dose; }, 0) / ts.length : null;
+    return dose ? Math.floor(r / dose) : null;
+  }
+  function moyenne(c) {
+    var ts = tassesDuSachet(c).filter(function (t) { return t.note; });
+    return ts.length ? Math.round(ts.reduce(function (n, t) { return n + t.note; }, 0) / ts.length * 10) / 10 : null;
+  }
+  // La fenêtre de repos n'est pas la même en espresso : on suit la méthode de la tasse, ou la dernière du café.
+  function espressoPour(c) {
+    var der = tassesDu(c.id).sort(parDate)[0];
+    return !!der && der.methode === 'espresso';
+  }
+  function etatAge(j, esp) {
+    var R = D.repos, f = esp ? R.espresso : R.filtre;
+    return j < f[0] ? 'repos' : j <= f[1] ? 'fenetre' : j <= R.fatigue ? 'bon' : 'fatigue';
+  }
+  function ageActuel(c) { var s = sachetDe(c); return s && s.torrefie && !s.fini ? joursDepuis(s.torrefie, new Date().toISOString()) : null; }
+  function badgeAge(j, esp) {
+    if (j == null || j < 0) return '';
+    var e = etatAge(j, esp);
+    return '<span class="age age--' + e + '" title="' + echapper(D.ages[e]) + '">J+' + j + '</span>';
   }
 
   /* ── Conseil : le goût d'abord, le temps en appoint quand la recette donne une fenêtre ── */
@@ -166,10 +215,167 @@
     return (noms.length ? debut + ', c’était ' + noms.join(' et ') : debut + ', le temps sortait de la recette') + ' : ' + c.court + '.';
   }
 
+  /* ── Le jeu : points, niveaux de torréfaction, série de jours et succès, recalculés depuis le carnet ── */
+  function compter(o) { return Object.keys(o).length; }
+  function jeu() {
+    var ts = etat.tasses.slice().sort(function (a, b) { return a.date < b.date ? -1 : a.date > b.date ? 1 : 0; });
+    var gagnes = {}, methodes = {}, origines = {}, zones = {}, suites = {}, parJour = {}, P = D.points;
+    var points = 0, serie = 0, record = 0, veille = null;
+    function gagne(cle, date) { if (!gagnes[cle]) gagnes[cle] = date; }
+    ts.forEach(function (t, i) {
+      var g = t.gouts || [], eq = g.indexOf('equilibre') >= 0, m = methode(t.methode), c = cafe(t.cafe), o = c && origine(c.origine);
+      var j = numJour(cleJour(t.date));
+      gagne('premiere', t.date);
+      if (eq) gagne('mille', t.date);
+      suites[t.cafe] = eq ? (suites[t.cafe] || 0) + 1 : 0;
+      if (suites[t.cafe] >= 3) gagne('affilee', t.date);
+      if (m.cle === 'espresso' && t.temps >= 25 && t.temps <= 30) gagne('fenetre', t.date);
+      methodes[m.cle] = 1;
+      if (compter(methodes) >= 5) gagne('methodes', t.date);
+      if (o) { origines[o.cle] = 1; zones[o.zone] = 1; }
+      if (compter(origines) >= 5) gagne('origines', t.date);
+      if (compter(zones) >= 3) gagne('continents', t.date);
+      if (t.jours != null && t.jours >= 0 && etatAge(t.jours, m.cle === 'espresso') === 'fenetre') gagne('fraicheur', t.date);
+      if (t.tour) gagne('tour', t.date);
+      if (j !== veille) { serie = veille !== null && j === veille + 1 ? serie + 1 : 1; veille = j; record = Math.max(record, serie); }
+      if (serie >= 7) gagne('semaine', t.date);
+      if (i >= 29) gagne('carnet', t.date);
+      parJour[j] = (parJour[j] || 0) + 1;
+      if (parJour[j] <= P.parJour) points += P.tasse + (g.length ? P.gout : 0);
+    });
+    etat.cafes.forEach(function (c) {
+      [c.sachet].concat(c.anciens || []).forEach(function (s) { if (s && s.fini && (!gagnes.sachet || s.fini < gagnes.sachet)) gagnes.sachet = s.fini; });
+    });
+    points += P.succes * compter(gagnes);
+    // La série tient tant que la dernière tasse date d'aujourd'hui ou d'hier.
+    var auj = numJour(cleJour(new Date().toISOString())), n = 0;
+    D.niveaux.forEach(function (x, k) { if (points >= x.points) n = k; });
+    return { gagnes: gagnes, points: points, niveau: n, serie: veille !== null && auj - veille <= 1 ? serie : 0, record: record, aujourdhui: veille === auj };
+  }
+  function niveauInfo(J) {
+    var N = D.niveaux, n = N[J.niveau], suivant = N[J.niveau + 1] || null;
+    var part = suivant ? (J.points - n.points) / (suivant.points - n.points) : 1;
+    return { nom: n.nom, couleur: n.couleur, suivant: suivant, part: Math.max(0, Math.min(1, part)), manque: suivant ? suivant.points - J.points : 0 };
+  }
+  function nouveauxSucces(avant, apres) {
+    return D.succes.filter(function (s) { return apres.gagnes[s.cle] && !avant.gagnes[s.cle]; }).map(function (s) { return s.cle; });
+  }
+  function succes(cle) { return premier(D.succes, function (s) { return s.cle === cle; }); }
+  function icone(nom, classe) {
+    return '<svg class="' + classe + '" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + D.icones[nom] + '</svg>';
+  }
+  // Le grain du niveau : sa couleur suit la torréfaction, du vert au presque noir.
+  function svgGrain(couleur, classe) {
+    return '<svg class="' + classe + '" viewBox="0 0 32 32" aria-hidden="true"><g transform="rotate(28 16 16)"><ellipse cx="16" cy="16" rx="9" ry="13.5" fill="' + couleur + '"/>' +
+      '<path d="M15 3.5c5 6-4 13.5 1.5 25" fill="none" stroke="rgba(20,10,5,.45)" stroke-width="1.7" stroke-linecap="round"/></g></svg>';
+  }
+  function majEntete(J) {
+    J = J || jeu();
+    var n = niveauInfo(J), b = $('#jeu-entete');
+    b.innerHTML = svgGrain(n.couleur, 'grain grain--mini') + '<span class="jeu__niveau">' + echapper(n.nom) + '</span>' +
+      (J.serie ? ' <span class="jeu__serie">' + J.serie + NBSP + 'j</span>' : '');
+    b.setAttribute('aria-label', 'Niveau ' + n.nom + (J.serie ? ', ' + J.serie + ' jour' + (J.serie > 1 ? 's' : '') + ' de suite' : '') + '. Ouvrir le passeport.');
+  }
+  function blocSucces(cles) {
+    return '<div class="debloque">' + cles.map(function (k) {
+      var s = succes(k);
+      return '<div class="debloque__item">' + icone(s.icone, 'icone-succes icone-succes--on') + '<div><p class="kicker">Succès débloqué</p>' +
+        '<p class="debloque__nom">' + echapper(s.nom) + '</p><p class="debloque__but">' + echapper(s.but) + '</p></div></div>';
+    }).join('') + '</div>';
+  }
+  function blocNiveau(J) {
+    var n = niveauInfo(J);
+    return '<p class="niveau-monte">' + svgGrain(n.couleur, 'grain grain--mini') + '<span>Nouveau niveau : <b>' + echapper(n.nom) + '</b>.</span></p>';
+  }
+
+  /* ── Célébration : des grains et des cerises de café qui volent (canvas-confetti), sauf animations réduites ── */
+  // Le grain en deux moitiés séparées par la fente : une forme pleine, sans trou à découper.
+  var GRAIN = 'M10 1A8.5 13 0 0 0 10 27L9.1 26C5.1 19 13.1 9 9.1 2Z M10.9 2C14.9 9 6.9 19 10.9 26L10 27A8.5 13 0 0 0 10 1Z';
+  var lancer = null, formeGrain = null;
+  function feter(el) {
+    if (navigator.vibrate) { try { navigator.vibrate(18); } catch (e) { /* pas de vibreur */ } }
+    if (reduit || !window.confetti) return;
+    try {
+      if (!lancer) {
+        lancer = window.confetti.create(null, { resize: true, useWorker: false, disableForReducedMotion: true });
+        formeGrain = window.confetti.shapeFromPath({ path: GRAIN });
+      }
+      var r = el && el.getBoundingClientRect();
+      var o = r && r.width ? { x: (r.left + r.width / 2) / window.innerWidth, y: Math.max(0.1, (r.top + r.height / 2) / window.innerHeight) } : { x: 0.5, y: 0.35 };
+      lancer({ particleCount: 34, spread: 75, startVelocity: 32, origin: o, shapes: [formeGrain], colors: ['#6b3a1f', '#8a5532', '#c98a5c'], scalar: 1.25, ticks: 170, gravity: 1.05 });
+      lancer({ particleCount: 16, spread: 95, startVelocity: 26, origin: o, shapes: ['circle'], colors: ['#b8401f', '#efc79c'], scalar: 0.85, ticks: 150 });
+    } catch (e) { /* la fête est facultative */ }
+  }
+
+  /* ── Boussole du goût : l'acidité à gauche, l'amertume à droite, trop fort en haut, trop léger en bas ── */
+  // Chaque case donne les goûts du carnet (les mêmes clés que le conseil), en un seul toucher.
+  var CASES = [['acide', 'fort'], ['fort'], ['amer', 'fort'], ['acide'], ['equilibre'], ['amer'], ['acide', 'leger'], ['leger'], ['amer', 'leger']];
+  function caseDe(g) {
+    g = g || [];
+    if (!g.length) return -1;
+    if (g.indexOf('equilibre') >= 0) return 4;
+    var col = g.indexOf('acide') >= 0 ? 0 : g.indexOf('amer') >= 0 ? 2 : 1;
+    var lig = g.indexOf('fort') >= 0 ? 0 : g.indexOf('leger') >= 0 ? 2 : 1;
+    return lig * 3 + col;
+  }
+  function nomGouts(g) {
+    var c = caseDe(g);
+    if (c < 0) return '';
+    if (c === 4) return 'Équilibré';
+    var s = CASES[c].map(function (k) { return gout(k).nom.toLowerCase(); }).join(' et ');
+    return s.charAt(0).toUpperCase() + s.slice(1);
+  }
+  function rendreBoussole() {
+    $('#grille-gout').innerHTML = CASES.map(function (g, i) {
+      return '<button type="button" class="case' + (i === 4 ? ' case--centre' : '') + '" data-case="' + i + '" aria-pressed="false" aria-label="' + echapper(nomGouts(g)) + '">' +
+        (i === 4 ? '<span>Équilibré</span>' : '<i></i>') + '</button>';
+    }).join('');
+  }
+  function majBoussole() {
+    var c = caseDe(saisie.gouts);
+    $$('#grille-gout .case').forEach(function (b) { b.setAttribute('aria-pressed', +b.getAttribute('data-case') === c ? 'true' : 'false'); });
+    $('#gout-choisi').textContent = typo(c < 0 ? 'Touchez la case qui ressemble à votre tasse. Au centre, l’équilibre.' : nomGouts(saisie.gouts) + '.');
+  }
+  function choisirCase(i) {
+    saisie.gouts = caseDe(saisie.gouts) === i ? [] : CASES[i].slice();
+    majBoussole();
+  }
+  // La boussole en dessin : les tasses dans l'ordre (la dernière en plein), une flèche vers le centre.
+  function svgBoussole(cases, classe, axes) {
+    var k = 40, vus = {}, DEC = [[0, 0], [7, -6], [-7, 6], [7, 7], [-7, -7], [0, 9], [0, -9]], s = '', i;
+    var pts = cases.map(function (c) {
+      var n = vus[c] = (vus[c] || 0) + 1, d = DEC[(n - 1) % DEC.length];
+      return [(c % 3) * k + k / 2 + d[0], Math.floor(c / 3) * k + k / 2 + d[1]];
+    });
+    for (i = 0; i < 9; i++) {
+      s += '<rect class="bsvg__case' + (i === 4 ? ' bsvg__case--centre' : '') + '" x="' + ((i % 3) * k + 1.5) + '" y="' + (Math.floor(i / 3) * k + 1.5) + '" width="' + (k - 3) + '" height="' + (k - 3) + '" rx="7"/>';
+    }
+    s += '<circle class="bsvg__cible" cx="60" cy="60" r="12"/>';
+    if (pts.length > 1) s += '<polyline class="bsvg__trace" points="' + pts.map(function (p) { return n1(p[0]) + ',' + n1(p[1]); }).join(' ') + '"/>';
+    pts.forEach(function (p, j) {
+      var der = j === pts.length - 1;
+      s += '<circle class="bsvg__point' + (der ? ' bsvg__point--der' : '') + '" cx="' + n1(p[0]) + '" cy="' + n1(p[1]) + '" r="' + (der ? 5.5 : 3.4) + '"/>';
+    });
+    var der = cases[cases.length - 1];
+    if (der !== 4 && pts.length) {
+      var p = pts[pts.length - 1], dx = 60 - p[0], dy = 60 - p[1], L = Math.sqrt(dx * dx + dy * dy) || 1, u = [dx / L, dy / L];
+      var a = [p[0] + u[0] * 9, p[1] + u[1] * 9], b = [60 - u[0] * 15, 60 - u[1] * 15], v = [-u[1], u[0]];
+      s += '<line class="bsvg__fleche" x1="' + n1(a[0]) + '" y1="' + n1(a[1]) + '" x2="' + n1(b[0]) + '" y2="' + n1(b[1]) + '"/>' +
+        '<polygon class="bsvg__pointe" points="' + [[b[0] + u[0] * 6, b[1] + u[1] * 6], [b[0] + v[0] * 4, b[1] + v[1] * 4], [b[0] - v[0] * 4, b[1] - v[1] * 4]].map(function (q) { return n1(q[0]) + ',' + n1(q[1]); }).join(' ') + '"/>';
+    }
+    if (axes) {
+      s += '<text class="bsvg__axe" x="60" y="-6" text-anchor="middle">trop fort</text><text class="bsvg__axe" x="60" y="133" text-anchor="middle">trop léger</text>' +
+        '<text class="bsvg__axe" x="-6" y="64" text-anchor="end">acide</text><text class="bsvg__axe" x="126" y="64">amer</text>';
+    }
+    var vb = axes ? '-44 -18 208 158' : '0 0 120 120';
+    return '<svg class="' + classe + '" viewBox="' + vb + '" role="img" aria-label="' + echapper('Boussole du goût : ' + (nomGouts(CASES[der] || []) || 'aucun goût noté').toLowerCase()) + '">' + s + '</svg>';
+  }
+
   /* ── Navigation ── */
-  var VUES = ['noter', 'cafes', 'origines', 'adresses', 'donnees'];
+  var VUES = ['noter', 'cafes', 'passeport', 'adresses', 'donnees'];
   var rendre = {};
   function aller(vue) {
+    if (vue === 'origines') vue = 'passeport';
     if (VUES.indexOf(vue) < 0) vue = 'noter';
     $$('.vue').forEach(function (v) { v.hidden = v.getAttribute('data-vue') !== vue; });
     $$('.onglets button').forEach(function (b) { b.setAttribute('aria-current', b.getAttribute('data-vers') === vue ? 'page' : 'false'); });
@@ -179,8 +385,8 @@
   }
 
   /* ── Noter une tasse ── */
-  var saisie = { methode: null, cafe: null, gouts: [], note: null, procede: null, modele: null, aRafraichir: true, cafeCree: null };
-  var chrono = { debut: null, minuterie: null };
+  var saisie = { methode: null, cafe: null, gouts: [], note: null, procede: null, modele: null, aRafraichir: true, cafeCree: null, tour: null };
+  var chrono = { debut: null, minuterie: null }, verrou = null;
 
   function puces(conteneur, liste) {
     conteneur.innerHTML = liste.map(function (x) {
@@ -199,7 +405,9 @@
 
   function remplirCafes(choix) {
     var sel = $('#champ-cafe');
-    var tri = etat.cafes.slice().sort(function (a, b) { var x = derniereDate(a.id), y = derniereDate(b.id); return x < y ? 1 : x > y ? -1 : 0; });
+    // Un café au sachet fini ne revient dans la liste que si on le choisit (« Rejouer » depuis sa fiche).
+    var tri = etat.cafes.filter(function (c) { return !estFini(c) || c.id === choix; })
+      .sort(function (a, b) { var x = derniereDate(a.id), y = derniereDate(b.id); return x < y ? 1 : x > y ? -1 : 0; });
     sel.innerHTML = tri.map(function (c) {
       return '<option value="' + echapper(c.id) + '">' + echapper(c.nom + (c.torrefacteur ? ' · ' + c.torrefacteur : '')) + '</option>';
     }).join('') + '<option value="nouveau">+ Nouveau café</option>';
@@ -259,17 +467,50 @@
     if (remplir) ecrireChampsTemps(Math.round((Date.now() - chrono.debut) / 1000), methode(saisie.methode));
     chrono.debut = null;
     b.textContent = 'Chrono'; b.classList.remove('actif');
+    rendreEcran();
+    majTour();
   }
   function basculerChrono() {
     var b = $('#chrono');
     if (chrono.debut) return arreterChrono(true);
     chrono.debut = Date.now();
+    saisie.tour = null;
     b.classList.add('actif');
     b.textContent = 'Stop 0:00';
     chrono.minuterie = setInterval(function () {
       var s = Math.floor((Date.now() - chrono.debut) / 1000);
       b.textContent = 'Stop ' + Math.floor(s / 60) + ':' + deux(s % 60);
     }, 250);
+    garderEcran();
+    majTour();
+  }
+  // Écran allumé tant que le chrono tourne (Screen Wake Lock) ; refusé ou absent, le chrono marche pareil.
+  function garderEcran() {
+    if (!navigator.wakeLock || verrou) return;
+    navigator.wakeLock.request('screen').then(function (v) {
+      if (!chrono.debut) { v.release().catch(function () {}); return; }
+      verrou = v;
+      if (v.addEventListener) v.addEventListener('release', function () { if (verrou === v) { verrou = null; majTour(); } });
+      majTour();
+    }).catch(function () { /* écran non gardé */ });
+  }
+  function rendreEcran() {
+    if (verrou) { var v = verrou; verrou = null; v.release().catch(function () {}); }
+  }
+  // Temps intermédiaire : la fin du bloom, ou la première goutte de l'espresso.
+  function noterTour() {
+    if (!chrono.debut) return;
+    saisie.tour = Math.max(1, Math.round((Date.now() - chrono.debut) / 1000));
+    majTour();
+  }
+  function majTour() {
+    var m = methode(saisie.methode), b = $('#tour'), note = $('#tour-note');
+    b.hidden = !(chrono.debut && m.tour);
+    b.textContent = m.tour === 'goutte' ? 'Première goutte' : 'Fin du bloom';
+    var txt = saisie.tour != null ? (m.tour === 'goutte' ? 'Première goutte à ' : 'Bloom terminé à ') + ecrireTemps(saisie.tour) + '.'
+      : chrono.debut && verrou ? 'L’écran reste allumé pendant le chrono.' : '';
+    note.textContent = typo(txt);
+    note.hidden = !txt;
   }
 
   function preRemplir() {
@@ -280,6 +521,8 @@
     var src = ref || { dose: m.dose, eau: m.eau, temperature: m.temperature, mouture: '' };
     majChamps(m);
     arreterChrono(false);
+    saisie.tour = null;
+    majTour();
     valeur('#t-dose', src.dose); valeur('#t-eau', src.eau); valeur('#t-temp', m.heures ? null : src.temperature); valeur('#t-mouture', src.mouture);
     valeur('#t-min', ''); valeur('#t-sec', ''); valeur('#t-h', '');
     var rep = $('#reprise');
@@ -294,9 +537,9 @@
     typographier($('#form-tasse'));
   }
   function viderSaisie() {
-    saisie.gouts = []; saisie.note = null; saisie.procede = null;
-    marquer($('#puces-gout'), []); marquer($('#puces-procede'), []); majNote();
-    ['#t-notes', '#cafe-nom', '#cafe-torref', '#cafe-origine'].forEach(function (s) { valeur(s, ''); });
+    saisie.gouts = []; saisie.note = null; saisie.procede = null; saisie.tour = null;
+    majBoussole(); marquer($('#puces-procede'), []); marquer($('#puces-poids'), []); majNote(); majTour();
+    ['#t-notes', '#cafe-nom', '#cafe-torref', '#cafe-origine', '#cafe-torrefie', '#cafe-poids'].forEach(function (s) { valeur(s, ''); });
   }
   function majNote() {
     $$('#note button').forEach(function (b) {
@@ -304,15 +547,6 @@
       b.classList.toggle('plein', saisie.note != null && n <= saisie.note);
       b.setAttribute('aria-pressed', saisie.note === n ? 'true' : 'false');
     });
-  }
-  function basculerGout(cle) {
-    var g = gout(cle), i = saisie.gouts.indexOf(cle);
-    if (i >= 0) saisie.gouts.splice(i, 1);
-    else {
-      saisie.gouts = saisie.gouts.filter(function (k) { var a = gout(k).axe; return g.axe !== 'tout' && a !== 'tout' && a !== g.axe; });
-      saisie.gouts.push(cle);
-    }
-    marquer($('#puces-gout'), saisie.gouts);
   }
 
   rendre.noter = function () {
@@ -326,34 +560,65 @@
 
   function enregistrer(e) {
     e.preventDefault();
-    var m = methode(saisie.methode), cid = cafeChoisi(), nouveau = null;
+    var m = methode(saisie.methode), cid = cafeChoisi(), nouveau = null, maintenant = new Date().toISOString();
     if (!cid) {
       var nom = $('#cafe-nom').value.trim();
       if (!nom) { message('Donnez un nom au café.'); $('#cafe-nom').focus(); return; }
-      nouveau = { id: id(), nom: nom, torrefacteur: $('#cafe-torref').value.trim(), origine: $('#cafe-origine').value || null, procede: saisie.procede, cree: new Date().toISOString() };
-      etat.cafes.push(nouveau);
-      cid = nouveau.id;
+      nouveau = { id: id(), nom: nom, torrefacteur: $('#cafe-torref').value.trim(), origine: $('#cafe-origine').value || null, procede: saisie.procede, cree: maintenant };
+      var torrefie = $('#cafe-torrefie').value || null, poids = nombre($('#cafe-poids').value);
+      if (torrefie || poids) nouveau.sachet = { torrefie: torrefie, poids: poids, debut: maintenant, fini: null };
     }
+    var avant = jeu();
+    if (nouveau) { etat.cafes.push(nouveau); cid = nouveau.id; }
     arreterChrono(true);
+    var s = sachetDe(cafe(cid));
     var t = {
-      id: id(), cafe: cid, methode: m.cle, date: new Date().toISOString(),
+      id: id(), cafe: cid, methode: m.cle, date: maintenant,
       dose: nombre($('#t-dose').value), eau: nombre($('#t-eau').value), mouture: $('#t-mouture').value.trim(),
       temperature: m.heures ? null : nombre($('#t-temp').value), temps: lireTemps(m),
       gouts: saisie.gouts.slice(), note: saisie.note, notes: $('#t-notes').value.trim()
     };
+    if (m.tour && saisie.tour) t.tour = saisie.tour;
+    if (s && s.torrefie && !s.fini) t.jours = joursDepuis(s.torrefie, t.date);
     etat.tasses.push(t);
     sauver();
     demanderPersistance();
+    var apres = jeu();
     saisie.cafe = cid;
     saisie.cafeCree = nouveau ? nouveau.id : null;
     viderSaisie();
     remplirCafes(cid);
     preRemplir();
-    afficherConseil(t);
+    afficherConseil(t, { gain: apres.points - avant.points, nouveaux: nouveauxSucces(avant, apres), monte: apres.niveau > avant.niveau, J: apres });
   }
-  function afficherConseil(t) {
-    var m = methode(t.methode), c = conseil(t), boite = $('#conseil'), cf = cafe(t.cafe);
-    var html = '<p class="kicker">Tasse enregistrée · ' + echapper(m.nom) + '</p>';
+  // Âge du café dans le conseil : trop frais, il dégaze encore ; au-delà de six semaines, il s'éteint.
+  function ligneAge(t, m) {
+    if (t.jours == null || t.jours < 0) return '';
+    var esp = m.cle === 'espresso', e = etatAge(t.jours, esp), R = D.repos, txt = '', lien = R.guide;
+    if (e === 'repos' && (t.gouts || []).indexOf('equilibre') < 0) {
+      txt = 'Torréfié il y a ' + t.jours + ' jour' + (t.jours > 1 ? 's' : '') + ' : il dégaze encore, et d’une tasse à l’autre l’extraction varie jusqu’à J+' +
+        (esp ? R.espresso[0] : R.filtre[0]) + '. Laissez-le reposer avant de régler finement.';
+    } else if (e === 'fatigue') {
+      txt = 'Torréfié il y a ' + Math.floor(t.jours / 7) + ' semaines : ses arômes s’estompent. Finissez le sachet sans tarder.';
+      lien = R.conserver;
+    }
+    return txt ? '<p class="conseil__age">' + echapper(txt) + ' <a href="' + D.site + lien[0] + '">' + echapper(lien[1]) + ' →</a></p>' : '';
+  }
+  function ligneSachet(c) {
+    var r = c && !estFini(c) ? reste(c) : null;
+    if (r == null) return '';
+    if (r <= 5) {
+      return '<div class="fin-sachet"><p>' + (r ? 'Il reste ' + fr(r) + ' g dans le sachet, d’après vos doses.' : 'D’après vos doses, le sachet est vide.') + ' Sachet fini ?</p>' +
+        '<div class="actions"><button type="button" class="btn btn--petit" data-action="finir-sachet" data-cafe="' + echapper(c.id) + '">Oui, sachet fini</button>' +
+        '<button type="button" class="lien" data-action="garder-sachet">Pas encore</button></div></div>';
+    }
+    var n = tassesRestantes(c, r);
+    return '<p class="conseil__sachet">Il reste ' + fr(r) + ' g dans le sachet' + (n ? ', environ ' + n + ' tasse' + (n > 1 ? 's' : '') : '') + '.</p>';
+  }
+  function afficherConseil(t, bilan) {
+    var m = methode(t.methode), c = conseil(t), boite = $('#conseil'), cf = cafe(t.cafe), ca = caseDe(t.gouts);
+    var html = '<p class="kicker">Tasse enregistrée · ' + echapper(m.nom) + (t.jours != null && t.jours >= 0 ? ' · J+' + t.jours : '') +
+      '</p><div class="conseil__corps"><div class="conseil__texte">';
     if (c) {
       html += '<h2>' + echapper(c.titre) + '</h2>' + c.lignes.map(function (l) { return '<p>' + echapper(l) + '</p>'; }).join('');
       if (c.regle) html += '<p class="regle">Un seul réglage à la fois, puis regoûtez.</p>';
@@ -361,6 +626,11 @@
     } else {
       html += '<h2>' + echapper(cf ? cf.nom : m.nom) + '</h2><p>Notez le goût à la prochaine tasse : le carnet vous dira quoi changer.</p>';
     }
+    html += '</div>' + (ca >= 0 ? svgBoussole([ca], 'bsvg bsvg--conseil') : '') + '</div>';
+    html += ligneAge(t, m) + ligneSachet(cf);
+    if (bilan && bilan.gain) html += '<p class="gain">+' + bilan.gain + ' points · ' + bilan.J.points + ' au total</p>';
+    if (bilan && bilan.nouveaux.length) html += blocSucces(bilan.nouveaux);
+    if (bilan && bilan.monte) html += blocNiveau(bilan.J);
     html += '<div class="actions"><button type="button" class="btn btn--petit btn--clair" data-action="voir-cafe" data-cafe="' + echapper(t.cafe) + '">Voir ce café</button>' +
       '<button type="button" class="lien" data-action="annuler" data-tasse="' + echapper(t.id) + '">Annuler cette tasse</button></div>';
     boite.innerHTML = html;
@@ -368,6 +638,25 @@
     typographier(boite);
     window.scrollTo(0, 0);
     boite.focus({ preventScroll: true });
+    if (bilan && (bilan.nouveaux.length || bilan.monte)) feter($('.debloque, .niveau-monte', boite));
+  }
+  // Sachet fini : depuis le conseil (le sachet est vide d'après les doses) ou depuis la fiche du café.
+  function finirSachet(cid) {
+    var c = cafe(cid);
+    if (!c) return null;
+    var avant = jeu(), maintenant = new Date().toISOString();
+    if (!c.sachet) c.sachet = { torrefie: null, poids: null, debut: c.cree, fini: null };
+    c.sachet.fini = maintenant;
+    sauver();
+    // La prochaine tasse part d'un café en cours, plus de celui qu'on vient de ranger.
+    if (saisie.cafe === cid) saisie.cafe = null;
+    saisie.aRafraichir = true;
+    var apres = jeu();
+    return { nouveaux: nouveauxSucces(avant, apres), monte: apres.niveau > avant.niveau, J: apres, moyenne: moyenne(c) };
+  }
+  function bilanSachet(b) {
+    return '<p>Sachet fini' + (b.moyenne ? ', note moyenne ' + fr(b.moyenne) + ' sur 5' : '') + '. Le café passe dans « Cafés rangés » ; « Nouveau sachet » le ressort.</p>' +
+      (b.nouveaux.length ? blocSucces(b.nouveaux) : '') + (b.monte ? blocNiveau(b.J) : '');
   }
   function annuler(tid) {
     etat.tasses = etat.tasses.filter(function (t) { return t.id !== tid; });
@@ -397,20 +686,26 @@
       liste.innerHTML = '<p class="vide">Aucun café pour l’instant. Notez une première tasse : son café apparaîtra ici, avec tout son historique.</p>';
     } else {
       var tri = etat.cafes.slice().sort(function (a, b) { var x = derniereDate(a.id), y = derniereDate(b.id); return x < y ? 1 : x > y ? -1 : 0; });
-      liste.innerHTML = tri.map(function (c) {
-        var ts = tassesDu(c.id), der = ts.slice().sort(parDate)[0], best = meilleureTasse(ts);
-        var stats = ts.length + ' tasse' + (ts.length > 1 ? 's' : '') + (der ? ' · dernière ' + quand(der.date) : '');
-        return '<button type="button" class="carte-cafe" data-action="ouvrir-cafe" data-cafe="' + echapper(c.id) + '">' +
-          '<span class="carte-cafe__nom">' + echapper(c.nom) + '</span>' +
-          '<span class="carte-cafe__meta">' + echapper([c.torrefacteur, nomOrigine(c.origine), procede(c.procede)].filter(Boolean).join(' · ') || 'Sans détails') + '</span>' +
-          '<span class="carte-cafe__stats">' + echapper(stats) + (best && best.note ? ' · ' + pointsNote(best.note) : '') + '</span></button>';
-      }).join('');
+      var ranges = tri.filter(estFini);
+      liste.innerHTML = tri.filter(function (c) { return !estFini(c); }).map(carteCafe).join('') +
+        (ranges.length ? '<details class="ranges"><summary>Cafés rangés <span>· ' + ranges.length + '</span></summary><div class="liste">' + ranges.map(carteCafe).join('') + '</div></details>' : '');
     }
     typographier($('#cafes-liste'));
   };
+  function carteCafe(c) {
+    var ts = tassesDu(c.id), der = ts.slice().sort(parDate)[0], best = meilleureTasse(ts), r = reste(c), s = sachetDe(c);
+    var stats = ts.length + ' tasse' + (ts.length > 1 ? 's' : '') + (der ? ' · dernière ' + quand(der.date) : '');
+    var sachet = estFini(c) ? 'sachet fini ' + quand(s.fini) : r != null ? fr(r) + ' g restants' : '';
+    var age = badgeAge(ageActuel(c), espressoPour(c));
+    return '<button type="button" class="carte-cafe" data-action="ouvrir-cafe" data-cafe="' + echapper(c.id) + '">' +
+      '<span class="carte-cafe__nom">' + echapper(c.nom) + '</span>' +
+      '<span class="carte-cafe__meta">' + echapper([c.torrefacteur, nomOrigine(c.origine), procede(c.procede)].filter(Boolean).join(' · ') || 'Sans détails') + '</span>' +
+      '<span class="carte-cafe__stats">' + echapper(stats) + (best && best.note ? ' · ' + pointsNote(best.note) : '') + '</span>' +
+      (age || sachet ? '<span class="carte-cafe__sachet">' + age + (sachet ? ' <span>' + echapper(sachet) + '</span>' : '') + '</span>' : '') + '</button>';
+  }
   function ligneTasse(t) {
     var m = methode(t.methode), g = t.gouts || [];
-    return '<li class="tasse"><div class="tasse__tete"><span><b>' + echapper(m.nom) + '</b> · ' + quand(t.date) + '</span>' + pointsNote(t.note) + '</div>' +
+    return '<li class="tasse"><div class="tasse__tete"><span><b>' + echapper(m.nom) + '</b> · ' + quand(t.date) + (t.jours != null && t.jours >= 0 ? ' ' + badgeAge(t.jours, m.cle === 'espresso') : '') + '</span>' + pointsNote(t.note) + '</div>' +
       '<p class="tasse__reglages">' + echapper(reglages(t)) + '</p>' +
       (g.length ? '<div class="tasse__gouts">' + g.map(function (k) { var x = gout(k); return x ? '<span class="etiquette' + (k === 'equilibre' ? ' etiquette--equilibre' : '') + '">' + echapper(x.nom) + '</span>' : ''; }).join('') + '</div>' : '') +
       (t.notes ? '<p class="tasse__notes">' + echapper(t.notes) + '</p>' : '') +
@@ -426,9 +721,15 @@
       '<h1 class="titre">' + echapper(c.nom) + '</h1>';
     var meta = [c.torrefacteur, procede(c.procede)].filter(Boolean).join(' · ');
     if (meta) html += '<p class="meta">' + echapper(meta) + '</p>';
+    html += blocSachet(c);
     if (best) {
       html += '<div class="encadre"><h2>Votre meilleur réglage</h2><p>' + echapper(methode(best.methode).nom + ' · ' + reglages(best)) + '</p>' +
         '<div class="actions"><button type="button" class="btn btn--petit" data-action="rejouer" data-tasse="' + echapper(best.id) + '">Rejouer ce réglage</button></div></div>';
+    }
+    var cases = ts.slice(0, 8).reverse().map(function (t) { return caseDe(t.gouts); }).filter(function (k) { return k >= 0; });
+    if (cases.length) {
+      html += '<div class="boussole-fiche"><h2 class="sous-titre">La boussole de ce café</h2>' + svgBoussole(cases, 'bsvg bsvg--fiche', true) +
+        '<p class="indice">Une tasse par point, la dernière en plein. ' + (cases[cases.length - 1] === 4 ? 'Vous êtes au centre : gardez ce réglage.' : 'La flèche montre le chemin vers le centre, l’équilibre.') + '</p></div>';
     }
     if (o && o.guide) html += '<p class="indice">Sur filtré. : <a href="' + D.site + o.guide + '">' + echapper(o.titre || o.nom) + ' →</a></p>';
     html += ts.length ? '<ul class="tasses">' + ts.map(ligneTasse).join('') + '</ul>' : '<p class="vide">Aucune tasse pour ce café.</p>';
@@ -439,6 +740,64 @@
     boite.setAttribute('data-cafe', c.id);
     typographier(boite);
     window.scrollTo(0, 0);
+  }
+  // Le sachet en cours : âge, jauge, tasses restantes ; un formulaire pour le renseigner ou en ouvrir un nouveau.
+  function blocSachet(c) {
+    var s = sachetDe(c), html = '<div class="encadre sachet">', id_ = echapper(c.id);
+    if (s && s.fini) {
+      var moy = moyenne(c);
+      html += '<h2>Sachet fini</h2><p>Fini ' + quand(s.fini) + (moy ? ', note moyenne ' + fr(moy) + ' sur 5' : '') + '.</p>' +
+        '<div class="actions"><button type="button" class="btn btn--petit" data-action="nouveau-sachet" data-cafe="' + id_ + '">Nouveau sachet</button></div>';
+    } else if (s && (s.torrefie || s.poids)) {
+      var j = ageActuel(c), r = reste(c), esp = espressoPour(c);
+      html += '<h2>Le sachet</h2>';
+      if (s.torrefie && j != null && j >= 0) html += '<p class="sachet__age">' + badgeAge(j, esp) + ' ' + echapper(D.ages[etatAge(j, esp)]) + ' · torréfié ' + quand(jourTorref(s.torrefie)) + '</p>';
+      if (r != null) {
+        var part = Math.round(r / s.poids * 100), n = tassesRestantes(c, r);
+        html += '<div class="jauge jauge--sachet" role="img" aria-label="Reste du sachet : ' + part + ' %"><span style="width:' + part + '%"></span></div>' +
+          '<p>' + fr(r) + ' g restants sur ' + fr(s.poids) + ' g' + (n ? ' · environ ' + n + ' tasse' + (n > 1 ? 's' : '') : '') + '</p>';
+      }
+      html += '<div class="actions actions--liens"><button type="button" class="lien" data-action="modifier-sachet" data-cafe="' + id_ + '">Modifier</button>' +
+        '<button type="button" class="lien" data-action="finir-sachet-fiche" data-cafe="' + id_ + '">Sachet fini</button>' +
+        '<button type="button" class="lien" data-action="nouveau-sachet" data-cafe="' + id_ + '">Nouveau sachet</button></div>';
+    } else {
+      html += '<h2>Le sachet</h2><p>Notez la date de torréfaction et le poids du sachet : le carnet comptera les jours de repos et ce qu’il reste.</p>' +
+        '<div class="actions"><button type="button" class="btn btn--petit btn--clair" data-action="modifier-sachet" data-cafe="' + id_ + '">Renseigner le sachet</button></div>';
+    }
+    return html + '<form class="sachet__form" id="form-sachet" data-cafe="' + id_ + '" hidden novalidate><div class="grille">' +
+      '<label class="champ"><span>Torréfié le</span><input id="s-torrefie" type="date" max="' + cleJour(new Date().toISOString()) + '"></label>' +
+      '<label class="champ"><span>Sachet</span><span class="saisie-unite" data-unite="g"><input id="s-poids" inputmode="numeric" autocomplete="off" placeholder="250"></span></label></div>' +
+      '<div class="actions"><button type="submit" class="btn btn--petit">Enregistrer</button><button type="button" class="lien" data-action="annuler-sachet">Annuler</button></div></form></div>';
+  }
+  function ouvrirFormSachet(cid, mode) {
+    var c = cafe(cid), s = sachetDe(c), f = $('#form-sachet');
+    if (!c || !f) return;
+    f.setAttribute('data-mode', mode);
+    valeur('#s-torrefie', mode === 'nouveau' ? '' : s && s.torrefie);
+    valeur('#s-poids', s && s.poids);
+    f.hidden = false;
+    $('#s-torrefie').focus();
+  }
+  function enregistrerSachet(e) {
+    e.preventDefault();
+    var f = e.target, c = cafe(f.getAttribute('data-cafe'));
+    if (!c) return;
+    var torrefie = $('#s-torrefie').value || null, poids = nombre($('#s-poids').value), maintenant = new Date().toISOString();
+    if (f.getAttribute('data-mode') === 'nouveau') {
+      if (c.sachet) (c.anciens = c.anciens || []).push(c.sachet);
+      c.sachet = { torrefie: torrefie, poids: poids, debut: maintenant, fini: null };
+      message('Nouveau sachet : le compte repart de zéro.');
+    } else {
+      // Renseigné après coup, le sachet compte les tasses déjà notées de ce café.
+      if (!c.sachet) c.sachet = { torrefie: null, poids: null, debut: c.cree, fini: null };
+      c.sachet.torrefie = torrefie;
+      c.sachet.poids = poids;
+      tassesDuSachet(c).forEach(function (t) { if (torrefie) t.jours = joursDepuis(torrefie, t.date); else delete t.jours; });
+      message('Sachet enregistré.');
+    }
+    sauver();
+    saisie.aRafraichir = true;
+    ouvrirCafe(c.id);
   }
   function rejouer(tid) {
     var t = tasse(tid);
@@ -492,6 +851,31 @@
     etat.tasses.forEach(function (t) { var c = cafe(t.cafe); if (c && c.origine) compte[c.origine] = (compte[c.origine] || 0) + 1; });
     return compte;
   }
+  function premieresOrigines() {
+    var p = {};
+    etat.tasses.forEach(function (t) { var c = cafe(t.cafe); if (c && c.origine && (!p[c.origine] || t.date < p[c.origine])) p[c.origine] = t.date; });
+    return p;
+  }
+  // Un tampon par origine goûtée, penché comme posé à la main, à la couleur de son continent.
+  function coupeNom(nom) {
+    if (nom.length <= 10) return [nom];
+    var i = nom.search(/[ -]/);
+    return i < 0 ? [nom] : [nom.slice(0, i + (nom.charAt(i) === '-' ? 1 : 0)), nom.slice(i + 1)];
+  }
+  function tampon(o, n, date) {
+    var lignes = coupeNom(o.nom.toUpperCase()), rot = (o.cle.split('').reduce(function (a, ch) { return a + ch.charCodeAt(0); }, 0) % 17) - 8;
+    var y0 = lignes.length > 1 ? 37 : 43;
+    var txt = lignes.map(function (l, k) {
+      return '<text class="tampon__nom" x="42" y="' + (y0 + k * 11) + '" text-anchor="middle"' + (l.length > 7 ? ' textLength="' + Math.min(58, 7 * l.length) + '" lengthAdjust="spacingAndGlyphs"' : '') + '>' + echapper(l) + '</text>';
+    }).join('');
+    var svg = '<svg viewBox="0 0 84 84" aria-hidden="true"><g transform="rotate(' + rot + ' 42 42)"><circle class="tampon__bord" cx="42" cy="42" r="38"/>' +
+      '<circle class="tampon__filet" cx="42" cy="42" r="32"/>' + txt + '<text class="tampon__date" x="42" y="' + (lignes.length > 1 ? 62 : 58) + '" text-anchor="middle">' +
+      echapper(JOUR.format(new Date(date))) + '</text></g></svg>';
+    var lien = o.guide ? '<a href="' + D.site + o.guide + '">le guide →</a>' : '';
+    return '<li class="tampon tampon--' + o.zone + '" data-origine="' + o.cle + '"><span class="tampon__visuel" role="img" aria-label="' +
+      echapper(o.nom + ', goûtée depuis ' + quand(date)) + '">' + svg + '</span><span class="tampon__info"><b>' + echapper(o.nom) + '</b>' +
+      '<span>' + n + ' tasse' + (n > 1 ? 's' : '') + '</span>' + lien + '</span></li>';
+  }
   function point(o, n) {
     var x = n1(X(o.lon)), y = n1(Y(o.lat)), r = n ? Math.min(4 + n * 0.6, 8) : 3.6;
     var droite = x > 600, tx = droite ? x - r - 5 : x + r + 5;
@@ -537,21 +921,35 @@
       d.scrollTo({ left: cx / 720 * $('svg', d).getBoundingClientRect().width - d.clientWidth / 2, behavior: reduit ? 'auto' : 'smooth' });
     }
   }
-  rendre.origines = function () {
-    var compte = comptesOrigines();
+  rendre.passeport = function () {
+    var J = jeu(), n = niveauInfo(J), nb = compter(J.gagnes);
+    $('#titre-passeport').textContent = n.nom;
+    var serie = J.serie ? J.serie + ' jour' + (J.serie > 1 ? 's' : '') + ' de suite' + (J.aujourdhui ? '' : ' : notez une tasse aujourd’hui pour continuer') : 'Aucune série en cours : une tasse par jour la lance.';
+    $('#niveau').innerHTML = svgGrain(n.couleur, 'grain grain--grand') + '<div class="niveau__texte"><p class="niveau__points">' + J.points + ' points</p>' +
+      '<div class="jauge jauge--niveau" role="img" aria-label="Progression vers le niveau suivant : ' + Math.round(n.part * 100) + ' %"><span style="width:' + Math.round(n.part * 100) +
+      '%;background:linear-gradient(90deg,' + D.niveaux[0].couleur + ',' + n.couleur + ')"></span></div>' +
+      '<p class="niveau__suite">' + (n.suivant ? 'Encore ' + n.manque + ' points pour « ' + echapper(n.suivant.nom) + ' »' : 'Dernier niveau atteint') + '</p>' +
+      '<p class="niveau__serie">' + echapper(serie) + (J.record > 1 ? ' · record : ' + J.record + ' jours' : '') + '</p></div>';
+    $('#titre-succes').textContent = 'Succès · ' + nb + ' sur ' + D.succes.length;
+    $('#succes').innerHTML = D.succes.map(function (s) {
+      var d = J.gagnes[s.cle];
+      return '<li class="succes__item' + (d ? ' succes__item--on' : '') + '">' + icone(s.icone, 'icone-succes' + (d ? ' icone-succes--on' : '')) +
+        '<p class="succes__nom">' + echapper(s.nom) + '</p><p class="succes__but">' + echapper(s.but) + '</p>' +
+        (d ? '<p class="succes__date">Débloqué ' + quand(d) + '</p>' : '') + '</li>';
+    }).join('');
+    var compte = comptesOrigines(), premieres = premieresOrigines();
     var goutees = D.origines.filter(function (o) { return compte[o.cle]; })
-      .sort(function (a, b) { return compte[b.cle] - compte[a.cle] || a.nom.localeCompare(b.nom, 'fr'); });
+      .sort(function (a, b) { return premieres[a.cle] < premieres[b.cle] ? -1 : 1; });
     var aDecouvrir = D.origines.filter(function (o) { return o.guide && !compte[o.cle]; });
     $('#titre-carte').textContent = goutees.length ? goutees.length + (goutees.length > 1 ? ' origines goûtées' : ' origine goûtée') : 'Vos origines';
     $('#carte-defile').innerHTML = svgCarte(compte);
     var html = '<div class="origines">';
-    html += goutees.length ? '<h2>Goûtées</h2><ul>' + goutees.map(function (o) { return ligneOrigine(o, compte[o.cle]); }).join('') + '</ul>'
-      : '<p class="vide">Chaque café noté pose un point sur la carte. Indiquez l’origine d’un café, notez une tasse, et le point s’allume.</p>';
+    html += goutees.length ? '<h2>Vos tampons</h2><ul class="tampons">' + goutees.map(function (o) { return tampon(o, compte[o.cle], premieres[o.cle]); }).join('') + '</ul>'
+      : '<p class="vide">Chaque café noté pose un tampon et un point sur la carte. Indiquez l’origine d’un café, notez une tasse, et le point s’allume.</p>';
     if (compte.assemblage) html += '<p class="indice">' + compte.assemblage + ' tasse' + (compte.assemblage > 1 ? 's' : '') + ' d’assemblage : sans origine unique, elles ne figurent pas sur la carte.</p>';
     if (aDecouvrir.length) html += '<h2>À découvrir sur filtré.</h2><ul>' + aDecouvrir.map(function (o) { return ligneOrigine(o, 0); }).join('') + '</ul>';
     $('#carte-listes').innerHTML = html + '</div>';
-    typographier($('#carte-listes'));
-    typographier($('[data-vue="origines"] .titre'));
+    typographier($('[data-vue="passeport"]'));
     requestAnimationFrame(centrerCarte);
   };
 
@@ -904,8 +1302,11 @@
 
   /* ── Démarrage ── */
   puces($('#puces-methode'), D.methodes);
-  puces($('#puces-gout'), D.gouts);
+  rendreBoussole();
+  majBoussole();
   puces($('#puces-procede'), D.procedes);
+  puces($('#puces-poids'), D.poids.map(function (p) { return { cle: String(p), nom: p >= 1000 ? fr(p / 1000) + ' kg' : p + ' g' }; }));
+  $('#cafe-torrefie').max = cleJour(new Date().toISOString());
   puces($('#puces-villes'), D.villes);
   puces($('#puces-theme'), THEMES);
   appliquerTheme(lireTheme());
@@ -920,7 +1321,17 @@
     marquer(this, [saisie.methode]);
     preRemplir();
   });
-  $('#puces-gout').addEventListener('click', function (e) { var b = e.target.closest('.puce'); if (b) basculerGout(b.getAttribute('data-cle')); });
+  $('#grille-gout').addEventListener('click', function (e) { var b = e.target.closest('.case'); if (b) choisirCase(+b.getAttribute('data-case')); });
+  $('#puces-poids').addEventListener('click', function (e) {
+    var b = e.target.closest('.puce');
+    if (!b) return;
+    valeur('#cafe-poids', +b.getAttribute('data-cle'));
+    marquer(this, [b.getAttribute('data-cle')]);
+  });
+  $('#cafe-poids').addEventListener('input', function () { var v = nombre(this.value); marquer($('#puces-poids'), v ? [String(v)] : []); });
+  $('#tour').addEventListener('click', noterTour);
+  $('#cafe-detail').addEventListener('submit', function (e) { if (e.target.id === 'form-sachet') enregistrerSachet(e); });
+  document.addEventListener('visibilitychange', function () { if (document.visibilityState === 'visible' && chrono.debut) garderEcran(); });
   $('#puces-procede').addEventListener('click', function (e) {
     var b = e.target.closest('.puce');
     if (!b) return;
@@ -991,6 +1402,32 @@
     else if (a === 'annuler') annuler(b.getAttribute('data-tasse'));
     else if (a === 'garder') basculerGarde(b.getAttribute('data-adresse'));
     else if (a === 'osm-reessayer') { osm.cle = null; rendre.adresses(); }
+    else if (a === 'finir-sachet') {
+      var bloc = b.closest('.fin-sachet'), res = finirSachet(b.getAttribute('data-cafe'));
+      if (res && bloc) {
+        bloc.innerHTML = bilanSachet(res);
+        bloc.classList.add('fin-sachet--ok');
+        typographier(bloc);
+        if (res.nouveaux.length || res.monte) feter($('.debloque, .niveau-monte', bloc));
+      }
+    }
+    else if (a === 'garder-sachet') { var fs = b.closest('.fin-sachet'); if (fs) fs.remove(); }
+    else if (a === 'modifier-sachet') ouvrirFormSachet(b.getAttribute('data-cafe'), 'modifier');
+    else if (a === 'nouveau-sachet') ouvrirFormSachet(b.getAttribute('data-cafe'), 'nouveau');
+    else if (a === 'annuler-sachet') { var f = $('#form-sachet'); if (f) f.hidden = true; }
+    else if (a === 'finir-sachet-fiche') {
+      confirmer(b, 'Toucher encore : sachet fini', function () {
+        var cid = b.getAttribute('data-cafe'), r = finirSachet(cid);
+        ouvrirCafe(cid);
+        message('Sachet fini : le café passe dans « Cafés rangés ».');
+        if (r && (r.nouveaux.length || r.monte)) {
+          var enc = $('#cafe-detail .sachet');
+          enc.insertAdjacentHTML('beforeend', (r.nouveaux.length ? blocSucces(r.nouveaux) : '') + (r.monte ? blocNiveau(r.J) : ''));
+          typographier(enc);
+          feter($('.debloque, .niveau-monte', enc));
+        }
+      });
+    }
     else if (a === 'supprimer-tasse') confirmer(b, 'Toucher encore pour supprimer', function () { supprimerTasse(b.getAttribute('data-tasse')); });
     else if (a === 'supprimer-cafe') {
       var n = tassesDu(b.getAttribute('data-cafe')).length;
@@ -998,6 +1435,7 @@
     }
   });
 
+  majEntete();
   typographier(document.body);
   aller(location.hash.slice(1));
   window.addEventListener('hashchange', function () { aller(location.hash.slice(1)); });

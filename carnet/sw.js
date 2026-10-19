@@ -1,8 +1,8 @@
 /* Carnet filtré. : hors ligne. Réponse depuis le cache, mise à jour en arrière-plan pour la visite suivante.
    Changer VERSION quand la liste des fichiers change. */
-var VERSION = 'carnet-v2';
+var VERSION = 'carnet-v3';
 var FICHIERS = [
-  './', 'index.html', 'app.css', 'app.js', 'donnees.js', 'carte.js', 'manifest.webmanifest',
+  './', 'index.html', 'app.css', 'app.js', 'donnees.js', 'carte.js', 'vendor/canvas-confetti.js', 'manifest.webmanifest',
   'polices/newsreader-latin-wght-normal.woff2', 'polices/newsreader-latin-wght-italic.woff2', 'polices/instrument-sans-latin-wght-normal.woff2',
   'icones/icone-192.png', 'icones/apple-touch-icon.png'
 ];

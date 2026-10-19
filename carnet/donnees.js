@@ -4,16 +4,17 @@ var CARNET = {
 
   // temps : fenêtre de temps total (secondes) quand le guide en donne une, sinon null.
   // enTasse : on pèse la boisson (espresso), pas l'eau versée. heures : infusion comptée en heures.
+  // tour : le temps intermédiaire que le chrono propose de noter (fin du bloom, ou première goutte de l'espresso).
   methodes: [
-    { cle: 'v60', nom: 'V60', dose: 15, eau: 250, temperature: 93, mouture: 'médium, sucre fin', temps: [150, 210], guide: '/journal/v60-guide-complet' },
-    { cle: 'chemex', nom: 'Chemex', dose: 45, eau: 750, temperature: 94, mouture: 'médium-grossière', temps: [240, 300], guide: '/journal/chemex-guide-complet' },
+    { cle: 'v60', nom: 'V60', dose: 15, eau: 250, temperature: 93, mouture: 'médium, sucre fin', temps: [150, 210], tour: 'bloom', guide: '/journal/v60-guide-complet' },
+    { cle: 'chemex', nom: 'Chemex', dose: 45, eau: 750, temperature: 94, mouture: 'médium-grossière', temps: [240, 300], tour: 'bloom', guide: '/journal/chemex-guide-complet' },
     { cle: 'aeropress', nom: 'AeroPress', dose: 16, eau: 210, temperature: 88, mouture: 'médium-fine', temps: null, guide: '/journal/aeropress-guide-complet' },
     { cle: 'piston', nom: 'Piston', dose: 15, eau: 250, temperature: 93, mouture: 'grossière, sucre gros', temps: null, guide: '/journal/french-press-guide' },
-    { cle: 'espresso', nom: 'Espresso', dose: 18, eau: 36, temperature: 93, mouture: 'fine, sable fin', temps: [25, 30], enTasse: true, guide: '/journal/comment-faire-espresso-parfait' },
+    { cle: 'espresso', nom: 'Espresso', dose: 18, eau: 36, temperature: 93, mouture: 'fine, sable fin', temps: [25, 30], enTasse: true, tour: 'goutte', guide: '/journal/comment-faire-espresso-parfait' },
     { cle: 'moka', nom: 'Moka', dose: null, eau: null, temperature: null, mouture: 'médium, panier à ras', temps: null, guide: '/journal/moka-pot-guide-complet' },
-    { cle: 'kasuya', nom: '4:6', dose: 20, eau: 300, temperature: 93, mouture: 'médium-grossière', temps: null, guide: '/journal/methode-4-6-kasuya' },
-    { cle: 'switch', nom: 'Switch', dose: 20, eau: 300, temperature: 93, mouture: 'moyenne', temps: null, guide: '/journal/hario-switch-guide-recettes' },
-    { cle: 'glace', nom: 'Glacé', dose: 22, eau: 220, temperature: 93, mouture: 'moyenne, un cran plus fine qu’en V60', temps: null, guide: '/journal/cafe-glace-maison' },
+    { cle: 'kasuya', nom: '4:6', dose: 20, eau: 300, temperature: 93, mouture: 'médium-grossière', temps: null, tour: 'bloom', guide: '/journal/methode-4-6-kasuya' },
+    { cle: 'switch', nom: 'Switch', dose: 20, eau: 300, temperature: 93, mouture: 'moyenne', temps: null, tour: 'bloom', guide: '/journal/hario-switch-guide-recettes' },
+    { cle: 'glace', nom: 'Glacé', dose: 22, eau: 220, temperature: 93, mouture: 'moyenne, un cran plus fine qu’en V60', temps: null, tour: 'bloom', guide: '/journal/cafe-glace-maison' },
     { cle: 'coldbrew', nom: 'Cold brew', dose: 100, eau: 1000, temperature: null, mouture: 'très grossière', temps: null, heures: [12, 16], guide: '/journal/cold-brew-maison' }
   ],
 
@@ -157,5 +158,60 @@ var CARNET = {
       titre: 'Réglage trouvé',
       texte: 'Gardez-le : c’est votre recette pour ce café. Elle vous attend dans l’onglet Cafés.'
     }
+  },
+
+  // Repos après torréfaction, repris de l'article sur le dégazage : en filtre la fenêtre s'ouvre vers J+7,
+  // en espresso vers J+10, jusqu'à J+21 ; au-delà de six semaines, les arômes s'estompent.
+  repos: {
+    filtre: [7, 21], espresso: [10, 21], fatigue: 42,
+    guide: ['/journal/degazage-cafe', 'Dégazage : combien de jours avant de le boire'],
+    conserver: ['/journal/comment-conserver-cafe', 'Comment conserver son café']
+  },
+  ages: { repos: 'au repos', fenetre: 'dans sa fenêtre', bon: 'encore bon', fatigue: 'à finir' },
+  poids: [250, 500, 1000],
+
+  // Le jeu : des points pour chaque tasse (trois par jour au plus) et chaque succès, des niveaux qui suivent
+  // la torréfaction, du grain vert au maître torréfacteur. couleur : celle du grain à ce niveau.
+  points: { tasse: 10, gout: 5, succes: 40, parJour: 3 },
+  niveaux: [
+    { nom: 'Grain vert', points: 0, couleur: '#8f9a5b' },
+    { nom: 'Séchage', points: 50, couleur: '#b5ad66' },
+    { nom: 'Jaunissement', points: 150, couleur: '#d4b25c' },
+    { nom: 'Premier crack', points: 300, couleur: '#b9824a' },
+    { nom: 'Développement', points: 500, couleur: '#9c6438' },
+    { nom: 'Torréfaction médium', points: 800, couleur: '#7b4a2a' },
+    { nom: 'Second crack', points: 1200, couleur: '#5a3520' },
+    { nom: 'Torréfacteur', points: 1800, couleur: '#3f2516' },
+    { nom: 'Maître torréfacteur', points: 2600, couleur: '#2a170d' }
+  ],
+  // Douze succès, calculés depuis le carnet : rien n'est stocké à part, un import ou une suppression les recalcule.
+  succes: [
+    { cle: 'premiere', nom: 'Première tasse', but: 'Noter une première tasse.', icone: 'tasse' },
+    { cle: 'mille', nom: 'Dans le mille', but: 'Une tasse au centre de la boussole : équilibrée.', icone: 'cible' },
+    { cle: 'affilee', nom: 'Trois d’affilée', but: 'Trois tasses équilibrées de suite sur le même café.', icone: 'trois' },
+    { cle: 'fenetre', nom: 'Dans la fenêtre', but: 'Un espresso tiré entre 25 et 30 s, comme le protocole.', icone: 'fenetre' },
+    { cle: 'methodes', nom: 'Tour des méthodes', but: 'Cinq méthodes différentes.', icone: 'dripper' },
+    { cle: 'origines', nom: 'Globe-trotteur', but: 'Des cafés de cinq origines.', icone: 'globe' },
+    { cle: 'continents', nom: 'Trois continents', but: 'Une origine d’Afrique, une d’Amérique, une d’Asie.', icone: 'bande' },
+    { cle: 'fraicheur', nom: 'Pic de fraîcheur', but: 'Une tasse en pleine fenêtre de repos : J+7 à J+21, J+10 en espresso.', icone: 'grain' },
+    { cle: 'sachet', nom: 'Jusqu’au dernier grain', but: 'Finir un sachet.', icone: 'sachet' },
+    { cle: 'tour', nom: 'Chrono en main', but: 'Noter au chrono la fin du bloom ou la première goutte.', icone: 'goutte' },
+    { cle: 'semaine', nom: 'Sept jours de suite', but: 'Une tasse par jour pendant une semaine.', icone: 'semaine' },
+    { cle: 'carnet', nom: 'Carnet de bord', but: 'Trente tasses notées.', icone: 'carnet' }
+  ],
+  // Icônes des succès, même trait que les icônes du site (viewBox 48, trait de 2).
+  icones: {
+    tasse: '<path d="M11 20h22v7a9 9 0 0 1-9 9h-4a9 9 0 0 1-9-9z"/><path d="M33 22h3a4 4 0 0 1 0 8h-3"/><path d="M18 9c-1.5 2 1.5 3.5 0 5.5M25 9c-1.5 2 1.5 3.5 0 5.5"/>',
+    cible: '<circle cx="24" cy="24" r="15"/><circle cx="24" cy="24" r="8.5"/><circle cx="24" cy="24" r="2.6" fill="currentColor" stroke="none"/>',
+    trois: '<path d="M11 24h26"/><circle cx="11" cy="24" r="4.6" fill="currentColor" stroke="none"/><circle cx="24" cy="24" r="4.6" fill="currentColor" stroke="none"/><circle cx="37" cy="24" r="4.6" fill="currentColor" stroke="none"/>',
+    fenetre: '<circle cx="24" cy="27" r="13"/><path d="M24 27L33.2 17.8A13 13 0 0 1 37 27z" fill="currentColor" stroke="none" opacity=".4"/><path d="M21 8h6M24 8v6"/>',
+    dripper: '<path d="M9 14h30l-10 14h-10z"/><path d="M16 36h16"/><path d="M24 28v4"/>',
+    globe: '<circle cx="24" cy="24" r="15"/><path d="M9 24h30"/><path d="M24 9c4.6 4.4 6.8 9.4 6.8 15S28.6 34.6 24 39c-4.6-4.4-6.8-9.4-6.8-15S19.4 13.4 24 9z"/>',
+    bande: '<rect x="6" y="14" width="36" height="20" rx="3"/><path d="M6 19.5h36M6 28.5h36" stroke-dasharray="2 3" opacity=".5"/><circle cx="15" cy="22" r="2.5" fill="currentColor" stroke="none"/><circle cx="25" cy="27" r="2.5" fill="currentColor" stroke="none"/><circle cx="34" cy="21" r="2.5" fill="currentColor" stroke="none"/>',
+    grain: '<ellipse cx="21" cy="27" rx="8.5" ry="12.5" transform="rotate(24 21 27)"/><path d="M17.5 16.5c5 5-2 10.5 3.5 21"/><path d="M36 7v7M32.5 10.5h7"/>',
+    sachet: '<path d="M14 13h20l2 25a2 2 0 0 1-2 2H14a2 2 0 0 1-2-2z"/><path d="M14 13l3-5h14l3 5"/><circle cx="24" cy="23" r="3"/>',
+    goutte: '<path d="M24 7c6.5 8.5 10 13.5 10 19.5a10 10 0 0 1-20 0C14 20.5 17.5 15.5 24 7z"/><path d="M24 21v6l4 2.5"/>',
+    semaine: '<rect x="9" y="11" width="30" height="28" rx="3"/><path d="M9 18h30M16 7v7M32 7v7"/><path d="M17 28.5l4.5 4.5 9-10"/>',
+    carnet: '<path d="M13 8h20a3 3 0 0 1 3 3v26a3 3 0 0 1-3 3H13z"/><path d="M13 8v32"/><path d="M19 16h11M19 22h11M19 28h7"/>'
   }
 };

@@ -1,5 +1,6 @@
-// Parcours complet du carnet dans Chromium, au format iPhone : tasses, conseils, historique, origines, adresses
-// (position, OpenStreetMap et Géoplateforme simulés), thème sombre, export, hors ligne.
+// Parcours complet du carnet dans Chromium, au format iPhone : tasses, conseils, boussole du goût, sachet, chrono,
+// historique, passeport (niveaux, succès, série, tampons), adresses (position, OpenStreetMap et Géoplateforme
+// simulés), thème sombre, export, hors ligne.
 // Usage, depuis la racine du dépôt : node carnet/outils/tester.js [dossier des captures]
 // Playwright requis : PLAYWRIGHT=chemin/vers/playwright si le module n'est pas résolu, CHROMIUM=chemin du navigateur.
 const fs = require('fs'), path = require('path'), http = require('http'), os = require('os');
@@ -19,12 +20,20 @@ const NBSP = '\u00a0';
 let ok = 0, ko = 0;
 function verif(cond, quoi) { if (cond) { ok++; console.log('  ok  ' + quoi); } else { ko++; console.log('  KO  ' + quoi); } }
 const norm = s => (s || '').replace(/[\u00a0\u202f\u2060]/g, ' ').replace(/\s+/g, ' ').trim();
+// Date locale \u00ab AAAA-MM-JJ \u00bb d'il y a j jours, comme la renvoie un champ date.
+const ilYa = j => { const d = new Date(Date.now() - j * 864e5); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); };
+// \u00c9cran gard\u00e9 allum\u00e9 : on compte les demandes et les lib\u00e9rations du verrou.
+const faussesVeilles = () => {
+  window.__verrous = { pris: 0, rendus: 0 };
+  Object.defineProperty(navigator, 'wakeLock', { configurable: true, value: { request: () => { window.__verrous.pris++; return Promise.resolve({ release() { window.__verrous.rendus++; return Promise.resolve(); }, addEventListener() {} }); } } });
+};
 
 (async () => {
   await new Promise(ok => serveur.listen(0, '127.0.0.1', ok));
   URL_ = 'http://127.0.0.1:' + serveur.address().port + '/';
   const nav = await chromium.launch(process.env.CHROMIUM ? { executablePath: process.env.CHROMIUM } : fs.existsSync('/opt/pw-browsers/chromium') ? { executablePath: '/opt/pw-browsers/chromium' } : {});
   const ctx = await nav.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true, locale: 'fr-FR', timezoneId: 'Europe/Paris', acceptDownloads: true, permissions: ['clipboard-read', 'clipboard-write'] });
+  await ctx.addInitScript(faussesVeilles);
   const page = await ctx.newPage();
   const erreurs = [];
   page.on('console', m => { if (m.type() === 'error') erreurs.push(m.text()); });
@@ -44,41 +53,57 @@ const norm = s => (s || '').replace(/[\u00a0\u202f\u2060]/g, ' ').replace(/\s+/g
   const indice = await page.textContent('#indice');
   verif(norm(indice).startsWith('Recette filtré. : 15 g pour 250 g, 93 °C, 2 min 30 à 3 min 30, mouture médium, sucre fin.'), 'indice de recette : ' + norm(indice));
   verif(indice.includes('.' + NBSP + ':') && indice.includes('15' + NBSP + 'g'), 'espaces insécables (avant « : » et entre nombre et unité)');
+  verif((await page.$$('#grille-gout .case')).length === 9 && await texte('#grille-gout .case--centre') === 'Équilibré', 'boussole du goût : 9 cases, l’équilibre au centre');
+  verif(await texte('#jeu-entete') === 'Grain vert', 'en-tête : niveau Grain vert, sans série');
   await cap('01-noter.png');
 
-  console.log('2. Première tasse : V60 acide et rapide');
+  console.log('2. Première tasse : V60 acide et rapide, sachet de 250 g torréfié il y a 12 jours');
   await page.fill('#cafe-nom', 'Sidama, Nibret Alamu');
   await page.fill('#cafe-torref', 'La Brûlerie du Cantin');
   await page.selectOption('#cafe-origine', 'ethiopie');
   await page.click('#puces-procede .puce[data-cle="lave"]');
+  await page.fill('#cafe-torrefie', ilYa(12));
+  await page.click('#puces-poids .puce[data-cle="250"]');
+  verif(await page.inputValue('#cafe-poids') === '250', 'raccourci 250 g : poids rempli');
   await page.fill('#t-mouture', '22 clics');
   await page.fill('#t-min', '2'); await page.fill('#t-sec', '05');
-  await page.click('#puces-gout .puce[data-cle="acide"]');
+  await page.click('#grille-gout .case[data-case="3"]');
+  verif(await texte('#gout-choisi') === 'Acide.', 'boussole : case « acide »');
   await page.click('#note button[data-note="3"]');
   await page.fill('#t-notes', 'citron, thé noir');
   await page.click('#form-tasse button[type="submit"]');
   verif(await page.isVisible('#conseil'), 'conseil affiché');
+  verif(await page.$('canvas') !== null, 'succès fêté : grains de café lancés');
   const c1 = await texte('#conseil');
+  verif(c1.startsWith('Tasse enregistrée · V60 · J+12'), 'conseil : âge du café, J+12');
   verif(c1.includes('Sous-extrait') && c1.includes('Moulez un cran plus fin.'), 'conseil : sous-extrait, moudre plus fin');
   verif(c1.includes('Le temps le confirme : 2 min 05, pour 2 min 30 à 3 min 30 dans la recette.'), 'le temps confirme le goût');
   verif(c1.includes('Pourquoi mon café est acide →'), 'lien vers l’article sur le café acide');
   verif(await page.getAttribute('#conseil a', 'href') === 'https://filtre.cafe/journal/pourquoi-cafe-acide', 'lien absolu vers filtre.cafe');
+  verif((await page.$$('#conseil .bsvg__point--der')).length === 1 && (await page.$$('#conseil .bsvg__fleche')).length === 1, 'boussole dessinée : la tasse et la flèche vers le centre');
+  verif(c1.includes('Il reste 235 g dans le sachet, environ 15 tasses.'), 'sachet : 235 g, environ 15 tasses');
+  verif(c1.includes('+95 points · 95 au total'), 'points : 15 pour la tasse, 80 pour deux succès');
+  const succes1 = await page.$$eval('#conseil .debloque__nom', l => l.map(x => x.textContent));
+  verif(succes1.join() === 'Première tasse,Pic de fraîcheur', 'succès débloqués : ' + succes1.join(', '));
+  verif(c1.includes('Nouveau niveau : Séchage.') && (await texte('#jeu-entete')) === 'Séchage 1 j', 'niveau Séchage, série d’un jour dans l’en-tête');
   await cap('02-conseil.png', false);
   const rep1 = await texte('#reprise');
   verif(rep1 === 'Repris de votre dernière tasse de ce café, aujourd’hui. La dernière fois, c’était acide : moulez un cran plus fin.', 'rappel du conseil : ' + rep1);
   verif(await page.inputValue('#t-mouture') === '22 clics', 'mouture reprise');
   verif(await page.isHidden('#nouveau-cafe'), 'le café créé est sélectionné');
-  verif(await page.getAttribute('#puces-gout .puce[data-cle="acide"]', 'aria-pressed') === 'false', 'goûts remis à zéro');
+  verif((await page.$$('#grille-gout .case[aria-pressed="true"]')).length === 0, 'goût remis à zéro');
 
-  console.log('3. Exclusivité des goûts');
-  await page.click('#puces-gout .puce[data-cle="acide"]');
-  await page.click('#puces-gout .puce[data-cle="amer"]');
-  verif(await page.getAttribute('#puces-gout .puce[data-cle="acide"]', 'aria-pressed') === 'false', 'amer remplace acide');
-  await page.click('#puces-gout .puce[data-cle="leger"]');
-  verif(await page.getAttribute('#puces-gout .puce[data-cle="amer"]', 'aria-pressed') === 'true', 'trop léger se cumule avec amer');
-  await page.click('#puces-gout .puce[data-cle="equilibre"]');
-  const presses = await page.$$eval('#puces-gout .puce[aria-pressed="true"]', b => b.map(x => x.dataset.cle));
-  verif(presses.length === 1 && presses[0] === 'equilibre', 'équilibré efface le reste');
+  console.log('3. Boussole : un toucher par goût');
+  await page.click('#grille-gout .case[data-case="3"]');
+  await page.click('#grille-gout .case[data-case="5"]');
+  const presses1 = await page.$$eval('#grille-gout .case[aria-pressed="true"]', b => b.map(x => x.dataset.case));
+  verif(presses1.join() === '5' && await texte('#gout-choisi') === 'Amer.', 'amer remplace acide');
+  await page.click('#grille-gout .case[data-case="8"]');
+  verif(await texte('#gout-choisi') === 'Amer et trop léger.', 'coin : amer et trop léger');
+  await page.click('#grille-gout .case[data-case="8"]');
+  verif((await page.$$('#grille-gout .case[aria-pressed="true"]')).length === 0, 'second toucher : goût retiré');
+  await page.click('#grille-gout .case[data-case="4"]');
+  verif(await texte('#gout-choisi') === 'Équilibré.', 'centre : équilibré');
 
   console.log('4. Deuxième tasse : équilibrée');
   await page.fill('#t-mouture', '20 clics');
@@ -87,6 +112,8 @@ const norm = s => (s || '').replace(/[\u00a0\u202f\u2060]/g, ' ').replace(/\s+/g
   await page.click('#form-tasse button[type="submit"]');
   const c2 = await texte('#conseil');
   verif(c2.includes('Réglage trouvé'), 'conseil : réglage trouvé');
+  verif(c2.includes('Dans le mille') && c2.includes('Nouveau niveau : Jaunissement.'), 'succès « Dans le mille », niveau Jaunissement');
+  verif(!(await page.$('#conseil .bsvg__fleche')), 'au centre : pas de flèche');
   verif((await texte('#reprise')).includes('Il vous avait plu : gardez-le.'), 'rappel : il vous avait plu');
 
   console.log('5. Troisième tasse : espresso, nouveau café, temps seul');
@@ -117,38 +144,64 @@ const norm = s => (s || '').replace(/[\u00a0\u202f\u2060]/g, ' ').replace(/\s+/g
   verif(await page.isVisible('#champ-h') && await page.isHidden('#champ-temp') && await page.isHidden('#chrono'), 'heures visibles, température et chrono cachés');
   await page.click('#puces-methode .puce[data-cle="v60"]');
 
-  console.log('8. Chrono');
+  console.log('8. Chrono : écran allumé, fin du bloom');
   await page.click('#chrono');
-  await page.waitForTimeout(2300);
+  await page.waitForTimeout(1200);
+  verif(await page.evaluate(() => window.__verrous.pris) === 1 && await texte('#tour-note') === 'L’écran reste allumé pendant le chrono.', 'chrono lancé : écran gardé allumé');
+  verif(await page.isVisible('#tour') && await texte('#tour') === 'Fin du bloom', 'V60 : bouton « Fin du bloom »');
+  await page.click('#tour');
+  verif(/^Bloom terminé à [12] s\.$/.test(await texte('#tour-note')), 'bloom noté : ' + await texte('#tour-note'));
+  await page.waitForTimeout(1100);
   verif((await texte('#chrono')).startsWith('Stop 0:0'), 'le chrono tourne : ' + await texte('#chrono'));
   await page.click('#chrono');
   verif(await page.inputValue('#t-min') === '0' && ['02', '03'].includes(await page.inputValue('#t-sec')), 'chrono arrêté : temps reporté (' + await page.inputValue('#t-min') + ':' + await page.inputValue('#t-sec') + ')');
+  verif(await page.evaluate(() => window.__verrous.rendus) === 1 && await page.isHidden('#tour') && await page.isVisible('#tour-note'), 'chrono arrêté : écran rendu, bloom gardé');
+  await page.click('#puces-methode .puce[data-cle="espresso"]');
+  verif(await page.isHidden('#tour-note'), 'changer de méthode efface le bloom');
+  await page.click('#chrono');
+  await page.waitForTimeout(300);
+  verif(await texte('#tour') === 'Première goutte', 'espresso : bouton « Première goutte »');
+  await page.click('#chrono');
+  await page.click('#puces-methode .puce[data-cle="v60"]');
 
   console.log('9. Cafés et historique');
   await page.click('.onglets [data-vers="cafes"]');
   verif((await page.$$('.carte-cafe')).length === 2, '2 cafés listés');
   const premiereCarte = await texte('.carte-cafe');
   verif(premiereCarte.startsWith('Cerrado, Yellow Bourbon'), 'le café le plus récent en tête');
+  verif(await texte('.carte-cafe:nth-child(2) .carte-cafe__sachet') === 'J+12 220 g restants', 'carte du café : J+12 et 220 g restants');
+  verif(await page.getAttribute('.carte-cafe:nth-child(2) .age', 'class') === 'age age--fenetre', 'J+12 en V60 : dans sa fenêtre');
   await cap('03-cafes.png');
   await page.click('.carte-cafe:nth-child(2)');
   const detail = await texte('#cafe-detail');
   verif(detail.includes('Votre meilleur réglage') && detail.includes('V60 · 15 g → 250 g · 1:16,7 · 93 °C · 2 min 50 · mouture 20 clics'), 'meilleur réglage : la tasse notée 5');
   verif((await page.$$('#cafe-detail .tasse')).length === 2, '2 tasses pour ce café');
   verif(detail.includes('Café éthiopien : Yirgacheffe, Sidama, Guji →'), 'lien vers le guide de l’origine');
+  verif(detail.includes('J+12 dans sa fenêtre · torréfié le ') && detail.includes('220 g restants sur 250 g · environ 14 tasses'), 'fiche : âge et reste du sachet');
+  verif((await page.$$('#cafe-detail .bsvg__point')).length === 2 && !(await page.$('#cafe-detail .bsvg__fleche')), 'boussole du café : 2 tasses, la dernière au centre');
   await cap('04-cafe.png');
+  await page.click('#cafe-detail [data-action="modifier-sachet"]');
+  verif(await page.isVisible('#form-sachet') && await page.inputValue('#s-poids') === '250', 'modifier le sachet : formulaire pré-rempli');
+  await page.fill('#s-poids', '300');
+  await page.click('#form-sachet button[type="submit"]');
+  verif((await texte('#cafe-detail')).includes('270 g restants sur 300 g'), 'poids corrigé : 270 g restants sur 300 g');
   await page.click('#cafe-detail .encadre [data-action="rejouer"]');
   verif(await page.isVisible('[data-vue="noter"]'), 'rejouer : retour à Noter');
   const rep2 = await texte('#reprise');
   verif(rep2 === 'Réglage d’aujourd’hui rejoué. Il vous avait plu : gardez-le.', 'rejouer : ' + rep2);
   verif(await page.inputValue('#t-mouture') === '20 clics', 'rejouer : mouture 20 clics');
 
-  console.log('10. Carte des origines');
-  await page.click('.onglets [data-vers="origines"]');
+  console.log('10. Passeport : niveau, succès, carte et tampons');
+  await page.click('.onglets [data-vers="passeport"]');
+  verif(await texte('#titre-passeport') === 'Jaunissement', 'titre : le niveau, Jaunissement');
+  verif((await texte('#niveau')).startsWith('160 points') && (await texte('#niveau')).includes('Encore 140 points pour « Premier crack »'), 'jauge : 160 points, 140 avant Premier crack');
+  verif(await texte('#titre-succes') === 'Succès · 3 sur 12' && (await page.$$('.succes__item--on')).length === 3, '3 succès sur 12');
   verif(await texte('#titre-carte') === '2 origines goûtées', 'titre : 2 origines goûtées');
   verif((await page.$$('.point--goutee')).length === 2, '2 points allumés');
   verif((await page.$$('.point--guide')).length === 7, '7 origines à découvrir (guides du site)');
-  const lignes = (await page.$$eval('#carte-listes li', l => l.map(x => x.innerText))).map(norm);
-  verif(lignes[0] === 'Éthiopie 2 tasses · le guide →' && lignes[1] === 'Brésil 1 tasse · le guide →', 'liste des origines goûtées : ' + lignes.slice(0, 2).join(' | '));
+  const lignes = (await page.$$eval('#carte-listes .tampon .tampon__info', l => l.map(x => x.innerText))).map(norm);
+  verif(lignes[0] === 'Éthiopie 2 tasses le guide →' && lignes[1] === 'Brésil 1 tasse le guide →', 'tampons, dans l’ordre des découvertes : ' + lignes.slice(0, 2).join(' | '));
+  verif(await page.$eval('.tampon[data-origine="ethiopie"]', li => li.classList.contains('tampon--afrique')), 'tampon à la couleur du continent');
   const defile = await page.evaluate(() => { const d = document.querySelector('#carte-defile'); return [d.scrollLeft, d.scrollWidth, d.clientWidth]; });
   verif(defile[1] > defile[2] && defile[0] > 0, 'carte défilante, recentrée sur les points (' + defile.join(', ') + ')');
   await page.dispatchEvent('.point--goutee[data-origine="ethiopie"]', 'click');
@@ -164,6 +217,8 @@ const norm = s => (s || '').replace(/[\u00a0\u202f\u2060]/g, ' ').replace(/\s+/g
   let exportJson = null;
   if (dl) { const p = await dl.path(); exportJson = JSON.parse(fs.readFileSync(p, 'utf8')); fs.copyFileSync(p, path.join(CAP, 'export.json')); }
   verif(exportJson && exportJson.cafes.length === 2 && exportJson.tasses.length === 3, 'export JSON complet (' + (dl ? dl.suggestedFilename() : 'pas de téléchargement') + ')');
+  const sidama = exportJson && exportJson.cafes.find(c => c.nom.startsWith('Sidama'));
+  verif(sidama && sidama.sachet.poids === 300 && sidama.sachet.torrefie === ilYa(12) && exportJson.tasses.filter(t => t.jours === 12).length === 2, 'export : sachet et âge des tasses inclus');
   if (dl) {
     await page.setInputFiles('#importer', path.join(CAP, 'export.json'));
     await page.waitForSelector('#message:not([hidden])');
@@ -298,10 +353,94 @@ const norm = s => (s || '').replace(/[\u00a0\u202f\u2060]/g, ' ').replace(/\s+/g
   verif(norm(await p3.textContent('#message')) === 'Position indisponible. Autorisez la localisation, ou choisissez une ville.', 'localisation refusée : message clair');
   await ctx2.close(); await ctx3.close();
 
+  console.log('17. Série de sept jours, sachet fini, première goutte, fraîcheur, mouvement réduit');
+  const ctx4 = await nav.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true, locale: 'fr-FR', timezoneId: 'Europe/Paris', reducedMotion: 'reduce' });
+  await ctx4.addInitScript(faussesVeilles);
+  const p4 = await ctx4.newPage();
+  p4.on('pageerror', e => erreurs.push(String(e)));
+  p4.on('console', m => { if (m.type() === 'error') erreurs.push(m.text()); });
+  const texte4 = async sel => norm(await p4.innerText(sel));
+  await p4.goto(URL_, { waitUntil: 'networkidle' });
+  // Un carnet de la v0.2, sans sachet ni âge : une tasse par jour pendant sept jours.
+  await p4.evaluate(() => {
+    const J = 864e5, tasses = [];
+    for (let j = 6; j >= 0; j--) { const d = new Date(Date.now() - j * J); d.setHours(8, 0, 0, 0); tasses.push({ id: 't' + j, cafe: 'c1', methode: 'v60', date: d.toISOString(), dose: 15, eau: 250, mouture: '20 clics', temperature: 93, temps: 170, gouts: [], note: null, notes: '' }); }
+    localStorage.setItem('filtre-carnet', JSON.stringify({ version: 1, cafes: [{ id: 'c1', nom: 'Huila, Pink Bourbon', torrefacteur: '', origine: 'colombie', procede: 'lave', cree: new Date(Date.now() - 6 * J).toISOString() }], tasses, adresses: [] }));
+  });
+  await p4.reload({ waitUntil: 'networkidle' });
+  verif(await texte4('#jeu-entete') === 'Jaunissement 7 j', 'carnet v0.2 relu : 7 jours de suite, niveau Jaunissement');
+  await p4.click('.onglets [data-vers="passeport"]');
+  verif(await p4.$eval('.succes__item:nth-child(11)', li => li.classList.contains('succes__item--on')) && (await texte4('#niveau')).includes('7 jours de suite · record : 7 jours'), 'succès « Sept jours de suite », record de 7 jours');
+  await p4.click('.onglets [data-vers="noter"]');
+  await p4.click('#puces-methode .puce[data-cle="espresso"]');
+  await p4.selectOption('#champ-cafe', 'nouveau');
+  await p4.fill('#cafe-nom', 'Kochere');
+  await p4.selectOption('#cafe-origine', 'ethiopie');
+  await p4.fill('#cafe-poids', '20');
+  await p4.fill('#t-sec', '27');
+  await p4.click('#grille-gout .case[data-case="4"]');
+  await p4.click('#form-tasse button[type="submit"]');
+  const c4 = await texte4('#conseil');
+  verif(c4.includes('Dans la fenêtre') && c4.includes('Dans le mille'), 'espresso en 27 s : « Dans la fenêtre » et « Dans le mille »');
+  verif(await p4.$('canvas') === null, 'animations réduites : pas de grains qui volent');
+  verif(c4.includes('Il reste 2 g dans le sachet, d’après vos doses. Sachet fini ?'), 'sachet presque vide : « Sachet fini ? »');
+  await p4.click('#conseil [data-action="finir-sachet"]');
+  verif((await texte4('#conseil .fin-sachet')).startsWith('Sachet fini. Le café passe dans « Cafés rangés »') && (await texte4('#conseil .fin-sachet')).includes('Jusqu’au dernier grain'), 'sachet fini : succès « Jusqu’au dernier grain »');
+  await p4.click('.onglets [data-vers="cafes"]');
+  verif((await p4.$$('#liste-cafes > .carte-cafe')).length === 1 && (await texte4('.ranges summary')) === 'Cafés rangés · 1', 'le café fini passe dans « Cafés rangés »');
+  await p4.click('.onglets [data-vers="noter"]');
+  verif(await p4.$$eval('#champ-cafe option', o => o.map(x => x.textContent).join('|')) === 'Huila, Pink Bourbon|+ Nouveau café', 'Noter : le café rangé n’est plus proposé');
+  await p4.click('.onglets [data-vers="cafes"]');
+  await p4.click('.ranges summary');
+  await p4.click('.ranges .carte-cafe');
+  verif((await texte4('#cafe-detail .sachet')).startsWith('Sachet fini Fini aujourd’hui'), 'fiche : sachet fini aujourd’hui');
+  await p4.click('#cafe-detail [data-action="nouveau-sachet"]');
+  await p4.fill('#s-torrefie', ilYa(10));
+  await p4.fill('#s-poids', '250');
+  await p4.click('#form-sachet button[type="submit"]');
+  verif((await texte4('#cafe-detail .sachet')).includes('J+10 dans sa fenêtre') && (await texte4('#cafe-detail .sachet')).includes('250 g restants sur 250 g'), 'nouveau sachet : J+10, 250 g, le compte repart de zéro');
+  await p4.click('.onglets [data-vers="noter"]');
+  await p4.click('#puces-methode .puce[data-cle="espresso"]');
+  await p4.selectOption('#champ-cafe', { label: 'Kochere' });
+  await p4.click('#chrono');
+  await p4.waitForTimeout(1100);
+  verif(await texte4('#tour') === 'Première goutte', 'espresso : « Première goutte »');
+  await p4.click('#tour');
+  await p4.waitForTimeout(900);
+  await p4.click('#chrono');
+  await p4.click('#grille-gout .case[data-case="4"]');
+  await p4.click('#form-tasse button[type="submit"]');
+  const c6 = await texte4('#conseil');
+  verif(c6.includes('Chrono en main') && norm(await p4.textContent('#conseil .kicker')) === 'Tasse enregistrée · Espresso · J+10', 'première goutte notée : « Chrono en main », J+10');
+  const derniere = await p4.evaluate(() => { const d = JSON.parse(localStorage.getItem('filtre-carnet')); return d.tasses[d.tasses.length - 1]; });
+  verif(derniere.tour >= 1 && derniere.jours === 10, 'tasse : première goutte à ' + derniere.tour + ' s, J+10');
+  await p4.click('#conseil [data-action="voir-cafe"]');
+  verif(/1re goutte à [12] s/.test(await texte4('#cafe-detail .tasse')), 'historique : première goutte affichée');
+  await p4.click('.onglets [data-vers="noter"]');
+  await p4.click('#puces-methode .puce[data-cle="v60"]');
+  await p4.selectOption('#champ-cafe', 'nouveau');
+  await p4.fill('#cafe-nom', 'Café tout frais');
+  await p4.fill('#cafe-torrefie', ilYa(3));
+  await p4.click('#grille-gout .case[data-case="3"]');
+  await p4.click('#form-tasse button[type="submit"]');
+  const c5 = await texte4('#conseil');
+  verif(c5.includes('Torréfié il y a 3 jours : il dégaze encore') && c5.includes('Dégazage : combien de jours avant de le boire →'), 'café de 3 jours : conseil de repos et lien vers l’article');
+  await p4.selectOption('#champ-cafe', 'nouveau');
+  await p4.fill('#cafe-nom', 'Café oublié');
+  await p4.fill('#cafe-torrefie', ilYa(50));
+  await p4.click('#form-tasse button[type="submit"]');
+  verif((await texte4('#conseil')).includes('Torréfié il y a 7 semaines : ses arômes s’estompent.') && (await p4.getAttribute('#conseil .conseil__age a', 'href')) === 'https://filtre.cafe/journal/comment-conserver-cafe', 'café de 7 semaines : à finir, lien vers la conservation');
+  await p4.emulateMedia({ colorScheme: 'dark' });
+  await p4.screenshot({ path: path.join(CAP, '10-sombre-conseil.png') });
+  await p4.click('.onglets [data-vers="passeport"]');
+  await p4.screenshot({ path: path.join(CAP, '11-sombre-passeport.png'), fullPage: true });
+  await ctx4.close();
+
   console.log('14. Bureau');
   const bureau = await nav.newPage({ viewport: { width: 1280, height: 900 } });
   bureau.on('pageerror', e => erreurs.push(String(e)));
   await bureau.goto(URL_ + '#origines', { waitUntil: 'networkidle' });
+  verif(await bureau.isVisible('[data-vue="passeport"]'), 'ancien lien #origines : le passeport s’ouvre');
   await bureau.screenshot({ path: path.join(CAP, '07-bureau-carte.png'), fullPage: true });
   const debordement = await bureau.evaluate(() => document.documentElement.scrollWidth > window.innerWidth);
   verif(!debordement, 'bureau : pas de défilement horizontal de la page');

@@ -20,6 +20,7 @@
 <script>/* Apparence choisie (clair ou sombre), appliquée avant le premier affichage. */try{var t=localStorage.getItem('filtre-carnet-theme');if(t==='clair'||t==='sombre')document.documentElement.setAttribute('data-theme',t==='sombre'?'dark':'light')}catch(e){}</script>
 <script src="donnees.js" defer></script>
 <script src="carte.js" defer></script>
+<script src="vendor/canvas-confetti.js" defer></script>
 <script src="app.js" defer></script>
 </head>
 <body>
@@ -29,7 +30,7 @@
     <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="none" stroke="currentColor" stroke-width="1.4" opacity=".35"/><path d="M8 9h16l-5.4 9.2v4.6h-5.2v-4.6z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="16" cy="26" r="1.6" fill="#b8401f"/></svg>
     <span class="logo__nom">filtré<b>.</b></span>
   </a>
-  <span class="entete__titre">Carnet</span>
+  <button type="button" class="jeu" id="jeu-entete" data-vers="passeport"></button>
 </header>
 
 <main>
@@ -55,6 +56,12 @@
           <label class="champ"><span>Torréfacteur</span><input id="cafe-torref" autocomplete="off" placeholder="La Brûlerie du Cantin"></label>
           <label class="champ"><span>Origine</span><select id="cafe-origine" class="selection"></select></label>
           <div class="champ"><span>Procédé</span><div class="puces puces--petites" id="puces-procede"></div></div>
+          <div class="grille">
+            <label class="champ"><span>Torréfié le</span><input id="cafe-torrefie" type="date" autocomplete="off"></label>
+            <label class="champ"><span>Sachet</span><span class="saisie-unite" data-unite="g"><input id="cafe-poids" inputmode="numeric" autocomplete="off" placeholder="250"></span></label>
+          </div>
+          <div class="puces puces--petites puces--poids" id="puces-poids" aria-label="Poids du sachet"></div>
+          <p class="indice">La date et le poids sont facultatifs : le carnet compte alors les jours de repos et ce qu’il reste dans le sachet.</p>
         </div>
       </fieldset>
 
@@ -77,13 +84,24 @@
             <label id="champ-h" hidden><input id="t-h" inputmode="decimal" autocomplete="off" placeholder="14" aria-label="Heures"><i>h</i></label>
             <button type="button" class="chrono" id="chrono">Chrono</button>
           </div>
+          <div class="tour">
+            <button type="button" class="chrono chrono--tour" id="tour" hidden></button>
+            <p class="tour__note" id="tour-note" aria-live="polite" hidden></p>
+          </div>
         </div>
         <p class="indice" id="indice"></p>
       </fieldset>
 
       <fieldset class="bloc">
         <legend>En tasse</legend>
-        <div class="puces" id="puces-gout"></div>
+        <div class="boussole">
+          <span class="boussole__axe boussole__axe--haut">Trop fort</span>
+          <span class="boussole__axe boussole__axe--gauche">Acide</span>
+          <div class="boussole__cases" id="grille-gout" role="group" aria-label="Goût : acide ou amer, trop léger ou trop fort"></div>
+          <span class="boussole__axe boussole__axe--droite">Amer</span>
+          <span class="boussole__axe boussole__axe--bas">Trop léger</span>
+        </div>
+        <p class="boussole__choix" id="gout-choisi" aria-live="polite"></p>
         <div class="note" id="note" role="group" aria-label="Note sur 5"></div>
         <label class="champ"><span>Notes</span><input id="t-notes" autocomplete="off" placeholder="Deux mots : noisette, citron, sucre roux"></label>
       </fieldset>
@@ -102,10 +120,14 @@
     <div id="cafe-detail" hidden></div>
   </section>
 
-  <!-- ── Origines ── -->
-  <section class="vue" data-vue="origines" aria-labelledby="titre-carte" hidden>
-    <p class="kicker">Carte des origines</p>
-    <h1 class="titre" id="titre-carte">Vos origines</h1>
+  <!-- ── Passeport : niveau, succès, origines ── -->
+  <section class="vue" data-vue="passeport" aria-labelledby="titre-passeport" hidden>
+    <p class="kicker">Passeport</p>
+    <h1 class="titre" id="titre-passeport">Votre parcours</h1>
+    <div id="niveau" class="niveau"></div>
+    <h2 class="sous-titre" id="titre-succes">Succès</h2>
+    <ul id="succes" class="succes"></ul>
+    <h2 class="sous-titre" id="titre-carte">Vos origines</h2>
     <div class="carte-monde">
       <div class="carte-monde__defile" id="carte-defile"></div>
       <p class="carte-monde__legende"><span class="pastille pastille--goutee"></span>goûtée <span class="pastille pastille--guide"></span>à découvrir sur filtré.</p>
@@ -168,7 +190,7 @@
 <nav class="onglets" aria-label="Sections du carnet">
   <button type="button" data-vers="noter"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9h12v5a5 5 0 0 1-5 5h-2a5 5 0 0 1-5-5z"/><path d="M17 10h1.5a2.5 2.5 0 0 1 0 5H17"/><path d="M9 3c-.8 1 .8 2 0 3M13 3c-.8 1 .8 2 0 3"/></svg>Noter</button>
   <button type="button" data-vers="cafes"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h11a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H6z"/><path d="M6 3v18"/><path d="M10 8h5M10 12h5"/></svg>Cafés</button>
-  <button type="button" data-vers="origines"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></svg>Origines</button>
+  <button type="button" data-vers="passeport"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><circle cx="12" cy="10.5" r="3.6"/><path d="M8.4 10.5h7.2M12 6.9c1.1 1 1.7 2.2 1.7 3.6s-.6 2.6-1.7 3.6c-1.1-1-1.7-2.2-1.7-3.6s.6-2.6 1.7-3.6z"/><path d="M9 17.5h6"/></svg>Passeport</button>
   <button type="button" data-vers="adresses"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.4"/></svg>Adresses</button>
   <button type="button" data-vers="donnees"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5"/><path d="M4 17v3h16v-3"/></svg>Données</button>
 </nav>
