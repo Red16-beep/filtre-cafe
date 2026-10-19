@@ -97,6 +97,7 @@ export async function onRequestPost({ request, env, waitUntil }) {
     'Content-Type': request.headers.get('Content-Type') || 'text/plain;charset=UTF-8',
     'Origin': request.headers.get('Origin') || 'https://filtre.cafe',
     'X-Forwarded-For': ip,
+    'X-Real-IP': ip,
     'X-Equateur-Proxy-Token': token
   };
   for (const nom of ['User-Agent', 'Accept-Language', 'Referer']) {

@@ -47,7 +47,7 @@ def page(titre, desc, canon, corps, head_extra='', robots='index, follow', scrip
 {head_extra}
 {shell.HEAD_LIENS}
 {shell.CMP_PROD}
-<script>(function(){{if(location.hostname.replace(/^www\\./,'')!=='filtre.cafe')return;var c=document.currentScript,s=document.createElement('script');s.src='https://app.equateur.org/e.js';s.setAttribute('data-site','filtre.cafe');s.defer=true;c&&c.parentNode?c.parentNode.insertBefore(s,c):document.head.appendChild(s);}})();</script>
+<script>(function(){{if(location.hostname.replace(/^www\\./,'')!=='filtre.cafe')return;var c=document.currentScript,s=document.createElement('script');s.src='/api/e';s.setAttribute('data-site','filtre.cafe');s.defer=true;c&&c.parentNode?c.parentNode.insertBefore(s,c):document.head.appendChild(s);}})();</script>
 </head>
 <body class="v2">
 <a class="v2-lien" href="#contenu" style="position:absolute;left:-9999px">Aller au contenu</a>

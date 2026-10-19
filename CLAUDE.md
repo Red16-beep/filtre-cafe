@@ -64,6 +64,22 @@ les journaux : un réglage cassé ne fait jamais perdre un lecteur.
 Turnstile reste la réponse si l'abus devient réel. Ne pas l'ajouter par
 précaution : c'est du poids sur toutes les pages pour un problème hypothétique.
 
+## Mesure d'audience : relais Equateur
+
+Les pages chargent Equateur Analytics par `/api/e` (`functions/api/e.js`), plus par app.equateur.org :
+les bloqueurs qui visent ce domaine ne coupent plus la mesure. En GET, la fonction sert le script
+d'Equateur ; en POST, elle transmet ses envois à `https://app.equateur.org/api/e` avec l'adresse IP du
+visiteur (`X-Forwarded-For` et `X-Real-IP`) et le jeton du relais (`X-Equateur-Proxy-Token`), lu dans la
+variable Cloudflare `EQUATEUR_PROXY_TOKEN` (type Secret, production). Sans la variable, ou si le script
+ne se lit pas chez Equateur, `/api/e` renvoie le chargeur d'origine et la mesure part directement, comme
+avant : d'où `app.equateur.org` gardé dans la CSP. Le jeton se remplace dans Equateur (réglages du site,
+section Collecte), puis dans Cloudflare, et vaut au déploiement suivant.
+
+Mêmes règles que les autres routes : origine filtre.cafe (une preview ne transmet rien), corps borné à
+4 Ko, envois du seul site filtre.cafe, mille envois par heure et par IP puis la même réponse 204, et
+l'envoi passe si le compteur tombe. Ce compteur vit dans le cache local seulement : le KV facture ses
+écritures (mille par jour en offre gratuite), et `/api/subscribe` s'en sert.
+
 ## Secrets
 
 Aucune clé dans le dépôt, y compris dans l'historique. Les clés vivent dans les
