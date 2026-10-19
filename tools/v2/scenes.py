@@ -150,6 +150,15 @@ ENVIES_ICONES = {
     'materiel': ie('<rect x="14" y="20" width="20" height="20" rx="3"/><path d="M18 20 L20 12 H28 L30 20"/><g class="v2-tourne-vite" style="transform-box:view-box;transform-origin:24px 8px;animation-duration:4s"><path d="M24 8 H34"/></g>'),
 }
 
+# ── Icônes de la lettre (même trait que les envies) : tools/lettre/icones.py les exporte en GIF pour le mail ──
+LETTRE_ICONES = {
+    'telephone': ie('<rect x="14" y="5" width="20" height="38" rx="4"/><path d="M21 38 H27"/><path d="M18 13 H30 L26 20 H22 Z"/>'
+                    '<circle class="v2-goutte" style="--h:7px" cx="24" cy="23" r="1.6" fill="#b8401f" stroke="none"/>'),
+    'lait': ie('<path d="M13 12 H33 L31 38 Q31 41 28 41 H18 Q15 41 15 38 Z"/><path d="M33 12 L39 8"/>'
+               '<path class="v2-tourne-vite" style="transform-box:view-box;transform-origin:23px 26px;animation-duration:2.4s"'
+               ' d="M23 26 m-6 0 a6 6 0 1 1 12 0 a4 4 0 1 1 -8 0" stroke="#b8401f"/>'),
+}
+
 # ── Carte des origines (projection équirectangulaire 720×360) ─────────────
 ORIGINES = [
     ('ethiopie', 'Éthiopie', 7.9, 38.7, '/journal/cafe-ethiopien-yirgacheffe-sidama-guji', 'Yirgacheffe, Sidama, Guji', -1),
