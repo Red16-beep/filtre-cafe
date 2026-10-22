@@ -368,17 +368,44 @@ def page_recettes():
 <section class="v2-section" style="padding-top:0"><div class="v2-wrap"><p class="v2-chapeau">Les recettes d’ailleurs, du café de olla au kaffeost, sont sur la page <a class="v2-lien" href="/cafes-du-monde">Cafés du monde {FL}</a></p></div></section>'''
     astro_page('recettes', 'Recettes de café : au lait, glacé, sans caféine | filtré.', 'Cappuccino, flat white, cortado, noisette, café glacé, cold brew, décaféiné : les recettes de filtré., avec les grammes et les températures.', '/recettes', corps, 'Les recettes')
 
+# Le texte de chaque schéma est écrit dans la page (le dessin, lui, vient de v2.js) : sans lui,
+# /schemas n'avait qu'une centaine de mots et Google la laissait hors de l'index.
+SCHEMAS_TEXTE = [
+    (None, 'Dans quel ordre les lire',
+     'L’ordre suit celui d’un réglage. L’extraction explique pourquoi une tasse sort acide ou amère ; les cinq schémas suivants montrent les variables qui la déplacent. Quand un café vous déçoit, partez de son goût, retrouvez le schéma qui en parle, puis changez une seule variable à la fois. La mouture d’abord, la température ensuite. Le ratio vient en dernier.'),
+    ('extraction', 'L’extraction : pourquoi un café sort acide ou amer',
+     'L’eau dissout le café dans un ordre fixe : les acides d’abord, les sucres ensuite, les composés amers en dernier. Arrêtez l’extraction trop tôt, et la tasse reste acide, creuse, parfois salée. Laissez-la courir trop longtemps, et l’amertume recouvre le reste. Le bon café se trouve entre les deux, quand les sucres ont eu le temps de passer. Pour déplacer ce point, vous avez trois leviers : la mouture, la température et le temps de contact. Le <a href="/journal/ratio-cafe-eau-extraction">ratio café/eau</a> règle la force de la tasse ; face à une sur-extraction, il masque le défaut sans le corriger.'),
+    ('v60', 'La recette V60 : 15 g, 250 g, 93 °C',
+     'Le schéma suit ma recette de départ : 15 g de café moulu médium-fin, comme du sucre semoule, et 250 g d’eau à 93 °C, soit un ratio de 1:16. Le bloom prend 30 g d’eau pendant 30 secondes, le temps que le café relâche son gaz. Trois versements en spirale montent ensuite à 150, 200 puis 250 g. L’eau doit avoir fini de couler entre 2 min 30 et 3 min 30. Sous les 2 minutes, serrez la mouture d’un ou deux crans ; au-delà de 3 min 30, desserrez-la d’un demi-cran. Le <a href="/journal/mouture-cafe-v60">guide de la mouture V60</a> donne le tableau complet.'),
+    ('mouture', 'La mouture : plus le contact est court, plus elle est fine',
+     'La taille de mouture suit le temps de contact entre l’eau et le café. L’espresso passe en 25 à 30 secondes sous pression et demande une mouture fine. Le piston infuse 4 minutes avec une mouture grossière ; le cold brew passe 12 à 16 heures au frigo, moulu plus gros encore, proche du sucre gros. Le V60 se place entre les deux. Ces repères supposent un moulin à meules. Un moulin à lames hache le grain en poussière et en morceaux : l’eau sur-extrait la poussière et laisse les morceaux sous-extraits, d’où une tasse amère et creuse à la fois. Mes choix sont dans les guides des <a href="/journal/meilleur-moulin-cafe-manuel">moulins manuels</a> et des <a href="/journal/meilleur-moulin-cafe-electrique">moulins électriques</a>.'),
+    ('eau', 'L’eau : six eaux goûtées à l’aveugle',
+     'J’ai goûté six eaux à l’aveugle, en solo, sur le même café. Mont Blanc et Volvic finissent premières ex æquo, avec 134 et 130 mg/L de résidu sec, dans la plage de la SCAA (75 à 250 mg/L, cible 150). Rocheval, à 240 mg/L, prend la troisième place. Cristaline, à 477 mg/L, gomme l’acidité du café, et l’eau du robinet finit dernière. Si vous n’avez que le robinet, un filtre Brita aide un peu : il finit quatrième. Le schéma place chaque étiquette face à la plage conseillée ; le protocole complet est dans le <a href="/journal/eau-cafe-filtre-tds-mineraux">test des eaux</a>.'),
+    ('degazage', 'Le dégazage : quand ouvrir le sachet',
+     'Après la torréfaction, le grain relâche du CO₂ pendant des jours, et trop de gaz déséquilibre l’extraction. Le <a href="/journal/degazage-cafe">guide du dégazage</a> conseille 7 à 14 jours de repos pour le filtre et 10 à 21 jours pour l’espresso, où la pression rend le gaz plus gênant. Fiez-vous à la date de torréfaction : la date limite d’un sachet de supermarché, souvent fixée à douze ou dix-huit mois, ne dit rien du dégazage. Pour le sentir vous-même, goûtez le même café à J+7, J+12 et J+18.'),
+    ('espresso', 'L’espresso : lire le temps du shot',
+     'Mon protocole tient en trois chiffres : 18 g de café moulu, 36 g en tasse, environ 26 secondes à 92-94 °C, sur ma <a href="/journal/delonghi-specialista-arte-test-avis">DeLonghi Specialista Arte</a>. Le repère courant, 25 à 30 secondes pour un rapport 1:2, sert de point de départ. Un shot qui coule en moins de 22 secondes sort acide et maigre : moulez plus fin d’un cran. Au-delà de 35 secondes, il devient amer et astringent : moulez plus gros. Si la tasse est acide et amère à la fois, l’eau a sans doute creusé des chemins dans le disque de café tassé : c’est la canalisation.'),
+    (None, 'Pour aller plus loin',
+     'Si vous débutez, <a href="/commencer-ici">Commencer ici</a> propose quatre chemins : le café filtre, l’espresso, le matériel et l’abonnement. Les <a href="/guides">guides</a> reprennent chaque méthode, et la page <a href="/recettes">Recettes</a> réunit les boissons au lait, glacées ou sans caféine.'),
+]
+
 def page_schemas():
-    corps = '''<section class="v2-section v2-dark" style="padding-bottom:56px"><div class="v2-wrap">
+    lien = 'style="color:var(--cerise-texte);text-decoration:underline;text-underline-offset:3px"'
+    blocs = ''
+    for cle, titre, texte in SCHEMAS_TEXTE:
+        blocs += (f'<h2 class="v2-h2" style="font-size:var(--t-h3);margin-top:56px">{titre}</h2>'
+                  f'<p style="font-family:var(--serif);font-size:var(--t-texte);line-height:1.6;max-width:64ch;margin:14px 0 0">{texte.replace("<a href", "<a " + lien + " href")}</p>')
+        if cle: blocs += f'<div data-schema="{cle}"></div>'
+        blocs += '\n  '
+    corps = f'''<section class="v2-section v2-dark" style="padding-bottom:56px"><div class="v2-wrap">
   <nav aria-label="Fil d'Ariane" style="font-family:var(--sans);font-size:13px;color:rgba(244,236,227,.6);margin-bottom:28px"><a href="/">Accueil</a> › Le café en schémas</nav>
   <p class="v2-kicker v2-kicker--crema">Comprendre</p><h1 class="v2-h2" style="font-size:var(--t-h1);color:#f6efe6">Le café en schémas</h1>
   <p class="v2-chapeau" style="margin-top:18px">Six schémas animés pour voir ce que les guides expliquent : l’extraction, la recette V60, la mouture, l’eau, le dégazage et l’espresso. Tous les chiffres viennent des pages du site.</p>
 </div></section>
-<section class="v2-section" style="padding-top:40px"><div class="v2-wrap" style="max-width:980px">
-  <div data-schema="extraction"></div><div data-schema="v60"></div><div data-schema="mouture"></div>
-  <div data-schema="eau"></div><div data-schema="degazage"></div><div data-schema="espresso"></div>
+<section class="v2-section" style="padding-top:0"><div class="v2-wrap" style="max-width:980px">
+  {blocs.rstrip()}
 </div></section>'''
-    astro_page('schemas', 'Le café en schémas animés | filtré.', 'Extraction, recette V60, mouture, eau, dégazage, espresso : six schémas animés pour comprendre le café de spécialité.', '/schemas', corps, 'Le café en schémas')
+    astro_page('schemas', 'Le café en schémas : extraction, mouture, eau, espresso | filtré.', 'Six schémas animés et leurs explications : extraction, recette V60, mouture, eau, dégazage et espresso, avec les chiffres testés par filtré.', '/schemas', corps, 'Le café en schémas')
 
 # ── Habillage : Base.astro et pages racine ────────────────────────────────
 BASE = '98c34d9'  # commit de main d'où partait la refonte ; ne sert plus qu'avec --habiller-originaux
