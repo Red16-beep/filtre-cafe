@@ -415,11 +415,14 @@ export const Diagnostic: React.FC = () => {
   const image = recale(f, [[CARTE, 0], [g1.fin, 40], [g2.debut, 40], [g2.fin, 74], [g3.debut, 80], [g3.fin, 112], [g4.debut, 112], [g4.fin, 140]]);
   return (
     <AbsoluteFill>
-      <Freeze frame={image}>
-        <DiagnosticTuto />
-      </Freeze>
+      {/* En vertical (Short), la scène du tuto est réduite pour passer à gauche de la colonne de boutons. */}
+      <AbsoluteFill style={paysage ? undefined : { scale: "0.86", transformOrigin: "80px 200px" }}>
+        <Freeze frame={image}>
+          <DiagnosticTuto />
+        </Freeze>
+      </AbsoluteFill>
       {/* En vertical, une seule ligne, au-dessus du bas de l'écran que couvre l'interface des Shorts. */}
-      <div style={{ position: "absolute", left: paysage ? 120 : 80, top: paysage ? 790 : 1462, ...vu(f, g4.debut) }}>
+      <div style={{ position: "absolute", left: paysage ? 120 : 80, top: paysage ? 790 : 1330, ...vu(f, g4.debut) }}>
         <div style={texteSerif(paysage ? 66 : 62, { fontStyle: "italic", fontWeight: 400, color: C.crema })}>Une seule variable à la fois.</div>
         {paysage ? <div style={texteSans(34, { marginTop: 12 })}>Et notez vos temps.</div> : null}
       </div>
