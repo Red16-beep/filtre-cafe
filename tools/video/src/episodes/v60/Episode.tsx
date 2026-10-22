@@ -8,7 +8,7 @@ import { CARTE, Minutage } from "../temps";
 import minutageBrut from "./minutage.json";
 import { Cafe, Diagnostic, Dose, Eau, Erreurs, Materiel, Mouture, Ouverture, Pourquoi, Recap, Recette } from "./scenes";
 
-// Épisode 1 de la série « les méthodes de A à Z » : le V60, 4 min 22, voix de synthèse et musique du tuto V60.
+// Épisode 1 de la série « les méthodes de A à Z » : le V60, 4 min 14, voix de synthèse et musique du tuto V60.
 // La voix fixe le minutage (outils/narration.py → minutage.json), le mixage la piste son (outils/mixage.py).
 const M = minutageBrut as Minutage;
 export const V60_EPISODE_DUREE = M.duree;

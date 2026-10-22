@@ -2,9 +2,8 @@
   "titre": "Le V60 de A à Z",
   "source": "journal/v60-guide-complet ; diagnostic : journal/mouture-cafe-v60",
   "voix": {
-    "moteur": "kokoro",
-    "locuteur": "ff_siwis",
-    "vitesse": 0.92
+    "moteur": "qwen3",
+    "reference": "voix/narratrice"
   },
   "pauses": {
     "phrase": 0.35,

@@ -1,0 +1,7 @@
+{
+ "moteur": "qwen3",
+ "modele": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+ "description": "A French woman in her thirties with a warm, soft mid-low voice. Gentle, friendly and smiling, natural conversational tone, like explaining a recipe to a friend. Relaxed pace, clear diction, standard Parisian French accent.",
+ "graine": 100,
+ "texte": "Quinze grammes de café, deux cent cinquante grammes d'eau, quatre-vingt-treize degrés, et trois minutes devant vous. C'est tout ce qu'il faut pour un V soixante réussi. Il reste la référence du café filtre, parce qu'il ne cache rien : ce que vous mettez dedans, vous le retrouvez dans la tasse. Le bloum d'abord : trente grammes d'eau sur tout le café, puis trente secondes d'attente. Le café gonfle, et relâche son gaz carbonique."
+}
