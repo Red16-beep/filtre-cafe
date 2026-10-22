@@ -2,8 +2,8 @@
   "titre": "Le V60 de A à Z",
   "source": "journal/v60-guide-complet ; diagnostic : journal/mouture-cafe-v60",
   "voix": {
-    "moteur": "qwen3",
-    "reference": "voix/narratrice"
+    "moteur": "voxcpm2",
+    "reference": "voix/narrateur"
   },
   "pauses": {
     "phrase": 0.35,

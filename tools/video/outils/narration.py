@@ -7,12 +7,12 @@ Lit src/episodes/<épisode>/narration.json et écrit :
   src/episodes/<épisode>/minutage.json       début et fin de chaque phrase et chapitre, en images à 30 i/s
   out/episode-<épisode>.srt                  les sous-titres, depuis le texte écrit (pas le texte dit)
 
-Moteur « qwen3 » (la voix de la série) : Qwen3-TTS-12Hz-1.7B-Base (Apache-2.0), calcul local sur CPU. La narratrice
+Moteur « voxcpm2 » (le narrateur de la série) : VoxCPM2 d'OpenBMB (Apache-2.0), calcul local sur CPU. Le narrateur
 est une voix créée par description (outils/voix.py), sans cloner personne, puis figée dans voix/<nom>.flac (+ <nom>.json,
 sa transcription) : chaque phrase reprend ce timbre, pour que la voix ne change ni d'une phrase à l'autre ni d'un
-épisode à l'autre. Environnement : Python 3.12, torch CPU, pip install qwen-tts faster-whisper num2words.
-Autres moteurs : « voxcpm2 » (openbmb/VoxCPM2, Apache-2.0, pip install voxcpm), et « kokoro », la première voix,
-abandonnée (Kokoro-82M via kokoro-onnx, modèles dans $TTS_MODELES).
+épisode à l'autre. Environnement : Python 3.12, torch CPU, pip install voxcpm faster-whisper num2words.
+Autres moteurs : « qwen3 » (Qwen3-TTS-12Hz-1.7B-Base, Apache-2.0, pip install qwen-tts), et « kokoro », la première
+voix, abandonnée (Kokoro-82M via kokoro-onnx, modèles dans $TTS_MODELES).
 
 Chaque prise est relue par faster-whisper (modèle small). Une prise où plus de 15 % des mots (et plus d'un) ne sont pas
 reconnus est refaite, trois prises au plus, et la meilleure est gardée ; si elle reste douteuse, la phrase est signalée,

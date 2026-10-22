@@ -6,6 +6,9 @@ Lit public/audio/episode-<épisode>-voix.wav (narration.py) et public/audio/epis
 (musique-sf2.mjs, MELODIE=aucune), écrit public/audio/episode-<épisode>-mix.wav, réglé ensuite à -14 LUFS
 (niveau de lecture de YouTube) avec une crête vraie sous -1,5 dB.
 
+Si la voix du narrateur porte une chaîne « studio » (voix/<nom>.json), la voix y passe d'abord : pour le narrateur,
+un son de studio radio (graves parasites coupés, médiums dégagés, présence, brillance, compression, pauses nettoyées).
+
 Sous la voix, la musique est à 18 dB sous elle ; dans les silences (pauses, cartes de chapitre), à 9 dB sous elle.
 La bascule est douce : 0,15 s pour descendre, 0,7 s pour remonter, pour qu'on ne l'entende pas respirer.
 """
@@ -50,9 +53,23 @@ def lisser(x, monte, descend):
     return np.pad(y, (0, len(x) - len(y)), mode='edge') if n else x
 
 
+def studio(episode, piste):
+    """Traitement de la voix propre au narrateur (clé « studio » de voix/<nom>.json : une chaîne de filtres ffmpeg),
+    appliqué après avoir ramené la voix à -20 LUFS, pour que seuils et gains ne dépendent pas de l'épisode."""
+    v = json.loads((RACINE / 'src' / 'episodes' / episode / 'narration.json').read_text(encoding='utf8'))['voix']
+    chaine = json.loads((RACINE / f"{v['reference']}.json").read_text(encoding='utf8')).get('studio') if 'reference' in v else None
+    if not chaine:
+        return piste
+    traitee = piste.with_name(piste.stem + '-studio.wav')
+    subprocess.run(['ffmpeg', '-v', 'error', '-y', '-i', str(piste), '-af', f'volume={-20 - lufs(piste):.2f}dB,{chaine}',
+                    '-ar', str(SR), '-ac', '1', str(traitee)], check=True)
+    return traitee
+
+
 def main(episode):
     audio = RACINE / 'public' / 'audio'
-    voix, sr1 = lire(audio / f'episode-{episode}-voix.wav')
+    piste = studio(episode, audio / f'episode-{episode}-voix.wav')
+    voix, sr1 = lire(piste)
     musique, sr2 = lire(audio / f'episode-{episode}-sf2.wav')
     assert sr1 == sr2 == SR, (sr1, sr2)
     voix = voix[:, 0]
@@ -62,7 +79,7 @@ def main(episode):
     musique = np.pad(musique, ((0, max(0, n - len(musique))), (0, 0)))[:n]
 
     # Écart de niveau voulu entre voix et musique, mesuré en LUFS sur les deux pistes.
-    ecart = lufs(audio / f'episode-{episode}-voix.wav') - lufs(audio / f'episode-{episode}-sf2.wav')
+    ecart = lufs(piste) - lufs(audio / f'episode-{episode}-sf2.wav')
     sous, silence = 10 ** ((ecart - 18) / 20), 10 ** ((ecart - 9) / 20)
 
     # La voix « parle » quand son enveloppe dépasse -40 dB de sa crête ; tenue 0,25 s pour enjamber les virgules.
