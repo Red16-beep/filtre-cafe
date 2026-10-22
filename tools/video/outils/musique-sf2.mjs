@@ -6,7 +6,7 @@
 // piano, batterie un peu dégradée (12 bits, 26 kHz en parallèle), saturation, craquements de vinyle.
 //
 // node outils/musique-sf2.mjs <nom> <durée en s> [graine]
-// Variables facultatives : MELODIE=flute|shakuhachi|guitare|sax, BATTERIE=room|jazz|standard (sinon tirées au hasard),
+// Variables facultatives : MELODIE=flute|shakuhachi|guitare|sax|aucune, BATTERIE=room|jazz|standard (sinon tirées au hasard),
 // GRILLE=chemex (grille hors tirage).
 import fs from "node:fs/promises";
 import path from "node:path";
@@ -96,7 +96,8 @@ const KITS = { room: { prog: 8, nom: "Room" }, jazz: { prog: 32, nom: "Jazz" }, 
 const kit = KITS[process.env.BATTERIE] ?? pick(Object.values(KITS));
 // sax : ténor, joué une octave plus bas que la flûte (registre chaud du ténor, ré 3 à ré 5).
 const LEADS = { flute: { prog: 73, nom: "flûte" }, shakuhachi: { prog: 77, nom: "shakuhachi" }, guitare: { prog: 26, nom: "guitare jazz" }, sax: { prog: 66, nom: "saxophone ténor", octave: -12 } };
-const lead = LEADS[process.env.MELODIE] ?? pick([LEADS.flute, LEADS.flute, LEADS.shakuhachi, LEADS.guitare]);
+// MELODIE=aucune suit le même tirage qu'une mélodie choisie (pas de pick) : même accompagnement qu'avec MELODIE=flute.
+const lead = LEADS[process.env.MELODIE === "aucune" ? "flute" : process.env.MELODIE] ?? pick([LEADS.flute, LEADS.flute, LEADS.shakuhachi, LEADS.guitare]);
 const swing = entre(0.56, 0.6);
 const intro = 2;
 const finBatterie = MESURES - 1;
@@ -301,6 +302,10 @@ function degrader(st, bits, freq, melange) { // échantillonneur 12 bits en para
   });
 }
 const rms = (st) => Math.sqrt(st.reduce((s, c) => s + c.reduce((t, v) => t + v * v, 0), 0) / (st.length * st[0].length));
+
+// MELODIE=aucune : fond d'un épisode narré, rien ne chante par-dessus la voix. La mélodie est composée quand même,
+// pour que la graine redonne le même accompagnement qu'avec MELODIE=flute.
+if (process.env.MELODIE === "aucune") parties.lead.length = 0;
 
 const stems = {};
 for (const p of Object.keys(parties)) stems[p] = await rendre(p);

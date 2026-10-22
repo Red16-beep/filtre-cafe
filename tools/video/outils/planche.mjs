@@ -7,23 +7,25 @@ import fs from "node:fs";
 import path from "node:path";
 
 const require = createRequire(import.meta.url);
-const sharp = require("/Users/redahassani/Webo-test-croatie/astro/node_modules/sharp");
+const sharp = require(path.resolve("../../astro/node_modules/sharp"));
 
-const CHROME = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
+// Chrome du Mac par défaut ; ailleurs (session cloud) : CHROME=<chemin> CHROME_MODE=headless-shell.
+const CHROME = process.env.CHROME ?? "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
+const MODE = process.env.CHROME_MODE ?? "chrome-for-testing";
 const [, , id, liste, sortie, echelleTxt = "0.3", colsTxt = "6"] = process.argv;
 const images = liste.split(",").map(Number);
 const echelle = Number(echelleTxt);
 const colonnes = Number(colsTxt);
 
 const serveUrl = await bundle({ entryPoint: path.resolve("src/index.ts"), rspack: true, enableCaching: true });
-const navigateur = await openBrowser("chrome", { browserExecutable: CHROME, chromeMode: "chrome-for-testing" });
-const composition = await selectComposition({ serveUrl, id, puppeteerInstance: navigateur, chromeMode: "chrome-for-testing" });
+const navigateur = await openBrowser("chrome", { browserExecutable: CHROME, chromeMode: MODE });
+const composition = await selectComposition({ serveUrl, id, puppeteerInstance: navigateur, chromeMode: MODE });
 
 const tmp = fs.mkdtempSync(path.join(path.dirname(path.resolve(sortie)), "planche-"));
 const fichiers = [];
 for (const f of images) {
   const out = path.join(tmp, `${f}.png`);
-  await renderStill({ composition, serveUrl, output: out, frame: f, scale: echelle, puppeteerInstance: navigateur, chromeMode: "chrome-for-testing" });
+  await renderStill({ composition, serveUrl, output: out, frame: f, scale: echelle, puppeteerInstance: navigateur, chromeMode: MODE });
   fichiers.push({ f, out });
 }
 await navigateur.close({ silent: true });

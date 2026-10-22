@@ -1,0 +1,324 @@
+{
+  "titre": "Le V60 de A à Z",
+  "source": "journal/v60-guide-complet ; diagnostic : journal/mouture-cafe-v60",
+  "voix": {
+    "moteur": "kokoro",
+    "locuteur": "ff_siwis",
+    "vitesse": 0.92
+  },
+  "pauses": {
+    "phrase": 0.35,
+    "chapitre": 0.6,
+    "carte": 1.6
+  },
+  "chapitres": [
+    {
+      "id": "ouverture",
+      "num": "",
+      "titre": "Le V60 de A à Z",
+      "carte": false,
+      "phrases": [
+        {
+          "id": "o1",
+          "ecrit": "15 g de café, 250 g d’eau, 93 °C, et trois minutes devant vous.",
+          "dit": "Quinze grammes de café, deux cent cinquante grammes d'eau, quatre-vingt-treize degrés, et trois minutes devant vous."
+        },
+        {
+          "id": "o2",
+          "ecrit": "C’est tout ce qu’il faut pour un V60 réussi.",
+          "dit": "C'est tout ce qu'il faut pour un V soixante réussi."
+        },
+        {
+          "id": "o3",
+          "ecrit": "Dans cet épisode, on le prépare de A à Z : le matériel, la dose, la mouture, l’eau, la recette pas à pas, et quoi régler quand la tasse ne va pas.",
+          "dit": "Dans cet épisode, on le prépare de A à Z : le matériel, la dose, la mouture, l'eau, la recette pas à pas, et quoi régler quand la tasse ne va pas."
+        }
+      ]
+    },
+    {
+      "id": "pourquoi",
+      "num": "01",
+      "titre": "Pourquoi le V60",
+      "phrases": [
+        {
+          "id": "p1",
+          "ecrit": "Le V60 de Hario est sorti en 2004.",
+          "dit": "Le V soixante de Hario est sorti en deux mille quatre."
+        },
+        {
+          "id": "p2",
+          "ecrit": "Il reste la référence du café filtre, parce qu’il ne cache rien : ce que vous mettez dedans, vous le retrouvez dans la tasse.",
+          "dit": "Il reste la référence du café filtre, parce qu'il ne cache rien : ce que vous mettez dedans, vous le retrouvez dans la tasse."
+        },
+        {
+          "id": "p3",
+          "ecrit": "C’est l’école du café filtre.",
+          "dit": "C'est l'école du café filtre."
+        }
+      ]
+    },
+    {
+      "id": "materiel",
+      "num": "02",
+      "titre": "Le matériel",
+      "phrases": [
+        {
+          "id": "m1",
+          "ecrit": "Le matériel tient en cinq objets.",
+          "dit": "Le matériel tient en cinq objets."
+        },
+        {
+          "id": "m2",
+          "ecrit": "Un V60 en plastique, taille 02 : il garde bien la chaleur, pour moins de 15 €.",
+          "dit": "Un V soixante en plastique, taille zéro deux : il garde bien la chaleur, pour moins de quinze euros."
+        },
+        {
+          "id": "m3",
+          "ecrit": "Des filtres Hario, que l’on rince à l’eau chaude avant chaque café.",
+          "dit": "Des filtres Hario, que l'on rince à l'eau chaude avant chaque café."
+        },
+        {
+          "id": "m4",
+          "ecrit": "Une balance, si possible avec un minuteur intégré : c’est le seul outil qui ne se négocie pas.",
+          "dit": "Une balance, si possible avec un minuteur intégré : c'est le seul outil qui ne se négocie pas."
+        },
+        {
+          "id": "m5",
+          "ecrit": "Une bouilloire à col de cygne, pour tenir le débit et la direction de l’eau.",
+          "dit": "Une bouilloire à col de cygne, pour tenir le débit et la direction de l'eau."
+        },
+        {
+          "id": "m6",
+          "ecrit": "Et un moulin, pour moudre le grain juste avant de préparer : le café moulu d’avance perd ses arômes en quelques heures.",
+          "dit": "Et un moulin, pour moudre le grain juste avant de préparer : le café moulu d'avance perd ses arômes en quelques heures."
+        }
+      ]
+    },
+    {
+      "id": "dose",
+      "num": "03",
+      "titre": "La dose",
+      "phrases": [
+        {
+          "id": "d1",
+          "ecrit": "15 g de café pour 250 g d’eau : un ratio de 1:16.",
+          "dit": "Quinze grammes de café pour deux cent cinquante grammes d'eau : un ratio de un pour seize."
+        },
+        {
+          "id": "d2",
+          "ecrit": "Pour un grand mug de 350 ml, comptez 22 g.",
+          "dit": "Pour un grand mug de trois cent cinquante millilitres, comptez vingt-deux grammes."
+        },
+        {
+          "id": "d3",
+          "ecrit": "Pour deux tasses, 31 g pour un demi-litre.",
+          "dit": "Pour deux tasses, trente et un grammes pour un demi-litre."
+        },
+        {
+          "id": "d4",
+          "ecrit": "Et pesez toujours : une cuillère à soupe de café moulu pèse entre 5 et 8 g, jusqu’à 60 % d’écart d’une cuillère à l’autre.",
+          "dit": "Et pesez toujours : une cuillère à soupe de café moulu pèse entre cinq et huit grammes, jusqu'à soixante pour cent d'écart d'une cuillère à l'autre."
+        }
+      ]
+    },
+    {
+      "id": "mouture",
+      "num": "04",
+      "titre": "La mouture",
+      "phrases": [
+        {
+          "id": "u1",
+          "ecrit": "La mouture est la variable qui compte le plus.",
+          "dit": "La mouture est la variable qui compte le plus."
+        },
+        {
+          "id": "u2",
+          "ecrit": "Pour le V60, visez une mouture médium-fine, comme du sucre semoule.",
+          "dit": "Pour le V soixante, visez une mouture médium-fine, comme du sucre semoule."
+        },
+        {
+          "id": "u3",
+          "ecrit": "Plus fine, l’eau coule moins vite, et le café devient plus intense, jusqu’à l’amertume.",
+          "dit": "Plus fine, l'eau coule moins vite, et le café devient plus intense, jusqu'à l'amertume."
+        },
+        {
+          "id": "u4",
+          "ecrit": "Plus grosse, l’eau passe trop vite, et la tasse devient plate, acide, aqueuse.",
+          "dit": "Plus grosse, l'eau passe trop vite, et la tasse devient plate, acide, aqueuse."
+        }
+      ]
+    },
+    {
+      "id": "eau",
+      "num": "05",
+      "titre": "L’eau",
+      "phrases": [
+        {
+          "id": "e1",
+          "ecrit": "L’eau fait l’essentiel de votre tasse.",
+          "dit": "L'eau fait l'essentiel de votre tasse."
+        },
+        {
+          "id": "e2",
+          "ecrit": "Chauffez-la à 93 °C.",
+          "dit": "Chauffez-la à quatre-vingt-treize degrés."
+        },
+        {
+          "id": "e3",
+          "ecrit": "Côté minéraux, la référence historique, celle de la SCAA, vise 150 mg par litre.",
+          "dit": "Côté minéraux, la référence historique, celle de la S C A A, vise cent cinquante milligrammes par litre."
+        },
+        {
+          "id": "e4",
+          "ecrit": "Au test à l’aveugle de filtré., Volvic et Mont Blanc arrivent en tête, et une eau du robinet très calcaire finit dernière.",
+          "dit": "Au test à l'aveugle de filtré, Volvic et Mont-Blanc arrivent en tête, et une eau du robinet très calcaire finit dernière."
+        }
+      ]
+    },
+    {
+      "id": "recette",
+      "num": "06",
+      "titre": "La recette pas à pas",
+      "phrases": [
+        {
+          "id": "r1",
+          "ecrit": "Et maintenant, passons à la recette, étape par étape.",
+          "dit": "Et maintenant, passons à la recette, étape par étape."
+        },
+        {
+          "id": "r2",
+          "ecrit": "Posez le filtre dans le V60 et rincez-le avec 100 g d’eau chaude : ça retire le goût de papier, et ça préchauffe le tout.",
+          "dit": "Posez le filtre dans le V soixante, et rincez-le avec cent grammes d'eau chaude : ça retire le goût de papier, et ça préchauffe le tout."
+        },
+        {
+          "id": "r3",
+          "ecrit": "Jetez cette eau de rinçage.",
+          "dit": "Jetez cette eau de rinçage."
+        },
+        {
+          "id": "r4",
+          "ecrit": "Versez les 15 g de café moulu, tapotez pour aplanir le lit, posez sur la balance, et tarez à zéro.",
+          "dit": "Versez les quinze grammes de café moulu, tapotez pour aplanir le lit, posez sur la balance, et tarez à zéro."
+        },
+        {
+          "id": "r5",
+          "ecrit": "Le bloom d’abord : 30 g d’eau sur tout le café, puis 30 secondes d’attente.",
+          "dit": "Le bloum d'abord : trente grammes d'eau sur tout le café, puis trente secondes d'attente."
+        },
+        {
+          "id": "r6",
+          "ecrit": "Le café gonfle, et relâche son gaz carbonique.",
+          "dit": "Le café gonfle, et relâche son gaz carbonique."
+        },
+        {
+          "id": "r7",
+          "ecrit": "À 30 secondes, versez jusqu’à 150 g, en spirale lente, du centre vers l’extérieur.",
+          "dit": "À trente secondes, versez jusqu'à cent cinquante grammes, en spirale lente, du centre vers l'extérieur."
+        },
+        {
+          "id": "r8",
+          "ecrit": "À 1 minute, montez à 200 g, toujours en spirale.",
+          "dit": "À une minute, montez à deux cents grammes, toujours en spirale."
+        },
+        {
+          "id": "r9",
+          "ecrit": "À 1 min 30, terminez à 250 g, par un versement doux au centre, pour lisser le lit.",
+          "dit": "À une minute trente, terminez à deux cent cinquante grammes, par un versement doux au centre, pour lisser le lit."
+        },
+        {
+          "id": "r10",
+          "ecrit": "Puis laissez couler. Le lit doit être à sec entre 2 min 30 et 3 min 30.",
+          "dit": "Puis laissez couler. Le lit doit être à sec entre deux minutes trente et trois minutes trente."
+        }
+      ]
+    },
+    {
+      "id": "diagnostic",
+      "num": "07",
+      "titre": "Trop rapide, trop lent",
+      "phrases": [
+        {
+          "id": "g1",
+          "ecrit": "Ce temps de débit, c’est votre baromètre.",
+          "dit": "Ce temps de débit, c'est votre baromètre."
+        },
+        {
+          "id": "g2",
+          "ecrit": "Si l’eau a fini de couler avant 2 min 30, et que le café est plat ou acide, serrez la mouture.",
+          "dit": "Si l'eau a fini de couler avant deux minutes trente, et que le café est plat ou acide, serrez la mouture."
+        },
+        {
+          "id": "g3",
+          "ecrit": "Si elle traîne après 3 min 30, et que le café est amer, desserrez-la.",
+          "dit": "Si elle traîne après trois minutes trente, et que le café est amer, desserrez-la."
+        },
+        {
+          "id": "g4",
+          "ecrit": "Changez une seule variable à la fois, et notez vos temps.",
+          "dit": "Changez une seule variable à la fois, et notez vos temps."
+        }
+      ]
+    },
+    {
+      "id": "erreurs",
+      "num": "08",
+      "titre": "Trois erreurs à éviter",
+      "phrases": [
+        {
+          "id": "x1",
+          "ecrit": "Trois erreurs reviennent souvent.",
+          "dit": "Trois erreurs reviennent souvent."
+        },
+        {
+          "id": "x2",
+          "ecrit": "Sauter le rinçage du filtre, et garder son goût de papier.",
+          "dit": "Sauter le rinçage du filtre, et garder son goût de papier."
+        },
+        {
+          "id": "x3",
+          "ecrit": "Oublier le bloom : le gaz carbonique empêche alors l’eau de mouiller le café de façon égale.",
+          "dit": "Oublier le bloum : le gaz carbonique empêche alors l'eau de mouiller le café de façon égale."
+        },
+        {
+          "id": "x4",
+          "ecrit": "Et verser sur les bords du filtre : l’eau file sans traverser le café, et dilue la tasse.",
+          "dit": "Et verser sur les bords du filtre : l'eau file sans traverser le café, et dilue la tasse."
+        }
+      ]
+    },
+    {
+      "id": "cafe",
+      "num": "09",
+      "titre": "Quel café pour le V60",
+      "phrases": [
+        {
+          "id": "c1",
+          "ecrit": "Pour le V60, choisissez des cafés d’origine, en torréfaction claire à médium, avec des notes florales, d’agrumes ou de fruits rouges.",
+          "dit": "Pour le V soixante, choisissez des cafés d'origine, en torréfaction claire à médium, avec des notes florales, d'agrumes, ou de fruits rouges."
+        },
+        {
+          "id": "c2",
+          "ecrit": "Un café très torréfié, pensé pour l’espresso, donne souvent en V60 une tasse plate et amère.",
+          "dit": "Un café très torréfié, pensé pour l'espresso, donne souvent en V soixante une tasse plate et amère."
+        }
+      ]
+    },
+    {
+      "id": "recap",
+      "num": "10",
+      "titre": "Récapitulatif",
+      "phrases": [
+        {
+          "id": "f1",
+          "ecrit": "On récapitule : 15 g de café, 250 g d’eau à 93 °C, un bloom de 30 secondes, trois versements, et environ trois minutes.",
+          "dit": "On récapitule : quinze grammes de café, deux cent cinquante grammes d'eau à quatre-vingt-treize degrés, un bloum de trente secondes, trois versements, et environ trois minutes."
+        },
+        {
+          "id": "f2",
+          "ecrit": "La recette complète, avec le calculateur de dose, est sur filtre.cafe.",
+          "dit": "La recette complète, avec le calculateur de dose, est sur filtre point café."
+        }
+      ]
+    }
+  ]
+}
