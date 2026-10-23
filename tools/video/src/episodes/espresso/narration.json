@@ -1,0 +1,311 @@
+{
+  "titre": "L’espresso de A à Z",
+  "source": "journal/comment-faire-espresso-parfait ; diagnostic : journal/espresso-trop-rapide-trop-lent-diagnostic",
+  "voix": {
+    "moteur": "voxcpm2",
+    "reference": "voix/narrateur"
+  },
+  "pauses": {
+    "phrase": 0.35,
+    "chapitre": 0.6,
+    "carte": 1.6
+  },
+  "chapitres": [
+    {
+      "id": "ouverture",
+      "num": "",
+      "titre": "L’espresso de A à Z",
+      "carte": false,
+      "phrases": [
+        {
+          "id": "o1",
+          "ecrit": "18 g de café, 36 g en tasse, 25 à 30 secondes.",
+          "dit": "Dix-huit grammes de café, trente-six grammes en tasse, vingt-cinq à trente secondes."
+        },
+        {
+          "id": "o2",
+          "ecrit": "Ce sont les repères d’un bon espresso. Le reste tient en un geste : régler la mouture sur votre café.",
+          "dit": "Ce sont les repères d'un bon espresso. Le reste tient en un geste : régler la mouture sur votre café."
+        },
+        {
+          "id": "o3",
+          "ecrit": "Dans cet épisode, on le prépare de A à Z : le matériel, la dose, la mouture, la recette pas à pas, et quoi régler quand la tasse ne va pas.",
+          "dit": "Dans cet épisode, on le prépare de A à Z : le matériel, la dose, la mouture, la recette pas à pas, et quoi régler quand la tasse ne va pas."
+        }
+      ]
+    },
+    {
+      "id": "pourquoi",
+      "num": "01",
+      "titre": "Ce qu’est un espresso",
+      "phrases": [
+        {
+          "id": "p1",
+          "ecrit": "Un espresso, c’est de l’eau à 93 °C, poussée à 9 bars à travers un café moulu fin, en 25 à 30 secondes.",
+          "dit": "Un espresso, c'est de l'eau à quatre-vingt-treize degrés, poussée à neuf bars à travers un café moulu fin, en vingt-cinq à trente secondes."
+        },
+        {
+          "id": "p2",
+          "ecrit": "Réussi, il tient un équilibre : assez d’acidité pour la vivacité, assez de sucres pour la rondeur, juste ce qu’il faut d’amertume pour le corps.",
+          "dit": "Réussi, il tient un équilibre : assez d'acidité pour la vivacité, assez de sucres pour la rondeur, juste ce qu'il faut d'amertume pour le corps."
+        },
+        {
+          "id": "p3",
+          "ecrit": "Le tout sous une crema dense et persistante.",
+          "dit": "Le tout sous une crema dense et persistante."
+        }
+      ]
+    },
+    {
+      "id": "materiel",
+      "num": "02",
+      "titre": "Le matériel",
+      "phrases": [
+        {
+          "id": "m1",
+          "ecrit": "Le matériel tient en quatre objets.",
+          "dit": "Le matériel tient en quatre objets."
+        },
+        {
+          "id": "m2",
+          "ecrit": "Une machine à porte-filtre, qui pousse l’eau à 9 bars.",
+          "dit": "Une machine à porte-filtre, qui pousse l'eau à neuf bars."
+        },
+        {
+          "id": "m3",
+          "ecrit": "Un moulin à meules, réglable finement : c’est lui qui rend le réglage possible.",
+          "dit": "Un moulin à meules, réglable finement : c'est lui qui rend le réglage possible."
+        },
+        {
+          "id": "m4",
+          "ecrit": "Une balance au dixième de gramme, glissée sous la tasse.",
+          "dit": "Une balance au dixième de gramme, glissée sous la tasse."
+        },
+        {
+          "id": "m5",
+          "ecrit": "Et un tamper adapté à la taille du panier.",
+          "dit": "Et un tampeur adapté à la taille du panier."
+        },
+        {
+          "id": "m6",
+          "ecrit": "Si le budget est serré, mettez-le d’abord dans le moulin.",
+          "dit": "Si le budget est serré, mettez-le d'abord dans le moulin."
+        },
+        {
+          "id": "m7",
+          "ecrit": "Avec un grain frais et un bon moulin, une machine d’entrée de gamme fait un meilleur espresso qu’une machine à 1 500 € avec un moulin à lames.",
+          "dit": "Avec un grain frais et un bon moulin, une machine d'entrée de gamme fait un meilleur espresso qu'une machine à mille cinq cents euros avec un moulin à lames."
+        }
+      ]
+    },
+    {
+      "id": "dose",
+      "num": "03",
+      "titre": "La dose",
+      "phrases": [
+        {
+          "id": "d1",
+          "ecrit": "18 g de café dans un panier double, pesés, pas dosés à l’œil.",
+          "dit": "Dix-huit grammes de café dans un panier double, pesés, pas dosés à l'œil."
+        },
+        {
+          "id": "d2",
+          "ecrit": "36 g en tasse : un ratio de 1:2, le point d’équilibre de l’espresso.",
+          "dit": "Trente-six grammes en tasse : un ratio de un pour deux, le point d'équilibre de l'espresso."
+        },
+        {
+          "id": "d3",
+          "ecrit": "Sous 1:1,5, c’est un ristretto, plus concentré. Vers 1:3, un lungo, plus dilué.",
+          "dit": "Sous un pour un et demi, c'est un ristretto, plus concentré. Vers un pour trois, un lungo, plus dilué."
+        },
+        {
+          "id": "d4",
+          "ecrit": "Pesez aussi ce qui coule : la crema gonfle le volume, et 36 g peuvent ressembler à 50 g dans la tasse.",
+          "dit": "Pesez aussi ce qui coule : la crema gonfle le volume, et trente-six grammes peuvent ressembler à cinquante grammes dans la tasse."
+        }
+      ]
+    },
+    {
+      "id": "mouture",
+      "num": "04",
+      "titre": "La mouture",
+      "phrases": [
+        {
+          "id": "u1",
+          "ecrit": "Partez d’une mouture fine, proche du sable fin.",
+          "dit": "Partez d'une mouture fine, proche du sable fin."
+        },
+        {
+          "id": "u2",
+          "ecrit": "C’est un point de départ, pas une vérité : la bonne mouture dépend du café et de sa fraîcheur.",
+          "dit": "C'est un point de départ, pas une vérité : la bonne mouture dépend du café et de sa fraîcheur."
+        },
+        {
+          "id": "u3",
+          "ecrit": "Trop grosse, l’eau passe trop vite, et le café sort acide et creux.",
+          "dit": "Trop grosse, l'eau passe trop vite, et le café sort acide et creux."
+        },
+        {
+          "id": "u4",
+          "ecrit": "Trop fine, l’eau peine à passer, et le café tourne amer.",
+          "dit": "Trop fine, l'eau peine à passer, et le café tourne amer."
+        }
+      ]
+    },
+    {
+      "id": "recette",
+      "num": "05",
+      "titre": "La recette pas à pas",
+      "phrases": [
+        {
+          "id": "r1",
+          "ecrit": "Passons à la recette, étape par étape.",
+          "dit": "Passons à la recette, étape par étape."
+        },
+        {
+          "id": "r2",
+          "ecrit": "Moulez 18 g de café juste avant, dans un panier double.",
+          "dit": "Moulez dix-huit grammes de café juste avant, dans un panier double."
+        },
+        {
+          "id": "r3",
+          "ecrit": "Répartissez la mouture pour casser les amas, puis tassez droit, de niveau et ferme.",
+          "dit": "Répartissez la mouture pour casser les amas, puis tassez droit, de niveau et ferme."
+        },
+        {
+          "id": "r4",
+          "ecrit": "Un lit irrégulier crée des canaux où l’eau file, et l’extraction part en vrille.",
+          "dit": "Un lit irrégulier crée des canaux où l'eau file, et l'extraction part en vrille."
+        },
+        {
+          "id": "r5",
+          "ecrit": "Mettez le porte-filtre en place, posez la tasse sur la balance, et tarez à zéro.",
+          "dit": "Mettez le porte-filtre en place, posez la tasse sur la balance, et tarez à zéro."
+        },
+        {
+          "id": "r6",
+          "ecrit": "Lancez l’extraction et le chronomètre ensemble, et gardez ce départ d’un espresso à l’autre.",
+          "dit": "Lancez l'extraction et le chronomètre ensemble, et gardez ce départ d'un espresso à l'autre."
+        },
+        {
+          "id": "r7",
+          "ecrit": "Le café doit couler en filet doré et régulier, sans gicler ni goutter au ralenti.",
+          "dit": "Le café doit couler en filet doré et régulier, sans gicler ni goutter au ralenti."
+        },
+        {
+          "id": "r8",
+          "ecrit": "Arrêtez à 36 g. Entre 25 et 30 secondes, vous êtes dans la fenêtre.",
+          "dit": "Arrêtez à trente-six grammes. Entre vingt-cinq et trente secondes, vous êtes dans la fenêtre."
+        },
+        {
+          "id": "r9",
+          "ecrit": "Servez tout de suite, dans une petite tasse préchauffée : la crema retombe, et les arômes s’évaporent vite.",
+          "dit": "Servez tout de suite, dans une petite tasse préchauffée : la crema retombe, et les arômes s'évaporent vite."
+        }
+      ]
+    },
+    {
+      "id": "diagnostic",
+      "num": "06",
+      "titre": "Trop rapide, trop lent",
+      "phrases": [
+        {
+          "id": "g1",
+          "ecrit": "Le temps d’extraction vous dit comment régler la mouture : c’est le dial-in.",
+          "dit": "Le temps d'extraction vous dit comment régler la mouture : c'est le dial-in."
+        },
+        {
+          "id": "g2",
+          "ecrit": "Moins de 25 secondes, et un café acide, creux : il est sous-extrait. Moulez plus fin, d’un cran.",
+          "dit": "Moins de vingt-cinq secondes, et un café acide, creux : il est sous-extrait. Moulez plus fin, d'un cran."
+        },
+        {
+          "id": "g3",
+          "ecrit": "Plus de 30 secondes, et un café amer, sec : il est sur-extrait. Moulez plus gros, d’un cran.",
+          "dit": "Plus de trente secondes, et un café amer, sec : il est sur-extrait. Moulez plus gros, d'un cran."
+        },
+        {
+          "id": "g4",
+          "ecrit": "Changez un seul réglage à la fois, la mouture d’abord, et regoûtez.",
+          "dit": "Changez un seul réglage à la fois, la mouture d'abord, et regoûtez."
+        },
+        {
+          "id": "g5",
+          "ecrit": "Et refaites ce réglage à chaque nouveau paquet : un café parfait le lundi peut être amer le vendredi.",
+          "dit": "Et refaites ce réglage à chaque nouveau paquet : un café parfait le lundi peut être amer le vendredi."
+        }
+      ]
+    },
+    {
+      "id": "erreurs",
+      "num": "07",
+      "titre": "Trois erreurs à éviter",
+      "phrases": [
+        {
+          "id": "x1",
+          "ecrit": "Trois erreurs reviennent souvent.",
+          "dit": "Trois erreurs reviennent souvent."
+        },
+        {
+          "id": "x2",
+          "ecrit": "Garder le même réglage d’un café à l’autre : le café vieillit, le paquet change, et il faut réajuster.",
+          "dit": "Garder le même réglage d'un café à l'autre : le café vieillit, le paquet change, et il faut réajuster."
+        },
+        {
+          "id": "x3",
+          "ecrit": "Bâcler la répartition et le tassage : l’eau creuse un canal, et l’espresso sort à la fois sous-extrait et sur-extrait.",
+          "dit": "Bâcler la répartition et le tassage : l'eau creuse un canal, et l'espresso sort à la fois sous-extrait et sur-extrait."
+        },
+        {
+          "id": "x4",
+          "ecrit": "Et prendre un café pré-moulu ou trop vieux : ses arômes sont partis, et sa crema s’effondre.",
+          "dit": "Et prendre un café pré-moulu ou trop vieux : ses arômes sont partis, et sa crema s'effondre."
+        }
+      ]
+    },
+    {
+      "id": "cafe",
+      "num": "08",
+      "titre": "Quel café pour l’espresso",
+      "phrases": [
+        {
+          "id": "c1",
+          "ecrit": "Pour débuter, choisissez une torréfaction médium, aux notes de chocolat, de caramel ou de fruits cuits : c’est la plus indulgente.",
+          "dit": "Pour débuter, choisissez une torréfaction médium, aux notes de chocolat, de caramel ou de fruits cuits : c'est la plus indulgente."
+        },
+        {
+          "id": "c2",
+          "ecrit": "Les torréfactions claires sont superbes en espresso, mais elles demandent un réglage plus serré, et une eau souvent un peu plus chaude.",
+          "dit": "Les torréfactions claires sont superbes en espresso, mais elles demandent un réglage plus serré, et une eau souvent un peu plus chaude."
+        },
+        {
+          "id": "c3",
+          "ecrit": "Dans tous les cas, prenez un grain torréfié depuis moins de trois ou quatre semaines.",
+          "dit": "Dans tous les cas, prenez un grain torréfié depuis moins de trois ou quatre semaines."
+        }
+      ]
+    },
+    {
+      "id": "recap",
+      "num": "09",
+      "titre": "Récapitulatif",
+      "phrases": [
+        {
+          "id": "f1",
+          "ecrit": "On récapitule : 18 g de café, 36 g en tasse, en 25 à 30 secondes, et une eau entre 92 et 94 °C.",
+          "dit": "On récapitule : dix-huit grammes de café, trente-six grammes en tasse, en vingt-cinq à trente secondes, et une eau entre quatre-vingt-douze et quatre-vingt-quatorze degrés."
+        },
+        {
+          "id": "f2",
+          "ecrit": "Et une mouture qu’on règle sur le temps, à chaque nouveau café.",
+          "dit": "Et une mouture qu'on règle sur le temps, à chaque nouveau café."
+        },
+        {
+          "id": "f3",
+          "ecrit": "La recette complète et le diagnostic sont sur filtre.cafe.",
+          "dit": "La recette complète et le diagnostic sont sur filtre point café."
+        }
+      ]
+    }
+  ]
+}
