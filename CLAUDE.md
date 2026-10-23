@@ -108,11 +108,19 @@ filtre.cafe ; en session cloud, préfixer la commande de `NODE_USE_ENV_PROXY=1`.
 
 Depuis la N°11, chaque lettre porte l'illustration de l'article du sujet et une icône par rubrique.
 Le mail ne lit ni le SVG ni la vidéo : `python3 tools/lettre/icones.py NN nom…` exporte les dessins de
-`tools/v2/scenes.py` (`ENVIES_ICONES`, `LETTRE_ICONES`) en GIF dans `newsletter/img/NN/` et affiche la
+`tools/v2/scenes.py` (`ENVIES_ICONES`, `LETTRE_ICONES`, `METHODES_ICONES`) en GIF dans `newsletter/img/NN/` et affiche la
 balise `<img>` à coller dans `nl-0NN.html`. L'illustration du mail est le `.jpg` 1200 px de
 `illustrations/`, en URL absolue `https://filtre.cafe/…`. La version en ligne (`newsletter/NN.html`)
 reprend la figure `data-illu` des articles et le SVG animé du site (`icones.py --web nom`). Aucun texte
 dans les images. Les images n'existent en ligne qu'après le déploiement : le test Brevo se fait après.
+
+## Mail de bienvenue
+
+Chaque nouvel abonné reçoit la dernière lettre parue, précédée d'un mot d'accueil : dans Brevo, une
+automatisation « Contact ajouté à une liste » (liste n° 2, celle de `subscribe.js`) suivie de « Envoyer un e-mail »
+avec le HTML de `newsletter/bienvenue.html`. Avec le double opt-in, ce mail ne part qu'après la confirmation.
+Après l'envoi de chaque lettre : `python3 tools/lettre/bienvenue.py NN`, puis recoller le HTML dans l'e-mail de
+l'automatisation (Brevo garde sa copie, il ne relit pas le fichier).
 
 ## Pages générées par `tools/v2/build.py`
 
