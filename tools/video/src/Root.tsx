@@ -20,6 +20,7 @@ import { PRESS_DUREE, PressPaysage, PressVertical } from "./piston/Piston";
 import { PressAffiche, PressAfficheVerticale } from "./piston/scenes";
 import { Fond } from "./dessins/Fond";
 import { V60Episode, V60EpisodeLettre, V60EpisodeMiniature, V60Short, V60_EPISODE_DUREE, V60_SHORTS, dureeShort } from "./episodes/v60/Episode";
+import { ESPRESSO_EPISODE_DUREE, ESPRESSO_SHORTS, EspressoEpisode, EspressoEpisodeLettre, EspressoEpisodeMiniature, EspressoShort, dureeShortEspresso } from "./episodes/espresso/Episode";
 import { ChaineAvatar, ChaineBanniere } from "./chaine/Chaine";
 import { V60Affiche, V60AfficheVerticale } from "./v60/Affiche";
 import { V60Paysage, V60Vertical, V60_DUREE } from "./v60/V60Vertical";
@@ -91,6 +92,21 @@ export const RemotionRoot: React.FC = () => {
             component={V60Short}
             defaultProps={{ chapitre: id }}
             durationInFrames={dureeShort(id)}
+            fps={30}
+            width={1080}
+            height={1920}
+          />
+        ))}
+        <Composition id="EspressoEpisode" component={EspressoEpisode} durationInFrames={ESPRESSO_EPISODE_DUREE} fps={30} width={1920} height={1080} />
+        <Still id="EspressoEpisodeMiniature" component={EspressoEpisodeMiniature} width={1920} height={1080} />
+        <Still id="EspressoEpisodeLettre" component={EspressoEpisodeLettre} width={1920} height={1080} />
+        {ESPRESSO_SHORTS.map((id) => (
+          <Composition
+            key={id}
+            id={`EspressoShort-${id}`}
+            component={EspressoShort}
+            defaultProps={{ chapitre: id }}
+            durationInFrames={dureeShortEspresso(id)}
             fps={30}
             width={1080}
             height={1920}

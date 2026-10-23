@@ -24,7 +24,7 @@ import {
 } from "./etats";
 
 // La machine, porte-filtre en place, tasse dessous (repère : bas de la caisse).
-const MachineComplete: React.FC<{ x: number; y: number; s: number; trace: number }> = ({ x, y, s, trace }) => (
+export const MachineComplete: React.FC<{ x: number; y: number; s: number; trace: number }> = ({ x, y, s, trace }) => (
   <g transform={`translate(${x} ${y}) scale(${s}) translate(${-540} ${-1250})`}>
     <Machine x={540} y={1250} trace={trace} />
     <TasseEspresso x={540} y={1150} trace={prog(trace, 0.4, 1)} niveau={prog(trace, 0.8, 1)} />

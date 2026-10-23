@@ -1,0 +1,402 @@
+{
+ "fps": 30,
+ "chapitres": [
+  {
+   "id": "ouverture",
+   "num": "",
+   "titre": "L’espresso de A à Z",
+   "debut": 12,
+   "phrases": [
+    {
+     "id": "o1",
+     "debut": 12,
+     "fin": 151,
+     "texte": "18 g de café, 36 g en tasse, 25 à 30 secondes."
+    },
+    {
+     "id": "o2",
+     "debut": 162,
+     "fin": 328,
+     "texte": "Ce sont les repères d’un bon espresso. Le reste tient en un geste : régler la mouture sur votre café."
+    },
+    {
+     "id": "o3",
+     "debut": 338,
+     "fin": 564,
+     "texte": "Dans cet épisode, on le prépare de A à Z : le matériel, la dose, la mouture, la recette pas à pas, et quoi régler quand la tasse ne va pas."
+    }
+   ],
+   "fin": 592
+  },
+  {
+   "id": "pourquoi",
+   "num": "01",
+   "titre": "Ce qu’est un espresso",
+   "debut": 592,
+   "phrases": [
+    {
+     "id": "p1",
+     "debut": 640,
+     "fin": 866,
+     "texte": "Un espresso, c’est de l’eau à 93 °C, poussée à 9 bars à travers un café moulu fin, en 25 à 30 secondes."
+    },
+    {
+     "id": "p2",
+     "debut": 877,
+     "fin": 1110,
+     "texte": "Réussi, il tient un équilibre : assez d’acidité pour la vivacité, assez de sucres pour la rondeur, juste ce qu’il faut d’amertume pour le corps."
+    },
+    {
+     "id": "p3",
+     "debut": 1121,
+     "fin": 1197,
+     "texte": "Le tout sous une crema dense et persistante."
+    }
+   ],
+   "carte": {
+    "debut": 592,
+    "fin": 640
+   },
+   "fin": 1226
+  },
+  {
+   "id": "materiel",
+   "num": "02",
+   "titre": "Le matériel",
+   "debut": 1226,
+   "phrases": [
+    {
+     "id": "m1",
+     "debut": 1274,
+     "fin": 1336,
+     "texte": "Le matériel tient en quatre objets."
+    },
+    {
+     "id": "m2",
+     "debut": 1347,
+     "fin": 1443,
+     "texte": "Une machine à porte-filtre, qui pousse l’eau à 9 bars."
+    },
+    {
+     "id": "m3",
+     "debut": 1454,
+     "fin": 1585,
+     "texte": "Un moulin à meules, réglable finement : c’est lui qui rend le réglage possible."
+    },
+    {
+     "id": "m4",
+     "debut": 1596,
+     "fin": 1691,
+     "texte": "Une balance au dixième de gramme, glissée sous la tasse."
+    },
+    {
+     "id": "m5",
+     "debut": 1702,
+     "fin": 1777,
+     "texte": "Et un tamper adapté à la taille du panier."
+    },
+    {
+     "id": "m6",
+     "debut": 1787,
+     "fin": 1884,
+     "texte": "Si le budget est serré, mettez-le d’abord dans le moulin."
+    },
+    {
+     "id": "m7",
+     "debut": 1895,
+     "fin": 2149,
+     "texte": "Avec un grain frais et un bon moulin, une machine d’entrée de gamme fait un meilleur espresso qu’une machine à 1 500 € avec un moulin à lames."
+    }
+   ],
+   "carte": {
+    "debut": 1226,
+    "fin": 1274
+   },
+   "fin": 2177
+  },
+  {
+   "id": "dose",
+   "num": "03",
+   "titre": "La dose",
+   "debut": 2177,
+   "phrases": [
+    {
+     "id": "d1",
+     "debut": 2225,
+     "fin": 2347,
+     "texte": "18 g de café dans un panier double, pesés, pas dosés à l’œil."
+    },
+    {
+     "id": "d2",
+     "debut": 2358,
+     "fin": 2508,
+     "texte": "36 g en tasse : un ratio de 1:2, le point d’équilibre de l’espresso."
+    },
+    {
+     "id": "d3",
+     "debut": 2518,
+     "fin": 2686,
+     "texte": "Sous 1:1,5, c’est un ristretto, plus concentré. Vers 1:3, un lungo, plus dilué."
+    },
+    {
+     "id": "d4",
+     "debut": 2697,
+     "fin": 2907,
+     "texte": "Pesez aussi ce qui coule : la crema gonfle le volume, et 36 g peuvent ressembler à 50 g dans la tasse."
+    }
+   ],
+   "carte": {
+    "debut": 2177,
+    "fin": 2225
+   },
+   "fin": 2935
+  },
+  {
+   "id": "mouture",
+   "num": "04",
+   "titre": "La mouture",
+   "debut": 2935,
+   "phrases": [
+    {
+     "id": "u1",
+     "debut": 2983,
+     "fin": 3064,
+     "texte": "Partez d’une mouture fine, proche du sable fin."
+    },
+    {
+     "id": "u2",
+     "debut": 3075,
+     "fin": 3230,
+     "texte": "C’est un point de départ, pas une vérité : la bonne mouture dépend du café et de sa fraîcheur."
+    },
+    {
+     "id": "u3",
+     "debut": 3240,
+     "fin": 3353,
+     "texte": "Trop grosse, l’eau passe trop vite, et le café sort acide et creux."
+    },
+    {
+     "id": "u4",
+     "debut": 3363,
+     "fin": 3459,
+     "texte": "Trop fine, l’eau peine à passer, et le café tourne amer."
+    }
+   ],
+   "carte": {
+    "debut": 2935,
+    "fin": 2983
+   },
+   "fin": 3487
+  },
+  {
+   "id": "recette",
+   "num": "05",
+   "titre": "La recette pas à pas",
+   "debut": 3487,
+   "phrases": [
+    {
+     "id": "r1",
+     "debut": 3535,
+     "fin": 3602,
+     "texte": "Passons à la recette, étape par étape."
+    },
+    {
+     "id": "r2",
+     "debut": 3613,
+     "fin": 3726,
+     "texte": "Moulez 18 g de café juste avant, dans un panier double."
+    },
+    {
+     "id": "r3",
+     "debut": 3736,
+     "fin": 3874,
+     "texte": "Répartissez la mouture pour casser les amas, puis tassez droit, de niveau et ferme."
+    },
+    {
+     "id": "r4",
+     "debut": 3884,
+     "fin": 4017,
+     "texte": "Un lit irrégulier crée des canaux où l’eau file, et l’extraction part en vrille."
+    },
+    {
+     "id": "r5",
+     "debut": 4028,
+     "fin": 4161,
+     "texte": "Mettez le porte-filtre en place, posez la tasse sur la balance, et tarez à zéro."
+    },
+    {
+     "id": "r6",
+     "debut": 4171,
+     "fin": 4323,
+     "texte": "Lancez l’extraction et le chronomètre ensemble, et gardez ce départ d’un espresso à l’autre."
+    },
+    {
+     "id": "r7",
+     "debut": 4334,
+     "fin": 4468,
+     "texte": "Le café doit couler en filet doré et régulier, sans gicler ni goutter au ralenti."
+    },
+    {
+     "id": "r8",
+     "debut": 4479,
+     "fin": 4632,
+     "texte": "Arrêtez à 36 g. Entre 25 et 30 secondes, vous êtes dans la fenêtre."
+    },
+    {
+     "id": "r9",
+     "debut": 4643,
+     "fin": 4818,
+     "texte": "Servez tout de suite, dans une petite tasse préchauffée : la crema retombe, et les arômes s’évaporent vite."
+    }
+   ],
+   "carte": {
+    "debut": 3487,
+    "fin": 3535
+   },
+   "fin": 4847
+  },
+  {
+   "id": "diagnostic",
+   "num": "06",
+   "titre": "Trop rapide, trop lent",
+   "debut": 4847,
+   "phrases": [
+    {
+     "id": "g1",
+     "debut": 4895,
+     "fin": 5022,
+     "texte": "Le temps d’extraction vous dit comment régler la mouture : c’est le dial-in."
+    },
+    {
+     "id": "g2",
+     "debut": 5032,
+     "fin": 5203,
+     "texte": "Moins de 25 secondes, et un café acide, creux : il est sous-extrait. Moulez plus fin, d’un cran."
+    },
+    {
+     "id": "g3",
+     "debut": 5213,
+     "fin": 5371,
+     "texte": "Plus de 30 secondes, et un café amer, sec : il est sur-extrait. Moulez plus gros, d’un cran."
+    },
+    {
+     "id": "g4",
+     "debut": 5382,
+     "fin": 5495,
+     "texte": "Changez un seul réglage à la fois, la mouture d’abord, et regoûtez."
+    },
+    {
+     "id": "g5",
+     "debut": 5505,
+     "fin": 5671,
+     "texte": "Et refaites ce réglage à chaque nouveau paquet : un café parfait le lundi peut être amer le vendredi."
+    }
+   ],
+   "carte": {
+    "debut": 4847,
+    "fin": 4895
+   },
+   "fin": 5700
+  },
+  {
+   "id": "erreurs",
+   "num": "07",
+   "titre": "Trois erreurs à éviter",
+   "debut": 5700,
+   "phrases": [
+    {
+     "id": "x1",
+     "debut": 5748,
+     "fin": 5807,
+     "texte": "Trois erreurs reviennent souvent."
+    },
+    {
+     "id": "x2",
+     "debut": 5817,
+     "fin": 5985,
+     "texte": "Garder le même réglage d’un café à l’autre : le café vieillit, le paquet change, et il faut réajuster."
+    },
+    {
+     "id": "x3",
+     "debut": 5995,
+     "fin": 6188,
+     "texte": "Bâcler la répartition et le tassage : l’eau creuse un canal, et l’espresso sort à la fois sous-extrait et sur-extrait."
+    },
+    {
+     "id": "x4",
+     "debut": 6199,
+     "fin": 6350,
+     "texte": "Et prendre un café pré-moulu ou trop vieux : ses arômes sont partis, et sa crema s’effondre."
+    }
+   ],
+   "carte": {
+    "debut": 5700,
+    "fin": 5748
+   },
+   "fin": 6379
+  },
+  {
+   "id": "cafe",
+   "num": "08",
+   "titre": "Quel café pour l’espresso",
+   "debut": 6379,
+   "phrases": [
+    {
+     "id": "c1",
+     "debut": 6427,
+     "fin": 6638,
+     "texte": "Pour débuter, choisissez une torréfaction médium, aux notes de chocolat, de caramel ou de fruits cuits : c’est la plus indulgente."
+    },
+    {
+     "id": "c2",
+     "debut": 6649,
+     "fin": 6868,
+     "texte": "Les torréfactions claires sont superbes en espresso, mais elles demandent un réglage plus serré, et une eau souvent un peu plus chaude."
+    },
+    {
+     "id": "c3",
+     "debut": 6879,
+     "fin": 7020,
+     "texte": "Dans tous les cas, prenez un grain torréfié depuis moins de trois ou quatre semaines."
+    }
+   ],
+   "carte": {
+    "debut": 6379,
+    "fin": 6427
+   },
+   "fin": 7048
+  },
+  {
+   "id": "recap",
+   "num": "09",
+   "titre": "Récapitulatif",
+   "debut": 7048,
+   "phrases": [
+    {
+     "id": "f1",
+     "debut": 7096,
+     "fin": 7374,
+     "texte": "On récapitule : 18 g de café, 36 g en tasse, en 25 à 30 secondes, et une eau entre 92 et 94 °C."
+    },
+    {
+     "id": "f2",
+     "debut": 7384,
+     "fin": 7490,
+     "texte": "Et une mouture qu’on règle sur le temps, à chaque nouveau café."
+    },
+    {
+     "id": "f3",
+     "debut": 7501,
+     "fin": 7609,
+     "texte": "La recette complète et le diagnostic sont sur filtre.cafe."
+    }
+   ],
+   "carte": {
+    "debut": 7048,
+    "fin": 7096
+   },
+   "fin": 7637
+  }
+ ],
+ "duree": 7727
+}

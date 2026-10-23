@@ -43,6 +43,12 @@ Un épisode YouTube de 4 à 5 min par méthode, voix de synthèse, et trois ou q
 Épisode 1 : le V60 (`src/episodes/v60/`, 4 min 20, compositions `V60Episode`, `V60EpisodeMiniature`, `V60Short-*`,
 et `V60EpisodeLettre`, l'image sans texte de la lettre, rendue avec `--scale=0.625`). Habillage de la chaîne YouTube :
 `ChaineBanniere` (2560 × 1440) et `ChaineAvatar` (800 × 800), dans `src/chaine/`.
+Épisode 2 : l'espresso (`src/episodes/espresso/`, compositions `EspressoEpisode`, `EspressoEpisodeMiniature`,
+`EspressoEpisodeLettre`, `EspressoShort-*`). La recette, le diagnostic et la fiche de fin rejouent les scènes du tuto
+espresso ; la machine de l'auteur figure en annotation écrite, la voix ne dit pas « je ». Musique :
+`MELODIE=aucune BATTERIE=standard node outils/musique-sf2.mjs episode-espresso <durée en s> 1476816975`, la graine du
+tuto espresso. Les briques de mise en page des deux épisodes (toile, légendes, styles de texte) sont dans
+`src/episodes/ui.tsx`.
 
 La voix fixe tout le minutage. Chaîne complète, depuis `tools/video` :
 

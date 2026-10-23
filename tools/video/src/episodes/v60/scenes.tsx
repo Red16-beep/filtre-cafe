@@ -8,13 +8,13 @@ import { Station } from "../../dessins/Station";
 import { Trace } from "../../dessins/Trace";
 import { usePaysage } from "../../format";
 import { EauMethode } from "../../scenes/EauMethode";
-import { C, DOUX, FINE, SANS, SERIF, SORTIE, mix, prog } from "../../theme";
-import { Legende } from "../../ui/Legende";
+import { C, DOUX, FINE, SANS, SORTIE, mix, prog } from "../../theme";
 import { Mots } from "../../ui/Mots";
 import { etatEcoulement, etatRincage, etatVersement } from "../../v60/etats";
 import { Diagnostic as DiagnosticTuto } from "../../v60/scenes/Diagnostic";
 import { Fin } from "../../v60/scenes/Fin";
 import { vu } from "../habillage";
+import { LegendeDe, Toile, texteSans, texteSerif } from "../ui";
 import { CARTE, outilsTemps, recale } from "../temps";
 import minutage from "./minutage.json";
 import narration from "./narration.json";
@@ -23,40 +23,6 @@ import narration from "./narration.json";
 // (0 = début de la carte de chapitre) et se cale sur les phrases de la voix.
 const T = outilsTemps(minutage, narration);
 const { ph, mot } = T;
-
-const Toile: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const paysage = usePaysage();
-  const [w, h] = paysage ? [1920, 1080] : [1080, 1920];
-  return (
-    <svg width={w} height={h} viewBox={`0 0 ${w} ${h}`} style={{ position: "absolute", inset: 0 }}>
-      {children}
-    </svg>
-  );
-};
-
-// Une légende du tuto, présente d'une image à une autre du chapitre.
-const LegendeDe: React.FC<{ de: number; a: number } & React.ComponentProps<typeof Legende>> = ({ de, a, ...l }) => (
-  <Sequence from={de} durationInFrames={Math.max(1, a - de)} layout="none">
-    <Legende {...l} duree={Math.max(1, a - de)} />
-  </Sequence>
-);
-
-const texteSerif = (taille: number, extra: React.CSSProperties = {}): React.CSSProperties => ({
-  fontFamily: SERIF,
-  fontWeight: 500,
-  fontSize: taille,
-  lineHeight: 1.04,
-  color: C.creme,
-  ...extra,
-});
-const texteSans = (taille: number, extra: React.CSSProperties = {}): React.CSSProperties => ({
-  fontFamily: SANS,
-  fontWeight: 400,
-  fontSize: taille,
-  lineHeight: 1.25,
-  color: "rgba(239,199,156,0.94)",
-  ...extra,
-});
 
 // ── 0. Ouverture ──────────────────────────────────────────────────────────────
 const CHIFFRES = [
