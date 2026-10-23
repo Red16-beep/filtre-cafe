@@ -23,6 +23,9 @@ copy journal/index.html "$PUB/journal/"
 copy guides/index.html  "$PUB/guides/"
 # newsletter archive issues linked from newsletter.html (01.html, 02.html, ...)
 copy newsletter "$PUB/"
+# /newsletter/derniere mène à la dernière lettre en ligne : le mail de bienvenue de Brevo y renvoie, et suit tout seul.
+DERNIERE=$(ls newsletter/[0-9][0-9].html | sort | tail -n 1 | xargs basename -s .html)
+printf '\n/newsletter/derniere /newsletter/%s 302\n' "$DERNIERE" >> "$PUB/_redirects"
 # carnet/ : le carnet de bord du café, en bêta cachée sur /carnet/ (sans ses outils de test ni son README)
 copy carnet "$PUB/"
 rm -rf "$PUB/carnet/outils" "$PUB/carnet/README.md"

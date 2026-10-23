@@ -116,11 +116,11 @@ dans les images. Les images n'existent en ligne qu'après le déploiement : le t
 
 ## Mail de bienvenue
 
-Chaque nouvel abonné reçoit la dernière lettre parue, précédée d'un mot d'accueil : dans Brevo, une
-automatisation « Contact ajouté à une liste » (liste n° 2, celle de `subscribe.js`) suivie de « Envoyer un e-mail »
-avec le HTML de `newsletter/bienvenue.html`. Avec le double opt-in, ce mail ne part qu'après la confirmation.
-Après l'envoi de chaque lettre : `python3 tools/lettre/bienvenue.py NN`, puis recoller le HTML dans l'e-mail de
-l'automatisation (Brevo garde sa copie, il ne relit pas le fichier).
+Chaque nouvel abonné reçoit `newsletter/bienvenue.html` : dans Brevo, une automatisation « Contact ajouté à une
+liste » (liste n° 2, celle de `subscribe.js`) suivie de « Envoyer un e-mail » avec ce HTML. Avec le double opt-in,
+ce mail ne part qu'après la confirmation. Son bouton mène à `/newsletter/derniere`, une redirection que
+`astro/sync-public.sh` fait pointer vers le plus grand `newsletter/NN.html` : publier une lettre suffit, rien ne
+change dans Brevo. Une lettre ne s'ajoute donc au dépôt qu'au moment de son envoi.
 
 ## Pages générées par `tools/v2/build.py`
 
