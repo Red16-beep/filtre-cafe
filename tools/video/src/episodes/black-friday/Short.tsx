@@ -180,7 +180,7 @@ export const BlackFridayShort: React.FC = () => {
           </Toile>
           <div style={{ position: "absolute", left: 340, top: py(0.66) - 64, ...vu(f, b.b8.debut + 24, undefined, 10), ...texteSans(32) }}>début octobre : le prix monte</div>
           <div style={{ position: "absolute", left: CHART.x0, top: py(0.4) + 18, ...vu(f, b.b8.debut + 48, undefined, 10), ...texteSans(32, { color: VERT }) }}>le prix habituel</div>
-          <div style={{ position: "absolute", left: 560, width: 380, top: py(AUTOMNE[AUTOMNE.length - 1]) + 36, textAlign: "right", ...vu(f, b.b8.debut + 56, undefined, 10), ...texteSans(32, { color: ROUGE }) }}>« -15 % » fin novembre</div>
+          <div style={{ position: "absolute", left: 560, width: 380, top: py(0.4) + 18, textAlign: "right", ...vu(f, b.b8.debut + 56, undefined, 10), ...texteSans(32, { color: ROUGE }) }}>« -15 % » fin novembre</div>
         </div>
 
         {/* 9 : la page */}

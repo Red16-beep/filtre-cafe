@@ -10,60 +10,60 @@
     {
      "id": "b1",
      "debut": 12,
-     "fin": 142,
+     "fin": 161,
      "texte": "Le 27 novembre, presque tout le matériel café affichera un prix barré."
     },
     {
      "id": "b2",
-     "debut": 153,
-     "fin": 292,
+     "debut": 171,
+     "fin": 286,
      "texte": "Mais un « -30 % » ne dit rien tant qu’on ne connaît pas le prix normal."
     },
     {
      "id": "b3",
-     "debut": 302,
-     "fin": 431,
+     "debut": 297,
+     "fin": 417,
      "texte": "filtré. a relevé ces prix normaux le 9 octobre, avant la saison des promos."
     },
     {
      "id": "b4",
-     "debut": 441,
-     "fin": 637,
+     "debut": 428,
+     "fin": 605,
      "texte": "Le moulin Timemore C3S Pro, par exemple : 69 €. Une vraie promo commence sous 59 €."
     },
     {
      "id": "b5",
-     "debut": 648,
-     "fin": 803,
+     "debut": 616,
+     "fin": 740,
      "texte": "La règle : n’achetez que si le prix descend d’au moins 15 % sous le prix habituel."
     },
     {
      "id": "b6",
-     "debut": 814,
-     "fin": 1022,
+     "debut": 751,
+     "fin": 947,
      "texte": "La loi aide un peu : depuis 2022, une réduction se calcule sur le prix le plus bas des 30 jours précédents."
     },
     {
      "id": "b7",
-     "debut": 1033,
-     "fin": 1172,
+     "debut": 958,
+     "fin": 1078,
      "texte": "Mais un « prix conseillé » barré n’est pas une réduction : la règle ne s’y applique pas."
     },
     {
      "id": "b8",
-     "debut": 1183,
-     "fin": 1308,
+     "debut": 1088,
+     "fin": 1227,
      "texte": "Et un prix monté début octobre devient, fin novembre, le prix de référence."
     },
     {
      "id": "b9",
-     "debut": 1318,
-     "fin": 1423,
+     "debut": 1238,
+     "fin": 1337,
      "texte": "Les prix normaux, rayon par rayon, sont sur filtre.cafe."
     }
    ],
-   "fin": 1452
+   "fin": 1366
   }
  ],
- "duree": 1542
+ "duree": 1456
 }

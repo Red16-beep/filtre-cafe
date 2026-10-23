@@ -315,8 +315,8 @@ export const Recette: React.FC = () => {
       <LegendeDe de={r.r2.debut} a={r.r3.debut} puce="1" titre={`18${FINE}g de café`} sous="moulu fin, juste avant" />
       <LegendeDe de={r.r3.debut} a={r.r5.debut} puce="2" titre="Répartir, tasser" sous="droit, de niveau, ferme" />
       <LegendeDe de={r.r5.debut} a={r.r6.debut} puce="3" titre="En place" sous="la tasse sur la balance, à zéro" />
-      <LegendeDe de={r.r6.debut} a={r.r9.debut} puce="4" titre={`36${FINE}g en 25 à 30${FINE}s`} taille={100} sous="le ratio 1:2" />
-      <LegendeDe de={r.r9.debut} a={fin} puce="5" titre="Servir tout de suite" taille={100} sous="la crema retombe vite" />
+      <LegendeDe de={r.r6.debut} a={r.r9.debut} puce="4" titre={`36${FINE}g en 25 à 30${FINE}s`} taille={88} sous="le ratio 1:2" />
+      <LegendeDe de={r.r9.debut} a={fin} puce="5" titre="Servir tout de suite" taille={88} sous="la crema retombe vite" />
     </AbsoluteFill>
   );
 };
