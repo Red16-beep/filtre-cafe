@@ -81,11 +81,11 @@ export const ChemexEpisodeMiniature: React.FC = () => (
     <AbsoluteFill>
       <Fond />
       <svg width={1920} height={1080} viewBox="0 0 1920 1080" style={{ position: "absolute", inset: 0 }}>
-        <ChemexGarnie x={1500} y={250} s={1.22} lit={0.9} niveau={0.75} />
+        <ChemexGarnie x={1590} y={250} s={1.15} lit={0.9} niveau={0.75} />
       </svg>
       <div style={{ position: "absolute", left: 120, top: 210 }}>
         <div style={{ fontFamily: SANS, fontWeight: 600, fontSize: 34, letterSpacing: "0.22em", color: "rgba(239,199,156,0.75)" }}>ÉPISODE 3</div>
-        <div style={{ fontFamily: SERIF, fontWeight: 500, fontSize: 230, lineHeight: 0.95, color: C.creme, marginTop: 20 }}>La Chemex</div>
+        <div style={{ fontFamily: SERIF, fontWeight: 500, fontSize: 214, lineHeight: 0.95, color: C.creme, marginTop: 20 }}>La Chemex</div>
         <div style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 400, fontSize: 168, lineHeight: 1, color: C.crema, marginTop: 4 }}>de A à Z</div>
         <div style={{ display: "inline-block", marginTop: 54, padding: "18px 36px", borderRadius: 999, backgroundColor: C.cerise, color: C.creme, fontFamily: SANS, fontWeight: 600, fontSize: 46, letterSpacing: "0.02em" }}>
           {`45${FINE}g · 750${FINE}g · 4–5${FINE}min`}

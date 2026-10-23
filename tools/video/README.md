@@ -47,8 +47,15 @@ et `V60EpisodeLettre`, l'image sans texte de la lettre, rendue avec `--scale=0.6
 `EspressoEpisodeLettre`, `EspressoShort-*`). La recette, le diagnostic et la fiche de fin rejouent les scènes du tuto
 espresso ; la machine de l'auteur figure en annotation écrite, la voix ne dit pas « je ». Musique :
 `MELODIE=aucune BATTERIE=standard node outils/musique-sf2.mjs episode-espresso <durée en s> 1476816975`, la graine du
-tuto espresso. Les briques de mise en page des deux épisodes (toile, légendes, styles de texte) sont dans
-`src/episodes/ui.tsx`.
+tuto espresso. Épisode 3 : la Chemex (`src/episodes/chemex/`, compositions `ChemexEpisode`,
+`ChemexEpisodeMiniature`, `ChemexEpisodeLettre`, `ChemexShort-*`). Le filtre, la mouture, l'eau, la recette, le
+diagnostic et la fiche de fin rejouent les scènes du tuto Chemex (`ChemexCafe` prend une `puce`, le nom du chapitre).
+Musique : `GRILLE=chemex MELODIE=aucune BATTERIE=room node outils/musique-sf2.mjs episode-chemex <durée en s> 1941`.
+Les briques de mise en page des épisodes (toile, légendes, styles de texte) sont dans `src/episodes/ui.tsx`.
+
+Hors série, `BlackFridayShort` (`src/episodes/black-friday/`) : un Short narré de 50 s tiré de la page
+journal/black-friday-cafe, un seul chapitre sans carte, même chaîne voix, musique (`BATTERIE=standard`, graine
+1580660788) et mixage.
 
 La voix fixe tout le minutage. Chaîne complète, depuis `tools/video` :
 
