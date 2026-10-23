@@ -1,0 +1,330 @@
+{
+  "titre": "La Chemex de A à Z",
+  "source": "journal/chemex-guide-complet",
+  "voix": {
+    "moteur": "voxcpm2",
+    "reference": "voix/narrateur"
+  },
+  "pauses": {
+    "phrase": 0.35,
+    "chapitre": 0.6,
+    "carte": 1.6
+  },
+  "chapitres": [
+    {
+      "id": "ouverture",
+      "num": "",
+      "titre": "La Chemex de A à Z",
+      "carte": false,
+      "phrases": [
+        {
+          "id": "o1",
+          "ecrit": "45 g de café, 750 g d’eau à 94 °C, et 4 à 5 minutes.",
+          "dit": "Quarante-cinq grammes de café, sept cent cinquante grammes d'eau à quatre-vingt-quatorze degrés, et quatre à cinq minutes."
+        },
+        {
+          "id": "o2",
+          "ecrit": "Et un filtre épais, qui décide d’une bonne partie de la tasse.",
+          "dit": "Et un filtre épais, qui décide d'une bonne partie de la tasse."
+        },
+        {
+          "id": "o3",
+          "ecrit": "Dans cet épisode, on la prépare de A à Z : le filtre, la dose, la mouture, l’eau, la recette pas à pas, et quoi régler quand la tasse ne va pas.",
+          "dit": "Dans cet épisode, on la prépare de A à Z : le filtre, la dose, la mouture, l'eau, la recette pas à pas, et quoi régler quand la tasse ne va pas."
+        }
+      ]
+    },
+    {
+      "id": "pourquoi",
+      "num": "01",
+      "titre": "Un objet de 1941",
+      "phrases": [
+        {
+          "id": "p1",
+          "ecrit": "Peter Schlumbohm, chimiste de formation, dessine la Chemex en 1941.",
+          "dit": "Peter Schlumbohm, chimiste de formation, dessine la Chemex en mille neuf cent quarante et un."
+        },
+        {
+          "id": "p2",
+          "ecrit": "Une seule pièce de verre soufflé, un col de bois serré par un lien de cuir : le MoMA de New York la garde dans sa collection permanente.",
+          "dit": "Une seule pièce de verre soufflé, un col de bois serré par un lien de cuir : le MoMA de New York la garde dans sa collection permanente."
+        },
+        {
+          "id": "p3",
+          "ecrit": "Elle infuse et sert dans le même objet, pour deux ou trois personnes.",
+          "dit": "Elle infuse et sert dans le même objet, pour deux ou trois personnes."
+        }
+      ]
+    },
+    {
+      "id": "filtre",
+      "num": "02",
+      "titre": "Le filtre",
+      "phrases": [
+        {
+          "id": "f1",
+          "ecrit": "Tout se joue sur le filtre : il pèse de 20 à 30 % de plus que le papier d’un V60.",
+          "dit": "Tout se joue sur le filtre : il pèse de vingt à trente pour cent de plus que le papier d'un V soixante."
+        },
+        {
+          "id": "f2",
+          "ecrit": "Il retient davantage d’huiles et de particules fines : la tasse sort limpide, légère, avec une acidité franche.",
+          "dit": "Il retient davantage d'huiles et de particules fines : la tasse sort limpide, légère, avec une acidité franche."
+        },
+        {
+          "id": "f3",
+          "ecrit": "Pliez-le en cône, et placez le côté à trois épaisseurs contre le bec verseur.",
+          "dit": "Pliez-le en cône, et placez le côté à trois épaisseurs contre le bec verseur."
+        },
+        {
+          "id": "f4",
+          "ecrit": "Il tient le papier écarté du bec, et l’air peut sortir de la carafe.",
+          "dit": "Il tient le papier écarté du bec, et l'air peut sortir de la carafe."
+        },
+        {
+          "id": "f5",
+          "ecrit": "Les filtres du V60 ne s’y adaptent pas : c’est le papier épais qui fait la tasse Chemex.",
+          "dit": "Les filtres du V soixante ne s'y adaptent pas : c'est le papier épais qui fait la tasse Chemex."
+        }
+      ]
+    },
+    {
+      "id": "materiel",
+      "num": "03",
+      "titre": "Le matériel",
+      "phrases": [
+        {
+          "id": "m1",
+          "ecrit": "Le reste du matériel tient en trois objets.",
+          "dit": "Le reste du matériel tient en trois objets."
+        },
+        {
+          "id": "m2",
+          "ecrit": "Une Chemex Classic de six tasses, autour de 44 €.",
+          "dit": "Une Chemex Classic de six tasses, autour de quarante-quatre euros."
+        },
+        {
+          "id": "m3",
+          "ecrit": "Une bouilloire à col de cygne d’au moins un litre : 750 g d’eau plus le rinçage dépassent les petites bouilloires.",
+          "dit": "Une bouilloire à col de cygne d'au moins un litre : sept cent cinquante grammes d'eau plus le rinçage dépassent les petites bouilloires."
+        },
+        {
+          "id": "m4",
+          "ecrit": "Et une balance avec chronomètre, pour les paliers et les 4 à 5 minutes.",
+          "dit": "Et une balance avec chronomètre, pour les paliers et les quatre à cinq minutes."
+        }
+      ]
+    },
+    {
+      "id": "dose",
+      "num": "04",
+      "titre": "La dose",
+      "phrases": [
+        {
+          "id": "d1",
+          "ecrit": "45 g de café pour 750 g d’eau : un ratio de 1:16,7.",
+          "dit": "Quarante-cinq grammes de café pour sept cent cinquante grammes d'eau : un ratio de un pour seize virgule sept."
+        },
+        {
+          "id": "d2",
+          "ecrit": "Pour 500 ml, comptez de 31 à 33 g.",
+          "dit": "Pour cinq cents millilitres, comptez de trente et un à trente-trois grammes."
+        },
+        {
+          "id": "d3",
+          "ecrit": "Pour 600 ml, de 37,5 à 40 g.",
+          "dit": "Pour six cents millilitres, de trente-sept grammes et demi à quarante grammes."
+        },
+        {
+          "id": "d4",
+          "ecrit": "Le ratio reste entre 1:15 et 1:17 : le papier épais pousse certains vers 1:17, pour une tasse plus légère.",
+          "dit": "Le ratio reste entre un pour quinze et un pour dix-sept : le papier épais pousse certains vers un pour dix-sept, pour une tasse plus légère."
+        }
+      ]
+    },
+    {
+      "id": "mouture",
+      "num": "05",
+      "titre": "La mouture",
+      "phrases": [
+        {
+          "id": "u1",
+          "ecrit": "Moulez médium-grossier, plus gros que pour un V60.",
+          "dit": "Moulez médium-grossier, plus gros que pour un V soixante."
+        },
+        {
+          "id": "u2",
+          "ecrit": "Le papier épais ralentit l’écoulement, et impose son tempo.",
+          "dit": "Le papier épais ralentit l'écoulement, et impose son tempo."
+        },
+        {
+          "id": "u3",
+          "ecrit": "Avec une mouture de V60, l’eau stagne dans le cône, et l’extraction dépasse les 5 minutes.",
+          "dit": "Avec une mouture de V soixante, l'eau stagne dans le cône, et l'extraction dépasse les cinq minutes."
+        }
+      ]
+    },
+    {
+      "id": "eau",
+      "num": "06",
+      "titre": "L’eau",
+      "phrases": [
+        {
+          "id": "e1",
+          "ecrit": "Chauffez l’eau à 94 °C.",
+          "dit": "Chauffez l'eau à quatre-vingt-quatorze degrés."
+        },
+        {
+          "id": "e2",
+          "ecrit": "Pour une torréfaction claire, restez entre 93 et 96 °C. Pour une médium, entre 91 et 93. Pour une foncée, entre 85 et 90.",
+          "dit": "Pour une torréfaction claire, restez entre quatre-vingt-treize et quatre-vingt-seize degrés. Pour une médium, entre quatre-vingt-onze et quatre-vingt-treize. Pour une foncée, entre quatre-vingt-cinq et quatre-vingt-dix."
+        }
+      ]
+    },
+    {
+      "id": "recette",
+      "num": "07",
+      "titre": "La recette pas à pas",
+      "phrases": [
+        {
+          "id": "r1",
+          "ecrit": "Passons à la recette, étape par étape.",
+          "dit": "Passons à la recette, étape par étape."
+        },
+        {
+          "id": "r2",
+          "ecrit": "Placez le filtre, rincez-le à l’eau chaude, puis videz l’eau par le bec, filtre en place.",
+          "dit": "Placez le filtre, rincez-le à l'eau chaude, puis videz l'eau par le bec, filtre en place."
+        },
+        {
+          "id": "r3",
+          "ecrit": "Versez les 45 g de café moulu, égalisez le lit, posez la Chemex sur la balance, et tarez à zéro.",
+          "dit": "Versez les quarante-cinq grammes de café moulu, égalisez le lit, posez la Chemex sur la balance, et tarez à zéro."
+        },
+        {
+          "id": "r4",
+          "ecrit": "Le bloom : 90 g d’eau, deux fois le poids du café, en spirale, puis 30 secondes d’attente.",
+          "dit": "Le bloum : quatre-vingt-dix grammes d'eau, deux fois le poids du café, en spirale, puis trente secondes d'attente."
+        },
+        {
+          "id": "r5",
+          "ecrit": "Le café gonfle, et dégaze.",
+          "dit": "Le café gonfle, et dégaze."
+        },
+        {
+          "id": "r6",
+          "ecrit": "Versez en spirales régulières jusqu’à 450 g.",
+          "dit": "Versez en spirales régulières jusqu'à quatre cent cinquante grammes."
+        },
+        {
+          "id": "r7",
+          "ecrit": "Puis jusqu’à 600 g, puis 750 g, en gardant l’eau sous le bord du filtre.",
+          "dit": "Puis jusqu'à six cents grammes, puis sept cent cinquante grammes, en gardant l'eau sous le bord du filtre."
+        },
+        {
+          "id": "r8",
+          "ecrit": "Laissez l’eau finir de passer : 4 à 5 minutes au total. Retirez le filtre, et servez.",
+          "dit": "Laissez l'eau finir de passer : quatre à cinq minutes au total. Retirez le filtre, et servez."
+        }
+      ]
+    },
+    {
+      "id": "diagnostic",
+      "num": "08",
+      "titre": "Trop rapide, trop lent",
+      "phrases": [
+        {
+          "id": "g1",
+          "ecrit": "Regardez le chronomètre avant de goûter.",
+          "dit": "Regardez le chronomètre avant de goûter."
+        },
+        {
+          "id": "g2",
+          "ecrit": "Sous 4 minutes, l’eau traverse trop vite : la tasse paraît acide et creuse. Moulez plus fin.",
+          "dit": "Sous quatre minutes, l'eau traverse trop vite : la tasse paraît acide et creuse. Moulez plus fin."
+        },
+        {
+          "id": "g3",
+          "ecrit": "Au-delà de 5 minutes, la mouture est trop fine pour ce papier : la tasse devient amère et sèche. Moulez plus gros.",
+          "dit": "Au-delà de cinq minutes, la mouture est trop fine pour ce papier : la tasse devient amère et sèche. Moulez plus gros."
+        },
+        {
+          "id": "g4",
+          "ecrit": "Changez une seule variable à la fois.",
+          "dit": "Changez une seule variable à la fois."
+        }
+      ]
+    },
+    {
+      "id": "erreurs",
+      "num": "09",
+      "titre": "Trois erreurs à éviter",
+      "phrases": [
+        {
+          "id": "x1",
+          "ecrit": "Trois erreurs reviennent souvent.",
+          "dit": "Trois erreurs reviennent souvent."
+        },
+        {
+          "id": "x2",
+          "ecrit": "Mettre le côté simple du filtre contre le bec : le papier se plaque, et l’air ne sort plus.",
+          "dit": "Mettre le côté simple du filtre contre le bec : le papier se plaque, et l'air ne sort plus."
+        },
+        {
+          "id": "x3",
+          "ecrit": "Garder la mouture du V60 : l’eau stagne, et la tasse tourne amère.",
+          "dit": "Garder la mouture du V soixante : l'eau stagne, et la tasse tourne amère."
+        },
+        {
+          "id": "x4",
+          "ecrit": "Et sauter le rinçage : le goût de papier reste, et le verre reste froid.",
+          "dit": "Et sauter le rinçage : le goût de papier reste, et le verre reste froid."
+        }
+      ]
+    },
+    {
+      "id": "cafe",
+      "num": "10",
+      "titre": "Quel café pour la Chemex",
+      "phrases": [
+        {
+          "id": "c1",
+          "ecrit": "La Chemex met la clarté et l’acidité au premier plan.",
+          "dit": "La Chemex met la clarté et l'acidité au premier plan."
+        },
+        {
+          "id": "c2",
+          "ecrit": "Un Kenya torréfié clair, ou un Éthiopie floral, y donnent des tasses très nettes.",
+          "dit": "Un Kenya torréfié clair, ou un Éthiopie floral, y donnent des tasses très nettes."
+        },
+        {
+          "id": "c3",
+          "ecrit": "Un café chocolaté, plus torréfié, y perd une partie de son corps : le papier retient les huiles qui le portent.",
+          "dit": "Un café chocolaté, plus torréfié, y perd une partie de son corps : le papier retient les huiles qui le portent."
+        }
+      ]
+    },
+    {
+      "id": "recap",
+      "num": "11",
+      "titre": "Récapitulatif",
+      "phrases": [
+        {
+          "id": "f6",
+          "ecrit": "On récapitule : 45 g de café, 750 g d’eau à 94 °C, un bloom de 90 g, trois paliers, et 4 à 5 minutes.",
+          "dit": "On récapitule : quarante-cinq grammes de café, sept cent cinquante grammes d'eau à quatre-vingt-quatorze degrés, un bloum de quatre-vingt-dix grammes, trois paliers, et quatre à cinq minutes."
+        },
+        {
+          "id": "f7",
+          "ecrit": "Le V60 pour goûter un café, la Chemex pour en servir.",
+          "dit": "Le V soixante pour goûter un café, la Chemex pour en servir."
+        },
+        {
+          "id": "f8",
+          "ecrit": "La recette complète est sur filtre.cafe.",
+          "dit": "La recette complète est sur filtre point café."
+        }
+      ]
+    }
+  ]
+}

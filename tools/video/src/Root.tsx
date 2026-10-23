@@ -22,6 +22,7 @@ import { Fond } from "./dessins/Fond";
 import { V60Episode, V60EpisodeLettre, V60EpisodeMiniature, V60Short, V60_EPISODE_DUREE, V60_SHORTS, dureeShort } from "./episodes/v60/Episode";
 import { ESPRESSO_EPISODE_DUREE, ESPRESSO_SHORTS, EspressoEpisode, EspressoEpisodeLettre, EspressoEpisodeMiniature, EspressoShort, dureeShortEspresso } from "./episodes/espresso/Episode";
 import { BLACK_FRIDAY_DUREE, BlackFridayShort } from "./episodes/black-friday/Short";
+import { CHEMEX_EPISODE_DUREE, CHEMEX_SHORTS, ChemexEpisode, ChemexEpisodeLettre, ChemexEpisodeMiniature, ChemexShort, dureeShortChemex } from "./episodes/chemex/Episode";
 import { ChaineAvatar, ChaineBanniere } from "./chaine/Chaine";
 import { V60Affiche, V60AfficheVerticale } from "./v60/Affiche";
 import { V60Paysage, V60Vertical, V60_DUREE } from "./v60/V60Vertical";
@@ -109,6 +110,21 @@ export const RemotionRoot: React.FC = () => {
             component={EspressoShort}
             defaultProps={{ chapitre: id }}
             durationInFrames={dureeShortEspresso(id)}
+            fps={30}
+            width={1080}
+            height={1920}
+          />
+        ))}
+        <Composition id="ChemexEpisode" component={ChemexEpisode} durationInFrames={CHEMEX_EPISODE_DUREE} fps={30} width={1920} height={1080} />
+        <Still id="ChemexEpisodeMiniature" component={ChemexEpisodeMiniature} width={1920} height={1080} />
+        <Still id="ChemexEpisodeLettre" component={ChemexEpisodeLettre} width={1920} height={1080} />
+        {CHEMEX_SHORTS.map((id) => (
+          <Composition
+            key={id}
+            id={`ChemexShort-${id}`}
+            component={ChemexShort}
+            defaultProps={{ chapitre: id }}
+            durationInFrames={dureeShortChemex(id)}
             fps={30}
             width={1080}
             height={1920}

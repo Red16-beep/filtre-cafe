@@ -33,7 +33,8 @@ const TEINTES = ["#7a4a2a", "#9a6238", "#5a321a", "#b07a48"];
 const TAILLES = [2.4, 4, 6, 8.5, 11.5];
 const GRAPPES_X = [150, 345, 540, 735, 930];
 
-export const ChemexCafe: React.FC = () => {
+// `puce` : l'étape du tuto ; l'épisode y met le nom du chapitre.
+export const ChemexCafe: React.FC<{ puce?: string }> = ({ puce = "ÉTAPE 2" }) => {
   const frame = useCurrentFrame();
   const paysage = usePaysage();
   // En paysage, les dessins passent dans la moitié droite.
@@ -86,7 +87,7 @@ export const ChemexCafe: React.FC = () => {
     <AbsoluteFill name="Café">
       <Sequence name="Peser" durationInFrames={72} layout="none">
         <Legende
-          puce="ÉTAPE 2"
+          puce={puce}
           titre={"Peser 45 g de café"}
           duree={72}
           taille={96}
@@ -94,7 +95,7 @@ export const ChemexCafe: React.FC = () => {
       </Sequence>
       <Sequence name="Mouture" from={66} layout="none">
         <Legende
-          puce="ÉTAPE 2"
+          puce={puce}
           titre="Mouture médium-grossière"
           taille={100}
           sous="plus grosse que pour un V60"
