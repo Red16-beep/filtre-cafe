@@ -1,0 +1,68 @@
+{
+  "titre": "Black Friday café : la vraie promo",
+  "source": "journal/black-friday-cafe (prix relevés chez Coffee Friend le 9 octobre 2026)",
+  "voix": {
+    "moteur": "voxcpm2",
+    "reference": "voix/narrateur"
+  },
+  "pauses": {
+    "phrase": 0.35,
+    "chapitre": 0.6,
+    "carte": 1.6
+  },
+  "chapitres": [
+    {
+      "id": "short",
+      "num": "",
+      "titre": "Black Friday café",
+      "carte": false,
+      "phrases": [
+        {
+          "id": "b1",
+          "ecrit": "Le 27 novembre, presque tout le matériel café affichera un prix barré.",
+          "dit": "Le vingt-sept novembre, presque tout le matériel café affichera un prix barré."
+        },
+        {
+          "id": "b2",
+          "ecrit": "Mais un « -30 % » ne dit rien tant qu’on ne connaît pas le prix normal.",
+          "dit": "Mais un moins trente pour cent ne dit rien tant qu'on ne connaît pas le prix normal."
+        },
+        {
+          "id": "b3",
+          "ecrit": "filtré. a relevé ces prix normaux le 9 octobre, avant la saison des promos.",
+          "dit": "Filtré a relevé ces prix normaux le neuf octobre, avant la saison des promos."
+        },
+        {
+          "id": "b4",
+          "ecrit": "Le moulin Timemore C3S Pro, par exemple : 69 €. Une vraie promo commence sous 59 €.",
+          "dit": "Le moulin Timemore C trois S Pro, par exemple : soixante-neuf euros. Une vraie promo commence sous cinquante-neuf euros."
+        },
+        {
+          "id": "b5",
+          "ecrit": "La règle : n’achetez que si le prix descend d’au moins 15 % sous le prix habituel.",
+          "dit": "La règle : n'achetez que si le prix descend d'au moins quinze pour cent sous le prix habituel."
+        },
+        {
+          "id": "b6",
+          "ecrit": "La loi aide un peu : depuis 2022, une réduction se calcule sur le prix le plus bas des 30 jours précédents.",
+          "dit": "La loi aide un peu : depuis deux mille vingt-deux, une réduction se calcule sur le prix le plus bas des trente jours précédents."
+        },
+        {
+          "id": "b7",
+          "ecrit": "Mais un « prix conseillé » barré n’est pas une réduction : la règle ne s’y applique pas.",
+          "dit": "Mais un prix conseillé barré n'est pas une réduction : la règle ne s'y applique pas."
+        },
+        {
+          "id": "b8",
+          "ecrit": "Et un prix monté début octobre devient, fin novembre, le prix de référence.",
+          "dit": "Et un prix monté début octobre devient, fin novembre, le prix de référence."
+        },
+        {
+          "id": "b9",
+          "ecrit": "Les prix normaux, rayon par rayon, sont sur filtre.cafe.",
+          "dit": "Les prix normaux, rayon par rayon, sont sur filtre point café."
+        }
+      ]
+    }
+  ]
+}
