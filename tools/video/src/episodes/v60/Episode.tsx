@@ -110,3 +110,18 @@ export const V60EpisodeMiniature: React.FC = () => (
     </AbsoluteFill>
   </FormatCtx.Provider>
 );
+
+// Image de la lettre, reliée à l'épisode : la miniature sans texte (la lettre n'en met jamais dans ses images),
+// un bouton de lecture à la place du titre. Rendue à 1200 px de large (--scale=0.625).
+export const V60EpisodeLettre: React.FC = () => (
+  <FormatCtx.Provider value="paysage">
+    <AbsoluteFill>
+      <Fond />
+      <svg width={1920} height={1080} viewBox="0 0 1920 1080" style={{ position: "absolute", inset: 0 }}>
+        <Dripper x={1176} y={334} s={1.9} trace={1} papier={1} lit={1} dome={10} />
+        <circle cx={536} cy={540} r={140} fill={C.cerise} />
+        <path d="M 489 461 L 489 619 L 626 540 Z" fill={C.creme} />
+      </svg>
+    </AbsoluteFill>
+  </FormatCtx.Provider>
+);

@@ -19,7 +19,8 @@ import { MOKA_DUREE, MokaAffiche, MokaAfficheVerticale, MokaPaysage, MokaVertica
 import { PRESS_DUREE, PressPaysage, PressVertical } from "./piston/Piston";
 import { PressAffiche, PressAfficheVerticale } from "./piston/scenes";
 import { Fond } from "./dessins/Fond";
-import { V60Episode, V60EpisodeMiniature, V60Short, V60_EPISODE_DUREE, V60_SHORTS, dureeShort } from "./episodes/v60/Episode";
+import { V60Episode, V60EpisodeLettre, V60EpisodeMiniature, V60Short, V60_EPISODE_DUREE, V60_SHORTS, dureeShort } from "./episodes/v60/Episode";
+import { ChaineAvatar, ChaineBanniere } from "./chaine/Chaine";
 import { V60Affiche, V60AfficheVerticale } from "./v60/Affiche";
 import { V60Paysage, V60Vertical, V60_DUREE } from "./v60/V60Vertical";
 import { Cafe } from "./v60/scenes/Cafe";
@@ -75,9 +76,14 @@ export const RemotionRoot: React.FC = () => {
         height={1080}
       />
       <Still id="V60Affiche" component={V60Affiche} width={1920} height={1080} />
+      <Folder name="Chaine">
+        <Still id="ChaineBanniere" component={ChaineBanniere} width={2560} height={1440} />
+        <Still id="ChaineAvatar" component={ChaineAvatar} width={800} height={800} />
+      </Folder>
       <Folder name="Episodes">
         <Composition id="V60Episode" component={V60Episode} durationInFrames={V60_EPISODE_DUREE} fps={30} width={1920} height={1080} />
         <Still id="V60EpisodeMiniature" component={V60EpisodeMiniature} width={1920} height={1080} />
+        <Still id="V60EpisodeLettre" component={V60EpisodeLettre} width={1920} height={1080} />
         {V60_SHORTS.map((id) => (
           <Composition
             key={id}

@@ -10,13 +10,16 @@ Lit src/episodes/<épisode>/narration.json et écrit :
 Moteur « voxcpm2 » (le narrateur de la série) : VoxCPM2 d'OpenBMB (Apache-2.0), calcul local sur CPU. Le narrateur
 est une voix créée par description (outils/voix.py), sans cloner personne, puis figée dans voix/<nom>.flac (+ <nom>.json,
 sa transcription) : chaque phrase reprend ce timbre, pour que la voix ne change ni d'une phrase à l'autre ni d'un
-épisode à l'autre. Environnement : Python 3.12, torch CPU, pip install voxcpm faster-whisper num2words.
+épisode à l'autre. Environnement : Python 3.12, torch CPU, pip install voxcpm faster-whisper num2words speechbrain.
 Autres moteurs : « qwen3 » (Qwen3-TTS-12Hz-1.7B-Base, Apache-2.0, pip install qwen-tts), et « kokoro », la première
 voix, abandonnée (Kokoro-82M via kokoro-onnx, modèles dans $TTS_MODELES).
 
 Chaque prise est relue par faster-whisper (modèle small). Une prise où plus de 15 % des mots (et plus d'un) ne sont pas
 reconnus est refaite, trois prises au plus, et la meilleure est gardée ; si elle reste douteuse, la phrase est signalée,
 à réécrire dans le champ « dit » (orthographe phonétique : « bloum », « V soixante »).
+Avec un moteur aléatoire, chaque prise passe aussi un garde-fou de ton (classe Garde) : hauteur, envolées vers l'aigu
+et timbre comparés à la voix de référence. Une prise qui s'en écarte est refaite de la même façon, et signalée
+« TON À REVOIR » si aucune des trois ne passe.
 Les phrases déjà synthétisées sont gardées en cache (out/voix-cache), seules les phrases modifiées repartent.
 """
 import hashlib
@@ -175,6 +178,45 @@ def taux_erreur(ref, hyp):
     return d[len(h)] / max(1, len(r))
 
 
+# ── garde-fou de ton ──
+class Garde:
+    """Compare chaque prise à la voix de référence : hauteur médiane et envolées (en demi-tons), timbre (ECAPA,
+    speechbrain/spkrec-ecapa-voxceleb). Une prise qui part dans les aigus ou dont le timbre s'éloigne est refaite,
+    comme une prise mal comprise. Moteurs aléatoires seulement ; il faut librosa et speechbrain."""
+    HAUTEUR, ENVOLEE, TIMBRE = 3.0, 12.0, 0.80
+
+    def __init__(self, reference):
+        import librosa
+        import torch
+        from speechbrain.inference.speaker import EncoderClassifier
+        self.librosa, self.torch = librosa, torch
+        self.ecapa = EncoderClassifier.from_hparams(source='speechbrain/spkrec-ecapa-voxceleb',
+                                                    savedir=str(RACINE / 'out' / 'ecapa'), run_opts={'device': 'cpu'})
+        x = librosa.load(str(reference), sr=16000)[0]
+        self.f0_ref = float(np.median(self._f0(x)))
+        self.e_ref = self._timbre(x)
+
+    def _f0(self, x):
+        f0, voise, _ = self.librosa.pyin(x, fmin=60, fmax=400, sr=16000, frame_length=1024)
+        return f0[voise & ~np.isnan(f0)]
+
+    def _timbre(self, x):
+        with self.torch.no_grad():
+            e = self.ecapa.encode_batch(self.torch.from_numpy(np.ascontiguousarray(x))[None]).squeeze()
+        return e / e.norm()
+
+    def defaut(self, x):
+        """0 pour une prise dans la norme ; sinon l'écart cumulé (le timbre compte 20 par point sous le seuil)."""
+        y = reechantillonner(x, SR, 16000)
+        st = 12 * np.log2(self._f0(y) / self.f0_ref)
+        if not len(st):
+            return 99.0, 'aucune voix détectée'
+        med, haut = float(np.median(st)), float(np.percentile(st, 97))
+        timbre = float(self._timbre(y) @ self.e_ref)
+        d = max(0.0, abs(med) - self.HAUTEUR) + max(0.0, haut - self.ENVOLEE) / 2 + max(0.0, self.TIMBRE - timbre) * 20
+        return d, f'hauteur {med:+.1f} dt, envolée {haut:+.1f} dt, timbre {timbre:.2f}'
+
+
 def srt_temps(s):
     ms = int(round(s * 1000))
     return f'{ms // 3600000:02d}:{ms // 60000 % 60:02d}:{ms // 1000 % 60:02d},{ms % 1000:03d}'
@@ -211,12 +253,15 @@ def main(episode):
     # Synthèse des phrases absentes du cache, par lots triés par longueur ; une prise douteuse repart avec une autre graine.
     dits = [p['dit'] for ch in n['chapitres'] for p in ch['phrases']]
     cle = {d: hashlib.sha1(json.dumps([*empreinte, d], ensure_ascii=False).encode()).hexdigest()[:16] for d in dits}
-    prises = {}
+    # Chaque prise a un coût : zéro si elle est comprise et dans le ton de la référence ; on garde la moins chère.
+    prises, garde = {}, None
     a_faire = sorted({d for d in dits if not (cache / f'{cle[d]}.wav').exists()}, key=len)
     for k in range(PRISES if Moteur.aleatoire else 1):
         if not a_faire:
             break
         moteur = moteur or Moteur(v)
+        if Moteur.aleatoire and 'reference' in v and garde is None:
+            garde = Garde(RACINE / f"{v['reference']}.flac")
         for i in range(0, len(a_faire), Moteur.lot):
             lot = a_faire[i:i + Moteur.lot]
             graine = int(cle[lot[0]][:8], 16) + k
@@ -224,16 +269,18 @@ def main(episode):
             for d, (audio, sr) in zip(lot, sons):
                 x = egaliser(rogner(reechantillonner(audio, sr, SR), SR), SR)
                 err, entendu = ecoute(x, d)
-                if d not in prises or err < prises[d][1]:
-                    prises[d] = (x, err, entendu)
+                ton, detail = garde.defaut(x) if garde else (0.0, '')
+                cout = max(0.0, err - tolere(d)) * 10 + ton
+                if d not in prises or cout < prises[d][3]:
+                    prises[d] = (x, err, entendu, cout, detail)
                     ecrire_wav(cache / f'{cle[d]}.wav', x, SR)
             print(f'prise {k + 1} : {i + len(lot)}/{len(a_faire)} phrases', flush=True)
-        a_faire = [d for d in a_faire if prises[d][1] > tolere(d)]
+        a_faire = [d for d in a_faire if prises[d][3] > 0]
 
     t = 0.4
     morceaux = [np.zeros(int(t * SR), np.float32)]
     sortie = {'fps': FPS, 'chapitres': []}
-    srt, alertes = [], []
+    srt, alertes, tons = [], [], []
 
     def silence(s):
         nonlocal t
@@ -247,7 +294,9 @@ def main(episode):
             silence(pauses['carte'])
         for p in ch['phrases']:
             if p['dit'] in prises:
-                x, err, entendu = prises[p['dit']]
+                x, err, entendu, cout, detail = prises[p['dit']]
+                if detail and cout > 0 and err <= tolere(p['dit']):
+                    tons.append((p['id'], detail))
             else:
                 x, sr = lire_wav(cache / f"{cle[p['dit']]}.wav")
                 x = reechantillonner(x, sr, SR)
@@ -277,6 +326,8 @@ def main(episode):
     print(f'durée totale {t:.1f} s ({sortie["duree"]} images)')
     for pid, err, dit, entendu in alertes:
         print(f'À REVOIR {pid} ({err * 100:.0f} % de mots non reconnus)\n   dit     : {dit}\n   entendu : {entendu}')
+    for pid, detail in tons:
+        print(f'TON À REVOIR {pid} : {detail}, après {PRISES} prises')
 
 
 if __name__ == '__main__':

@@ -40,7 +40,9 @@ Les 110 articles sans tuto vidéo ont une illustration 1200 × 675 sous leur en-
 ## Épisodes narrés : « les méthodes de A à Z » (22 octobre 2026)
 
 Un épisode YouTube de 4 à 5 min par méthode, voix de synthèse, et trois ou quatre Shorts tirés de ses chapitres.
-Épisode 1 : le V60 (`src/episodes/v60/`, 4 min 20, compositions `V60Episode`, `V60EpisodeMiniature`, `V60Short-*`).
+Épisode 1 : le V60 (`src/episodes/v60/`, 4 min 20, compositions `V60Episode`, `V60EpisodeMiniature`, `V60Short-*`,
+et `V60EpisodeLettre`, l'image sans texte de la lettre, rendue avec `--scale=0.625`). Habillage de la chaîne YouTube :
+`ChaineBanniere` (2560 × 1440) et `ChaineAvatar` (800 × 800), dans `src/chaine/`.
 
 La voix fixe tout le minutage. Chaîne complète, depuis `tools/video` :
 
@@ -48,26 +50,29 @@ La voix fixe tout le minutage. Chaîne complète, depuis `tools/video` :
    champ `dit` pour la voix (nombres en toutes lettres, « V soixante », « bloum »). Aucun chiffre hors des articles.
    La voix étant synthétique, la narration ne dit pas « je ».
 2. **Voix** : `python outils/narration.py v60`, avec un Python 3.12 où sont installés torch (CPU), `voxcpm
-   faster-whisper num2words`. Moteur VoxCPM2 (`openbmb/VoxCPM2`, Apache-2.0, 4,7 Go téléchargés au premier lancement),
-   environ 40 min de calcul pour 4 min de voix sur 4 cœurs. Le narrateur de la série est une voix créée par
-   description, sans cloner personne (`outils/voix.py`), figée dans `voix/narrateur.flac` et `voix/narrateur.json` (sa
-   transcription, la description et la graine d'origine, sa consigne de ton « style » et sa chaîne « studio », voir le
-   mixage) : chaque phrase reprend ce timbre, d'un épisode à l'autre. La référence ne donne que le timbre ; le ton
-   suit le texte et la consigne (narration vivante, intonation variée). Le mode `"mode": "complet"` amorce aussi
-   chaque phrase avec l'extrait de référence : il en recopie le ton posé, et toutes les phrases finissent sur la même
-   note (voix jugée plate). Écrit la piste voix (`public/audio/`), `minutage.json` (à suivre dans
-   git) et `out/episode-v60.srt`. Chaque prise est relue par faster-whisper et refaite si plus de 15 % des mots
-   échappent (trois prises au plus) ; une phrase signalée « À REVOIR » est à réécrire dans `dit` (les homophones sont
-   de fausses alertes). Autres moteurs : `"moteur": "qwen3"` (Qwen3-TTS, Apache-2.0, `pip install qwen-tts`, par lots,
-   plus rapide), et la première voix, Kokoro, jugée trop robotique (`"moteur": "kokoro", "locuteur": "ff_siwis",
-   "vitesse": 0.92`).
+   faster-whisper num2words speechbrain` (et librosa). Moteur VoxCPM2 (`openbmb/VoxCPM2`, Apache-2.0, 4,7 Go
+   téléchargés au premier lancement), environ 40 min de calcul pour 4 min de voix sur 4 cœurs, plus les reprises. Le
+   narrateur de la série est une voix créée par description, sans cloner personne (`outils/voix.py`), figée dans
+   `voix/narrateur.flac` et `voix/narrateur.json` (sa transcription, la description et la graine d'origine, et sa
+   chaîne « studio », voir le mixage) : chaque phrase reprend ce timbre, d'un épisode à l'autre. La référence ne donne
+   que le timbre ; le ton suit le texte. Une consigne de ton (`"style"` dans le JSON) reste possible mais n'est plus
+   utilisée : « animateur souriant » montait la voix de deux demi-tons et faisait partir les phrases courtes dans
+   l'aigu. Le mode `"mode": "complet"` amorce aussi chaque phrase avec l'extrait de référence : il en recopie le ton
+   posé, et toutes les phrases finissent sur la même note (voix jugée plate). Écrit la piste voix (`public/audio/`),
+   `minutage.json` (à suivre dans git) et `out/episode-v60.srt`. Chaque prise est relue par faster-whisper et refaite
+   si plus de 15 % des mots échappent. Elle passe aussi un garde-fou de ton, qui la compare à la référence : hauteur
+   médiane à 3 demi-tons près, envolées (97e centile) sous +12 demi-tons, timbre (ECAPA de speechbrain) à 0,80 au
+   moins. Trois prises au plus, la meilleure est gardée. Une phrase signalée « À REVOIR » est à réécrire dans `dit`
+   (les homophones sont de fausses alertes) ; une phrase « TON À REVOIR » est à écouter, et à reformuler si elle sonne
+   faux. Autres moteurs : `"moteur": "qwen3"` (Qwen3-TTS, Apache-2.0, `pip install qwen-tts`, par lots, plus rapide),
+   et la première voix, Kokoro, jugée trop robotique (`"moteur": "kokoro", "locuteur": "ff_siwis", "vitesse": 0.92`).
 3. **Musique** : `MELODIE=aucune BATTERIE=jazz node outils/musique-sf2.mjs episode-v60 <durée en s> 462885100`, la graine du tuto
    V60 sans sa mélodie (même accompagnement, rien ne chante sous la voix).
 4. **Mixage** : `python3 outils/mixage.py v60`. La voix passe d'abord par la chaîne « studio » du narrateur (filtres
    ffmpeg de `voix/narrateur.json`, appliqués à -20 LUFS : graves parasites coupés sous 80 Hz, débruitage léger,
    -4 dB à 230 Hz, +4,5 dB à 3,3 kHz, +3,5 dB au-dessus de 9 kHz, dé-esseur, compression 2:1 légère pour garder le
    relief, pauses nettoyées), pour un son de studio radio ; puis musique à 18 dB sous la voix, 9 dB dans les silences,
-   -14 LUFS. `voix.py` n'écrit ni `style` ni `studio` : les reporter si l'on recrée la voix.
+   -14 LUFS. `voix.py` n'écrit pas `studio` : la reporter si l'on recrée la voix.
 5. **Contrôle** : `CHROME=… CHROME_MODE=headless-shell node outils/planche.mjs V60Episode <images> planche.png 0.25 7`.
 6. **Rendu** : `npx remotion render V60Episode out/episode-v60.mp4 --crf=18 --audio-codec=aac --audio-bitrate=192k`
    (le son est dans la composition), puis les Shorts : `npx remotion render V60Short-dose …`.
