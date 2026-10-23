@@ -10,412 +10,412 @@
     {
      "id": "o1",
      "debut": 12,
-     "fin": 165,
+     "fin": 145,
      "texte": "15 g de café, 250 g d’eau, 93 °C, et trois minutes devant vous."
     },
     {
      "id": "o2",
-     "debut": 176,
-     "fin": 237,
+     "debut": 155,
+     "fin": 217,
      "texte": "C’est tout ce qu’il faut pour un V60 réussi."
     },
     {
      "id": "o3",
-     "debut": 248,
-     "fin": 497,
+     "debut": 227,
+     "fin": 506,
      "texte": "Dans cet épisode, on le prépare de A à Z : le matériel, la dose, la mouture, l’eau, la recette pas à pas, et quoi régler quand la tasse ne va pas."
     }
    ],
-   "fin": 526
+   "fin": 534
   },
   {
    "id": "pourquoi",
    "num": "01",
    "titre": "Pourquoi le V60",
-   "debut": 526,
+   "debut": 534,
    "phrases": [
     {
      "id": "p1",
-     "debut": 574,
-     "fin": 654,
+     "debut": 582,
+     "fin": 683,
      "texte": "Le V60 de Hario est sorti en 2004."
     },
     {
      "id": "p2",
-     "debut": 665,
-     "fin": 830,
+     "debut": 694,
+     "fin": 875,
      "texte": "Il reste la référence du café filtre, parce qu’il ne cache rien : ce que vous mettez dedans, vous le retrouvez dans la tasse."
     },
     {
      "id": "p3",
-     "debut": 841,
-     "fin": 884,
+     "debut": 885,
+     "fin": 942,
      "texte": "C’est l’école du café filtre."
     }
    ],
    "carte": {
-    "debut": 526,
-    "fin": 574
+    "debut": 534,
+    "fin": 582
    },
-   "fin": 912
+   "fin": 970
   },
   {
    "id": "materiel",
    "num": "02",
    "titre": "Le matériel",
-   "debut": 912,
+   "debut": 970,
    "phrases": [
     {
      "id": "m1",
-     "debut": 960,
-     "fin": 1032,
+     "debut": 1018,
+     "fin": 1081,
      "texte": "Le matériel tient en cinq objets."
     },
     {
      "id": "m2",
-     "debut": 1043,
-     "fin": 1200,
+     "debut": 1091,
+     "fin": 1245,
      "texte": "Un V60 en plastique, taille 02 : il garde bien la chaleur, pour moins de 15 €."
     },
     {
      "id": "m3",
-     "debut": 1210,
-     "fin": 1303,
+     "debut": 1255,
+     "fin": 1349,
      "texte": "Des filtres Hario, que l’on rince à l’eau chaude avant chaque café."
     },
     {
      "id": "m4",
-     "debut": 1313,
-     "fin": 1472,
+     "debut": 1360,
+     "fin": 1518,
      "texte": "Une balance, si possible avec un minuteur intégré : c’est le seul outil qui ne se négocie pas."
     },
     {
      "id": "m5",
-     "debut": 1482,
-     "fin": 1622,
+     "debut": 1529,
+     "fin": 1649,
      "texte": "Une bouilloire à col de cygne, pour tenir le débit et la direction de l’eau."
     },
     {
      "id": "m6",
-     "debut": 1632,
-     "fin": 1829,
+     "debut": 1659,
+     "fin": 1880,
      "texte": "Et un moulin, pour moudre le grain juste avant de préparer : le café moulu d’avance perd ses arômes en quelques heures."
     }
    ],
    "carte": {
-    "debut": 912,
-    "fin": 960
+    "debut": 970,
+    "fin": 1018
    },
-   "fin": 1857
+   "fin": 1908
   },
   {
    "id": "dose",
    "num": "03",
    "titre": "La dose",
-   "debut": 1857,
+   "debut": 1908,
    "phrases": [
     {
      "id": "d1",
-     "debut": 1905,
-     "fin": 2030,
+     "debut": 1956,
+     "fin": 2085,
      "texte": "15 g de café pour 250 g d’eau : un ratio de 1:16."
     },
     {
      "id": "d2",
-     "debut": 2041,
-     "fin": 2178,
+     "debut": 2096,
+     "fin": 2206,
      "texte": "Pour un grand mug de 350 ml, comptez 22 g."
     },
     {
      "id": "d3",
-     "debut": 2188,
-     "fin": 2270,
+     "debut": 2216,
+     "fin": 2308,
      "texte": "Pour deux tasses, 31 g pour un demi-litre."
     },
     {
      "id": "d4",
-     "debut": 2281,
-     "fin": 2516,
+     "debut": 2318,
+     "fin": 2553,
      "texte": "Et pesez toujours : une cuillère à soupe de café moulu pèse entre 5 et 8 g, jusqu’à 60 % d’écart d’une cuillère à l’autre."
     }
    ],
    "carte": {
-    "debut": 1857,
-    "fin": 1905
+    "debut": 1908,
+    "fin": 1956
    },
-   "fin": 2544
+   "fin": 2582
   },
   {
    "id": "mouture",
    "num": "04",
    "titre": "La mouture",
-   "debut": 2544,
+   "debut": 2582,
    "phrases": [
     {
      "id": "u1",
-     "debut": 2592,
-     "fin": 2663,
+     "debut": 2630,
+     "fin": 2697,
      "texte": "La mouture est la variable qui compte le plus."
     },
     {
      "id": "u2",
-     "debut": 2674,
-     "fin": 2813,
+     "debut": 2708,
+     "fin": 2850,
      "texte": "Pour le V60, visez une mouture médium-fine, comme du sucre semoule."
     },
     {
      "id": "u3",
-     "debut": 2823,
-     "fin": 2981,
+     "debut": 2860,
+     "fin": 3004,
      "texte": "Plus fine, l’eau coule moins vite, et le café devient plus intense, jusqu’à l’amertume."
     },
     {
      "id": "u4",
-     "debut": 2992,
-     "fin": 3136,
+     "debut": 3015,
+     "fin": 3143,
      "texte": "Plus grosse, l’eau passe trop vite, et la tasse devient plate, acide, aqueuse."
     }
    ],
    "carte": {
-    "debut": 2544,
-    "fin": 2592
+    "debut": 2582,
+    "fin": 2630
    },
-   "fin": 3164
+   "fin": 3172
   },
   {
    "id": "eau",
    "num": "05",
    "titre": "L’eau",
-   "debut": 3164,
+   "debut": 3172,
    "phrases": [
     {
      "id": "e1",
-     "debut": 3212,
-     "fin": 3277,
+     "debut": 3220,
+     "fin": 3268,
      "texte": "L’eau fait l’essentiel de votre tasse."
     },
     {
      "id": "e2",
-     "debut": 3287,
-     "fin": 3368,
+     "debut": 3278,
+     "fin": 3326,
      "texte": "Chauffez-la à 93 °C."
     },
     {
      "id": "e3",
-     "debut": 3378,
-     "fin": 3554,
+     "debut": 3337,
+     "fin": 3523,
      "texte": "Côté minéraux, la référence historique, celle de la SCAA, vise 150 mg par litre."
     },
     {
      "id": "e4",
-     "debut": 3564,
-     "fin": 3771,
+     "debut": 3534,
+     "fin": 3715,
      "texte": "Au test à l’aveugle de filtré., Volvic et Mont Blanc arrivent en tête, et une eau du robinet très calcaire finit dernière."
     }
    ],
    "carte": {
-    "debut": 3164,
-    "fin": 3212
+    "debut": 3172,
+    "fin": 3220
    },
-   "fin": 3799
+   "fin": 3744
   },
   {
    "id": "recette",
    "num": "06",
    "titre": "La recette pas à pas",
-   "debut": 3799,
+   "debut": 3744,
    "phrases": [
     {
      "id": "r1",
-     "debut": 3847,
-     "fin": 3972,
+     "debut": 3792,
+     "fin": 3872,
      "texte": "Et maintenant, passons à la recette, étape par étape."
     },
     {
      "id": "r2",
-     "debut": 3982,
-     "fin": 4210,
+     "debut": 3882,
+     "fin": 4102,
      "texte": "Posez le filtre dans le V60 et rincez-le avec 100 g d’eau chaude : ça retire le goût de papier, et ça préchauffe le tout."
     },
     {
      "id": "r3",
-     "debut": 4221,
-     "fin": 4274,
+     "debut": 4112,
+     "fin": 4154,
      "texte": "Jetez cette eau de rinçage."
     },
     {
      "id": "r4",
-     "debut": 4284,
-     "fin": 4529,
+     "debut": 4165,
+     "fin": 4361,
      "texte": "Versez les 15 g de café moulu, tapotez pour aplanir le lit, posez sur la balance, et tarez à zéro."
     },
     {
      "id": "r5",
-     "debut": 4539,
-     "fin": 4687,
+     "debut": 4372,
+     "fin": 4525,
      "texte": "Le bloom d’abord : 30 g d’eau sur tout le café, puis 30 secondes d’attente."
     },
     {
      "id": "r6",
-     "debut": 4697,
-     "fin": 4798,
+     "debut": 4536,
+     "fin": 4612,
      "texte": "Le café gonfle, et relâche son gaz carbonique."
     },
     {
      "id": "r7",
-     "debut": 4808,
-     "fin": 4957,
+     "debut": 4623,
+     "fin": 4777,
      "texte": "À 30 secondes, versez jusqu’à 150 g, en spirale lente, du centre vers l’extérieur."
     },
     {
      "id": "r8",
-     "debut": 4968,
-     "fin": 5095,
+     "debut": 4787,
+     "fin": 4883,
      "texte": "À 1 minute, montez à 200 g, toujours en spirale."
     },
     {
      "id": "r9",
-     "debut": 5106,
-     "fin": 5277,
+     "debut": 4894,
+     "fin": 5071,
      "texte": "À 1 min 30, terminez à 250 g, par un versement doux au centre, pour lisser le lit."
     },
     {
      "id": "r10",
-     "debut": 5288,
-     "fin": 5441,
+     "debut": 5081,
+     "fin": 5211,
      "texte": "Puis laissez couler. Le lit doit être à sec entre 2 min 30 et 3 min 30."
     }
    ],
    "carte": {
-    "debut": 3799,
-    "fin": 3847
+    "debut": 3744,
+    "fin": 3792
    },
-   "fin": 5469
+   "fin": 5239
   },
   {
    "id": "diagnostic",
    "num": "07",
    "titre": "Trop rapide, trop lent",
-   "debut": 5469,
+   "debut": 5239,
    "phrases": [
     {
      "id": "g1",
-     "debut": 5517,
-     "fin": 5604,
+     "debut": 5287,
+     "fin": 5335,
      "texte": "Ce temps de débit, c’est votre baromètre."
     },
     {
      "id": "g2",
-     "debut": 5614,
-     "fin": 5795,
+     "debut": 5346,
+     "fin": 5499,
      "texte": "Si l’eau a fini de couler avant 2 min 30, et que le café est plat ou acide, serrez la mouture."
     },
     {
      "id": "g3",
-     "debut": 5806,
-     "fin": 5979,
+     "debut": 5510,
+     "fin": 5635,
      "texte": "Si elle traîne après 3 min 30, et que le café est amer, desserrez-la."
     },
     {
      "id": "g4",
-     "debut": 5989,
-     "fin": 6090,
+     "debut": 5645,
+     "fin": 5749,
      "texte": "Changez une seule variable à la fois, et notez vos temps."
     }
    ],
    "carte": {
-    "debut": 5469,
-    "fin": 5517
+    "debut": 5239,
+    "fin": 5287
    },
-   "fin": 6118
+   "fin": 5777
   },
   {
    "id": "erreurs",
    "num": "08",
    "titre": "Trois erreurs à éviter",
-   "debut": 6118,
+   "debut": 5777,
    "phrases": [
     {
      "id": "x1",
-     "debut": 6166,
-     "fin": 6208,
+     "debut": 5825,
+     "fin": 5864,
      "texte": "Trois erreurs reviennent souvent."
     },
     {
      "id": "x2",
-     "debut": 6219,
-     "fin": 6313,
+     "debut": 5874,
+     "fin": 5970,
      "texte": "Sauter le rinçage du filtre, et garder son goût de papier."
     },
     {
      "id": "x3",
-     "debut": 6324,
-     "fin": 6460,
+     "debut": 5980,
+     "fin": 6105,
      "texte": "Oublier le bloom : le gaz carbonique empêche alors l’eau de mouiller le café de façon égale."
     },
     {
      "id": "x4",
-     "debut": 6471,
-     "fin": 6619,
+     "debut": 6116,
+     "fin": 6279,
      "texte": "Et verser sur les bords du filtre : l’eau file sans traverser le café, et dilue la tasse."
     }
    ],
    "carte": {
-    "debut": 6118,
-    "fin": 6166
+    "debut": 5777,
+    "fin": 5825
    },
-   "fin": 6648
+   "fin": 6307
   },
   {
    "id": "cafe",
    "num": "09",
    "titre": "Quel café pour le V60",
-   "debut": 6648,
+   "debut": 6307,
    "phrases": [
     {
      "id": "c1",
-     "debut": 6696,
-     "fin": 7003,
+     "debut": 6355,
+     "fin": 6557,
      "texte": "Pour le V60, choisissez des cafés d’origine, en torréfaction claire à médium, avec des notes florales, d’agrumes ou de fruits rouges."
     },
     {
      "id": "c2",
-     "debut": 7014,
-     "fin": 7167,
+     "debut": 6568,
+     "fin": 6736,
      "texte": "Un café très torréfié, pensé pour l’espresso, donne souvent en V60 une tasse plate et amère."
     }
    ],
    "carte": {
-    "debut": 6648,
-    "fin": 6696
+    "debut": 6307,
+    "fin": 6355
    },
-   "fin": 7196
+   "fin": 6764
   },
   {
    "id": "recap",
    "num": "10",
    "titre": "Récapitulatif",
-   "debut": 7196,
+   "debut": 6764,
    "phrases": [
     {
      "id": "f1",
-     "debut": 7244,
-     "fin": 7550,
+     "debut": 6812,
+     "fin": 7066,
      "texte": "On récapitule : 15 g de café, 250 g d’eau à 93 °C, un bloom de 30 secondes, trois versements, et environ trois minutes."
     },
     {
      "id": "f2",
-     "debut": 7561,
-     "fin": 7690,
+     "debut": 7077,
+     "fin": 7202,
      "texte": "La recette complète, avec le calculateur de dose, est sur filtre.cafe."
     }
    ],
    "carte": {
-    "debut": 7196,
-    "fin": 7244
+    "debut": 6764,
+    "fin": 6812
    },
-   "fin": 7718
+   "fin": 7230
   }
  ],
- "duree": 7808
+ "duree": 7320
 }
