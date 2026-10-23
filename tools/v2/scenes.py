@@ -162,6 +162,31 @@ LETTRE_ICONES = {
                  '<path d="M24 17 C19 9 12 10 14 15 C15 17 20 17 24 17 C28 17 33 17 34 15 C36 10 29 9 24 17" stroke="#b8401f"/></g>'),
 }
 
+# ── Pictos des méthodes (même trait), à la place des emojis de /guides/methodes-extraction ──
+METHODES_ICONES = {
+    'v60': ie('<path d="M8 11 H40 L28 29 H20 Z"/><path d="M15 15 L21.5 25.5 M33 15 L26.5 25.5" stroke-opacity=".4"/>'
+              '<path d="M37.3 15 H41.5 Q44 15 44 17.5 V18.5 Q44 21 41.5 21 H33.3"/><path d="M16 32 H32"/>'
+              '<circle class="v2-goutte" style="--h:8px" cx="24" cy="35" r="1.8" fill="#b8401f" stroke="none"/>'),
+    'chemex': ie('<path d="M19 16 L14 6 H34 L29 16"/>'
+                 '<path d="M18.5 16 H29.5 L28.2 21 L29.5 26 H18.5 L19.8 21 Z" fill="#2b1d15" fill-opacity=".12"/>'
+                 '<path d="M19.2 26 L14 37 Q12.5 42 18 42 H30 Q35.5 42 34 37 L28.8 26"/>'
+                 '<path d="M28.4 21 L33 23.6"/><circle cx="33.9" cy="24.7" r="1.5" fill="#b8401f" stroke="none"/>'
+                 '<circle class="v2-goutte" style="--h:7px" cx="24" cy="28.5" r="1.6" fill="#b8401f" stroke="none"/>'
+                 '<path d="M16.5 37 H31.5" stroke-opacity=".4"/>'),
+    'piston': ie('<rect x="12" y="14" width="20" height="27" rx="2"/><rect x="10.5" y="10" width="23" height="4" rx="1.5"/>'
+                 '<path d="M32 18 H36.5 Q39 18 39 20.5 V31.5 Q39 34 36.5 34 H32"/><path d="M10 44 H34"/>'
+                 '<g class="v2-piston" style="--p:15px"><path d="M22 3 V20"/><circle cx="22" cy="3.5" r="2.4" fill="#b8401f" stroke="none"/>'
+                 '<path d="M14.5 20 H29.5" stroke="#b8401f" stroke-width="2.4"/></g>'),
+    'moka': ie('<path d="M16 14 H32 L30.5 25.5 H17.5 Z"/><path d="M16.5 25.5 H31.5 V28 H16.5 Z"/><path d="M17.5 28 L14 44 H34 L30.5 28"/>'
+               '<path d="M22 14 V11.5 H26 V14"/><path d="M16.3 16 L11 13.5 L16 19.5"/>'
+               '<path d="M31.8 16.5 H37 Q39.5 16.5 39.5 19 V21.5 Q39.5 24 37 24 H30.9"/>'
+               '<path class="v2-vapeur" d="M20 9 q-2.5 -2.5 0 -6.5 M28 9 q-2.5 -2.5 0 -6.5" stroke="#b8401f"/>'),
+    'aeropress': ie('<path d="M11 14 H37"/><rect x="14.5" y="14" width="19" height="22" rx="1"/><path d="M13 36 H35 V38.5 H13 Z"/>'
+                    '<path d="M18 22 H21 M18 26.5 H21 M18 31 H21" stroke-opacity=".45"/>'
+                    '<g class="v2-piston" style="--p:9px"><rect x="17" y="3" width="14" height="14" rx="1"/><path d="M15 3 H33"/></g>'
+                    '<circle class="v2-goutte" style="--h:6px" cx="24" cy="41" r="1.6" fill="#b8401f" stroke="none"/>'),
+}
+
 # ── Carte des origines (projection équirectangulaire 720×360) ─────────────
 ORIGINES = [
     ('ethiopie', 'Éthiopie', 7.9, 38.7, '/journal/cafe-ethiopien-yirgacheffe-sidama-guji', 'Yirgacheffe, Sidama, Guji', -1),

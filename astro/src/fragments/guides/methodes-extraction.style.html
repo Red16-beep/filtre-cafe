@@ -22,7 +22,8 @@ body { font-family:'Inter',sans-serif; background-color:var(--stone-50); color:v
 .pull-quote { border-left:2px solid var(--amber-800); padding-left:1.5rem; margin:2.5rem 0; font-family:'Instrument Serif',serif; font-style:italic; font-size:1.35rem; line-height:1.5; color:var(--stone-900); letter-spacing:-0.02em; }
 .method-card { background:white; border:1px solid var(--stone-200); border-radius:1.25rem; padding:1.75rem; margin:2rem 0; }
 .method-card .method-header { display:flex; align-items:center; gap:1rem; margin-bottom:1.25rem; }
-.method-card .method-emoji { font-size:2rem; }
+.method-card .method-picto { flex:none; width:56px; height:56px; border-radius:14px; background:var(--creme-fonce); display:grid; place-items:center; }
+.method-card .method-picto svg { width:36px; height:36px; overflow:visible; }
 .method-card .method-name { font-weight:700; font-size:1.125rem; letter-spacing:-0.02em; color:var(--stone-900); }
 .method-card .method-tagline { font-size:0.8125rem; color:var(--stone-400); font-weight:400; }
 .method-specs { display:grid; grid-template-columns:repeat(2,1fr); gap:0.75rem; margin:1.25rem 0; }
@@ -38,7 +39,10 @@ body { font-family:'Inter',sans-serif; background-color:var(--stone-50); color:v
 .step { display:flex; gap:0.875rem; padding:0.5rem 0; }
 .step-num { width:1.5rem; height:1.5rem; border-radius:50%; background:var(--stone-900); color:white; font-size:0.625rem; font-weight:700; display:flex; align-items:center; justify-content:center; shrink:0; flex-shrink:0; margin-top:0.1rem; }
 .step-text { font-size:0.875rem; color:var(--stone-500); line-height:1.6; font-weight:300; }
-.toc-link { display:block; padding:0.625rem 0; border-bottom:1px solid var(--stone-100); font-size:0.9375rem; color:var(--stone-500); font-weight:300; transition:color 0.15s; }
+.toc-link { display:flex; align-items:center; gap:0.625rem; padding:0.625rem 0; border-bottom:1px solid var(--stone-100); font-size:0.9375rem; color:var(--stone-500); font-weight:300; transition:color 0.15s; }
 .toc-link:hover { color:var(--stone-900); }
+.toc-picto { flex:none; display:grid; }
+.toc-picto svg { width:20px; height:20px; overflow:visible; }
+.toc-picto * { animation:none !important; }
 .header-rule { height:1px; background:linear-gradient(to right,var(--stone-200),transparent); margin:2rem 0; }
 </style>
