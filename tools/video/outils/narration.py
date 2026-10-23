@@ -101,7 +101,9 @@ class Kokoro:
 
 
 class VoxCPM2:
-    """Clonage « complet » : la référence donne le timbre, et sa transcription sert d'amorce à chaque phrase."""
+    """La référence ne donne que le timbre ; la mélodie de chaque phrase suit le texte et la consigne « style » de la
+    voix (voix/<nom>.json). Le mode « complet » (narration.json) amorce aussi chaque phrase avec la transcription de
+    la référence : timbre un peu plus fidèle, mais la phrase en recopie le ton, et toutes finissent sur la même note."""
     aleatoire, lot = True, 1
 
     def __init__(self, v):
@@ -111,12 +113,14 @@ class VoxCPM2:
         self.torch = torch
         self.m = VoxCPM.from_pretrained('openbmb/VoxCPM2', load_denoiser=False, optimize=False, device='cpu')
         self.ref = str(RACINE / f"{v['reference']}.flac")
-        self.ref_texte = json.loads((RACINE / f"{v['reference']}.json").read_text(encoding='utf8'))['texte']
+        ref = json.loads((RACINE / f"{v['reference']}.json").read_text(encoding='utf8'))
+        self.amorce = {'prompt_wav_path': self.ref, 'prompt_text': ref['texte']} if v.get('mode') == 'complet' else {}
+        self.style = f"({ref['style']})" if ref.get('style') else ''
 
     def dire(self, texte, graine):
         self.torch.manual_seed(graine)
-        w = self.m.generate(text=texte, prompt_wav_path=self.ref, prompt_text=self.ref_texte, reference_wav_path=self.ref,
-                            cfg_value=2.0, inference_timesteps=10)
+        w = self.m.generate(text=self.style + texte, reference_wav_path=self.ref, cfg_value=2.0, inference_timesteps=10,
+                            **self.amorce)
         return w.astype(np.float32), self.m.tts_model.sample_rate
 
 
@@ -181,10 +185,12 @@ def main(episode):
     n = json.loads((dossier / 'narration.json').read_text(encoding='utf8'))
     v, pauses = n['voix'], n['pauses']
     Moteur = MOTEURS[v['moteur']]
-    # La clé de cache suit le réglage de la voix et le contenu de la référence : une nouvelle voix repart de zéro.
+    # La clé de cache suit le réglage de la voix, le contenu de la référence et sa consigne de ton : une nouvelle voix
+    # repart de zéro (la chaîne « studio », appliquée au mixage, n'y entre pas).
     empreinte = [v]
     if 'reference' in v:
-        empreinte.append(hashlib.sha1((RACINE / f"{v['reference']}.flac").read_bytes()).hexdigest()[:12])
+        ref = json.loads((RACINE / f"{v['reference']}.json").read_text(encoding='utf8'))
+        empreinte += [hashlib.sha1((RACINE / f"{v['reference']}.flac").read_bytes()).hexdigest()[:12], ref.get('style', '')]
     cache = RACINE / 'out' / 'voix-cache'
     moteur = None
 
