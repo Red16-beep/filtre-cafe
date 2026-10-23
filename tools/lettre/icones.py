@@ -5,7 +5,7 @@
   python3 tools/lettre/icones.py                            # liste les icônes disponibles
   python3 tools/lettre/icones.py --web lait                 # pastille SVG pour la version en ligne
 
-Les dessins viennent de tools/v2/scenes.py (ENVIES_ICONES, LETTRE_ICONES et METHODES_ICONES) et bougent avec les
+Les dessins viennent de tools/v2/scenes.py (ENVIES_ICONES, LETTRE_ICONES, METHODES_ICONES et PICTOS) et bougent avec les
 classes de v2/v2.css. Gmail et Outlook n'affichent pas le SVG : le mail reçoit des GIF (pastille crème
 de 128 px, affichée à 56 px), la version en ligne garde le SVG animé du site. La pastille fait partie
 de l'image : sans elle, le trait brun disparaîtrait dans le mode sombre de Gmail.
@@ -30,7 +30,7 @@ sys.path.insert(0, str(RACINE / 'tools' / 'v2'))
 import scenes  # noqa: E402
 
 SITE = 'https://filtre.cafe'
-ICONES = {**scenes.ENVIES_ICONES, **scenes.LETTRE_ICONES, **scenes.METHODES_ICONES}
+ICONES = {**scenes.ENVIES_ICONES, **scenes.LETTRE_ICONES, **scenes.METHODES_ICONES, **scenes.PICTOS}
 BOUCLES = {'espresso': 3.2, 'lait': 2.4, 'monde': 4, 'glace': 4, 'materiel': 4, 'cadeau': 4, 'moka': 3.2, 'piston': 7, 'aeropress': 6.5}  # durée d'un tour du GIF (s), 2,6 s sinon
 DEPART = {'filtre': .1, 'telephone': .1, 'espresso': .45, 'v60': .1, 'chemex': .1, 'moka': .45}  # première image, en fraction du tour
 IPS = 12             # images par seconde

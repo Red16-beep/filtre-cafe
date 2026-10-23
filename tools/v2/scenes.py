@@ -187,6 +187,42 @@ METHODES_ICONES = {
                     '<circle class="v2-goutte" style="--h:6px" cx="24" cy="41" r="1.6" fill="#b8401f" stroke="none"/>'),
 }
 
+# ── Pictos des articles (même trait, fixes), à la place des emojis : matériel des encadrés « Ce qu'il te faut »,
+# réponse courte de café en grains ou moulu, épices du café de Fès ──
+PICTOS = {
+    'machine': ie('<rect x="8" y="6" width="32" height="12" rx="2"/><path d="M8 18 V38"/><rect x="6" y="38" width="36" height="4" rx="1.5"/>'
+                  '<circle cx="14" cy="12" r="2"/><path d="M24 18 V21"/><rect x="18" y="21" width="12" height="3" rx="1"/><path d="M30 22.5 H38"/>'
+                  '<path d="M24 26 V29" stroke="#b8401f"/><path d="M19 31 H29 V33.5 Q29 37 25.5 37 H22.5 Q19 37 19 33.5 Z"/>'),
+    'moulin': ie('<rect x="17" y="15" width="14" height="27" rx="3"/><path d="M17 23 H31"/><path d="M18 15 Q24 10.5 30 15"/>'
+                 '<path d="M24 12 V7.5 H36"/><circle cx="37.5" cy="10" r="2.6" fill="#b8401f" stroke="none"/><path d="M21 28 V37 M27 28 V37" stroke-opacity=".4"/>'),
+    'thermometre': ie('<circle cx="24" cy="15" r="9"/><path d="M24 15 L28.5 10.5" stroke="#b8401f"/><path d="M24 7.5 V9 M16.5 15 H18 M30 15 H31.5" stroke-opacity=".5"/>'
+                      '<path d="M24 24 V41"/><path d="M22.5 41 L24 44 L25.5 41"/>'),
+    'balance': ie('<path d="M10 25 H38"/><rect x="6" y="28" width="36" height="12" rx="3"/>'
+                  '<rect x="12" y="31.5" width="14" height="5" rx="1" fill="#2b1d15" fill-opacity=".12"/><circle cx="34" cy="34" r="2" fill="#b8401f" stroke="none"/>'
+                  '<path d="M17 25 V14 H31 V25"/><path d="M31 17 Q36 17 36 20.5 Q36 24 31 24"/>'),
+    'phin': ie('<path d="M16 6.5 Q24 3 32 6.5"/><circle cx="24" cy="4.5" r="1.2" fill="#2b1d15" stroke="none"/><rect x="15.5" y="7" width="17" height="12" rx="1.5"/>'
+               '<path d="M10 21 H38"/><path d="M14 24 L16 43 H32 L34 24"/><path d="M15.4 37 H32.6" stroke="#b8401f" stroke-opacity=".7"/>'
+               '<circle cx="24" cy="28.5" r="1.6" fill="#b8401f" stroke="none"/>'),
+    'chrono': ie('<circle cx="24" cy="27" r="15"/><path d="M21 6 H27 M24 6 V12"/><path d="M35.5 14.5 L38.5 11.5"/>'
+                 '<path d="M24 27 V18" stroke="#b8401f"/><circle cx="24" cy="27" r="1.6" fill="#2b1d15" stroke="none"/><path d="M24 14 V15.5 M37 27 H35.5 M24 40 V38.5 M11 27 H12.5" stroke-opacity=".5"/>'),
+    'sachet': ie('<path d="M14 9 H34 L36 42 H12 Z"/><path d="M13.6 15 H34.4"/>'
+                 '<circle cx="24" cy="25" r="3.2"/><circle cx="24" cy="25" r="1" fill="#b8401f" stroke="none"/><path d="M17 34 H31" stroke-opacity=".4"/>'),
+    'prix': ie('<path d="M26 7 H41 V22 L22 41 L7 26 Z"/><circle cx="34.5" cy="13.5" r="2.6" fill="#b8401f" stroke="none"/><path d="M17 26 L26 17 M21 30 L28 23" stroke-opacity=".45"/>'),
+    'gingembre': ie('<path d="M7 30 Q8 23 15 24 Q17 16 24 18 Q29 11 36 15 Q42 19 37 25 Q41 31 34 32 Q30 39 22 35 Q13 39 7 30 Z" fill="#2b1d15" fill-opacity=".12"/>'
+                    '<path d="M15 24 Q17 28 15 31 M24 18 Q26 23 24 27 M36 15 Q33 19 34 22" stroke-opacity=".45"/>'),
+    'cannelle': ie('<g transform="rotate(-32 24 24)"><rect x="6" y="15" width="36" height="7" rx="3.5" fill="#2b1d15" fill-opacity=".12"/><path d="M9.5 15.5 Q6.5 18.5 9.5 21.5"/>'
+                   '<rect x="6" y="26" width="36" height="7" rx="3.5" fill="#2b1d15" fill-opacity=".12"/><path d="M9.5 26.5 Q6.5 29.5 9.5 32.5"/></g>'),
+    'cardamome': ie('<g transform="rotate(-28 24 25)"><path d="M8 25 Q8 15 24 15 Q40 15 40 25 Q40 35 24 35 Q8 35 8 25 Z" fill="#2b1d15" fill-opacity=".12"/>'
+                    '<path d="M11 25 Q24 19 37 25" stroke-opacity=".45"/><path d="M11 25 Q24 31 37 25" stroke-opacity=".45"/>'
+                    '<path d="M40 25 H44.5"/></g>'),
+    'poivre': ie('<circle cx="17" cy="21" r="7" fill="#2b1d15" fill-opacity=".8"/><circle cx="31" cy="20" r="6" fill="#2b1d15" fill-opacity=".8"/>'
+                 '<circle cx="24" cy="33" r="7" fill="#2b1d15" fill-opacity=".8"/>'
+                 '<path d="M14.5 19 Q16 17.5 18 18 M28.8 18.2 Q30 17 32 17.5 M21.5 31 Q23 29.5 25 30" stroke="#ece2d4" stroke-width="1.4"/>'),
+    'muscade': ie('<ellipse cx="22" cy="26" rx="12" ry="14" fill="#2b1d15" fill-opacity=".12"/><path d="M14 18 Q20 22 18 30 Q17 35 22 38 M22 12 Q26 18 24 24 Q22 30 28 34 M32 20 Q28 24 30 30" stroke-opacity=".45"/>'),
+    'anis': ie(''.join(f'<g transform="rotate({a} {x} {y})"><path d="M{x} {y-7} Q{x+4} {y} {x} {y+7} Q{x-4} {y} {x} {y-7} Z" fill="#2b1d15" fill-opacity=".12"/><path d="M{x} {y-5} V{y+5}" stroke-opacity=".45"/></g>'
+                       for x, y, a in [(16, 18, -30), (30, 15, 20), (20, 32, 15), (33, 31, -25)])),
+}
+
 # ── Carte des origines (projection équirectangulaire 720×360) ─────────────
 ORIGINES = [
     ('ethiopie', 'Éthiopie', 7.9, 38.7, '/journal/cafe-ethiopien-yirgacheffe-sidama-guji', 'Yirgacheffe, Sidama, Guji', -1),

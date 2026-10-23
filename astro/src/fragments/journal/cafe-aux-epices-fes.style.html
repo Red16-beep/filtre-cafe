@@ -85,8 +85,14 @@ body {
   padding: 1rem 1.25rem;
 }
 .spice-card .spice-name {
-  font-weight: 600; font-size: 0.875rem; color: var(--stone-900); margin-bottom: 0.25rem;
+  display: flex; align-items: center; gap: 0.625rem;
+  font-weight: 600; font-size: 0.875rem; color: var(--stone-900); margin-bottom: 0.375rem;
 }
+.spice-card .spice-picto {
+  flex: none; width: 34px; height: 34px; border-radius: 9px; background: var(--creme-fonce);
+  display: grid; place-items: center;
+}
+.spice-card .spice-picto svg { width: 24px; height: 24px; }
 .spice-card .spice-note {
   font-size: 0.75rem; font-weight: 300; color: var(--stone-500); line-height: 1.5;
 }
