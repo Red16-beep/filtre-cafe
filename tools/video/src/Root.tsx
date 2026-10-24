@@ -22,7 +22,7 @@ import { Fond } from "./dessins/Fond";
 import { V60Episode, V60EpisodeLettre, V60EpisodeMiniature, V60Short, V60_EPISODE_DUREE, V60_SHORTS, dureeShort } from "./episodes/v60/Episode";
 import { ESPRESSO_EPISODE_DUREE, ESPRESSO_SHORTS, EspressoEpisode, EspressoEpisodeLettre, EspressoEpisodeMiniature, EspressoShort, dureeShortEspresso } from "./episodes/espresso/Episode";
 import { BLACK_FRIDAY_DUREE, BlackFridayShort } from "./episodes/black-friday/Short";
-import { FETES_DUREE, FetesPinterest } from "./fetes/Fetes";
+import { FETES_DUREE, FetesPinterest, FetesVertical } from "./fetes/Fetes";
 import { CHEMEX_EPISODE_DUREE, CHEMEX_SHORTS, ChemexEpisode, ChemexEpisodeLettre, ChemexEpisodeMiniature, ChemexShort, dureeShortChemex } from "./episodes/chemex/Episode";
 import { ChaineAvatar, ChaineBanniere } from "./chaine/Chaine";
 import { V60Affiche, V60AfficheVerticale } from "./v60/Affiche";
@@ -102,6 +102,7 @@ export const RemotionRoot: React.FC = () => {
         ))}
         <Composition id="BlackFridayShort" component={BlackFridayShort} durationInFrames={BLACK_FRIDAY_DUREE} fps={30} width={1080} height={1920} />
         <Composition id="FetesPinterest" component={FetesPinterest} durationInFrames={FETES_DUREE} fps={30} width={1000} height={1500} />
+        <Composition id="FetesVertical" component={FetesVertical} durationInFrames={FETES_DUREE} fps={30} width={1080} height={1920} />
         <Composition id="EspressoEpisode" component={EspressoEpisode} durationInFrames={ESPRESSO_EPISODE_DUREE} fps={30} width={1920} height={1080} />
         <Still id="EspressoEpisodeMiniature" component={EspressoEpisodeMiniature} width={1920} height={1080} />
         <Still id="EspressoEpisodeLettre" component={EspressoEpisodeLettre} width={1920} height={1080} />

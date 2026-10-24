@@ -115,6 +115,10 @@ Deux conditions pour que ça passe : les PNG doivent être en ligne (ils le sont
 déploiement, `sync-public.sh` copie `pins/`), et le nom du tableau doit correspondre
 exactement à celui créé dans Pinterest.
 
+Une épingle vidéo se déclare dans `extras.json` avec un champ `video` (le nom du fichier
+déposé dans `pins/`, par exemple `noel-cafe-2026.mp4`, rendu par `tools/video`) : `pins.py`
+n'a rien à dessiner, et la colonne `image_url` du CSV pointe sur la vidéo.
+
 Pour étaler la publication au lieu de tout envoyer d'un coup, la colonne
 `published_at` se remplit toute seule :
 

@@ -57,7 +57,8 @@ Hors série, `BlackFridayShort` (`src/episodes/black-friday/`) : un Short narré
 journal/black-friday-cafe, un seul chapitre sans carte, même chaîne voix, musique (`BATTERIE=standard`, graine
 1580660788) et mixage.
 
-`FetesPinterest` (`src/fetes/`) : l'épingle vidéo de Noël (1000 × 1500, 27,7 s, sans voix, lisible sans le son).
+`FetesPinterest` (`src/fetes/`) : l'épingle vidéo de Noël (1000 × 1500, 27,7 s, sans voix, lisible sans le son),
+en ligne sur `pins/noel-cafe-2026.mp4` ; `FetesVertical`, la même en 1080 × 1920 pour les Reels et les Shorts.
 Quatre dates sur une page d'éphéméride qui se tourne : commander le calendrier de l'avent, le Black Friday, la
 première case, le cadeau. Chiffres de journal/idees-cadeaux-cafe et journal/black-friday-cafe. Musique :
 `GRILLE=chemex MELODIE=celesta BATTERIE=jazz node outils/musique-sf2.mjs fetes 28 2412`, puis

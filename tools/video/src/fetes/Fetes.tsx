@@ -6,7 +6,8 @@ import { texteSans, texteSerif } from "../episodes/ui";
 import { FormatCtx } from "../format";
 import { C, DOUX, SANS, SERIF, SORTIE, mix, prog } from "../theme";
 
-// Épingle vidéo Pinterest des fêtes (1000 × 1500, 2:3), lisible sans le son : quatre dates, du calendrier de
+// Épingle vidéo Pinterest des fêtes (1000 × 1500, 2:3) et sa version 9:16 pour les Reels et les Shorts, lisibles
+// sans le son : quatre dates, du calendrier de
 // l'avent à commander au cadeau du 24. Tous les chiffres viennent de journal/idees-cadeaux-cafe (calendriers,
 // packs) et de journal/black-friday-cafe (la règle des -15 %) ; l'épingle renvoie vers le guide des cadeaux.
 // Musique : MELODIE=celesta BATTERIE=jazz GRILLE=chemex node outils/musique-sf2.mjs fetes 28 2412.
@@ -192,12 +193,12 @@ const Ouverture: React.FC = () => {
   const f = useCurrentFrame();
   return (
     <AbsoluteFill>
-      <div style={{ position: "absolute", left: 70, right: 70, top: 250, ...vu(f, 0, undefined, 20) }}>
+      <div style={{ position: "absolute", left: 70, right: 70, top: 250 }}>
         <div style={texteSerif(140, { lineHeight: 1, whiteSpace: "nowrap" })}>Quatre dates</div>
         <div style={texteSerif(62, { fontStyle: "italic", fontWeight: 400, color: C.crema, marginTop: 14 })}>pour offrir juste, au bon prix</div>
       </div>
       {RESUME.map((r, i) => (
-        <div key={r.date} style={{ position: "absolute", left: 70, right: 70, top: 600 + i * 150, display: "flex", alignItems: "baseline", gap: 30, borderTop: "2px solid rgba(239,199,156,0.18)", paddingTop: 26, ...vu(f, 14 + i * 9, undefined, 18) }}>
+        <div key={r.date} style={{ position: "absolute", left: 70, right: 70, top: 600 + i * 150, display: "flex", alignItems: "baseline", gap: 30, borderTop: "2px solid rgba(239,199,156,0.18)", paddingTop: 26, ...vu(f, 6 + i * 8, undefined, 18) }}>
           <span style={texteSerif(76, { width: 290, whiteSpace: "nowrap", color: i === 1 ? ROUGE : C.creme })}>{r.date}</span>
           <span style={texteSans(42, { color: "rgba(239,199,156,0.92)" })}>{r.quoi}</span>
         </div>
@@ -332,10 +333,9 @@ const Adresse: React.FC = () => {
 
 const SCENES: React.FC[] = [Ouverture, Commander, BlackFriday, PremiereCase, Cadeaux, Adresse];
 
-export const FetesPinterest: React.FC = () => (
-  <FormatCtx.Provider value="vertical">
-    <AbsoluteFill>
-      <Fond />
+// Tout sauf le fond et le son, sur la toile 1000 × 1500 de l'épingle.
+const Contenu: React.FC = () => (
+  <>
       {SCENES.map((Sc, k) => {
         const debut = S[k];
         const duree = (k + 1 < S.length ? S[k + 1] : FETES_DUREE) - debut;
@@ -358,6 +358,29 @@ export const FetesPinterest: React.FC = () => (
       <div style={{ position: "absolute", left: 70, right: 70, top: 1404, borderTop: "1.5px solid rgba(239,199,156,0.2)", paddingTop: 20, display: "flex", justifyContent: "space-between", fontFamily: SANS, fontSize: 25, color: "rgba(239,199,156,0.75)" }}>
         <span style={{ fontWeight: 600, color: C.creme }}>filtre.cafe</span>
         <span>Guide indépendant du café de spécialité</span>
+      </div>
+  </>
+);
+
+// La première image sert de couverture : le titre y est déjà.
+export const FetesPinterest: React.FC = () => (
+  <FormatCtx.Provider value="vertical">
+    <AbsoluteFill>
+      <Fond />
+      <Contenu />
+      <Audio src={staticFile("audio/fetes-mix.wav")} />
+    </AbsoluteFill>
+  </FormatCtx.Provider>
+);
+
+// 1080 × 1920 : la toile de l'épingle réduite à 90 %, dans la zone que ne couvrent ni le haut de l'écran
+// (220 px), ni la légende du bas (440 px), ni les boutons de droite des Reels et des Shorts.
+export const FetesVertical: React.FC = () => (
+  <FormatCtx.Provider value="vertical">
+    <AbsoluteFill>
+      <Fond />
+      <div style={{ position: "absolute", left: 90, top: 181, width: W, height: 1500, scale: "0.9", transformOrigin: "0 0" }}>
+        <Contenu />
       </div>
       <Audio src={staticFile("audio/fetes-mix.wav")} />
     </AbsoluteFill>

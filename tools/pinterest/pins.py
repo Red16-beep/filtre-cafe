@@ -201,6 +201,8 @@ def extras(only=None):
             "outline": [curl(h) for h in e.get("outline", [])],
             "theme": e.get("theme"), "layout": e.get("layout"),
             "photo": e.get("photo"),
+            # Une epingle video (pins/<video>, deposee a la main) : rien a rendre, le CSV pointe sur le fichier.
+            "video": e.get("video"),
             # La carte tient 120 signes, le champ Pinterest en accepte 500 :
             # au-dela d'une phrase, les deux textes n'ont plus le meme travail.
             "accroche": curl(e.get("accroche", "")),
@@ -394,7 +396,7 @@ def write_csv(arts, start, per_day):
                 art["title"][:100],
                 art["desc"][:800],
                 art["url"],
-                f"{SITE}/pins/{art['slug']}.png",
+                f"{SITE}/pins/{art['video']}" if art.get("video") else f"{SITE}/pins/{art['slug']}.png",
                 ts,
             ])
     return OUT_CSV
@@ -448,6 +450,9 @@ def main():
         with tempfile.TemporaryDirectory() as tmp:
             gap = chrome_gap(chrome, tmp)
             for i, art in enumerate(arts, 1):
+                if art.get("video"):
+                    print(f"  [{i}/{len(arts)}] {art['video']}  (vidéo, rien à rendre)")
+                    continue
                 page = os.path.join(tmp, art["slug"] + ".html")
                 open(page, "w", encoding="utf-8").write(build_html(art, template, fonts))
                 png = os.path.join(OUT_IMG, art["slug"] + ".png")
