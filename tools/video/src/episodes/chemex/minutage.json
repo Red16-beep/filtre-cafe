@@ -37,19 +37,19 @@
     {
      "id": "p1",
      "debut": 602,
-     "fin": 744,
-     "texte": "Peter Schlumbohm, chimiste de formation, dessine la Chemex en 1941."
+     "fin": 768,
+     "texte": "Peter Schlumbohm, un chimiste de formation, dessine la Chemex en 1941."
     },
     {
      "id": "p2",
-     "debut": 755,
-     "fin": 979,
+     "debut": 779,
+     "fin": 1003,
      "texte": "Une seule pièce de verre soufflé, un col de bois serré par un lien de cuir : le MoMA de New York la garde dans sa collection permanente."
     },
     {
      "id": "p3",
-     "debut": 989,
-     "fin": 1081,
+     "debut": 1013,
+     "fin": 1105,
      "texte": "Elle infuse et sert dans le même objet, pour deux ou trois personnes."
     }
    ],
@@ -57,378 +57,378 @@
     "debut": 554,
     "fin": 602
    },
-   "fin": 1109
+   "fin": 1133
   },
   {
    "id": "filtre",
    "num": "02",
    "titre": "Le filtre",
-   "debut": 1109,
+   "debut": 1133,
    "phrases": [
     {
      "id": "f1",
-     "debut": 1157,
-     "fin": 1310,
+     "debut": 1181,
+     "fin": 1334,
      "texte": "Tout se joue sur le filtre : il pèse de 20 à 30 % de plus que le papier d’un V60."
     },
     {
      "id": "f2",
-     "debut": 1320,
-     "fin": 1515,
+     "debut": 1344,
+     "fin": 1539,
      "texte": "Il retient davantage d’huiles et de particules fines : la tasse sort limpide, légère, avec une acidité franche."
     },
     {
      "id": "f3",
-     "debut": 1526,
-     "fin": 1635,
+     "debut": 1550,
+     "fin": 1659,
      "texte": "Pliez-le en cône, et placez le côté à trois épaisseurs contre le bec verseur."
     },
     {
      "id": "f4",
-     "debut": 1646,
-     "fin": 1766,
+     "debut": 1670,
+     "fin": 1790,
      "texte": "Il tient le papier écarté du bec, et l’air peut sortir de la carafe."
     },
     {
      "id": "f5",
-     "debut": 1776,
-     "fin": 1919,
+     "debut": 1800,
+     "fin": 1943,
      "texte": "Les filtres du V60 ne s’y adaptent pas : c’est le papier épais qui fait la tasse Chemex."
     }
    ],
    "carte": {
-    "debut": 1109,
-    "fin": 1157
+    "debut": 1133,
+    "fin": 1181
    },
-   "fin": 1948
+   "fin": 1972
   },
   {
    "id": "materiel",
    "num": "03",
    "titre": "Le matériel",
-   "debut": 1948,
+   "debut": 1972,
    "phrases": [
     {
      "id": "m1",
-     "debut": 1996,
-     "fin": 2062,
+     "debut": 2020,
+     "fin": 2086,
      "texte": "Le reste du matériel tient en trois objets."
     },
     {
      "id": "m2",
-     "debut": 2072,
-     "fin": 2173,
+     "debut": 2096,
+     "fin": 2197,
      "texte": "Une Chemex Classic de six tasses, autour de 44 €."
     },
     {
      "id": "m3",
-     "debut": 2183,
-     "fin": 2371,
+     "debut": 2207,
+     "fin": 2395,
      "texte": "Une bouilloire à col de cygne d’au moins un litre : 750 g d’eau plus le rinçage dépassent les petites bouilloires."
     },
     {
      "id": "m4",
-     "debut": 2381,
-     "fin": 2496,
+     "debut": 2405,
+     "fin": 2520,
      "texte": "Et une balance avec chronomètre, pour les paliers et les 4 à 5 minutes."
     }
    ],
    "carte": {
-    "debut": 1948,
-    "fin": 1996
+    "debut": 1972,
+    "fin": 2020
    },
-   "fin": 2525
+   "fin": 2549
   },
   {
    "id": "dose",
    "num": "04",
    "titre": "La dose",
-   "debut": 2525,
+   "debut": 2549,
    "phrases": [
     {
      "id": "d1",
-     "debut": 2573,
-     "fin": 2744,
+     "debut": 2597,
+     "fin": 2768,
      "texte": "45 g de café pour 750 g d’eau : un ratio de 1:16,7."
     },
     {
      "id": "d2",
-     "debut": 2755,
-     "fin": 2835,
+     "debut": 2779,
+     "fin": 2859,
      "texte": "Pour 500 ml, comptez de 31 à 33 g."
     },
     {
      "id": "d3",
-     "debut": 2846,
-     "fin": 2960,
+     "debut": 2870,
+     "fin": 2984,
      "texte": "Pour 600 ml, de 37,5 à 40 g."
     },
     {
      "id": "d4",
-     "debut": 2971,
-     "fin": 3214,
+     "debut": 2995,
+     "fin": 3238,
      "texte": "Le ratio reste entre 1:15 et 1:17 : le papier épais pousse certains vers 1:17, pour une tasse plus légère."
     }
    ],
    "carte": {
-    "debut": 2525,
-    "fin": 2573
+    "debut": 2549,
+    "fin": 2597
    },
-   "fin": 3243
+   "fin": 3267
   },
   {
    "id": "mouture",
    "num": "05",
    "titre": "La mouture",
-   "debut": 3243,
+   "debut": 3267,
    "phrases": [
     {
      "id": "u1",
-     "debut": 3291,
-     "fin": 3387,
+     "debut": 3315,
+     "fin": 3411,
      "texte": "Moulez médium-grossier, plus gros que pour un V60."
     },
     {
      "id": "u2",
-     "debut": 3397,
-     "fin": 3498,
+     "debut": 3421,
+     "fin": 3522,
      "texte": "Le papier épais ralentit l’écoulement, et impose son tempo."
     },
     {
      "id": "u3",
-     "debut": 3509,
-     "fin": 3657,
+     "debut": 3533,
+     "fin": 3681,
      "texte": "Avec une mouture de V60, l’eau stagne dans le cône, et l’extraction dépasse les 5 minutes."
     }
    ],
    "carte": {
-    "debut": 3243,
-    "fin": 3291
+    "debut": 3267,
+    "fin": 3315
    },
-   "fin": 3685
+   "fin": 3709
   },
   {
    "id": "eau",
    "num": "06",
    "titre": "L’eau",
-   "debut": 3685,
+   "debut": 3709,
    "phrases": [
     {
      "id": "e1",
-     "debut": 3733,
-     "fin": 3801,
+     "debut": 3757,
+     "fin": 3825,
      "texte": "Chauffez l’eau à 94 °C."
     },
     {
      "id": "e2",
-     "debut": 3811,
-     "fin": 4142,
+     "debut": 3835,
+     "fin": 4166,
      "texte": "Pour une torréfaction claire, restez entre 93 et 96 °C. Pour une médium, entre 91 et 93. Pour une foncée, entre 85 et 90."
     }
    ],
    "carte": {
-    "debut": 3685,
-    "fin": 3733
+    "debut": 3709,
+    "fin": 3757
    },
-   "fin": 4171
+   "fin": 4195
   },
   {
    "id": "recette",
    "num": "07",
    "titre": "La recette pas à pas",
-   "debut": 4171,
+   "debut": 4195,
    "phrases": [
     {
      "id": "r1",
-     "debut": 4219,
-     "fin": 4296,
+     "debut": 4243,
+     "fin": 4320,
      "texte": "Passons à la recette, étape par étape."
     },
     {
      "id": "r2",
-     "debut": 4306,
-     "fin": 4445,
+     "debut": 4330,
+     "fin": 4469,
      "texte": "Placez le filtre, rincez-le à l’eau chaude, puis videz l’eau par le bec, filtre en place."
     },
     {
      "id": "r3",
-     "debut": 4456,
-     "fin": 4622,
+     "debut": 4480,
+     "fin": 4646,
      "texte": "Versez les 45 g de café moulu, égalisez le lit, posez la Chemex sur la balance, et tarez à zéro."
     },
     {
      "id": "r4",
-     "debut": 4632,
-     "fin": 4805,
+     "debut": 4656,
+     "fin": 4829,
      "texte": "Le bloom : 90 g d’eau, deux fois le poids du café, en spirale, puis 30 secondes d’attente."
     },
     {
      "id": "r5",
-     "debut": 4816,
-     "fin": 4864,
+     "debut": 4840,
+     "fin": 4888,
      "texte": "Le café gonfle, et dégaze."
     },
     {
      "id": "r6",
-     "debut": 4874,
-     "fin": 4970,
+     "debut": 4898,
+     "fin": 4994,
      "texte": "Versez en spirales régulières jusqu’à 450 g."
     },
     {
      "id": "r7",
-     "debut": 4981,
-     "fin": 5099,
+     "debut": 5005,
+     "fin": 5123,
      "texte": "Puis jusqu’à 600 g, puis 750 g, en gardant l’eau sous le bord du filtre."
     },
     {
      "id": "r8",
-     "debut": 5109,
-     "fin": 5270,
+     "debut": 5133,
+     "fin": 5294,
      "texte": "Laissez l’eau finir de passer : 4 à 5 minutes au total. Retirez le filtre, et servez."
     }
    ],
    "carte": {
-    "debut": 4171,
-    "fin": 4219
+    "debut": 4195,
+    "fin": 4243
    },
-   "fin": 5298
+   "fin": 5322
   },
   {
    "id": "diagnostic",
    "num": "08",
    "titre": "Trop rapide, trop lent",
-   "debut": 5298,
+   "debut": 5322,
    "phrases": [
     {
      "id": "g1",
-     "debut": 5346,
-     "fin": 5408,
+     "debut": 5370,
+     "fin": 5432,
      "texte": "Regardez le chronomètre avant de goûter."
     },
     {
      "id": "g2",
-     "debut": 5419,
-     "fin": 5591,
+     "debut": 5443,
+     "fin": 5615,
      "texte": "Sous 4 minutes, l’eau traverse trop vite : la tasse paraît acide et creuse. Moulez plus fin."
     },
     {
      "id": "g3",
-     "debut": 5602,
-     "fin": 5784,
+     "debut": 5626,
+     "fin": 5808,
      "texte": "Au-delà de 5 minutes, la mouture est trop fine pour ce papier : la tasse devient amère et sèche. Moulez plus gros."
     },
     {
      "id": "g4",
-     "debut": 5795,
-     "fin": 5862,
+     "debut": 5819,
+     "fin": 5886,
      "texte": "Changez une seule variable à la fois."
     }
    ],
    "carte": {
-    "debut": 5298,
-    "fin": 5346
+    "debut": 5322,
+    "fin": 5370
    },
-   "fin": 5890
+   "fin": 5914
   },
   {
    "id": "erreurs",
    "num": "09",
    "titre": "Trois erreurs à éviter",
-   "debut": 5890,
+   "debut": 5914,
    "phrases": [
     {
      "id": "x1",
-     "debut": 5938,
-     "fin": 5977,
+     "debut": 5962,
+     "fin": 6001,
      "texte": "Trois erreurs reviennent souvent."
     },
     {
      "id": "x2",
-     "debut": 5987,
-     "fin": 6150,
+     "debut": 6011,
+     "fin": 6174,
      "texte": "Mettre le côté simple du filtre contre le bec : le papier se plaque, et l’air ne sort plus."
     },
     {
      "id": "x3",
-     "debut": 6160,
-     "fin": 6280,
+     "debut": 6184,
+     "fin": 6304,
      "texte": "Garder la mouture du V60 : l’eau stagne, et la tasse tourne amère."
     },
     {
      "id": "x4",
-     "debut": 6290,
-     "fin": 6420,
+     "debut": 6314,
+     "fin": 6444,
      "texte": "Et sauter le rinçage : le goût de papier reste, et le verre reste froid."
     }
    ],
    "carte": {
-    "debut": 5890,
-    "fin": 5938
+    "debut": 5914,
+    "fin": 5962
    },
-   "fin": 6448
+   "fin": 6472
   },
   {
    "id": "cafe",
    "num": "10",
    "titre": "Quel café pour la Chemex",
-   "debut": 6448,
+   "debut": 6472,
    "phrases": [
     {
      "id": "c1",
-     "debut": 6496,
-     "fin": 6592,
+     "debut": 6520,
+     "fin": 6616,
      "texte": "La Chemex met la clarté et l’acidité au premier plan."
     },
     {
      "id": "c2",
-     "debut": 6603,
-     "fin": 6747,
+     "debut": 6627,
+     "fin": 6769,
      "texte": "Un Kenya torréfié clair, ou un Éthiopie floral, y donnent des tasses très nettes."
     },
     {
      "id": "c3",
-     "debut": 6757,
-     "fin": 6968,
+     "debut": 6780,
+     "fin": 6991,
      "texte": "Un café chocolaté, plus torréfié, y perd une partie de son corps : le papier retient les huiles qui le portent."
     }
    ],
    "carte": {
-    "debut": 6448,
-    "fin": 6496
+    "debut": 6472,
+    "fin": 6520
    },
-   "fin": 6997
+   "fin": 7019
   },
   {
    "id": "recap",
    "num": "11",
    "titre": "Récapitulatif",
-   "debut": 6997,
+   "debut": 7019,
    "phrases": [
     {
      "id": "f6",
-     "debut": 7045,
-     "fin": 7337,
+     "debut": 7067,
+     "fin": 7360,
      "texte": "On récapitule : 45 g de café, 750 g d’eau à 94 °C, un bloom de 90 g, trois paliers, et 4 à 5 minutes."
     },
     {
      "id": "f7",
-     "debut": 7348,
-     "fin": 7463,
+     "debut": 7370,
+     "fin": 7486,
      "texte": "Le V60 pour goûter un café, la Chemex pour en servir."
     },
     {
      "id": "f8",
-     "debut": 7474,
-     "fin": 7539,
+     "debut": 7496,
+     "fin": 7562,
      "texte": "La recette complète est sur filtre.cafe."
     }
    ],
    "carte": {
-    "debut": 6997,
-    "fin": 7045
+    "debut": 7019,
+    "fin": 7067
    },
-   "fin": 7568
+   "fin": 7590
   }
  ],
- "duree": 7658
+ "duree": 7680
 }
