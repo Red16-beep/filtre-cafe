@@ -382,13 +382,13 @@
     {
      "id": "c2",
      "debut": 6627,
-     "fin": 6769,
+     "fin": 6771,
      "texte": "Un Kenya torréfié clair, ou un Éthiopie floral, y donnent des tasses très nettes."
     },
     {
      "id": "c3",
-     "debut": 6780,
-     "fin": 6991,
+     "debut": 6781,
+     "fin": 6992,
      "texte": "Un café chocolaté, plus torréfié, y perd une partie de son corps : le papier retient les huiles qui le portent."
     }
    ],
@@ -396,39 +396,39 @@
     "debut": 6472,
     "fin": 6520
    },
-   "fin": 7019
+   "fin": 7021
   },
   {
    "id": "recap",
    "num": "11",
    "titre": "Récapitulatif",
-   "debut": 7019,
+   "debut": 7021,
    "phrases": [
     {
      "id": "f6",
-     "debut": 7067,
-     "fin": 7360,
+     "debut": 7069,
+     "fin": 7361,
      "texte": "On récapitule : 45 g de café, 750 g d’eau à 94 °C, un bloom de 90 g, trois paliers, et 4 à 5 minutes."
     },
     {
      "id": "f7",
-     "debut": 7370,
-     "fin": 7486,
+     "debut": 7372,
+     "fin": 7487,
      "texte": "Le V60 pour goûter un café, la Chemex pour en servir."
     },
     {
      "id": "f8",
-     "debut": 7496,
-     "fin": 7562,
+     "debut": 7498,
+     "fin": 7563,
      "texte": "La recette complète est sur filtre.cafe."
     }
    ],
    "carte": {
-    "debut": 7019,
-    "fin": 7067
+    "debut": 7021,
+    "fin": 7069
    },
-   "fin": 7590
+   "fin": 7592
   }
  ],
- "duree": 7680
+ "duree": 7682
 }
