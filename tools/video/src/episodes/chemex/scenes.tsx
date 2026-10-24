@@ -409,7 +409,7 @@ export const Erreurs: React.FC = () => {
 
 // ── 10. Quel café ─────────────────────────────────────────────────────────────
 const ETIQUETTES = [
-  { t: "Kenya, torréfié clair", m: "Kenya" },
+  { t: "Kenya, torréfié clair", m: "Kénia" },
   { t: "Éthiopie floral", m: "Éthiopie" },
 ];
 
