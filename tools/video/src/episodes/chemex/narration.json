@@ -41,8 +41,8 @@
       "phrases": [
         {
           "id": "p1",
-          "ecrit": "Peter Schlumbohm, chimiste de formation, dessine la Chemex en 1941.",
-          "dit": "Peter Schlumbohm, chimiste de formation, dessine la Chemex en mille neuf cent quarante et un."
+          "ecrit": "Peter Schlumbohm, un chimiste de formation, dessine la Chemex en 1941.",
+          "dit": "Peter Schlumbohm, un chimiste de formation, dessine la Chemex en mille neuf cent quarante et un."
         },
         {
           "id": "p2",
@@ -295,7 +295,7 @@
         {
           "id": "c2",
           "ecrit": "Un Kenya torréfié clair, ou un Éthiopie floral, y donnent des tasses très nettes.",
-          "dit": "Un Kenya torréfié clair, ou un Éthiopie floral, y donnent des tasses très nettes."
+          "dit": "Un Kenya, torréfié clair, ou un Éthiopie floral, y donnent des tasses très nettes."
         },
         {
           "id": "c3",
