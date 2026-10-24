@@ -77,7 +77,10 @@ La voix fixe tout le minutage. Chaîne complète, depuis `tools/video` :
    médiane à 3 demi-tons près, envolées (97e centile) sous +12 demi-tons, timbre (ECAPA de speechbrain) à 0,80 au
    moins. Trois prises au plus, la meilleure est gardée. Une phrase signalée « À REVOIR » est à réécrire dans `dit`
    (les homophones sont de fausses alertes) ; une phrase « TON À REVOIR » est à écouter, et à reformuler si elle sonne
-   faux. Autres moteurs : `"moteur": "qwen3"` (Qwen3-TTS, Apache-2.0, `pip install qwen-tts`, par lots, plus rapide),
+   faux. Un mot mal prononcé passe parfois sous le seuil (« chimiste » dit « chemiste ») : `python
+   outils/contre-ecoute.py <méthode> <ids> "<amorce>"` retranscrit des phrases de la piste finale, sans puis avec une
+   amorce de vocabulaire, et `MODELE=medium` prend un modèle plus précis. Ce que deux modèles entendent de travers se
+   reprend dans `dit`, au besoin par une graphie phonétique (« Kénia », le texte écrit gardant « Kenya »). Autres moteurs : `"moteur": "qwen3"` (Qwen3-TTS, Apache-2.0, `pip install qwen-tts`, par lots, plus rapide),
    et la première voix, Kokoro, jugée trop robotique (`"moteur": "kokoro", "locuteur": "ff_siwis", "vitesse": 0.92`).
 3. **Musique** : `MELODIE=aucune BATTERIE=jazz node outils/musique-sf2.mjs episode-v60 <durée en s> 462885100`, la graine du tuto
    V60 sans sa mélodie (même accompagnement, rien ne chante sous la voix).
