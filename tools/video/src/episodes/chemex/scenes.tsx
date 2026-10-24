@@ -215,7 +215,7 @@ export const Dose: React.FC = () => {
   return (
     <AbsoluteFill>
       <LegendeDe de={CARTE + 2} a={d2.debut} puce="LA DOSE" titre={`45${FINE}g pour 750${FINE}g`} sous="soit un ratio de 1:16,7" accent={["1:16,7"]} taille={100} />
-      <LegendeDe de={d2.debut} a={d4.debut} puce="AUTRES QUANTITÉS" titre="La même logique" sous="même ratio, moins d’eau" />
+      <LegendeDe de={d2.debut} a={d4.debut} puce="AUTRES QUANTITÉS" titre="La même logique" sous="de 1 à 6 tasses" />
       <LegendeDe de={d4.debut} a={fin} puce="LE RATIO" titre="De 1:15 à 1:17" sous="vers 1:17 pour une tasse plus légère" />
       <div style={{ position: "absolute", inset: 0, opacity: vu(f, CARTE + 4, d2.debut - 6).opacity }}>
         <Toile>
