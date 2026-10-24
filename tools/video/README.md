@@ -57,6 +57,13 @@ Hors série, `BlackFridayShort` (`src/episodes/black-friday/`) : un Short narré
 journal/black-friday-cafe, un seul chapitre sans carte, même chaîne voix, musique (`BATTERIE=standard`, graine
 1580660788) et mixage.
 
+`FetesPinterest` (`src/fetes/`) : l'épingle vidéo de Noël (1000 × 1500, 27,7 s, sans voix, lisible sans le son).
+Quatre dates sur une page d'éphéméride qui se tourne : commander le calendrier de l'avent, le Black Friday, la
+première case, le cadeau. Chiffres de journal/idees-cadeaux-cafe et journal/black-friday-cafe. Musique :
+`GRILLE=chemex MELODIE=celesta BATTERIE=jazz node outils/musique-sf2.mjs fetes 28 2412`, puis
+`ffmpeg -i public/audio/fetes-sf2.wav -af "atrim=0:27.667,afade=t=in:d=0.25,afade=t=out:st=25.2:d=2.45,loudnorm=I=-16:TP=-1.5"
+public/audio/fetes-mix.wav`.
+
 La voix fixe tout le minutage. Chaîne complète, depuis `tools/video` :
 
 1. **Texte** : `src/episodes/<méthode>/narration.json`, chapitres et phrases. Champ `ecrit` pour les sous-titres,

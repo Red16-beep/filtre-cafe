@@ -6,7 +6,7 @@
 // piano, batterie un peu dégradée (12 bits, 26 kHz en parallèle), saturation, craquements de vinyle.
 //
 // node outils/musique-sf2.mjs <nom> <durée en s> [graine]
-// Variables facultatives : MELODIE=flute|shakuhachi|guitare|sax|aucune, BATTERIE=room|jazz|standard (sinon tirées au hasard),
+// Variables facultatives : MELODIE=flute|shakuhachi|guitare|sax|celesta|aucune, BATTERIE=room|jazz|standard (sinon tirées au hasard),
 // GRILLE=chemex (grille hors tirage).
 import fs from "node:fs/promises";
 import path from "node:path";
@@ -95,7 +95,8 @@ const tonique = pick([53, 55, 56, 58, 60, 51, 50]); // fa, sol, la bémol, si b�
 const KITS = { room: { prog: 8, nom: "Room" }, jazz: { prog: 32, nom: "Jazz" }, standard: { prog: 0, nom: "Standard" } };
 const kit = KITS[process.env.BATTERIE] ?? pick(Object.values(KITS));
 // sax : ténor, joué une octave plus bas que la flûte (registre chaud du ténor, ré 3 à ré 5).
-const LEADS = { flute: { prog: 73, nom: "flûte" }, shakuhachi: { prog: 77, nom: "shakuhachi" }, guitare: { prog: 26, nom: "guitare jazz" }, sax: { prog: 66, nom: "saxophone ténor", octave: -12 } };
+// célesta : la clochette de Noël, hors tirage (MELODIE=celesta seulement).
+const LEADS = { flute: { prog: 73, nom: "flûte" }, shakuhachi: { prog: 77, nom: "shakuhachi" }, guitare: { prog: 26, nom: "guitare jazz" }, sax: { prog: 66, nom: "saxophone ténor", octave: -12 }, celesta: { prog: 8, nom: "célesta" } };
 // MELODIE=aucune suit le même tirage qu'une mélodie choisie (pas de pick) : même accompagnement qu'avec MELODIE=flute.
 const lead = LEADS[process.env.MELODIE === "aucune" ? "flute" : process.env.MELODIE] ?? pick([LEADS.flute, LEADS.flute, LEADS.shakuhachi, LEADS.guitare]);
 const swing = entre(0.56, 0.6);
