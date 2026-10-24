@@ -9,7 +9,44 @@ montée sur 0,4 s, éteinte sur les 2,5 dernières secondes, à −1,5 dB. Les v
 (lecture automatique) ; le visiteur active le son avec les commandes du lecteur. Les versions verticales
 servent aussi aux épingles Pinterest.
 
-## Version retenue (17 oct. 2026) : vrais instruments échantillonnés
+## Version retenue (24 oct. 2026) : célesta, balais jazz, grille majeure
+
+Demande de Reda (« j'aime bien la nouvelle DA sonore ») : la couleur de l'épingle vidéo de Noël (`FetesPinterest`)
+passe sur les neuf tutos. Même générateur, mêmes graines qu'au 17 octobre (la graine 1941 pour la Chemex, dont la
+graine n'était pas notée), trois réglages communs : la grille majeure Imaj9 vi9 IVmaj9 V13 (`GRILLE=chemex`), le
+célesta en mélodie et la batterie Jazz aux balais. Chaque tuto garde sa tonalité, son tempo et sa mélodie :
+
+```bash
+GRILLE=chemex MELODIE=celesta BATTERIE=jazz node outils/musique-sf2.mjs tuto-v60 44.8 462885100
+```
+
+| Tuto | Durée | Graine | Tonalité | Tempo |
+|---|---|---|---|---|
+| V60 | 44,8 s | 462885100 | si bémol majeur | 89 bpm |
+| Chemex | 56,867 s | 1941 | do majeur | 89 bpm |
+| AeroPress | 42,033 s | 1247351084 | mi bémol majeur | 89 bpm |
+| French press | 44,2 s | 1580660788 | do majeur | 90 bpm |
+| Moka | 41,867 s | 1019387184 | ré majeur | 88 bpm |
+| Espresso | 34,433 s | 1476816975 | fa majeur | 89 bpm |
+| Cold brew | 40,767 s | 23 | do majeur | 83 bpm |
+| Méthode 4:6 | 52,867 s | 19 | si bémol majeur | 83 bpm |
+| Café glacé | 55,467 s | 154 | sol majeur | 87 bpm |
+
+Montage sur la vidéo du site (l'image est recopiée telle quelle), avec le ffmpeg du système, qui a `afade` et
+`alimiter` : la musique complétée de silence si elle finit avant l'image, montée sur 0,4 s, éteinte sur les 2,5
+dernières secondes, limitée à -1,5 dBFS. Niveau mesuré : -13,2 LUFS, comme la version précédente ; crêtes sous
+-0,3 dBFS après encodage AAC.
+
+```bash
+ffmpeg -i videos/v60-recette.mp4 -i tools/video/public/audio/tuto-v60-sf2.wav -map 0:v:0 -map 1:a:0 -c:v copy \
+  -af "apad,atrim=0:44.8,afade=t=in:st=0:d=0.4,afade=t=out:st=42.3:d=2.5,alimiter=limit=0.84:level=0:attack=4:release=60" \
+  -c:a aac -b:a 128k -movflags +faststart sortie.mp4
+```
+
+Les vidéos sont gardées 7 jours en cache par les navigateurs (`_headers`) : un visiteur récent peut encore entendre
+l'ancienne musique pendant ce délai.
+
+## Version précédente (17 oct. 2026) : vrais instruments échantillonnés
 
 Validée par Reda (« parfait les musiques comme ça »). Les versions précédentes, synthétisées (`gen_music_*.js`
 avec le skill build-music), sonnaient métalliques : timbres FM et additifs. Elles restent ici pour mémoire.
